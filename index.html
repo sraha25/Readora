@@ -528,6 +528,7 @@
 
         .btn i {
             margin-right: 5px;
+            font-size: 14px;
         }
 
         .btn-primary {
@@ -738,6 +739,7 @@
         .social-links {
             display: flex;
             gap: 15px;
+            margin-top: 20px;
         }
 
         .social-link {
@@ -1020,7 +1022,6 @@
                     <li><a href="#search" class="nav-link">Search</a></li>
                     <li><a href="#categories" class="nav-link">Categories</a></li>
                     <li><a href="#footer" class="nav-link">Contact</a></li>
-                    
                 </ul>
             </nav>
         </div>
@@ -1081,7 +1082,8 @@
                 <button id="search-button"><i class="fas fa-search"></i> Search</button>
             </div>
             <div class="books-grid" id="search-results">
-                </div>
+                <!-- Search results will be displayed here -->
+            </div>
         </div>
     </section>
 
@@ -1107,7 +1109,8 @@
             </div>
             
             <div class="books-grid" id="category-books">
-                </div>
+                <!-- Category books will be displayed here -->
+            </div>
         </div>
     </section>
 
@@ -1119,12 +1122,11 @@
             </div>
             <div class="modal-body">
                 <div class="book-details" id="book-details-content">
-                    </div>
+                    <!-- Book details will be displayed here -->
+                </div>
             </div>
         </div>
     </div>
-
-    
 
     <footer id="footer">
         <div class="container">
@@ -1136,9 +1138,9 @@
                     </div>
                     <p>Your one-stop destination for all books. We offer a wide selection of books across all genres at competitive prices.</p>
                     <div class="social-links">
-                       <a href="https://www.facebook.com/share/1AoLnMhXxK/" class="social-link facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="tel:+91 9163621264" class="social-link call"><i class="fas fa-phone"></i></a>
-        <a href="mailto:readora07@gmail.com" class="social-link email"><i class="fas fa-envelope"></i></a>
+                        <a href="https://www.facebook.com/share/17JzLNsUGm/" class="social-link facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="tel:+919163621264" class="social-link call"><i class="fas fa-phone"></i></a>
+                        <a href="mailto:readora07@gmail.com" class="social-link email"><i class="fas fa-envelope"></i></a>
                     </div>
                 </div>
                 
@@ -1146,21 +1148,18 @@
                     <h3 class="footer-heading">Quick Links</h3>
                     <ul>
                         <li><a href="#home">Home</a></li>
-                        <li><a href="#categories">Categories</a></li>
+                        <li><a href="#about">About</a></li>                        
                         <li><a href="#search">Search</a></li>
-                        <li><a href="#about">About</a></li>
+                        <li><a href="#categories">Categories</a></li>
                         <li><a href="#footer">Contact</a></li>
                     </ul>
                 </div>
-                
-               
                 
                 <div class="contact-info">
                     <h3 class="footer-heading">Contact Us</h3>
                     <p><i class="fas fa-map-marker-alt"></i> Sajirhat,Madhyamgram,Kolkata-700130</p>
                     <p><i class="fas fa-phone"></i> +91 9163621264</p>
                     <p><i class="fas fa-envelope"></i>readora07@gmail.com</p>
-                    
                 </div>
             </div>
             
@@ -1178,8 +1177,8 @@
 
         // Sample book data
         const books = [
-            createBook(1, "সুনির্বাচিত গল্প", "আশাপূর্ণা দেবী", 300, 350, "Fiction", "New", true, " (Sunirbachita Galpa) by Ashapurna Devi is a collection of her selected short stories, showcasing her skill as a short story writer alongside her more famous novels. The book likely explores the lives, struggles, and psyches of ordinary women in mid-20th century Bengal, a central theme in Devi's broader work.", "https://cdn.dotpe.in/longtail/store-items/7756154/UZPwmFFa.jpeg", "", "https://drive.google.com/file/d/1JCg45mOzVpJEgkVTEMNALPDr99TxPaAj/view?usp=drive_link", 4.8),
-            createBook(2, "আপনি কেমন আছেন", "James Clear", 14.99, 19.99, "Non-Fiction", "New", true, "Tiny Changes, Remarkable Results: An easy & proven way to build good habits & break bad ones. This book will teach you how to make time for new habits, overcome lack of motivation, and design your environment to make success easier.", "https://images.unsplash.com/photo-1558901357-ca41e027e43a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.8),
+            createBook(1, "সুনির্বাচিত গল্প", "আশাপূর্ণা দেবী", 300, 350, "Fiction", "New", true, " (Sunirbachita Galpa) by Ashapurna Devi is a collection of her selected short stories, showcasing her skill as a short story writer alongside her more famous novels. The book likely explores the lives, struggles, and psyches of ordinary women in mid-20th century Bengal, a central theme in Devi's broader work.", "https://cdn.dotpe.in/longtail/store-items/7756154/UZPwmFFa.jpeg", "", "https://drive.google.com/file/d/1JCg45mOzVpJEgkVTEMNALPDr99TxPaAj/view?usp=drive_link"),
+            createBook(2, "আপনি কেমন আছেন", "আশাপূর্ণা দেবী", 14.99, 19.99, "Non-Fiction", "New", true, "Tiny Changes, Remarkable Results: An easy & proven way to build good habits & break bad ones. This book will teach you how to make time for new habits, overcome lack of motivation, and design your environment to make success easier.", "https://images.unsplash.com/photo-1558901357-ca41e027e43a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.8),
             createBook(3, "The Hobbit", "J.R.R. Tolkien", 16.99, 22.99, "Fantasy", "Old", true, "A fantasy novel about the adventures of hobbit Bilbo Baggins, who is hired by the wizard Gandalf to accompany thirteen dwarves on a quest to reclaim their mountain home from the dragon Smaug.", "https://images.unsplash.com/photo-1629992101753-56d196c8aabb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7),
             createBook(4, "Sapiens: A Brief History of Humankind", "Yuval Noah Harari", 18.99, 24.99, "Non-Fiction", "New", true, "A groundbreaking narrative of humanity's creation and evolution that explores the ways in which biology and history have defined us and enhanced our understanding of what it means to be human.", "https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.6),
             createBook(5, "Dune", "Frank Herbert", 13.99, 17.99, "Science Fiction", "Old", true, "A science fiction novel set in the distant future amidst a feudal interstellar society in which various noble houses control planetary fiefs. It tells the story of young Paul Atreides, whose family accepts the stewardship of the planet Arrakis.", "https://images.unsplash.com/photo-1531072901881-4a7e5df0ab7f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.9),
@@ -1479,6 +1478,29 @@
             
             const discount = book.originalPrice ? Math.round(((book.originalPrice - book.price) / book.originalPrice) * 100) : 0;
             
+            // Get current date and time
+            const now = new Date();
+            const dateTime = now.toLocaleString('en-IN', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            
+            // Create message with book details
+            const message = encodeURIComponent(
+                `I want to order this book:\n\n` +
+                `📖 *Book Name:* ${book.title}\n` +
+                `✍️ *Author:* ${book.author}\n` +
+                `💰 *Price:* ₹${book.price.toFixed(2).replace(/\.00$/, '')}\n` +
+                `📅 *Date & Time:* ${dateTime}\n\n` +
+                `Please confirm availability and delivery details.`
+            );
+            
+            // Create Facebook Messenger URL
+            const messengerUrl = `https://www.messenger.com/t/718957201308613`;
+            
             bookDetailsContent.innerHTML = `
                 <div class="book-details-img">
                     <img src="${book.frontImg}" alt="${book.title}">
@@ -1495,16 +1517,22 @@
                     <p style="font-size: 14px; color: var(--gray); margin-top: -10px; margin-bottom: 15px;">(+ Delivery Charge)</p>
                     <p class="book-details-desc">${book.description}</p>
                     <div class="book-details-actions">
-                        <button class="btn btn-primary btn-large chat-fb">
-                            <i class="fab fa-facebook-messenger"></i> Chat on Facebook
+                        <button class="btn btn-primary btn-large chat-fb" data-url="${messengerUrl}">
+                            <i class="fab fa-facebook-messenger"></i> FB Chat To Order
                         </button>
                     </div>
                 </div>
             `;
             
             // Add event listener to chat button
-            bookDetailsContent.querySelector('.chat-fb').addEventListener('click', () => {
-                window.open('https://m.me/yourpage', '_blank');
+            bookDetailsContent.querySelector('.chat-fb').addEventListener('click', function() {
+                // Open Facebook Messenger with pre-filled message
+                window.open(`https://www.messenger.com/t/718957201308613/`, '_blank');
+                
+                // After a short delay, show a confirmation message
+                setTimeout(() => {
+                    alert(`Your order request for "${book.title}" has been initiated. Please chat With Facebook Messenger to complete your order.`);
+                }, 1000);
             });
             
             bookDetailsModal.style.display = 'block';
