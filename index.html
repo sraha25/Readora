@@ -1406,7 +1406,7 @@
                         ${book.originalPrice ? `<span class="original-price">₹${book.originalPrice.toFixed(2).replace(/\.00$/, '')}</span>` : ''}
                         ${discount > 0 ? `<span class="discount">${discount}% off</span>` : ''}
                     </div>
-                    <p style="font-size: 12px; color: var(--gray); margin-top: -10px; margin-bottom: 10px;">(+ Delivery Charge)</p>
+                    <p style="font-size: 12px; color: var(--gray); margin-top: -10px; margin-bottom: 10px;">(Free Delivery on Three)</p>
                     <div class="book-actions">
                         <button class="btn btn-outline view-details" data-id="${book.id}">
                             <i class="fas fa-eye"></i> Details
@@ -1562,7 +1562,7 @@ function performSearch(query) {
                         ${book.originalPrice ? `<span class="original-price">₹${book.originalPrice.toFixed(2).replace(/\.00$/, '')}</span>` : ''}
                         ${discount > 0 ? `<span class="discount">${discount}% off</span>` : ''}
                     </div>
-                    <p style="font-size: 14px; color: var(--gray); margin-top: -10px; margin-bottom: 15px;">(+ Delivery Charge)</p>
+                    <p style="font-size: 14px; color: var(--gray); margin-top: -10px; margin-bottom: 15px;">(No delivery charge for orders with 3 or more products.)</p>
                     <p class="book-details-desc">${book.description}</p>
                     <div class="book-details-actions">
                         <button class="btn btn-primary btn-large chat-fb" data-url="${messengerUrl}">
