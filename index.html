@@ -962,9 +962,15 @@
             .section-title {
                 font-size: 1.8rem;
             }
-            
-            .categories, .subcategories, .language-subcategories {
-                gap: 5px;
+             .categories {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between; /* or use flex-start with adjusted margins */
+        gap: 4px; /* smaller gap */
+        overflow-x: auto; /* in case content still overflows */
+    }
+             .subcategories, .language-subcategories {
+                gap: 8px;
             }
             
             .category-btn, .subcategory-btn, .language-btn {
@@ -1770,7 +1776,3 @@ init();
     </script>
 </body>
 </html>
-
-
-
-
