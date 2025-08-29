@@ -1117,7 +1117,7 @@
     <div id="book-details-modal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>Book Details</h2>
+                <h2> Details</h2>
                 <span class="close-modal">&times;</span>
             </div>
             <div class="modal-body">
@@ -1189,11 +1189,12 @@
 
         // Sample exercise copy data
         const exerciseCopies = [
-            { id: 'ex1', title: 'Classmate Notebook', img: 'https://m.media-amazon.com/images/I/71h3n7cREKL.jpg' },
-            { id: 'ex2', title: 'Spiral Notebook', img: 'https://rukminim2.flixcart.com/image/850/1000/kfmv9u80/notebook/p/y/g/navneet-youva-soft-bound-long-notebook-17x27-single-line-original-imafwfz7z7hzzfyb.jpeg?q=20&crop=false' },
-            { id: 'ex3', title: 'Practical Copy', img: 'https://targetpublications.org/media/catalog/product/cache/1/image/700x700/9df78eab33525d08d6e5fb8d27136e95/t/a/target_s_eco-friendly_practical_notebook_for_students_2.jpg' },
-            { id: 'ex4', title: 'Graph Paper Book', img: 'https://laxmistationery.com/wp-content/uploads/2021/07/Classmate-Graph-Book-32-Pages-Pack-of-12.jpg' }
-        ];
+      { id: 'ex1', title: 'Classmate Notebook', img: 'https://images.meesho.com/images/products/112719835/hqino_512.webp?width=512', description: 'Durable and stylish notebook for everyday use.', price: 60 },
+      { id: 'ex2', title: 'Spiral Notebook', img: 'https://rukminim2.flixcart.com/image/850/1000/kfmv9u80/notebook/p/y/g/navneet-youva-soft-bound-long-notebook-17x27-single-line-original-imafwfz7z7hzzfyb.jpeg?q=20&crop=false', description: 'Spiral bound notebook, easy to flip pages.', price: 80 },
+      { id: 'ex3', title: 'Practical Copy', img: 'https://targetpublications.org/media/catalog/product/cache/1/image/700x700/9df78eab33525d08d6e5fb8d27136e95/t/a/target_s_eco-friendly_practical_notebook_for_students_2.jpg', description: 'Eco-friendly practical notebook for students.', price: 100 },
+      { id: 'ex4', title: 'Graph Paper Book', img: 'https://laxmistationery.com/wp-content/uploads/2021/07/Classmate-Graph-Book-32-Pages-Pack-of-12.jpg', description: 'Perfect for math & geometry classes.', price: 50 }
+    ];
+
 
         // DOM Elements
         const searchInput = document.getElementById('search-input');
@@ -1426,50 +1427,97 @@
             return card;
         }
 
-        // Create exercise copy card
-        function createExerciseCopyCard(copy) {
-            const card = document.createElement('div');
-            card.className = 'book-card fade-in'; // Re-use book-card styling
-            card.innerHTML = `
-                <div class="book-img">
-                    <img src="${copy.img}" alt="${copy.title}" style="object-fit: contain; padding: 10px;">
-                </div>
-                <div class="book-info">
-                    <h3 class="book-title">${copy.title}</h3>
-                    <div class="book-actions">
-                        <button class="btn btn-primary" style="width:100%;"><i class="fas fa-shopping-cart"></i> Enquire Now</button>
-                    </div>
-                </div>
-            `;
-            return card;
-        }
+        // ✅ Modified createExerciseCopyCard
+    function createExerciseCopyCard(copy) {
+  const card = document.createElement('div');
+  card.className = 'book-card fade-in'; 
+  card.innerHTML = `
+    <div class="book-img">
+      <img src="${copy.img}" alt="${copy.title}" style="object-fit: contain; padding: 10px;">
+    </div>
+    <div class="book-info">
+      <h3 class="book-title">${copy.title}</h3>
+      <div class="book-price">
+        <span class="current-price">₹${copy.price}/kg</span>
+      </div>
+      <div class="book-actions">
+        <button class="btn btn-primary enquire-btn" style="width:100%;" data-id="${copy.id}">
+          <i class="fas fa-shopping-cart"></i> Enquire Now
+        </button>
+      </div>
+    </div>
+  `;
+  // attach click event
+  card.querySelector('.enquire-btn').addEventListener('click', () => showExerciseDetails(copy.id));
+  return card;
+}
 
-        // Perform search
-        function performSearch(query) {
-            if (!query.trim()) {
-                searchResultsGrid.innerHTML = '<div class="no-books">Please enter a search term.</div>';
-                return;
-            }
-            
-            const searchTerm = query.toLowerCase().trim();
-            const results = books.filter(book => 
-                book.title.toLowerCase().includes(searchTerm) || 
-                book.author.toLowerCase().includes(searchTerm) ||
-                book.category.toLowerCase().includes(searchTerm)
-            );
-            
-            searchResultsGrid.innerHTML = '';
-            
-            if (results.length === 0) {
-                searchResultsGrid.innerHTML = '<div class="no-books">No books found matching your search. Please check your spelling and try again.</div>';
-                return;
-            }
-            
-            results.forEach(book => {
-                const bookCard = createBookCard(book);
-                searchResultsGrid.appendChild(bookCard);
-            });
+
+    // ✅ New function for exercise details popup
+    function showExerciseDetails(copyId) {
+      const copy = exerciseCopies.find(c => c.id === copyId);
+      if (!copy) return;
+
+      const now = new Date();
+      const dateTime = now.toLocaleString('en-IN', {
+        day: '2-digit', month: '2-digit', year: 'numeric',
+        hour: '2-digit', minute: '2-digit'
+      });
+
+      const messengerUrl = `https://www.messenger.com/t/718957201308613`;
+
+      bookDetailsContent.innerHTML = `
+        <div class="book-details-img">
+          <img src="${copy.img}" alt="${copy.title}">
+        </div>
+        <div class="book-details-info">
+          <h2>${copy.title}</h2>
+          <div class="book-details-price">₹${copy.price}</div>
+          <p style="font-size:14px; color: var(--gray); margin-bottom:15px;">(+ Delivery Charge)</p>
+          <p class="book-details-desc">${copy.description}</p>
+          <div class="book-details-actions">
+            <button class="btn btn-primary btn-large chat-fb" data-url="${messengerUrl}">
+              <i class="fab fa-facebook-messenger"></i> FB Chat To Order
+            </button>
+          </div>
+        </div>
+      `;
+
+      // Messenger chat action
+      bookDetailsContent.querySelector('.chat-fb').addEventListener('click', () => {
+        window.open(messengerUrl, '_blank');
+        setTimeout(() => {
+          alert(`Please chat With Facebook Messenger to complete your order request for "${copy.title}".`);
+        }, 1000);
+      });
+
+      bookDetailsModal.style.display = 'block';
+    }
+
+   
+function performSearch(query) {
+        if (!query.trim()) {
+            searchResultsGrid.innerHTML = '<div class="no-books">Please enter a search term.</div>';
+            return;
         }
+        const searchTerm = query.toLowerCase().trim();
+        const bookResults = books.filter(book =>
+            book.title.toLowerCase().includes(searchTerm) ||
+            book.author.toLowerCase().includes(searchTerm) ||
+            book.category.toLowerCase().includes(searchTerm)
+        );
+        const copyResults = exerciseCopies.filter(copy =>
+            copy.title.toLowerCase().includes(searchTerm)
+        );
+        searchResultsGrid.innerHTML = '';
+        if (bookResults.length === 0 && copyResults.length === 0) {
+            searchResultsGrid.innerHTML = '<div class="no-books">No results found. Please try again.</div>';
+            return;
+        }
+        bookResults.forEach(book => searchResultsGrid.appendChild(createBookCard(book)));
+        copyResults.forEach(copy => searchResultsGrid.appendChild(createExerciseCopyCard(copy)));
+    }
+
 
         // Show book details in modal
         function showBookDetails(bookId) {
@@ -1531,7 +1579,7 @@
                 
                 // After a short delay, show a confirmation message
                 setTimeout(() => {
-                    alert(`Your order request for "${book.title}" has been initiated. Please chat With Facebook Messenger to complete your order.`);
+                    alert(` Please chat With Facebook Messenger to complete your order request for "${book.title}".`);
                 }, 1000);
             });
             
