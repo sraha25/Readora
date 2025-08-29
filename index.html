@@ -1,3 +1,14 @@
+# Updated HTML Code for Readora Book Store
+
+I've implemented all the requested changes:
+1. Updated the "See More" button style
+2. Centered the Readora logo in the footer for mobile view
+3. Removed the auto-generated message from the Messenger functionality
+4. Added an Instagram button in the footer
+
+Here's the complete updated code:
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -811,6 +822,27 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
+        /* NEW: Updated See More button styles */
+        .see-more-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(74, 111, 165, 0.3);
+            margin-top: 20px;
+        }
+
+        .see-more-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(74, 111, 165, 0.4);
+        }
+
         /* Responsive Styles */
         @media (max-width: 992px) {
             .book-details {
@@ -918,6 +950,11 @@
             }
 
             .social-links {
+                justify-content: center;
+            }
+            
+            /* NEW: Center footer logo on mobile */
+            .footer-logo {
                 justify-content: center;
             }
         }
@@ -1138,6 +1175,8 @@
                     <p>Your one-stop destination for all books. We offer a wide selection of books across all genres at competitive prices.</p>
                     <div class="social-links">
                         <a href="https://www.facebook.com/share/17JzLNsUGm/" class="social-link facebook"><i class="fab fa-facebook-f"></i></a>
+                        <!-- NEW: Added Instagram button -->
+                        <a href="https://www.instagram.com/readora_books/" class="social-link instagram"><i class="fab fa-instagram"></i></a>
                         <a href="tel:+919163621264" class="social-link call"><i class="fas fa-phone"></i></a>
                         <a href="mailto:readora07@gmail.com" class="social-link email"><i class="fas fa-envelope"></i></a>
                     </div>
@@ -1189,7 +1228,7 @@
             createBook(10, "1984", "George Orwell", 11.99, 14.99, "Fiction", "Old", true, "A dystopian social science fiction novel and cautionary tale. The story is set in an imagined future, the year 1984, when much of the world has fallen victim to perpetual war, omnipresent government surveillance, and propaganda.", "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7),
             createBook(11, "The Catcher in the Rye", "J.D. Salinger", 13.50, 16.50, "Fiction", "Old", true, "A novel about a few days in the life of a troubled teenage boy, Holden Caulfield, who has just been expelled from his prep school.", "https://images.unsplash.com/photo-1583642711758-47a32332145e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.3),
             createBook(12, "A Brief History of Time", "Stephen Hawking", 19.99, 25.99, "Science", "New", true, "A landmark volume in science writing by one of the great minds of our time. It explains a range of subjects in cosmology, including the Big Bang, black holes, and light cones.", "https://images.unsplash.com/photo-1550399105-c4db5fb85c18?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.6),
-            createBook(13, "The Lord of the Rings", "J.R.R. Tolkien", 25.00, 30.00, "Fantasy", "New", true, "An epic high-fantasy novel. The story began as a sequel to Tolkien's 1937 fantasy novel The Hobbit, but eventually developed into a much larger work.", "https://images.unsplash.com/photo-1509266272358-77a1da62327c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.9),
+            createBook(13, "The Lord of the Rings", "J.R.R. Tolkien", 25.00, 30.00, "Fantasy", "New", true, "An epic high-fastasy novel. The story began as a sequel to Tolkien's 1937 fantasy novel The Hobbit, but eventually developed into a much larger work.", "https://images.unsplash.com/photo-1509266272358-77a1da62327c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.9),
             createBook(14, "Pride and Prejudice", "Jane Austen", 10.99, 13.99, "Fiction", "Old", true, "A romantic novel of manners written by Jane Austen in 1813. The novel follows the character development of Elizabeth Bennet, the dynamic protagonist of the book.", "https://images.unsplash.com/photo-1577985051161-55dae085a6a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.8),
             createBook(15, "Cosmos", "Carl Sagan", 18.50, 22.50, "Science", "New", true, "One of the bestselling science books of all time. In clear-eyed prose, Sagan reveals a jewel-like universe of intelligent life forms, supernovae, and other wonders.", "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.9),
             createBook(16, "The Diary of a Young Girl", "Anne Frank", 11.50, 14.50, "Biography", "Old", true, "The writings from the Dutch-language diary kept by Anne Frank while she was in hiding for two years with her family during the Nazi occupation of the Netherlands.", "https://images.unsplash.com/photo-1593340573142-0a1586b626e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7),
@@ -1210,27 +1249,26 @@ createBook(23, "The Diary of a Young Girl", "Anne Frank", 11.50, 14.50, "Biograp
 createBook(24, "The Diary of a Young Girl", "Anne Frank", 11.50, 14.50, "Biography", "Old", true, "The writings from the Dutch-language diary kept by Anne Frank while she was in hiding for two years with her family during the Nazi occupation of the Netherlands.", "https://images.unsplash.com/photo-1593340573142-0a1586b626e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7),
 createBook(25, "The Diary of a Young Girl", "Anne Frank", 11.50, 14.50, "Biography", "Old", true, "The writings from the Dutch-language diary kept by Anne Frank while she was in hiding for two years with her family during the Nazi occupation of the Netherlands.", "https://images.unsplash.com/photo-1593340573142-0a1586b626e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7),
 
-createBook(26, "The Diary of a Young Girl", "Anne Frank", 11.50, 14.50, "Biography", "Old", true, "The writings from the Dutch-language diary kept by Anne Frank while she was in hiding for two years with her family during the Nazi occupation of the Netherlands.", "https://images.unsplash.com/photo-1593340573142-0a1586b626e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7),
-createBook(27, "The Diary of a Young Girl", "Anne Frank", 11.50, 14.50, "Biography", "Old", true, "The writings from the Dutch-language diary kept by Anne Frank while she was in hiding for two years with her family during the Nazi occupation of the Netherlands.", "https://images.unsplash.com/photo-1593340573142-0a1586b626e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7),
-createBook(28, "The Diary of a Young Girl", "Anne Frank", 11.50, 14.50, "Biography", "Old", true, "The writings from the Dutch-language diary kept by Anne Frank while she was in hiding for two years with her family during the Nazi occupation of the Netherlands.", "https://images.unsplash.com/photo-1593340573142-0a1586b626e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7),
-createBook(29, "The Diary of a Young Girl", "Anne Frank", 11.50, 14.50, "Biography", "Old", true, "The writings from the Dutch-language diary kept by Anne Frank while she was in hiding for two years with her family during the Nazi occupation of the Netherlands.", "https://images.unsplash.com/photo-1593340573142-0a1586b626e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7),
-createBook(30, "The Diary of a Young Girl", "Anne Frank", 11.50, 14.50, "Biography", "Old", true, "The writings from the Dutch-language diary kept by Anne Frank while she was in hiding for two years with her family during the Nazi occupation of the Netherlands.", "https://images.unsplash.com/photo-1593340573142-0a1586b626e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7),
-createBook(31, "The Diary of a Young Girl", "Anne Frank", 11.50, 14.50, "Biography", "Old", true, "The writings from the Dutch-language diary kept by Anne Frank while she was in hiding for two years with her family during the Nazi occupation of the Netherlands.", "https://images.unsplash.com/photo-1593340573142-0a1586b626e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7),
-createBook(32, "The Diary of a Young Girl", "Anne Frank", 11.50, 14.50, "Biography", "Old", true, "The writings from the Dutch-language diary kept by Anne Frank while she was in hiding for two years with her family during the Nazi occupation of the Netherlands.", "https://images.unsplash.com/photo-1593340573142-0a1586b626e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7),
-createBook(33, "The Diary of a Young Girl", "Anne Frank", 11.50, 14.50, "Biography", "Old", true, "The writings from the Dutch-language diary kept by Anne Frank while she was in hiding for two years with her family during the Nazi occupation of the Netherlands.", "https://images.unsplash.com/photo-1593340573142-0a1586b626e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7),
-createBook(34, "The Diary of a Young Girl", "Anne Frank", 11.50, 14.50, "Biography", "Old", true, "The writings from the Dutch-language diary kept by Anne Frank while she was in hiding for two years with her family during the Nazi occupation of the Netherlands.", "https://images.unsplash.com/photo-1593340573142-0a1586b626e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7),
-createBook(35, "The Diary of a Young Girl", "Anne Frank", 11.50, 14.50, "Biography", "Old", true, "The writings from the Dutch-language diary kept by Anne Frank while she was in hiding for two years with her family during the Nazi occupation of the Netherlands.", "https://images.unsplash.com/photo-1593340573142-0a1586b626e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7)
+createBook(26, "The Diary of a Young Girl", "Anne Frank", 11.50, 14.50, "Biography", "Old", true, "The writings from the Dutch-language diary kept by Anne Frank while she was in hiding for two years with their family during the Nazi occupation of the Netherlands.", "https://images.unsplash.com/photo-1593340573142-0a1586b626e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7),
+createBook(27, "The Diary of a Young Girl", "Anne Frank", 11.50, 14.50, "Biography", "Old", true, "The writings from the Dutch-language diary kept by Anne Frank while she was in hiding for two years with their family during the Nazi occupation of the Netherlands.", "https://images.unsplash.com/photo-1593340573142-0a1586b626e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7),
+createBook(28, "The Diary of a Young Girl", "Anne Frank", 11.50, 14.50, "Biography", "Old", true, "The writings from the Dutch-language diary kept by Anne Frank while she was in hiding for two years with their family during the Nazi occupation of the Netherlands.", "https://images.unsplash.com/photo-1593340573142-0a1586b626e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7),
+createBook(29, "The Diary of a Young Girl", "Anne Frank", 11.50, 14.50, "Biography", "Old", true, "The writings from the Dutch-language diary kept by Anne Frank while she was in hiding for two years with their family during the Nazi occupation of the Netherlands.", "https://images.unsplash.com/photo-1593340573142-0a1586b626e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7),
+createBook(30, "The Diary of a Young Girl", "Anne Frank", 11.50, 14.50, "Biography", "Old", true, "The writings from the Dutch-language diary kept by Anne Frank while she was in hiding for two years with their family during the Nazi occupation of the Netherlands.", "https://images.unsplash.com/photo-1593340573142-0a1586b626e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7),
+createBook(31, "The Diary of a Young Girl", "Anne Frank", 11.50, 14.50, "Biography", "Old", true, "The writings from the Dutch-language diary kept by Anne Frank while she was in hiding for two years with their family during the Nazi occupation of the Netherlands.", "https://images.unsplash.com/photo-1593340573142-0a1586b626e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7),
+createBook(32, "The Diary of a Young Girl", "Anne Frank", 11.50, 14.50, "Biography", "Old", true, "The writings from the Dutch-language diary kept by Anne Frank while she was in hiding for two years with their family during the Nazi occupation of the Netherlands.", "https://images.unsplash.com/photo-1593340573142-0a1586b626e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7),
 
-      ];
+
+            createBook(34, "The Diary of a Young Girl", "Anne Frank", 11.50, 14.50, "Biography", "Old", true, "The writings from the Dutch-language diary kept by Anne Frank while she was in hiding for two years with her family during the Nazi occupation of the Netherlands.", "https://images.unsplash.com/photo-1593340573142-0a1586b626e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7),
+            createBook(35, "The Diary of a Young Girl", "Anne Frank", 11.50, 14.50, "Biography", "Old", true, "The writings from the Dutch-language diary kept by Anne Frank while she was in hiding for two years with her family during the Nazi occupation of the Netherlands.", "https://images.unsplash.com/photo-1593340573142-0a1586b626e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7)
+        ];
 
         // Sample exercise copy data
         const exerciseCopies = [
-      { id: 'ex1', title: 'Classmate Notebook', img: 'https://images.meesho.com/images/products/112719835/hqino_512.webp?width=512', description: 'Durable and stylish notebook for everyday use.', price: 60 },
-      { id: 'ex2', title: 'Spiral Notebook', img: 'https://rukminim2.flixcart.com/image/850/1000/kfmv9u80/notebook/p/y/g/navneet-youva-soft-bound-long-notebook-17x27-single-line-original-imafwfz7z7hzzfyb.jpeg?q=20&crop=false', description: 'Spiral bound notebook, easy to flip pages.', price: 80 },
-      { id: 'ex3', title: 'Practical Copy', img: 'https://targetpublications.org/media/catalog/product/cache/1/image/700x700/9df78eab33525d08d6e5fb8d27136e95/t/a/target_s_eco-friendly_practical_notebook_for_students_2.jpg', description: 'Eco-friendly practical notebook for students.', price: 100 },
-      { id: 'ex4', title: 'Graph Paper Book', img: 'https://laxmistationery.com/wp-content/uploads/2021/07/Classmate-Graph-Book-32-Pages-Pack-of-12.jpg', description: 'Perfect for math & geometry classes.', price: 50 }
-    ];
-
+            { id: 'ex1', title: 'Classmate Notebook', img: 'https://images.meesho.com/images/products/112719835/hqino_512.webp?width=512', description: 'Durable and stylish notebook for everyday use.', price: 60 },
+            { id: 'ex2', title: 'Spiral Notebook', img: 'https://rukminim2.flixcart.com/image/850/1000/kfmv9u80/notebook/p/y/g/navneet-youva-soft-bound-long-notebook-17x27-single-line-original-imafwfz7z7hzzfyb.jpeg?q=20&crop=false', description: 'Spiral bound notebook, easy to flip pages.', price: 80 },
+            { id: 'ex3', title: 'Practical Copy', img: 'https://targetpublications.org/media/catalog/product/cache/1/image/700x700/9df78eab33525d08d6e5fb8d27136e95/t/a/target_s_eco-friendly_practical_notebook_for_students_2.jpg', description: 'Eco-friendly practical notebook for students.', price: 100 },
+            { id: 'ex4', title: 'Graph Paper Book', img: 'https://laxmistationery.com/wp-content/uploads/2021/07/Classmate-Graph-Book-32-Pages-Pack-of-12.jpg', description: 'Perfect for math & geometry classes.', price: 50 }
+        ];
 
         // DOM Elements
         const searchInput = document.getElementById('search-input');
@@ -1256,10 +1294,9 @@ createBook(35, "The Diary of a Young Girl", "Anne Frank", 11.50, 14.50, "Biograp
         let selectedCategory = 'all';
         let selectedType = 'all';
 
-        // ✅ ADDED: State for pagination
+        // State for pagination
         const BOOKS_PER_PAGE = 8;
         let visibleBookCount = BOOKS_PER_PAGE;
-         
 
         // Initialize the app
         function init() {
@@ -1325,7 +1362,7 @@ createBook(35, "The Diary of a Young Girl", "Anne Frank", 11.50, 14.50, "Biograp
                         subcategoriesNav.style.display = 'flex';
                     }
                     
-                    // ✅ ADDED: Reset book count on filter change
+                    // Reset book count on filter change
                     visibleBookCount = BOOKS_PER_PAGE; 
                     displayBooksByCategory();
                 });
@@ -1338,13 +1375,13 @@ createBook(35, "The Diary of a Young Girl", "Anne Frank", 11.50, 14.50, "Biograp
                     
                     selectedCategory = button.getAttribute('data-category');
                     
-                    // ✅ ADDED: Reset book count on filter change
+                    // Reset book count on filter change
                     visibleBookCount = BOOKS_PER_PAGE;
                     displayBooksByCategory();
                 });
             });
 
-            // Close modals - Fixed event listener
+            // Close modals
             closeModalBtns.forEach(btn => {
                 btn.addEventListener('click', () => {
                     bookDetailsModal.style.display = 'none';
@@ -1398,19 +1435,19 @@ createBook(35, "The Diary of a Young Girl", "Anne Frank", 11.50, 14.50, "Biograp
             });
         }
 
-       // ✅ MODIFIED: Display books with "See More" logic
-function displayBooksByCategory() {
-    // Clear previous content
-    categoryBooksGrid.innerHTML = '';
-    seeMoreContainer.innerHTML = ''; // Clear previous button
+        // Display books with "See More" logic
+        function displayBooksByCategory() {
+            // Clear previous content
+            categoryBooksGrid.innerHTML = '';
+            seeMoreContainer.innerHTML = ''; // Clear previous button
 
-    if (selectedType === 'exercise') {
-        exerciseCopies.forEach(copy => {
-            const copyCard = createExerciseCopyCard(copy);
-            categoryBooksGrid.appendChild(copyCard);
-        });
-        return; // Exit function for exercise copies
-    }
+            if (selectedType === 'exercise') {
+                exerciseCopies.forEach(copy => {
+                    const copyCard = createExerciseCopyCard(copy);
+                    categoryBooksGrid.appendChild(copyCard);
+                });
+                return; // Exit function for exercise copies
+            }
             
             // Filter books based on current selections
             const filteredBooks = books.filter(book => {
@@ -1428,26 +1465,26 @@ function displayBooksByCategory() {
                 return;
             }
             
-           // ✅ FIXED: Slice the array to show only visible books
-    const booksToShow = filteredBooks.slice(0, visibleBookCount);
+            // Slice the array to show only visible books
+            const booksToShow = filteredBooks.slice(0, visibleBookCount);
 
-    booksToShow.forEach(book => {
-        const bookCard = createBookCard(book);
-        categoryBooksGrid.appendChild(bookCard);
-    });
+            booksToShow.forEach(book => {
+                const bookCard = createBookCard(book);
+                categoryBooksGrid.appendChild(bookCard);
+            });
             
-          // ✅ FIXED: Add "See More" button only if more books remain
-    if (filteredBooks.length > visibleBookCount) {
-        const seeMoreBtn = document.createElement('button');
-        seeMoreBtn.textContent = 'See More';
-        seeMoreBtn.className = 'btn btn-primary'; // Using existing button styles
-        seeMoreBtn.addEventListener('click', () => {
-            visibleBookCount += BOOKS_PER_PAGE; // Increase the number of visible books
-            displayBooksByCategory(); // Re-render the book list
-        });
-        seeMoreContainer.appendChild(seeMoreBtn);
-    }
-}
+            // Add "See More" button only if more books remain
+            if (filteredBooks.length > visibleBookCount) {
+                const seeMoreBtn = document.createElement('button');
+                seeMoreBtn.textContent = 'See More Books';
+                seeMoreBtn.className = 'see-more-btn'; // Using new style
+                seeMoreBtn.addEventListener('click', () => {
+                    visibleBookCount += BOOKS_PER_PAGE; // Increase the number of visible books
+                    displayBooksByCategory(); // Re-render the book list
+                });
+                seeMoreContainer.appendChild(seeMoreBtn);
+            }
+        }
 
         // Create book card for display
         function createBookCard(book) {
@@ -1492,94 +1529,83 @@ function displayBooksByCategory() {
             return card;
         }
 
-    function createExerciseCopyCard(copy) {
-      const card = document.createElement('div');
-      card.className = 'book-card fade-in'; 
-      card.innerHTML = `
-        <div class="book-img">
-          <img src="${copy.img}" alt="${copy.title}" style="object-fit: contain; padding: 10px;">
-        </div>
-        <div class="book-info">
-          <h3 class="book-title">${copy.title}</h3>
-          <div class="book-price">
-            <span class="current-price">₹${copy.price}/kg</span>
-          </div>
-          <div class="book-actions">
-            <button class="btn btn-primary enquire-btn" style="width:100%;" data-id="${copy.id}">
-              <i class="fas fa-shopping-cart"></i> Enquire Now
-            </button>
-          </div>
-        </div>
-      `;
-      // attach click event
-      card.querySelector('.enquire-btn').addEventListener('click', () => showExerciseDetails(copy.id));
-      return card;
-    }
-
-    function showExerciseDetails(copyId) {
-      const copy = exerciseCopies.find(c => c.id === copyId);
-      if (!copy) return;
-
-      const now = new Date();
-      const dateTime = now.toLocaleString('en-IN', {
-        day: '2-digit', month: '2-digit', year: 'numeric',
-        hour: '2-digit', minute: '2-digit'
-      });
-
-      const messengerUrl = `https://www.messenger.com/t/718957201308613`;
-
-      bookDetailsContent.innerHTML = `
-        <div class="book-details-img">
-          <img src="${copy.img}" alt="${copy.title}">
-        </div>
-        <div class="book-details-info">
-          <h2>${copy.title}</h2>
-          <div class="book-details-price">₹${copy.price}</div>
-          <p style="font-size:14px; color: var(--gray); margin-bottom:15px;">(+ Delivery Charge)</p>
-          <p class="book-details-desc">${copy.description}</p>
-          <div class="book-details-actions">
-            <button class="btn btn-primary btn-large chat-fb" data-url="${messengerUrl}">
-              <i class="fab fa-facebook-messenger"></i> FB Chat To Order
-            </button>
-          </div>
-        </div>
-      `;
-
-      // Messenger chat action
-      bookDetailsContent.querySelector('.chat-fb').addEventListener('click', () => {
-        window.open(messengerUrl, '_blank');
-        setTimeout(() => {
-          alert(`Please chat With Facebook Messenger to complete your order request for "${copy.title}".`);
-        }, 1000);
-      });
-
-      bookDetailsModal.style.display = 'block';
-    }
-
-   
-function performSearch(query) {
-        if (!query.trim()) {
-            searchResultsGrid.innerHTML = '<div class="no-books">Please enter a search term.</div>';
-            return;
+        function createExerciseCopyCard(copy) {
+            const card = document.createElement('div');
+            card.className = 'book-card fade-in'; 
+            card.innerHTML = `
+                <div class="book-img">
+                    <img src="${copy.img}" alt="${copy.title}" style="object-fit: contain; padding: 10px;">
+                </div>
+                <div class="book-info">
+                    <h3 class="book-title">${copy.title}</h3>
+                    <div class="book-price">
+                        <span class="current-price">₹${copy.price}/kg</span>
+                    </div>
+                    <div class="book-actions">
+                        <button class="btn btn-primary enquire-btn" style="width:100%;" data-id="${copy.id}">
+                            <i class="fas fa-shopping-cart"></i> Enquire Now
+                        </button>
+                    </div>
+                </div>
+            `;
+            // attach click event
+            card.querySelector('.enquire-btn').addEventListener('click', () => showExerciseDetails(copy.id));
+            return card;
         }
-        const searchTerm = query.toLowerCase().trim();
-        const bookResults = books.filter(book =>
-            book.title.toLowerCase().includes(searchTerm) ||
-            book.author.toLowerCase().includes(searchTerm) ||
-            book.category.toLowerCase().includes(searchTerm)
-        );
-        const copyResults = exerciseCopies.filter(copy =>
-            copy.title.toLowerCase().includes(searchTerm)
-        );
-        searchResultsGrid.innerHTML = '';
-        if (bookResults.length === 0 && copyResults.length === 0) {
-            searchResultsGrid.innerHTML = '<div class="no-books">No results found. Please try again.</div>';
-            return;
-        }
-        bookResults.forEach(book => searchResultsGrid.appendChild(createBookCard(book)));
-        copyResults.forEach(copy => searchResultsGrid.appendChild(createExerciseCopyCard(copy)));
-    }
 
+        function showExerciseDetails(copyId) {
+            const copy = exerciseCopies.find(c => c.id === copyId);
+            if (!copy) return;
+
+            const messengerUrl = `https://www.messenger.com/t/718957201308613`;
+
+            bookDetailsContent.innerHTML = `
+                <div class="book-details-img">
+                    <img src="${copy.img}" alt="${copy.title}">
+                </div>
+                <div class="book-details-info">
+                    <h2>${copy.title}</h2>
+                    <div class="book-details-price">₹${copy.price}</div>
+                    <p style="font-size:14px; color: var(--gray); margin-bottom:15px;">(+ Delivery Charge)</p>
+                    <p class="book-details-desc">${copy.description}</p>
+                    <div class="book-details-actions">
+                        <button class="btn btn-primary btn-large chat-fb" data-url="${messengerUrl}">
+                            <i class="fab fa-facebook-messenger"></i> FB Chat To Order
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            // Messenger chat action
+            bookDetailsContent.querySelector('.chat-fb').addEventListener('click', () => {
+                window.open(messengerUrl, '_blank');
+            });
+
+            bookDetailsModal.style.display = 'block';
+        }
+
+        function performSearch(query) {
+            if (!query.trim()) {
+                searchResultsGrid.innerHTML = '<div class="no-books">Please enter a search term.</div>';
+                return;
+            }
+            const searchTerm = query.toLowerCase().trim();
+            const bookResults = books.filter(book =>
+                book.title.toLowerCase().includes(searchTerm) ||
+                book.author.toLowerCase().includes(searchTerm) ||
+                book.category.toLowerCase().includes(searchTerm)
+            );
+            const copyResults = exerciseCopies.filter(copy =>
+                copy.title.toLowerCase().includes(searchTerm)
+            );
+            searchResultsGrid.innerHTML = '';
+            if (bookResults.length === 0 && copyResults.length === 0) {
+                searchResultsGrid.innerHTML = '<div class="no-books">No results found. Please try again.</div>';
+                return;
+            }
+            bookResults.forEach(book => searchResultsGrid.appendChild(createBookCard(book)));
+            copyResults.forEach(copy => searchResultsGrid.appendChild(createExerciseCopyCard(copy)));
+        }
 
         // Show book details in modal
         function showBookDetails(bookId) {
@@ -1587,26 +1613,6 @@ function performSearch(query) {
             if (!book) return;
             
             const discount = book.originalPrice ? Math.round(((book.originalPrice - book.price) / book.originalPrice) * 100) : 0;
-            
-            // Get current date and time
-            const now = new Date();
-            const dateTime = now.toLocaleString('en-IN', {
-                day: '2-digit',
-                month: '2-digit',
-                year: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit'
-            });
-            
-            // Create message with book details
-            const message = encodeURIComponent(
-                `I want to order this book:\n\n` +
-                `📖 *Book Name:* ${book.title}\n` +
-                `✍️ *Author:* ${book.author}\n` +
-                `💰 *Price:* ₹${book.price.toFixed(2).replace(/\.00$/, '')}\n` +
-                `📅 *Date & Time:* ${dateTime}\n\n` +
-                `Please confirm availability and delivery details.`
-            );
             
             // Create Facebook Messenger URL
             const messengerUrl = `https://www.messenger.com/t/718957201308613`;
@@ -1636,13 +1642,8 @@ function performSearch(query) {
             
             // Add event listener to chat button
             bookDetailsContent.querySelector('.chat-fb').addEventListener('click', function() {
-                // Open Facebook Messenger with pre-filled message
-                window.open(`https://www.messenger.com/t/718957201308613/`, '_blank');
-                
-                // After a short delay, show a confirmation message
-                setTimeout(() => {
-                    alert(` Please chat With Facebook Messenger to complete your order request for "${book.title}".`);
-                }, 1000);
+                // Open Facebook Messenger without pre-filled message
+                window.open(messengerUrl, '_blank');
             });
             
             bookDetailsModal.style.display = 'block';
