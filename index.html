@@ -361,6 +361,25 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+        
+        /* ADDED: Category Separator Styles */
+        .category-separator {
+            border: none;
+            height: 2px;
+            background-color: var(--accent);
+            width: 100px;
+            margin: 2rem auto;
+            animation: line-anim 0.8s ease-out forwards;
+        }
+
+        @keyframes line-anim {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100px;
+            }
+        }
 
         /* Language subcategories */
         .language-subcategories {
@@ -1129,14 +1148,16 @@
                 <button class="category-btn" data-type="old">Old Books</button>
                 <button class="category-btn" data-type="exercise">Exercise Copy</button>
             </div>
+
+            <hr class="category-separator">
             
-            <!-- Language subcategories -->
             <div class="language-subcategories" id="language-nav">
-                <!-- FIX: Added 'All' button for language filter -->
-                <button class="language-btn active" data-language="all">All</button>
+                
                 <button class="language-btn" data-language="Bengali">Bengali</button>
                 <button class="language-btn" data-language="English">English</button>
             </div>
+            
+            <hr class="category-separator">
             
             <div class="subcategories" id="subcategories-nav">
               <button class="subcategory-btn active" data-category="all">All</button>
@@ -1163,7 +1184,6 @@
               <button class="subcategory-btn" data-category="Motivational">Motivational</button>
               <button class="subcategory-btn" data-category="Poetry">Poetry</button>
               <button class="subcategory-btn" data-category="Short Story">Short Story</button>
-              <!-- FIX: Corrected broken HTML attribute -->
               <button class="subcategory-btn" data-category="Drama / Play">Drama / Play</button>
               <button class="subcategory-btn" data-category="Essay">Essay</button>
               <button class="subcategory-btn" data-category="Autobiography">Autobiography</button>
