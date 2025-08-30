@@ -961,25 +961,13 @@
             .section-title {
                 font-size: 1.8rem;
             }
-
-            .categories, .subcategories, .language-subcategories {
-                flex-wrap: nowrap;
-                justify-content: flex-start;
-                overflow-x: auto;
-                -ms-overflow-style: none;  /* IE and Edge */
-                scrollbar-width: none;  /* Firefox */
-            }
-
-            .categories::-webkit-scrollbar, 
-            .subcategories::-webkit-scrollbar, 
-            .language-subcategories::-webkit-scrollbar {
-                display: none; /* Hide scrollbar for Chrome, Safari and Opera */
-            }
-
              .categories {
-                gap: 4px;
+                display: flex;
+                flex-wrap: nowrap;
+                justify-content: space-between; /* or use flex-start with adjusted margins */
+                gap: 4px; /* smaller gap */
+                overflow-x: auto; /* in case content still overflows */
             }
-
              .subcategories, .language-subcategories {
                 gap: 8px;
             }
@@ -987,7 +975,6 @@
             .category-btn, .subcategory-btn, .language-btn {
                 padding: 8px 16px;
                 font-size: 14px;
-                flex-shrink: 0; /* Prevent buttons from shrinking */
             }
             
             .book-actions {
@@ -1253,7 +1240,7 @@
 
   // FIX: Cleaned and corrected book category data for consistent filtering
 const books = [
-    createBook(1, "suniर्वाचित कहानी", "आशापूर्णा देवी", 300, 350, "Short Story", "New", true, " (Sunirbachita Galpa) by Ashapurna Devi is a collection of her selected short stories, showcasing her skill as a short story writer alongside her more famous novels. The book likely explores the lives, struggles, and psyches of ordinary women in mid-20th century Bengal, a central theme in Devi's broader work.", "https://cdn.dotpe.in/longtail/store-items/7756154/UZPwmFFa.jpeg", "", "https://drive.google.com/file/d/1JCg45mOzVpJEgkVTEMNALPDr99TxPaAj/view?usp=drive_link", 4.5, "Bengali"),
+    createBook(1, "সুনির্বাচিত গল্প", "আশাপূর্ণা দেবী", 300, 350, "Short Story", "New", true, " (Sunirbachita Galpa) by Ashapurna Devi is a collection of her selected short stories, showcasing her skill as a short story writer alongside her more famous novels. The book likely explores the lives, struggles, and psyches of ordinary women in mid-20th century Bengal, a central theme in Devi's broader work.", "https://cdn.dotpe.in/longtail/store-items/7756154/UZPwmFFa.jpeg", "", "https://drive.google.com/file/d/1JCg45mOzVpJEgkVTEMNALPDr99TxPaAj/view?usp=drive_link", 4.5, "Bengali"),
     createBook(2, "Atomic Habits", "James Clear", 14.99, 19.99, "Non-Fiction", "New", true, "Tiny Changes, Remarkable Results: An easy & proven way to build good habits & break bad ones. This book will teach you how to make time for new habits, overcome lack of motivation, and design your environment to make success easier.", "https://images.unsplash.com/photo-1558901357-ca41e027e43a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.8, "English"),
     createBook(3, "The Hobbit", "J.R.R. Tolkien", 16.99, 22.99, "Fantasy", "Old", true, "A fantasy novel about the adventures of hobbit Bilbo Baggins, who is hired by the wizard Gandalf to accompany thirteen dwarves on a quest to reclaim their mountain home from the dragon Smaug.", "https://images.unsplash.com/photo-1629992101753-56d196c8aabb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7, "English"),
     createBook(4, "Sapiens: A Brief History of Humankind", "Yuval Noah Harari", 18.99, 24.99, "Non-Fiction", "New", true, "A groundbreaking narrative of humanity's creation and evolution that explores the ways in which biology and history have defined us and enhanced our understanding of what it means to be human.", "https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.6, "English"),
@@ -1272,7 +1259,7 @@ const books = [
     createBook(17, "Moby Dick", "Herman Melville", 12.00, 15.00, "Fiction", "Old", true, "The saga of Captain Ahab and his relentless pursuit of Moby Dick, the great white whale that crippled him.", "https://images.unsplash.com/photo-1533483152347-578438295880?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.1, "English"),
     createBook(18, "পথের পাঁচালী", "বিভূতিভূষণ বন্দ্যোপাধ্যায়", 250, 300, "Fiction", "Old", true, "Pather Panchali is a 1929 Bengali novel written by Bibhutibhushan Bandopadhyay and was the first of a trilogy. The novel is about the life of a small boy, Apu, and his elder sister, Durga.", "https://m.media-amazon.com/images/I/81gCjfQOF-L._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.8, "Bengali"),
     createBook(19, "দেবদাস", "শরৎচন্দ্র চট্টোপাধ্যায়", 180, 220, "Fiction", "Old", true, "Devdas is a Bengali romance novel by Sarat Chandra Chattopadhyay. It follows the lives of Devdas and Paro, childhood sweethearts who are separated by societal pressures.", "https://m.media-amazon.com/images/I/71aFgU4gUjL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.6, "Bengali"),
-    createBook(20, "গোরা", "রবীন্দ্রনাথ ঠাকুর", 320, 380, "Fiction", "New", true, "Gora is a novel by Rabindranath Tagore, set in Calcutta in the 1880s during the British Raj. It is one of Tagore's longest and most complex novels.", "https://m.media-amazon.com/images/I/81xK7Q3Z2+L._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.9, "Bengali"),
+    createBook(20, "গোরা", "রবীন্দ্রনাথ ঠাকুর", 320, 380, "Fiction", "New", true, "Gora is a novel by Rabranath Tagore, set in Calcutta in the 1880s during the British Raj. It is one of Tagore's longest and most complex novels.", "https://m.media-amazon.com/images/I/81xK7Q3Z2+L._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.9, "Bengali"),
     createBook(21, "সেই সময়", "সুনীল গঙ্গোপাধ্যায়", 280, 330, "Historical", "New", true, "Sei Somoy is a historical novel by Sunil Gangopadhyay that portrays the socio-cultural scenario of 19th century Bengal.", "https://m.media-amazon.com/images/I/81C6M5FJG4L._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7, "Bengali"),
     createBook(22, "হাজার চুরাশির মা", "মহাশ্বেতা দেবী", 200, 250, "Fiction", "Old", true, "Hajar Churashir Maa is a novel by Mahasweta Devi, set during the Naxalite movement in West Bengal. It tells the story of a mother who discovers her son's political involvement after his death.", "https://m.media-amazon.com/images/I/81L5N4Lk5+L._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.5, "Bengali"),
     createBook(23, "চোখের বালি", "রবীন্দ্রনাথ ঠাকুর", 240, 300, "Fiction", "New", true, "Chokher Bali by Rabindranath Tagore explores love, betrayal, and human emotions through the story of Binodini.", "https://m.media-amazon.com/images/I/81+Kz5QzCFL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.9, "Bengali"),
@@ -1760,4 +1747,3 @@ init();
     </script>
 </body>
 </html>
-
