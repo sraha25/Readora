@@ -1471,8 +1471,15 @@ body {
                 <input type="text" id="search-input" placeholder="Search by title, author...">
                 <button id="search-button"><i class="fas fa-search"></i> Search</button>
             </div>
-            <div class="books-grid" id="search-results">
-                </div>
+            
+            <div id="no-results-message" style="text-align: center; margin-top: 20px; display: none;">
+                <p style="margin-bottom: 10px; color: var(--gray);">If You do not find the searched book then contact us</p>
+                <a href="https://www.messenger.com/t/718957201308613" target="_blank" class="social-link" style="display: inline-flex; width: 50px; height: 50px; background: var(--primary);">
+                    <i class="fab fa-facebook-messenger" style="font-size: 24px;"></i>
+                </a>
+            </div>
+            
+            <div class="books-grid" id="search-results"></div>
         </div>
     </section>
 
@@ -1674,6 +1681,7 @@ const navLinks = document.querySelectorAll('.nav-link');
 const menuToggle = document.getElementById('menu-toggle');
 const mainNav = document.getElementById('main-nav');
 const seeMoreContainer = document.getElementById('see-more-container');
+const noResultsMessage = document.getElementById('no-results-message'); // ADDED: For the new feature
 const backToTop = document.createElement('div');
 backToTop.className = 'back-to-top';
 backToTop.innerHTML = '<i class="fas fa-arrow-up"></i>';
@@ -2014,8 +2022,11 @@ function showExerciseDetails(copyId) {
     bookDetailsModal.style.display = 'block';
 }
 
-// Perform search
+// MODIFIED: This entire function has been updated to control the new feature
 function performSearch(query) {
+    // Hide the 'not found' message at the start of every search
+    noResultsMessage.style.display = 'none';
+
     if (!query.trim()) {
         searchResultsGrid.innerHTML = '<div class="no-books">Please enter a search term.</div>';
         return;
@@ -2031,13 +2042,18 @@ function performSearch(query) {
         copy.title.toLowerCase().includes(searchTerm)
     );
     searchResultsGrid.innerHTML = '';
+
     if (bookResults.length === 0 && copyResults.length === 0) {
         searchResultsGrid.innerHTML = '<div class="no-books">No results found. Please try again.</div>';
+        // Show the 'not found' message if no books match the search
+        noResultsMessage.style.display = 'block';
         return;
     }
+    
     bookResults.forEach(book => searchResultsGrid.appendChild(createBookCard(book)));
     copyResults.forEach(copy => searchResultsGrid.appendChild(createExerciseCopyCard(copy)));
 }
+
 
 // Show book details modal
 function showBookDetails(bookId) {
