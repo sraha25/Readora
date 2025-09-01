@@ -1051,344 +1051,359 @@
             font-size: 1.2rem;
             color: var(--gray);
         }
-       <style>
-/* ... (existing CSS code remains the same) ... */
+       
+        /* ---- START: MODIFIED CSS FOR MOBILE VIEW ---- */
+        <style>
+        /* ... (existing CSS code remains the same) ... */
 
-/* Enhanced Mobile Responsiveness */
-@media (max-width: 768px) {
-    /* Header improvements */
-    .header-content {
-        padding: 0 10px;
-    }
-    
-    .logo {
-        font-size: 1.5rem;
-    }
-    
-    .logo i {
-        font-size: 1.8rem;
-    }
-    
-    /* Mobile menu improvements */
-    nav {
-        width: 85%;
-        right: -85%;
-        padding-top: 70px;
-        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
-    }
-    
-    nav ul li {
-        margin: 15px 0;
-    }
-    
-    nav ul li a {
-        display: block;
-        padding: 12px 20px;
-        font-size: 1.1rem;
-    }
-    
-    /* Hero section improvements */
-    .hero-content {
-        padding: 20px 15px;
-        margin-top: 40px;
-    }
-    
-    .hero h1 {
-        font-size: 2.2rem;
-        line-height: 1.2;
-    }
-    
-    .hero p {
-        font-size: 1.1rem;
-        padding: 0 10px;
-    }
-    
-    /* About section improvements */
-    .about-text h2 {
-        font-size: 1.8rem;
-    }
-    
-    .about-text p {
-        font-size: 1rem;
-        text-align: left;
-    }
-    
-    .about-image-collage {
-        height: 350px;
-        margin-top: 30px;
-    }
-    
-    .about-stats {
-        gap: 15px;
-    }
-    
-    .stat-item {
-        padding: 15px;
-    }
-    
-    .stat-number {
-        font-size: 2rem;
-    }
-    
-    /* Category navigation improvements */
-    .categories {
-        overflow-x: auto;
-        padding-bottom: 10px;
-        justify-content: flex-start;
-        -webkit-overflow-scrolling: touch;
-    }
-    
-    .category-btn {
-        flex-shrink: 0;
-        white-space: nowrap;
-        font-size: 0.9rem;
-        padding: 10px 18px;
-    }
-    
-    .language-subcategories, .subcategories {
-        overflow-x: auto;
-        padding-bottom: 10px;
-        justify-content: flex-start;
-        -webkit-overflow-scrolling: touch;
-    }
-    
-    .language-btn, .subcategory-btn {
-        flex-shrink: 0;
-        white-space: nowrap;
-        font-size: 0.9rem;
-    }
-    
-    /* Books grid improvements */
-    .books-grid {
-        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-        gap: 20px;
-    }
-    
-    .book-img {
-        height: 220px;
-    }
-    
-    .book-title {
-        font-size: 16px;
-    }
-    
-    .current-price {
-        font-size: 18px;
-    }
-    
-    .book-actions {
-        flex-direction: column;
-        gap: 8px;
-    }
-    
-    .btn {
-        width: 100%;
-        justify-content: center;
-        font-size: 13px;
-        padding: 10px;
-    }
-    
-    /* Search section improvements */
-    .search-box {
-        flex-direction: column;
-    }
-    
-    .search-box input {
-        border-radius: 4px;
-        margin-bottom: 10px;
-        padding: 12px;
-    }
-    
-    .search-box button {
-        border-radius: 4px;
-        padding: 12px;
-    }
-    
-    /* Modal improvements */
-    .modal-content {
-        width: 95%;
-        margin: 20px auto;
-    }
-    
-    .modal-header {
-        padding: 15px;
-    }
-    
-    .modal-body {
-        padding: 20px;
-    }
-    
-    .book-details {
-        gap: 20px;
-    }
-    
-    .book-details-info h2 {
-        font-size: 1.5rem;
-    }
-    
-    .book-details-price {
-        font-size: 1.8rem;
-    }
-    
-    .book-details-actions {
-        flex-direction: column;
-    }
-    
-    .btn-large {
-        width: 100%;
-        margin-bottom: 10px;
-    }
-    
-    /* Footer improvements */
-    .footer-content {
-        gap: 30px;
-    }
-    
-    .footer-logo {
-        font-size: 1.5rem;
-    }
-    
-    .contact-info p {
-        justify-content: flex-start;
-        font-size: 0.9rem;
-    }
-    
-    .social-links {
-        justify-content: flex-start;
-    }
-    
-    /* Back to top button positioning */
-    .back-to-top {
-        bottom: 15px;
-        left: 15px;
-        width: 45px;
-        height: 45px;
-    }
-}
+        /* Enhanced Mobile Responsiveness */
+        @media (max-width: 768px) {
+            /* Header improvements */
+            .header-content {
+                padding: 0 10px;
+            }
+            
+            .logo {
+                font-size: 1.5rem;
+            }
+            
+            .logo i {
+                font-size: 1.8rem;
+            }
+            
+            /* Mobile menu improvements */
+            nav {
+                width: 85%;
+                right: -85%;
+                padding-top: 70px;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+            }
+            
+            nav ul li {
+                margin: 15px 0;
+            }
+            
+            nav ul li a {
+                display: block;
+                padding: 12px 20px;
+                font-size: 1.1rem;
+            }
+            
+            /* Hero section improvements */
+            .hero-content {
+                padding: 20px 15px;
+                margin-top: 40px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+                line-height: 1.2;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+                padding: 0 10px;
+            }
+            
+            /* About section improvements */
+            .about-text h2 {
+                font-size: 1.8rem;
+            }
+            
+            .about-text p {
+                font-size: 1rem;
+                text-align: left;
+            }
+            
+            .about-image-collage {
+                height: 350px;
+                margin-top: 30px;
+            }
+            
+            .about-stats {
+                gap: 15px;
+            }
+            
+            .stat-item {
+                padding: 15px;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+            
+            /* Category navigation improvements */
+            .categories {
+                overflow-x: auto;
+                padding-bottom: 10px;
+                justify-content: flex-start;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .category-btn {
+                flex-shrink: 0;
+                white-space: nowrap;
+                font-size: 0.9rem;
+                padding: 10px 18px;
+            }
+            
+            .language-subcategories, .subcategories {
+                overflow-x: auto;
+                padding-bottom: 10px;
+                justify-content: flex-start;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .language-btn, .subcategory-btn {
+                flex-shrink: 0;
+                white-space: nowrap;
+                font-size: 0.9rem;
+            }
+            
+            /* Books grid improvements */
+            .books-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 20px;
+            }
+            
+            .book-img {
+                height: 220px;
+            }
+            
+            .book-title {
+                font-size: 16px;
+            }
+            
+            .current-price {
+                font-size: 18px;
+            }
+            
+            .book-actions {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+                font-size: 13px;
+                padding: 10px;
+            }
+            
+            /* Search section improvements */
+            .search-box {
+                flex-direction: column;
+            }
+            
+            .search-box input {
+                border-radius: 4px;
+                margin-bottom: 10px;
+                padding: 12px;
+            }
+            
+            .search-box button {
+                border-radius: 4px;
+                padding: 12px;
+            }
+            
+            /* Modal improvements -- THIS IS THE CHANGED SECTION */
+            .modal-content {
+                width: 95%;
+                margin: 20px auto;
+            }
+            
+            .modal-header {
+                padding: 15px;
+            }
+            
+            .modal-body {
+                padding: 20px 15px; /* Adjusted padding */
+            }
+            
+            .book-details {
+                grid-template-columns: 120px 1fr; /* Set to 2 columns: small for image, large for text */
+                gap: 15px;
+            }
+            
+            .book-details-info h2 {
+                font-size: 1.3rem; /* Reduced font size to fit */
+                line-height: 1.3;
+            }
+            
+            .book-details-price {
+                font-size: 1.6rem; /* Reduced font size */
+                margin: 10px 0;
+            }
+            
+            .book-details-desc {
+                font-size: 0.9rem; /* Reduced font size */
+                margin: 15px 0;
+            }
 
-@media (max-width: 480px) {
-    /* Further refinements for very small screens */
-    .hero h1 {
-        font-size: 1.8rem;
-    }
-    
-    .hero p {
-        font-size: 1rem;
-    }
-    
-    .section-title {
-        font-size: 1.6rem;
-    }
-    
-    .books-grid {
-        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-        gap: 15px;
-    }
-    
-    .book-info {
-        padding: 15px;
-    }
-    
-    .book-title {
-        font-size: 14px;
-        -webkit-line-clamp: 2;
-        height: 2.8em;
-    }
-    
-    .book-author {
-        font-size: 12px;
-    }
-    
-    .current-price {
-        font-size: 16px;
-    }
-    
-    .category-separator {
-        margin: 1.5rem auto;
-    }
-    
-    /* About section for very small screens */
-    .about-image-collage {
-        height: 280px;
-    }
-    
-    .about-img-1 {
-        width: 60%;
-        height: 50%;
-    }
-    
-    .about-img-2 {
-        width: 50%;
-        height: 45%;
-    }
-    
-    .about-img-3 {
-        width: 35%;
-        height: 40%;
-    }
-    
-    /* Modal adjustments */
-    .book-details-img {
-        margin-bottom: 15px;
-    }
-    
-    .book-details-info h2 {
-        font-size: 1.3rem;
-    }
-    
-    .book-details-author {
-        font-size: 1rem;
-    }
-    
-    .book-details-price {
-        font-size: 1.5rem;
-    }
-    
-    /* Footer text adjustments */
-    .footer-about p {
-        font-size: 0.9rem;
-    }
-    
-    .footer-links ul li a {
-        font-size: 0.9rem;
-    }
-}
+            .book-details-actions {
+                flex-direction: column;
+            }
+            
+            .btn-large {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            
+            /* Footer improvements */
+            .footer-content {
+                gap: 30px;
+            }
+            
+            .footer-logo {
+                font-size: 1.5rem;
+            }
+            
+            .contact-info p {
+                justify-content: flex-start;
+                font-size: 0.9rem;
+            }
+            
+            .social-links {
+                justify-content: flex-start;
+            }
+            
+            /* Back to top button positioning */
+            .back-to-top {
+                bottom: 15px;
+                left: 15px;
+                width: 45px;
+                height: 45px;
+            }
+        }
 
-/* Additional touch-friendly improvements */
-.btn, .category-btn, .language-btn, .subcategory-btn {
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
-}
+        @media (max-width: 480px) {
+            /* Further refinements for very small screens */
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.6rem;
+            }
+            
+            .books-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                gap: 15px;
+            }
+            
+            .book-info {
+                padding: 15px;
+            }
+            
+            .book-title {
+                font-size: 14px;
+                -webkit-line-clamp: 2;
+                height: 2.8em;
+            }
+            
+            .book-author {
+                font-size: 12px;
+            }
+            
+            .current-price {
+                font-size: 16px;
+            }
+            
+            .category-separator {
+                margin: 1.5rem auto;
+            }
+            
+            /* About section for very small screens */
+            .about-image-collage {
+                height: 280px;
+            }
+            
+            .about-img-1 {
+                width: 60%;
+                height: 50%;
+            }
+            
+            .about-img-2 {
+                width: 50%;
+                height: 45%;
+            }
+            
+            .about-img-3 {
+                width: 35%;
+                height: 40%;
+            }
+            
+            /* Modal adjustments */
+            .book-details {
+                grid-template-columns: 100px 1fr; /* Further adjust for very small screens */
+            }
 
-/* Prevent horizontal scrolling */
-html, body {
-    overflow-x: hidden;
-    width: 100%;
-}
+            .book-details-img {
+                margin-bottom: 15px;
+            }
+            
+            .book-details-info h2 {
+                font-size: 1.2rem;
+            }
+            
+            .book-details-author {
+                font-size: 0.9rem;
+            }
+            
+            .book-details-price {
+                font-size: 1.4rem;
+            }
+            
+            /* Footer text adjustments */
+            .footer-about p {
+                font-size: 0.9rem;
+            }
+            
+            .footer-links ul li a {
+                font-size: 0.9rem;
+            }
+        }
 
-/* Improved scrolling experience */
-.container {
-    padding: 0 15px;
-}
+        /* Additional touch-friendly improvements */
+        .btn, .category-btn, .language-btn, .subcategory-btn {
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
 
-/* Better text readability on mobile */
-body {
-    -webkit-text-size-adjust: 100%;
-    text-size-adjust: 100%;
-}
+        /* Prevent horizontal scrolling */
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+        }
 
-/* Enhanced button feedback for touch devices */
-.btn:active, .category-btn:active, .language-btn:active, .subcategory-btn:active {
-    transform: scale(0.98);
-}
+        /* Improved scrolling experience */
+        .container {
+            padding: 0 15px;
+        }
 
-/* Improved modal scrolling on mobile */
-.modal-content {
-    max-height: 90vh;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-}
-</style>
+        /* Better text readability on mobile */
+        body {
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+        }
+
+        /* Enhanced button feedback for touch devices */
+        .btn:active, .category-btn:active, .language-btn:active, .subcategory-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Improved modal scrolling on mobile */
+        .modal-content {
+            max-height: 90vh;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        </style>
+         /* ---- END: MODIFIED CSS FOR MOBILE VIEW ---- */
     </style>
 </head>
 <body>
@@ -1681,7 +1696,7 @@ const navLinks = document.querySelectorAll('.nav-link');
 const menuToggle = document.getElementById('menu-toggle');
 const mainNav = document.getElementById('main-nav');
 const seeMoreContainer = document.getElementById('see-more-container');
-const noResultsMessage = document.getElementById('no-results-message'); // ADDED: For the new feature
+const noResultsMessage = document.getElementById('no-results-message');
 const backToTop = document.createElement('div');
 backToTop.className = 'back-to-top';
 backToTop.innerHTML = '<i class="fas fa-arrow-up"></i>';
@@ -1696,7 +1711,7 @@ let selectedLanguage = 'all';
 const BOOKS_PER_PAGE = 8;
 let visibleBookCount = BOOKS_PER_PAGE;
 
-// Subcategory translations mapping - FIX: Corrected keys and values
+// Subcategory translations mapping
 const subcategoryTranslations = {
     "all": { "English": "All", "Bengali": "সমস্ত" },
     "Fiction": { "English": "Fiction", "Bengali": "উপন্যাস" },
@@ -1860,7 +1875,7 @@ function updateSubcategoryButtonText(language) {
     });
 }
 
-// FIX: Rewrote the filtering logic to be more robust and clear
+
 function displayBooksByCategory() {
     categoryBooksGrid.innerHTML = '';
     seeMoreContainer.innerHTML = '';
@@ -1874,10 +1889,8 @@ function displayBooksByCategory() {
     }
 
     const filteredBooks = books.filter(book => {
-        // Condition 1: Category match
         const categoryMatch = selectedCategory === 'all' || book.category === selectedCategory;
         
-        // Condition 2: Type match (New/Old)
         let typeMatch = false;
         if (selectedType === 'all') {
             typeMatch = true;
@@ -1887,7 +1900,6 @@ function displayBooksByCategory() {
             typeMatch = book.condition.toLowerCase() === 'old';
         }
 
-        // Condition 3: Language match
         const languageMatch = selectedLanguage === 'all' || book.language === selectedLanguage;
 
         return categoryMatch && typeMatch && languageMatch;
@@ -2022,9 +2034,7 @@ function showExerciseDetails(copyId) {
     bookDetailsModal.style.display = 'block';
 }
 
-// MODIFIED: This entire function has been updated to control the new feature
 function performSearch(query) {
-    // Hide the 'not found' message at the start of every search
     noResultsMessage.style.display = 'none';
 
     if (!query.trim()) {
@@ -2045,7 +2055,6 @@ function performSearch(query) {
 
     if (bookResults.length === 0 && copyResults.length === 0) {
         searchResultsGrid.innerHTML = '<div class="no-books">No results found. Please try again.</div>';
-        // Show the 'not found' message if no books match the search
         noResultsMessage.style.display = 'block';
         return;
     }
