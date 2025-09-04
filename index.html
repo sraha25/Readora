@@ -1051,344 +1051,6 @@
             font-size: 1.2rem;
             color: var(--gray);
         }
-       <style>
-/* ... (existing CSS code remains the same) ... */
-
-/* Enhanced Mobile Responsiveness */
-@media (max-width: 768px) {
-    /* Header improvements */
-    .header-content {
-        padding: 0 10px;
-    }
-    
-    .logo {
-        font-size: 1.5rem;
-    }
-    
-    .logo i {
-        font-size: 1.8rem;
-    }
-    
-    /* Mobile menu improvements */
-    nav {
-        width: 85%;
-        right: -85%;
-        padding-top: 70px;
-        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
-    }
-    
-    nav ul li {
-        margin: 15px 0;
-    }
-    
-    nav ul li a {
-        display: block;
-        padding: 12px 20px;
-        font-size: 1.1rem;
-    }
-    
-    /* Hero section improvements */
-    .hero-content {
-        padding: 20px 15px;
-        margin-top: 40px;
-    }
-    
-    .hero h1 {
-        font-size: 2.2rem;
-        line-height: 1.2;
-    }
-    
-    .hero p {
-        font-size: 1.1rem;
-        padding: 0 10px;
-    }
-    
-    /* About section improvements */
-    .about-text h2 {
-        font-size: 1.8rem;
-    }
-    
-    .about-text p {
-        font-size: 1rem;
-        text-align: left;
-    }
-    
-    .about-image-collage {
-        height: 350px;
-        margin-top: 30px;
-    }
-    
-    .about-stats {
-        gap: 15px;
-    }
-    
-    .stat-item {
-        padding: 15px;
-    }
-    
-    .stat-number {
-        font-size: 2rem;
-    }
-    
-    /* Category navigation improvements */
-    .categories {
-        overflow-x: auto;
-        padding-bottom: 10px;
-        justify-content: flex-start;
-        -webkit-overflow-scrolling: touch;
-    }
-    
-    .category-btn {
-        flex-shrink: 0;
-        white-space: nowrap;
-        font-size: 0.9rem;
-        padding: 10px 18px;
-    }
-    
-    .language-subcategories, .subcategories {
-        overflow-x: auto;
-        padding-bottom: 10px;
-        justify-content: flex-start;
-        -webkit-overflow-scrolling: touch;
-    }
-    
-    .language-btn, .subcategory-btn {
-        flex-shrink: 0;
-        white-space: nowrap;
-        font-size: 0.9rem;
-    }
-    
-    /* Books grid improvements */
-    .books-grid {
-        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-        gap: 20px;
-    }
-    
-    .book-img {
-        height: 220px;
-    }
-    
-    .book-title {
-        font-size: 16px;
-    }
-    
-    .current-price {
-        font-size: 18px;
-    }
-    
-    .book-actions {
-        flex-direction: column;
-        gap: 8px;
-    }
-    
-    .btn {
-        width: 100%;
-        justify-content: center;
-        font-size: 13px;
-        padding: 10px;
-    }
-    
-    /* Search section improvements */
-    .search-box {
-        flex-direction: column;
-    }
-    
-    .search-box input {
-        border-radius: 4px;
-        margin-bottom: 10px;
-        padding: 12px;
-    }
-    
-    .search-box button {
-        border-radius: 4px;
-        padding: 12px;
-    }
-    
-    /* Modal improvements */
-    .modal-content {
-        width: 95%;
-        margin: 20px auto;
-    }
-    
-    .modal-header {
-        padding: 15px;
-    }
-    
-    .modal-body {
-        padding: 20px;
-    }
-    
-    .book-details {
-        gap: 20px;
-    }
-    
-    .book-details-info h2 {
-        font-size: 1.5rem;
-    }
-    
-    .book-details-price {
-        font-size: 1.8rem;
-    }
-    
-    .book-details-actions {
-        flex-direction: column;
-    }
-    
-    .btn-large {
-        width: 100%;
-        margin-bottom: 10px;
-    }
-    
-    /* Footer improvements */
-    .footer-content {
-        gap: 30px;
-    }
-    
-    .footer-logo {
-        font-size: 1.5rem;
-    }
-    
-    .contact-info p {
-        justify-content: flex-start;
-        font-size: 0.9rem;
-    }
-    
-    .social-links {
-        justify-content: flex-start;
-    }
-    
-    /* Back to top button positioning */
-    .back-to-top {
-        bottom: 15px;
-        left: 15px;
-        width: 45px;
-        height: 45px;
-    }
-}
-
-@media (max-width: 480px) {
-    /* Further refinements for very small screens */
-    .hero h1 {
-        font-size: 1.8rem;
-    }
-    
-    .hero p {
-        font-size: 1rem;
-    }
-    
-    .section-title {
-        font-size: 1.6rem;
-    }
-    
-    .books-grid {
-        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-        gap: 15px;
-    }
-    
-    .book-info {
-        padding: 15px;
-    }
-    
-    .book-title {
-        font-size: 14px;
-        -webkit-line-clamp: 2;
-        height: 2.8em;
-    }
-    
-    .book-author {
-        font-size: 12px;
-    }
-    
-    .current-price {
-        font-size: 16px;
-    }
-    
-    .category-separator {
-        margin: 1.5rem auto;
-    }
-    
-    /* About section for very small screens */
-    .about-image-collage {
-        height: 280px;
-    }
-    
-    .about-img-1 {
-        width: 60%;
-        height: 50%;
-    }
-    
-    .about-img-2 {
-        width: 50%;
-        height: 45%;
-    }
-    
-    .about-img-3 {
-        width: 35%;
-        height: 40%;
-    }
-    
-    /* Modal adjustments */
-    .book-details-img {
-        margin-bottom: 15px;
-    }
-    
-    .book-details-info h2 {
-        font-size: 1.3rem;
-    }
-    
-    .book-details-author {
-        font-size: 1rem;
-    }
-    
-    .book-details-price {
-        font-size: 1.5rem;
-    }
-    
-    /* Footer text adjustments */
-    .footer-about p {
-        font-size: 0.9rem;
-    }
-    
-    .footer-links ul li a {
-        font-size: 0.9rem;
-    }
-}
-
-/* Additional touch-friendly improvements */
-.btn, .category-btn, .language-btn, .subcategory-btn {
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
-}
-
-/* Prevent horizontal scrolling */
-html, body {
-    overflow-x: hidden;
-    width: 100%;
-}
-
-/* Improved scrolling experience */
-.container {
-    padding: 0 15px;
-}
-
-/* Better text readability on mobile */
-body {
-    -webkit-text-size-adjust: 100%;
-    text-size-adjust: 100%;
-}
-
-/* Enhanced button feedback for touch devices */
-.btn:active, .category-btn:active, .language-btn:active, .subcategory-btn:active {
-    transform: scale(0.98);
-}
-
-/* Improved modal scrolling on mobile */
-.modal-content {
-    max-height: 90vh;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-}
-</style>
     </style>
 </head>
 <body>
@@ -1471,15 +1133,8 @@ body {
                 <input type="text" id="search-input" placeholder="Search by title, author...">
                 <button id="search-button"><i class="fas fa-search"></i> Search</button>
             </div>
-            
-            <div id="no-results-message" style="text-align: center; margin-top: 20px; display: none;">
-                <p style="margin-bottom: 10px; color: var(--gray);">If You do not find the searched book then contact us</p>
-                <a href="https://www.messenger.com/t/718957201308613" target="_blank" class="social-link" style="display: inline-flex; width: 50px; height: 50px; background: var(--primary);">
-                    <i class="fab fa-facebook-messenger" style="font-size: 24px;"></i>
-                </a>
-            </div>
-            
-            <div class="books-grid" id="search-results"></div>
+            <div class="books-grid" id="search-results">
+                </div>
         </div>
     </section>
 
@@ -1606,7 +1261,7 @@ body {
   // FIX: Cleaned and corrected book category data for consistent filtering
 const books = [
     createBook(1, "সুনির্বাচিত গল্প", "আশাপূর্ণা দেবী", 300, 350, "Short Story", "New", true, " (Sunirbachita Galpa) by Ashapurna Devi is a collection of her selected short stories, showcasing her skill as a short story writer alongside her more famous novels. The book likely explores the lives, struggles, and psyches of ordinary women in mid-20th century Bengal, a central theme in Devi's broader work.", "https://cdn.dotpe.in/longtail/store-items/7756154/UZPwmFFa.jpeg", "", "https://drive.google.com/file/d/1JCg45mOzVpJEgkVTEMNALPDr99TxPaAj/view?usp=drive_link", 4.5, "Bengali"),
-    createBook(2, "Atomic Habits", "James Clear", 14.99, 19.99, "Non-Fiction", "New", true, "Tiny Changes, Remarkable Results: An easy & proven way to build good habits & break bad ones. This book will teach you how to make time for new habits, overcome lack of motivation, and design your environment to make success easier.", "https://images.unsplash.com/photo-1558901357-ca41e027e43a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.8, "English"),
+    createBook(2, "Atomic Habits", "James Clear", 14.99, 19.99, "Non-Fiction", "New", true, "Tiny Changes, Remarkable Results: An easy & proven way to build good habits & break bad ones. This book will teach you how to make time for new habits, overcome lack of motivation, and design your environment to make success easier.", "https://images.unsplash.com/photo-1558901357-ca41e027e43a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://drive.google.com/file/d/1JCg45mOzVpJEgkVTEMNALPDr99TxPaAj/view?usp=drive_link", 4.8, "English"),
     createBook(3, "The Hobbit", "J.R.R. Tolkien", 16.99, 22.99, "Fantasy", "Old", true, "A fantasy novel about the adventures of hobbit Bilbo Baggins, who is hired by the wizard Gandalf to accompany thirteen dwarves on a quest to reclaim their mountain home from the dragon Smaug.", "https://images.unsplash.com/photo-1629992101753-56d196c8aabb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7, "English"),
     createBook(4, "Sapiens: A Brief History of Humankind", "Yuval Noah Harari", 18.99, 24.99, "Non-Fiction", "New", true, "A groundbreaking narrative of humanity's creation and evolution that explores the ways in which biology and history have defined us and enhanced our understanding of what it means to be human.", "https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.6, "English"),
     createBook(5, "Dune", "Frank Herbert", 13.99, 17.99, "Science Fiction", "Old", true, "A science fiction novel set in the distant future amidst a feudal interstellar society in which various noble houses control planetary fiefs. It tells the story of young Paul Atreides, whose family accepts the stewardship of the planet Arrakis.", "https://images.unsplash.com/photo-1531072901881-4a7e5df0ab7f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.9, "English"),
@@ -1681,7 +1336,6 @@ const navLinks = document.querySelectorAll('.nav-link');
 const menuToggle = document.getElementById('menu-toggle');
 const mainNav = document.getElementById('main-nav');
 const seeMoreContainer = document.getElementById('see-more-container');
-const noResultsMessage = document.getElementById('no-results-message'); // ADDED: For the new feature
 const backToTop = document.createElement('div');
 backToTop.className = 'back-to-top';
 backToTop.innerHTML = '<i class="fas fa-arrow-up"></i>';
@@ -1952,8 +1606,15 @@ function createBookCard(book) {
     `;
 
     card.querySelector('.view-details').addEventListener('click', () => showBookDetails(book.id));
+    
+    // MODIFIED: Check for valid PDF before opening
     card.querySelector('.download-sample').addEventListener('click', () => {
-        window.open(book.pdf, '_blank');
+        // Check if the PDF link exists and is not a placeholder/dummy link
+        if (book.pdf && book.pdf.trim() !== "" && !book.pdf.includes('dummy.pdf')) {
+            window.open(book.pdf, '_blank');
+        } else {
+            alert('PDF is not available for this book.');
+        }
     });
 
     return card;
@@ -2022,11 +1683,8 @@ function showExerciseDetails(copyId) {
     bookDetailsModal.style.display = 'block';
 }
 
-// MODIFIED: This entire function has been updated to control the new feature
+// Perform search
 function performSearch(query) {
-    // Hide the 'not found' message at the start of every search
-    noResultsMessage.style.display = 'none';
-
     if (!query.trim()) {
         searchResultsGrid.innerHTML = '<div class="no-books">Please enter a search term.</div>';
         return;
@@ -2042,18 +1700,13 @@ function performSearch(query) {
         copy.title.toLowerCase().includes(searchTerm)
     );
     searchResultsGrid.innerHTML = '';
-
     if (bookResults.length === 0 && copyResults.length === 0) {
         searchResultsGrid.innerHTML = '<div class="no-books">No results found. Please try again.</div>';
-        // Show the 'not found' message if no books match the search
-        noResultsMessage.style.display = 'block';
         return;
     }
-    
     bookResults.forEach(book => searchResultsGrid.appendChild(createBookCard(book)));
     copyResults.forEach(copy => searchResultsGrid.appendChild(createExerciseCopyCard(copy)));
 }
-
 
 // Show book details modal
 function showBookDetails(bookId) {
