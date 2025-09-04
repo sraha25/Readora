@@ -40,117 +40,81 @@
 
 <script>
 let books = [];
-let exerciseCopies = [];
-const BOOKS_PER_PAGE = 50;
-let visibleBookCount = BOOKS_PER_PAGE;
-
-// Category mapping
-const CATEGORY_MAP = {
-  "all": { "English": "All", "Bengali": "সমস্ত" },
-  "Fiction": { "English": "Fiction", "Bengali": "উপন্যাস" },
-  "Science": { "English": "Science", "Bengali": "বিজ্ঞান" },
-  "Poetry": { "English": "Poetry", "Bengali": "কবিতা" },
-  "Technology": { "English": "Technology", "Bengali": "প্রযুক্তি" }
-  // 👉 add more categories here like earlier list
-};
-
-function showLoading() {
-  const el = document.getElementById('loading');
-  if (el) el.style.display = 'flex';
+try {
+books = await fetchJson(url);
+} catch (err) {
+console.error("Error loading:", url, err);
+books = [];
 }
-function hideLoading() {
-  const el = document.getElementById('loading');
-  if (el) el.style.display = 'none';
 }
-async function fetchJson(url) {
-  const res = await fetch(url, { cache: 'no-store' });
-  if (!res.ok) throw new Error(`Failed to load ${url}: ${res.status}`);
-  return res.json();
+hideLoading();
+visibleBookCount = BOOKS_PER_PAGE;
+displayBooks(books);
 }
 
-// Load books function
-async function loadBooks(language, category) {
-  showLoading();
-  const folder = (language === "Bengali") ? "bengali books" : "english books";
-
-  if (category === "all") {
-    const categories = Object.keys(CATEGORY_MAP).filter(c => c !== "all");
-    const promises = categories.map(async (c) => {
-      const filename = CATEGORY_MAP[c][language] + ".json";
-      const url = `./data/${folder}/${filename}`;
-      try {
-        return await fetchJson(url);
-      } catch (err) {
-        console.warn("Skipping missing file:", url);
-        return [];
-      }
-    });
-    const results = await Promise.all(promises);
-    books = results.flat();
-  } else {
-    const filename = CATEGORY_MAP[category][language] + ".json";
-    const url = `./data/${folder}/${filename}`;
-    try {
-      books = await fetchJson(url);
-    } catch (err) {
-      console.error("Error loading:", url, err);
-      books = [];
-    }
-  }
-  hideLoading();
-  displayBooks(books);
-}
 
 // Load exercise copies
 async function loadExercise() {
-  showLoading();
-  try {
-    exerciseCopies = await fetchJson("./data/exercise/Copy.json");
-    books = exerciseCopies.map(item => ({
-      title: item.title,
-      author: "",
-      price: item.price,
-      originalPrice: "",
-      category: "Exercise",
-      frontImg: item.img
-    }));
-  } catch (err) {
-    console.error("Error loading exercise:", err);
-    books = [];
-  }
-  hideLoading();
-  displayBooks(books);
+showLoading();
+try {
+exerciseCopies = await fetchJson("./data/exercise/Copy.json");
+books = exerciseCopies.map(item => ({
+title: item.title,
+author: "",
+price: item.price,
+originalPrice: "",
+category: "Exercise",
+frontImg: item.img
+}));
+} catch (err) {
+console.error("Error loading exercise:", err);
+books = [];
 }
+hideLoading();
+visibleBookCount = BOOKS_PER_PAGE;
+displayBooks(books);
+}
+
 
 // Show books
 function displayBooks(bookArray) {
-  const container = document.getElementById("book-container");
-  container.innerHTML = "";
-  bookArray.slice(0, visibleBookCount).forEach(book => {
-    container.innerHTML += `
-      <div class="book-card">
-        <img src="${book.frontImg || ''}" alt="${book.title}">
-        <div class="book-title">${book.title}</div>
-        <div class="book-author">${book.author || ''}</div>
-        <div class="current-price">₹${book.price}</div>
-        ${book.originalPrice ? `<div class="old-price">₹${book.originalPrice}</div>` : ""}
-      </div>
-    `;
-  });
+const container = document.getElementById("book-container");
+container.innerHTML = "";
+bookArray.slice(0, visibleBookCount).forEach(book => {
+container.innerHTML += `
+<div class="book-card">
+<img src="${book.frontImg || ''}" alt="${book.title}">
+<div class="book-title">${book.title}</div>
+<div class="book-author">${book.author || ''}</div>
+<div class="current-price">₹${book.price}</div>
+${book.originalPrice ? `<div class="old-price">₹${book.originalPrice}</div>` : ""}
+</div>
+`;
+});
+document.getElementById("load-more").style.display = (bookArray.length > visibleBookCount) ? "block" : "none";
 }
+
+
+// Load more button
+function loadMore() {
+visibleBookCount += BOOKS_PER_PAGE;
+displayBooks(books);
+}
+
 
 // Switch category/language
 function switchCategory(language, category) {
-  if (language === "exercise") {
-    loadExercise();
-  } else {
-    loadBooks(language, category);
-  }
+if (language === "exercise") {
+loadExercise();
+} else {
+loadBooks(language, category);
 }
+}
+
 
 // Init
 window.onload = () => {
-  switchCategory("English","Fiction"); // default load
+switchCategory("English","Fiction"); // default load
 };
 </script>
 </body>
