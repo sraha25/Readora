@@ -1596,27 +1596,38 @@ body {
         }
 
   // FIX: Cleaned and corrected book category data for consistent filtering
-let books = []; // loaded from /data JSON files
+let books = [];
 
-// ===== JSON Data Loader (GitHub Pages friendly) =====
-const DATA_BASE_PATH = './data'; // Put your JSON files in a /data folder in the same repo
-const LANGUAGE_SLUGS = {
-  'Bengali': 'bengali',
-  'English': 'english',
-  'Hindi': 'hindi',
-  'Marathi': 'marathi',
-  'Gujarati': 'gujarati',
-  'Tamil': 'tamil',
-  'Telugu': 'telugu',
-  'Kannada': 'kannada',
-  'Malayalam': 'malayalam',
-  'Punjabi': 'punjabi',
-  'Urdu': 'urdu'
+// ===== Category Mapping =====
+const CATEGORY_MAP = {
+  "Fiction": { "English": "Fiction", "Bengali": "উপন্যাস" },
+  "Non-Fiction": { "English": "Non-Fiction", "Bengali": "নন-ফিকশন" },
+  "Science": { "English": "Science", "Bengali": "বিজ্ঞান" },
+  "Technology": { "English": "Technology", "Bengali": "প্রযুক্তি" },
+  "Biography": { "English": "Biography", "Bengali": "জীবনী" },
+  "Fantasy": { "English": "Fantasy", "Bengali": "ফ্যান্টাসি" },
+  "Historical": { "English": "Historical", "Bengali": "ইতিহাসভিত্তিক" },
+  "Science Fiction": { "English": "Science Fiction", "Bengali": "বিজ্ঞান কল্পকাহিনি" },
+  "Mystery": { "English": "Mystery", "Bengali": "রহস্যকাহিনি" },
+  "Adventure": { "English": "Adventure", "Bengali": "অ্যাডভেঞ্চার কাহিনি" },
+  "Horror": { "English": "Horror", "Bengali": "ভৌতিক সাহিত্য" },
+  "Religious": { "English": "Religious", "Bengali": "ধর্মীয় সাহিত্য" },
+  "Children’s Literature": { "English": "Children’s Literature", "Bengali": "শিশু সাহিত্য" },
+  "Fairy Tale": { "English": "Fairy Tale", "Bengali": "রূপকথা" },
+  "Folklore": { "English": "Folklore", "Bengali": "লোকসাহিত্য" },
+  "Philosophy": { "English": "Philosophy", "Bengali": "দর্শন সাহিত্য" },
+  "Technical / Educational": { "English": "Technical_Educational", "Bengali": "প্রযুক্তি বিষয়ক বই" },
+  "Political": { "English": "Political", "Bengali": "রাজনৈতিক সাহিত্য" },
+  "Romance": { "English": "Romance", "Bengali": "ভালবাসার কাহিনি" },
+  "Thriller": { "English": "Thriller", "Bengali": "অপরাধ কাহিনি" },
+  "Motivational": { "English": "Motivational", "Bengali": "প্রেরণামূলক সাহিত্য" },
+  "Poetry": { "English": "Poetry", "Bengali": "কবিতা" },
+  "Short Story": { "English": "Short Story", "Bengali": "গল্প" },
+  "Drama / Play": { "English": "Drama_Play", "Bengali": "নাটক" },
+  "Essay": { "English": "Essay", "Bengali": "প্রবন্ধ" },
+  "Autobiography": { "English": "Autobiography", "Bengali": "আত্মজীবনী" },
+  "Travel Writing": { "English": "Travel Writing", "Bengali": "ভ্রমণকাহিনি" }
 };
-
-function slugLanguage(name) {
-  return (LANGUAGE_SLUGS[name] || String(name || '').toLowerCase().replace(/\s+/g, '-'));
-}
 
 async function fetchJson(url) {
   const res = await fetch(url, { cache: 'no-store' });
@@ -1624,67 +1635,34 @@ async function fetchJson(url) {
   return res.json();
 }
 
-const dataCache = new Map();
-
-function showLoading() {
-  const el = document.getElementById('loading');
-  if (el) el.style.display = 'flex';
-}
-
-function hideLoading() {
-  const el = document.getElementById('loading');
-  if (el) el.style.display = 'none';
-}
-
-async function loadBooksForLanguage(lang) {
-  const slug = slugLanguage(lang);
-  const key = `books-${slug}`;
-  if (dataCache.has(key)) {
-    books = dataCache.get(key);
-    visibleBookCount = BOOKS_PER_PAGE;
-    displayBooksByCategory();
-    return;
-  }
-  showLoading();
+async function loadBooks(language, category) {
+  const folder = (language === "Bengali") ? "bengali books" : "english books";
+  const filename = CATEGORY_MAP[category][language] + ".json";
+  const url = `./data/${folder}/${filename}`;
   try {
-    const data = await fetchJson(`${DATA_BASE_PATH}/books-${slug}.json`);
-    dataCache.set(key, data);
-    books = data;
+    books = await fetchJson(url);
   } catch (err) {
-    console.error(err);
+    console.error("Error loading books:", err);
     books = [];
-  } finally {
-    hideLoading();
-    visibleBookCount = BOOKS_PER_PAGE;
-    displayBooksByCategory();
   }
+  visibleBookCount = BOOKS_PER_PAGE;
+  displayBooksByCategory();
 }
 
 async function loadExercise() {
-  const key = `exercise`;
-  if (dataCache.has(key)) {
-    exerciseCopies = dataCache.get(key);
-    displayBooksByCategory();
-    return;
-  }
-  showLoading();
   try {
-    const data = await fetchJson(`${DATA_BASE_PATH}/exercise.json`);
-    dataCache.set(key, data);
-    exerciseCopies = data;
+    exerciseCopies = await fetchJson("./data/exercise/Copy.json");
   } catch (err) {
-    console.error(err);
+    console.error("Error loading exercise copies:", err);
     exerciseCopies = [];
-  } finally {
-    hideLoading();
-    displayBooksByCategory();
   }
+  displayBooksByCategory();
 }
 
 
 
 // Sample exercise copy data
-let exerciseCopies = []; // loaded from /data JSON files
+let exerciseCopies = [];
 
 // DOM Elements
 const searchInput = document.getElementById('search-input');
@@ -1711,7 +1689,7 @@ document.body.appendChild(backToTop);
 // App State
 let selectedCategory = 'all';
 let selectedType = 'all';
-let selectedLanguage = 'Bengali';
+let selectedLanguage = 'all';
 
 // Pagination state
 const BOOKS_PER_PAGE = 8;
@@ -1755,7 +1733,7 @@ async function init() {
     if (selectedType === 'exercise') {
         await loadExercise();
     } else {
-        await loadBooksForLanguage(selectedLanguage);
+        await loadBooks(selectedLanguage, selectedCategory);
     }
     updateSubcategoryButtonText(selectedLanguage);
 }
@@ -1817,7 +1795,7 @@ function setupEventListeners() {
             }
 
             visibleBookCount = BOOKS_PER_PAGE;
-            (selectedType === 'exercise' ? loadExercise() : loadBooksForLanguage(selectedLanguage));
+            displayBooksByCategory();
         });
     });
 
@@ -2167,13 +2145,5 @@ function showBookDetails(bookId) {
 init();
 
     </script>
-
-<!-- Loading overlay -->
-<div id="loading" style="display:none; position:fixed; inset:0; align-items:center; justify-content:center; background:rgba(0,0,0,0.3); z-index:9999;">
-  <div style="padding:12px 16px; background:#fff; border-radius:8px; font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial; box-shadow:0 4px 16px rgba(0,0,0,0.2)">
-    Loading…
-  </div>
-</div>
-
 </body>
 </html>
