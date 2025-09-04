@@ -1,0 +1,18 @@
+[
+  {
+    "id": "bn-fic-001",
+    "title": "শঙ্খনীল কারাগার",
+    "author": "হুমায়ূন আহমেদ",
+    "price": 230,
+    "originalPrice": 280,
+    "category": "উপন্যাস",
+    "condition": "New",
+    "available": true,
+    "description": "মানবসম্পর্ক ও মানসিক দ্বন্দ্বের কাহিনী।",
+    "frontImg": "https://m.media-amazon.com/images/I/81hNnZ3LwEL._AC_UF1000,1000_QL80_.jpg",
+    "backImg": "",
+    "pdf": "",
+    "rating": 4.7,
+    "language": "Bengali"
+  }
+]
