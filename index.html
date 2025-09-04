@@ -1637,14 +1637,33 @@ async function fetchJson(url) {
 
 async function loadBooks(language, category) {
   const folder = (language === "Bengali") ? "bengali books" : "english books";
-  const filename = CATEGORY_MAP[category][language] + ".json";
-  const url = `./data/${folder}/${filename}`;
-  try {
-    books = await fetchJson(url);
-  } catch (err) {
-    console.error("Error loading books:", err);
-    books = [];
+
+  if (category === "all") {
+    let allBooks = [];
+    const categories = Object.keys(CATEGORY_MAP).filter(c => c !== "all");
+
+    for (const c of categories) {
+      const filename = CATEGORY_MAP[c][language] + ".json";
+      const url = `./data/${folder}/${filename}`;
+      try {
+        const data = await fetchJson(url);
+        allBooks = allBooks.concat(data);
+      } catch (err) {
+        console.warn("Skipping missing file:", url);
+      }
+    }
+    books = allBooks;
+  } else {
+    const filename = CATEGORY_MAP[category][language] + ".json";
+    const url = `./data/${folder}/${filename}`;
+    try {
+      books = await fetchJson(url);
+    } catch (err) {
+      console.error("Error loading:", url, err);
+      books = [];
+    }
   }
+
   visibleBookCount = BOOKS_PER_PAGE;
   displayBooksByCategory();
 }
