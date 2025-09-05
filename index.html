@@ -2004,16 +2004,17 @@ function showExerciseDetails(copyId) {
     `;
 
     bookDetailsContent.querySelector('.chat-fb').addEventListener('click', () => {
-        window.open(messengerUrl, '_blank');
-        setTimeout(() => {
-            const orderMessage = 
-                `I want to order this item:\n\n` +
-                `📝 Item Name: ${copy.title}\n` +
-                `💰 Price: ₹${copy.price}\n\n` +
-                `Please confirm availability and delivery details.`;
+        const orderMessage = 
+            `I want to order this item:\n\n` +
+            `📝 Item Name: ${copy.title}\n` +
+            `💰 Price: ₹${copy.price}\n\n` +
+            `Please confirm availability and delivery details.`;
 
-            window.prompt("Copy the message below and paste it in Messenger chat:", orderMessage);
-        }, 500);
+        // First, show the prompt to the user
+        window.prompt("Please copy the message below, then click OK to go to Messenger to paste it:", orderMessage);
+        
+        // After the user closes the prompt, open Messenger
+        window.open(messengerUrl, '_blank');
     });
 
     bookDetailsModal.style.display = 'block';
@@ -2112,18 +2113,19 @@ function showBookDetails(bookId) {
     `;
 
     bookDetailsContent.querySelector('.chat-fb').addEventListener('click', function() {
-        window.open(messengerUrl, '_blank');
-        setTimeout(() => {
-            const orderMessage = 
-                `I want to order this book:\n\n` +
-                `📖 Book Name: ${book.title}\n` +
-                `✍️ Author: ${book.author}\n` +
-                `💰 Price: ₹${book.price.toFixed(2).replace(/\.00$/, '')}\n` +
-                `📅 Date & Time: ${dateTime}\n\n` +
-                `Please confirm availability and delivery details.`;
+        const orderMessage = 
+            `I want to order this book:\n\n` +
+            `📖 Book Name: ${book.title}\n` +
+            `✍️ Author: ${book.author}\n` +
+            `💰 Price: ₹${book.price.toFixed(2).replace(/\.00$/, '')}\n` +
+            `📅 Date & Time: ${dateTime}\n\n` +
+            `Please confirm availability and delivery details.`;
 
-            window.prompt("Copy the message below and paste it in Messenger chat:", orderMessage);
-        }, 500);
+        // First, show the prompt to the user
+        window.prompt("Please copy the message below, then click OK to go to Messenger to paste it:", orderMessage);
+        
+        // After the user closes the prompt, open Messenger
+        window.open(messengerUrl, '_blank');
     });
 
     bookDetailsModal.style.display = 'block';
