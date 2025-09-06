@@ -6,7 +6,7 @@
     <title>Readora - Online Book Store</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <style>
+    <style>
         * {
             margin: 0;
             padding: 0;
@@ -251,7 +251,7 @@
             margin-bottom: 15px;
             line-height: 1.8;
             font-size: 1.1rem;
-            text-align: justify; /* Added justify text */
+            text-align: justify;
         }
 
         .about-image-collage {
@@ -362,7 +362,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         
-        /* ADDED: Category Separator Styles */
+        /* Category Separator Styles */
         .category-separator {
             border: none;
             height: 2px;
@@ -983,9 +983,9 @@
              .categories {
                 display: flex;
                 flex-wrap: nowrap;
-                justify-content: space-between; /* or use flex-start with adjusted margins */
-                gap: 4px; /* smaller gap */
-                overflow-x: auto; /* in case content still overflows */
+                justify-content: space-between;
+                gap: 4px;
+                overflow-x: auto;
             }
              .subcategories, .language-subcategories {
                 gap: 8px;
@@ -1051,344 +1051,144 @@
             font-size: 1.2rem;
             color: var(--gray);
         }
-       <style>
-/* ... (existing CSS code remains the same) ... */
 
-/* Enhanced Mobile Responsiveness */
-@media (max-width: 768px) {
-    /* Header improvements */
-    .header-content {
-        padding: 0 10px;
-    }
-    
-    .logo {
-        font-size: 1.5rem;
-    }
-    
-    .logo i {
-        font-size: 1.8rem;
-    }
-    
-    /* Mobile menu improvements */
-    nav {
-        width: 85%;
-        right: -85%;
-        padding-top: 70px;
-        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
-    }
-    
-    nav ul li {
-        margin: 15px 0;
-    }
-    
-    nav ul li a {
-        display: block;
-        padding: 12px 20px;
-        font-size: 1.1rem;
-    }
-    
-    /* Hero section improvements */
-    .hero-content {
-        padding: 20px 15px;
-        margin-top: 40px;
-    }
-    
-    .hero h1 {
-        font-size: 2.2rem;
-        line-height: 1.2;
-    }
-    
-    .hero p {
-        font-size: 1.1rem;
-        padding: 0 10px;
-    }
-    
-    /* About section improvements */
-    .about-text h2 {
-        font-size: 1.8rem;
-    }
-    
-    .about-text p {
-        font-size: 1rem;
-        text-align: left;
-    }
-    
-    .about-image-collage {
-        height: 350px;
-        margin-top: 30px;
-    }
-    
-    .about-stats {
-        gap: 15px;
-    }
-    
-    .stat-item {
-        padding: 15px;
-    }
-    
-    .stat-number {
-        font-size: 2rem;
-    }
-    
-    /* Category navigation improvements */
-    .categories {
-        overflow-x: auto;
-        padding-bottom: 10px;
-        justify-content: flex-start;
-        -webkit-overflow-scrolling: touch;
-    }
-    
-    .category-btn {
-        flex-shrink: 0;
-        white-space: nowrap;
-        font-size: 0.9rem;
-        padding: 10px 18px;
-    }
-    
-    .language-subcategories, .subcategories {
-        overflow-x: auto;
-        padding-bottom: 10px;
-        justify-content: flex-start;
-        -webkit-overflow-scrolling: touch;
-    }
-    
-    .language-btn, .subcategory-btn {
-        flex-shrink: 0;
-        white-space: nowrap;
-        font-size: 0.9rem;
-    }
-    
-    /* Books grid improvements */
-    .books-grid {
-        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-        gap: 20px;
-    }
-    
-    .book-img {
-        height: 220px;
-    }
-    
-    .book-title {
-        font-size: 16px;
-    }
-    
-    .current-price {
-        font-size: 18px;
-    }
-    
-    .book-actions {
-        flex-direction: column;
-        gap: 8px;
-    }
-    
-    .btn {
-        width: 100%;
-        justify-content: center;
-        font-size: 13px;
-        padding: 10px;
-    }
-    
-    /* Search section improvements */
-    .search-box {
-        flex-direction: column;
-    }
-    
-    .search-box input {
-        border-radius: 4px;
-        margin-bottom: 10px;
-        padding: 12px;
-    }
-    
-    .search-box button {
-        border-radius: 4px;
-        padding: 12px;
-    }
-    
-    /* Modal improvements */
-    .modal-content {
-        width: 95%;
-        margin: 20px auto;
-    }
-    
-    .modal-header {
-        padding: 15px;
-    }
-    
-    .modal-body {
-        padding: 20px;
-    }
-    
-    .book-details {
-        gap: 20px;
-    }
-    
-    .book-details-info h2 {
-        font-size: 1.5rem;
-    }
-    
-    .book-details-price {
-        font-size: 1.8rem;
-    }
-    
-    .book-details-actions {
-        flex-direction: column;
-    }
-    
-    .btn-large {
-        width: 100%;
-        margin-bottom: 10px;
-    }
-    
-    /* Footer improvements */
-    .footer-content {
-        gap: 30px;
-    }
-    
-    .footer-logo {
-        font-size: 1.5rem;
-    }
-    
-    .contact-info p {
-        justify-content: flex-start;
-        font-size: 0.9rem;
-    }
-    
-    .social-links {
-        justify-content: flex-start;
-    }
-    
-    /* Back to top button positioning */
-    .back-to-top {
-        bottom: 15px;
-        left: 15px;
-        width: 45px;
-        height: 45px;
-    }
-}
+        /* Order Confirmation Modal Styles */
+        .order-confirm-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1001;
+            overflow-y: auto;
+        }
 
-@media (max-width: 480px) {
-    /* Further refinements for very small screens */
-    .hero h1 {
-        font-size: 1.8rem;
-    }
-    
-    .hero p {
-        font-size: 1rem;
-    }
-    
-    .section-title {
-        font-size: 1.6rem;
-    }
-    
-    .books-grid {
-        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-        gap: 15px;
-    }
-    
-    .book-info {
-        padding: 15px;
-    }
-    
-    .book-title {
-        font-size: 14px;
-        -webkit-line-clamp: 2;
-        height: 2.8em;
-    }
-    
-    .book-author {
-        font-size: 12px;
-    }
-    
-    .current-price {
-        font-size: 16px;
-    }
-    
-    .category-separator {
-        margin: 1.5rem auto;
-    }
-    
-    /* About section for very small screens */
-    .about-image-collage {
-        height: 280px;
-    }
-    
-    .about-img-1 {
-        width: 60%;
-        height: 50%;
-    }
-    
-    .about-img-2 {
-        width: 50%;
-        height: 45%;
-    }
-    
-    .about-img-3 {
-        width: 35%;
-        height: 40%;
-    }
-    
-    /* Modal adjustments */
-    .book-details-img {
-        margin-bottom: 15px;
-    }
-    
-    .book-details-info h2 {
-        font-size: 1.3rem;
-    }
-    
-    .book-details-author {
-        font-size: 1rem;
-    }
-    
-    .book-details-price {
-        font-size: 1.5rem;
-    }
-    
-    /* Footer text adjustments */
-    .footer-about p {
-        font-size: 0.9rem;
-    }
-    
-    .footer-links ul li a {
-        font-size: 0.9rem;
-    }
-}
+        .order-confirm-content {
+            background: white;
+            margin: 50px auto;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            animation: modalFade 0.4s;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
 
-/* Additional touch-friendly improvements */
-.btn, .category-btn, .language-btn, .subcategory-btn {
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
-}
+        .order-confirm-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--light-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--light);
+        }
 
-/* Prevent horizontal scrolling */
-html, body {
-    overflow-x: hidden;
-    width: 100%;
-}
+        .order-confirm-header h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
 
-/* Improved scrolling experience */
-.container {
-    padding: 0 15px;
-}
+        .close-confirm-modal {
+            font-size: 28px;
+            cursor: pointer;
+            color: var(--gray);
+            transition: color 0.3s;
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            z-index: 10;
+        }
 
-/* Better text readability on mobile */
-body {
-    -webkit-text-size-adjust: 100%;
-    text-size-adjust: 100%;
-}
+        .close-confirm-modal:hover {
+            color: var(--dark);
+        }
 
-/* Enhanced button feedback for touch devices */
-.btn:active, .category-btn:active, .language-btn:active, .subcategory-btn:active {
-    transform: scale(0.98);
-}
+        .order-confirm-body {
+            padding: 30px;
+        }
 
-/* Improved modal scrolling on mobile */
-.modal-content {
-    max-height: 90vh;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-}
-</style>
+        .order-message {
+            background: #f9f9f9;
+            border-left: 4px solid var(--accent);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .order-message p {
+            margin: 8px 0;
+        }
+
+        .order-divider {
+            border: none;
+            height: 1px;
+            background: var(--light-gray);
+            margin: 20px 0;
+        }
+
+        .order-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .btn-copy-messenger {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+
+        .btn-copy-messenger:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        .btn-copy-only {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+
+        .btn-copy-only:hover {
+            background: rgba(74, 111, 165, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .order-confirm-content {
+                width: 95%;
+                margin: 20px auto;
+            }
+            
+            .order-confirm-body {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -1489,7 +1289,7 @@ body {
             <hr class="category-separator">
             
             <div class="language-subcategories" id="language-nav">
-                
+                <button class="language-btn" data-language="all">All</button>
                 <button class="language-btn" data-language="Bengali">Bengali</button>
                 <button class="language-btn" data-language="English">English</button>
             </div>
@@ -1545,6 +1345,34 @@ body {
             </div>
         </div>
     </div>
+
+    <!-- New Order Confirmation Modal -->
+    <div id="order-confirm-modal" class="order-confirm-modal">
+        <div class="order-confirm-content">
+            <div class="order-confirm-header">
+                <h2>Order Confirmation</h2>
+                <span class="close-confirm-modal">&times;</span>
+            </div>
+            <div class="order-confirm-body">
+                <p>Please copy the message below and paste it into<br>Messenger to place your order.</p>
+                
+                <div class="order-message" id="order-message-text">
+                    <!-- This will be populated with JavaScript -->
+                </div>
+                
+                <hr class="order-divider">
+                
+                <div class="order-actions">
+                    <button id="copy-and-redirect-btn" class="btn-copy-messenger">
+                        <i class="fab fa-facebook-messenger"></i> Copy & Go to Messenger
+                    </button>
+                    <button id="copy-only-btn" class="btn-copy-only">
+                        <i class="fas fa-copy"></i> Copy Text Only
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
     
 
     <footer id="footer">
@@ -1595,545 +1423,606 @@ body {
             return { id, title, author, price, originalPrice, category, condition, available, description, frontImg, backImg, pdf, rating, language };
         }
 
-  // FIX: Cleaned and corrected book category data for consistent filtering
-const books = [
-    createBook(1, "সুনির্বাচিত গল্প", "আশাপূর্ণা দেবী", 300, 350, "Short Story", "New", true, " (Sunirbachita Galpa) by Ashapurna Devi is a collection of her selected short stories, showcasing her skill as a short story writer alongside her more famous novels. The book likely explores the lives, struggles, and psyches of ordinary women in mid-20th century Bengal, a central theme in Devi's broader work.", "https://cdn.dotpe.in/longtail/store-items/7756154/UZPwmFFa.jpeg", "", "https://drive.google.com/file/d/1JCg45mOzVpJEgkVTEMNALPDr99TxPaAj/view?usp=drive_link", 4.5, "Bengali"),
-    createBook(2, "Atomic Habits", "James Clear", 14.99, 19.99, "Non-Fiction", "New", true, "Tiny Changes, Remarkable Results: An easy & proven way to build good habits & break bad ones. This book will teach you how to make time for new habits, overcome lack of motivation, and design your environment to make success easier.", "https://images.unsplash.com/photo-1558901357-ca41e027e43a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.8, "English"),
-    createBook(3, "The Hobbit", "J.R.R. Tolkien", 16.99, 22.99, "Fantasy", "Old", true, "A fantasy novel about the adventures of hobbit Bilbo Baggins, who is hired by the wizard Gandalf to accompany thirteen dwarves on a quest to reclaim their mountain home from the dragon Smaug.", "https://images.unsplash.com/photo-1629992101753-56d196c8aabb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7, "English"),
-    createBook(4, "Sapiens: A Brief History of Humankind", "Yuval Noah Harari", 18.99, 24.99, "Non-Fiction", "New", true, "A groundbreaking narrative of humanity's creation and evolution that explores the ways in which biology and history have defined us and enhanced our understanding of what it means to be human.", "https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.6, "English"),
-    createBook(5, "Dune", "Frank Herbert", 13.99, 17.99, "Science Fiction", "Old", true, "A science fiction novel set in the distant future amidst a feudal interstellar society in which various noble houses control planetary fiefs. It tells the story of young Paul Atreides, whose family accepts the stewardship of the planet Arrakis.", "https://images.unsplash.com/photo-1531072901881-4a7e5df0ab7f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.9, "English"),
-    createBook(6, "Educated", "Tara Westover", 15.99, 21.99, "Biography", "New", true, "A memoir about a woman who leaves her survivalist family and goes on to earn a PhD from Cambridge University. An account of the struggle for self-invention and the pursuit of knowledge.", "https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7, "English"),
-    createBook(7, "The Martian", "Andy Weir", 14.50, 18.99, "Science Fiction", "New", true, "A science fiction novel about an astronaut who is mistakenly left behind on Mars and must fight to survive. Told through a series of log entries, it's a gripping story of human ingenuity and the will to survive.", "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.8, "English"),
-    createBook(8, "Steve Jobs", "Walter Isaacson", 17.99, 23.99, "Biography", "New", true, "Based on more than forty interviews with Steve Jobs conducted over two years, this is the exclusive biography of the groundbreaking innovator who transformed six different industries and changed how we live.", "https://images.unsplash.com/photo-1512820790803-83ca734da794?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.5, "English"),
-    createBook(9, "To Kill a Mockingbird", "Harper Lee", 12.99, 15.99, "Fiction", "Old", true, "A novel about the seriousness of the racial inequality in America. It is a classic of modern American literature, winning the Pulitzer Prize.", "https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.8, "English"),
-    createBook(10, "1984", "George Orwell", 11.99, 14.99, "Fiction", "Old", true, "A dystopian social science fiction novel and cautionary tale. The story is set in an imagined future, the year 1984, when much of the world has fallen victim to perpetual war, omnipresent government surveillance, and propaganda.", "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7, "English"),
-    createBook(11, "The Catcher in the Rye", "J.D. Salinger", 13.50, 16.50, "Fiction", "Old", true, "A novel about a few days in the life of a troubled teenage boy, Holden Caulfield, who has just been expelled from his prep school.", "https://images.unsplash.com/photo-1583642711758-47a32332145e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.3, "English"),
-    createBook(12, "A Brief History of Time", "Stephen Hawking", 19.99, 25.99, "Science", "New", true, "A landmark volume in science writing by one of the great minds of our time. It explains a range of subjects in cosmology, including the Big Bang, black holes, and light cones.", "https://images.unsplash.com/photo-1550399105-c4db5fb85c18?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.6, "English"),
-    createBook(13, "The Lord of the Rings", "J.R.R. Tolkien", 25.00, 30.00, "Fantasy", "New", true, "An epic high-fantasy novel. The story began as a sequel to Tolkien's 1937 fantasy novel The Hobbit, but eventually developed into a much larger work.", "https://images.unsplash.com/photo-1509266272358-77a1da62327c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.9, "English"),
-    createBook(14, "Pride and Prejudice", "Jane Austen", 10.99, 13.99, "Fiction", "Old", true, "A romantic novel of manners written by Jane Austen in 1813. The novel follows the character development of Elizabeth Bennet, the dynamic protagonist of the book.", "https://images.unsplash.com/photo-1577985051161-55dae085a6a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.8, "English"),
-    createBook(15, "Cosmos", "Carl Sagan", 18.50, 22.50, "Science", "New", true, "One of the bestselling science books of all time. In clear-eyed prose, Sagan reveals a jewel-like universe of intelligent life forms, supernovae, and other wonders.", "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.9, "English"),
-    createBook(16, "The Diary of a Young Girl", "Anne Frank", 11.50, 14.50, "Biography", "Old", true, "The writings from the Dutch-language diary kept by Anne Frank while she was in hiding for two years with her family during the Nazi occupation of the Netherlands.", "https://images.unsplash.com/photo-1593340573142-0a1586b626e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7, "English"),
-    createBook(17, "Moby Dick", "Herman Melville", 12.00, 15.00, "Fiction", "Old", true, "The saga of Captain Ahab and his relentless pursuit of Moby Dick, the great white whale that crippled him.", "https://images.unsplash.com/photo-1533483152347-578438295880?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.1, "English"),
-    createBook(18, "পথের পাঁচালী", "বিভূতিভূষণ বন্দ্যোপাধ্যায়", 250, 300, "Fiction", "Old", true, "Pather Panchali is a 1929 Bengali novel written by Bibhutibhushan Bandopadhyay and was the first of a trilogy. The novel is about the life of a small boy, Apu, and his elder sister, Durga.", "https://m.media-amazon.com/images/I/81gCjfQOF-L._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.8, "Bengali"),
-    createBook(19, "দেবদাস", "শরৎচন্দ্র চট্টোপাধ্যায়", 180, 220, "Fiction", "Old", true, "Devdas is a Bengali romance novel by Sarat Chandra Chattopadhyay. It follows the lives of Devdas and Paro, childhood sweethearts who are separated by societal pressures.", "https://m.media-amazon.com/images/I/71aFgU4gUjL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.6, "Bengali"),
-    createBook(20, "গোরা", "রবীন্দ্রনাথ ঠাকুর", 320, 380, "Fiction", "New", true, "Gora is a novel by Rabranath Tagore, set in Calcutta in the 1880s during the British Raj. It is one of Tagore's longest and most complex novels.", "https://m.media-amazon.com/images/I/81xK7Q3Z2+L._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.9, "Bengali"),
-    createBook(21, "সেই সময়", "সুনীল গঙ্গোপাধ্যায়", 280, 330, "Historical", "New", true, "Sei Somoy is a historical novel by Sunil Gangopadhyay that portrays the socio-cultural scenario of 19th century Bengal.", "https://m.media-amazon.com/images/I/81C6M5FJG4L._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7, "Bengali"),
-    createBook(22, "হাজার চুরাশির মা", "মহাশ্বেতা দেবী", 200, 250, "Fiction", "Old", true, "Hajar Churashir Maa is a novel by Mahasweta Devi, set during the Naxalite movement in West Bengal. It tells the story of a mother who discovers her son's political involvement after his death.", "https://m.media-amazon.com/images/I/81L5N4Lk5+L._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.5, "Bengali"),
-    createBook(23, "চোখের বালি", "রবীন্দ্রনাথ ঠাকুর", 240, 300, "Fiction", "New", true, "Chokher Bali by Rabindranath Tagore explores love, betrayal, and human emotions through the story of Binodini.", "https://m.media-amazon.com/images/I/81+Kz5QzCFL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.9, "Bengali"),
-    createBook(24, "অরণ্যের দিনরাত্রী", "সুনীল গঙ্গোপাধ্যায়", 180, 220, "Travel Writing", "Old", true, "A novel about four friends who travel to the forests of Bihar, experiencing friendship, love, and discovery.", "https://m.media-amazon.com/images/I/71JYFQrk4DL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.4, "Bengali"),
-    createBook(25, "শঙ্খনীল কারাগার", "হুমায়ূন আহমেদ", 230, 280, "Fiction", "New", true, "A famous Humayun Ahmed novel exploring human psychology, relationships, and complexities of life.", "https://m.media-amazon.com/images/I/81hNnZ3LwEL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7, "Bengali"),
-    createBook(26, "শ্রীকান্ত", "শরৎচন্দ্র চট্টোপাধ্যায়", 220, 270, "Fiction", "Old", true, "Srikanta is a semi-autobiographical novel depicting journeys, friendships, and human passions.", "https://m.media-amazon.com/images/I/81IuQ1tMcXL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.8, "Bengali"),
-    createBook(27, "অরণ্যের আত্মকথা", "বিভূতিভূষণ বন্দ্যোপাধ্যায়", 260, 310, "Adventure", "New", true, "A memoir-like tale depicting adventures and experiences in the forests, blending reality and imagination.", "https://m.media-amazon.com/images/I/91wqDFWxjJL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.6, "Bengali"),
-    createBook(28, "কপালকুণ্ডলা", "বঙ্কিমচন্দ্র চট্টোপাধ্যায়", 200, 240, "Romance", "Old", true, "A romance by Bankim Chandra about the wild beauty Kapalkundala and her tragic fate.", "https://m.media-amazon.com/images/I/71j3O1A1GvL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.5, "Bengali"),
-    createBook(29, "সাতকাহন", "সেলিনা হোসেন", 210, 260, "Fiction", "New", true, "A Bangladeshi novel by Selina Hossain depicting women’s strength and struggles in society.", "https://m.media-amazon.com/images/I/91Yx6+5Qa5L._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.4, "Bengali"),
-    createBook(30, "কর্ণফুলী", "সেলিনা হোসেন", 190, 240, "Historical", "Old", true, "A novel set near the Karnafuli river, exploring the culture and lives of people in Bangladesh.", "https://m.media-amazon.com/images/I/91U+UJnK4lL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.3, "Bengali"),
-    createBook(31, "অপরাজিত", "বিভূতিভূষণ বন্দ্যোপাধ্যায়", 270, 320, "Fiction", "New", true, "Sequel to Pather Panchali, continuing Apu’s journey of life, dreams, and hardships.", "https://m.media-amazon.com/images/I/81p9V2RzZ-L._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.9, "Bengali"),
-    createBook(32, "প্রথম আলো", "সুনীল গঙ্গোপাধ্যায়", 260, 310, "Historical", "New", true, "A historical novel portraying the Bengal Renaissance, focusing on lives of reformers and thinkers.", "https://m.media-amazon.com/images/I/91ClUpq+BLL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.8, "Bengali"),
-    createBook(33, "রাধারাণী", "বঙ্কিমচন্দ্র চট্টোপাধ্যায়", 210, 260, "Fiction", "Old", true, "A Bankim Chandra novel exploring devotion, love, and spirituality.", "https://m.media-amazon.com/images/I/71OpGvUONnL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.2, "Bengali"),
-    createBook(34, "ছায়াসাক্ষী", "শরৎচন্দ্র চট্টোপাধ্যায়", 190, 240, "Fiction", "Old", true, "A lesser-known novel by Sarat Chandra, portraying human weakness and moral struggles.", "https://m.media-amazon.com/images/I/81NcB9Me1aL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.1, "Bengali"),
-    createBook(35, "শুভদ্রষ্টা", "হুমায়ূন আজাদ", 200, 260, "Fiction", "New", true, "A bold novel by Humayun Azad exploring society, identity, and individualism in Bangladesh.", "https://m.media-amazon.com/images/I/81fOCWJknnL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.3, "Bengali"),
-    createBook(36, "মহানদী", "সেলিনা হোসেন", 220, 280, "Historical", "Old", true, "Depicts the mighty river and the stories of people connected with it, symbolizing resilience.", "https://m.media-amazon.com/images/I/91jCSzV1AAL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.2, "Bengali"),
-    createBook(37, "অগ্নিবীণা", "কাজী নজরুল ইসলাম", 250, 300, "Poetry", "New", true, "Nazrul’s fiery collection of poems that voice rebellion, patriotism, and human spirit.", "https://m.media-amazon.com/images/I/81DNT8mpfXL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.9, "Bengali"),
-    createBook(38, "গীতাঞ্জলি", "রবীন্দ্রনাথ ঠাকুর", 300, 350, "Poetry", "New", true, "Tagore’s Nobel-winning collection of poems that express devotion, spirituality, and philosophy.", "https://m.media-amazon.com/images/I/81QIDfM6fnL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 5.0, "Bengali"),
-    createBook(39, "ফেলুদা সমগ্র", "সত্যজিৎ রায়", 400, 450, "Mystery", "New", true, "The complete collection of Feluda stories featuring the iconic Bengali detective.", "https://m.media-amazon.com/images/I/91xZkY+YgnL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 5.0, "Bengali"),
-    createBook(40, "ব্যোমকেশ সমগ্র", "শরদিন্দু বন্দ্যোপাধ্যায়", 380, 430, "Mystery", "New", true, "All the adventures of Byomkesh Bakshi, the legendary Bengali detective.", "https://m.media-amazon.com/images/I/91nKQY6UQHL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.9, "Bengali"),
-    createBook(41, "To Kill a Mockingbird", "Harper Lee", 300, 380, "Fiction", "Old", true, "A timeless classic exploring themes of justice, race, and morality in the Deep South.", "https://m.media-amazon.com/images/I/81OxWqUZf9L._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.9, "English"),
-    createBook(42, "1984", "George Orwell", 290, 360, "Fiction", "New", true, "A dystopian masterpiece that critiques totalitarian regimes and the loss of personal freedom.", "https://m.media-amazon.com/images/I/71kxa1-0mfL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.8, "English"),
-    createBook(43, "Pride and Prejudice", "Jane Austen", 280, 340, "Romance", "Old", true, "A beloved classic about love, manners, and social class in 19th-century England.", "https://m.media-amazon.com/images/I/91b0C2YNSrL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7, "English"),
-    createBook(44, "The Great Gatsby", "F. Scott Fitzgerald", 270, 330, "Fiction", "New", true, "A tragic story of wealth, ambition, and love during the Jazz Age in America.", "https://m.media-amazon.com/images/I/81af+MCATTL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.6, "English"),
-    createBook(45, "Moby-Dick", "Herman Melville", 350, 420, "Adventure", "Old", true, "An epic tale of obsession and revenge between Captain Ahab and the great white whale.", "https://m.media-amazon.com/images/I/81+3imH0zML._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.4, "English"),
-    createBook(46, "The Catcher in the Rye", "J.D. Salinger", 260, 320, "Fiction", "New", true, "A classic novel of teenage rebellion and alienation through the eyes of Holden Caulfield.", "https://m.media-amazon.com/images/I/71Q1Iu4suSL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.5, "English"),
-    createBook(47, "The Hobbit", "J.R.R. Tolkien", 320, 400, "Fantasy", "Old", true, "A fantasy adventure following Bilbo Baggins on his unexpected journey with dwarves and dragons.", "https://m.media-amazon.com/images/I/91b0C2YNSrL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.9, "English"),
-    createBook(48, "Harry Potter and the Philosopher’s Stone", "J.K. Rowling", 350, 420, "Fantasy", "New", true, "The first book in the Harry Potter series introduces the magical world of Hogwarts.", "https://m.media-amazon.com/images/I/81YOuOGFCJL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.9, "English")
-];
+        // Cleaned and corrected book category data for consistent filtering
+        const books = [
+            createBook(1, "সুনির্বাচিত গল্প", "আশাপূর্ণা দেবী", 300, 350, "Short Story", "New", true, " (Sunirbachita Galpa) by Ashapurna Devi is a collection of her selected short stories, showcasing her skill as a short story writer alongside her more famous novels. The book likely explores the lives, struggles, and psyches of ordinary women in mid-20th century Bengal, a central theme in Devi's broader work.", "https://cdn.dotpe.in/longtail/store-items/7756154/UZPwmFFa.jpeg", "", "https://drive.google.com/file/d/1JCg45mOzVpJEgkVTEMNALPDr99TxPaAj/view?usp=drive_link", 4.5, "Bengali"),
+            createBook(2, "Atomic Habits", "James Clear", 14.99, 19.99, "Non-Fiction", "New", true, "Tiny Changes, Remarkable Results: An easy & proven way to build good habits & break bad ones. This book will teach you how to make time for new habits, overcome lack of motivation, and design your environment to make success easier.", "https://images.unsplash.com/photo-1558901357-ca41e027e43a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.8, "English"),
+            createBook(3, "The Hobbit", "J.R.R. Tolkien", 16.99, 22.99, "Fantasy", "Old", true, "A fantasy novel about the adventures of hobbit Bilbo Baggins, who is hired by the wizard Gandalf to accompany thirteen dwarves on a quest to reclaim their mountain home from the dragon Smaug.", "https://images.unsplash.com/photo-1629992101753-56d196c8aabb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7, "English"),
+            createBook(4, "Sapiens: A Brief History of Humankind", "Yuval Noah Harari", 18.99, 24.99, "Non-Fiction", "New", true, "A groundbreaking narrative of humanity's creation and evolution that explores the ways in which biology and history have defined us and enhanced our understanding of what it means to be human.", "https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.6, "English"),
+            createBook(5, "Dune", "Frank Herbert", 13.99, 17.99, "Science Fiction", "Old", true, "A science fiction novel set in the distant future amidst a feudal interstellar society in which various noble houses control planetary fiefs. It tells the story of young Paul Atreides, whose family accepts the stewardship of the planet Arrakis.", "https://images.unsplash.com/photo-1531072901881-4a7e5df0ab7f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.9, "English"),
+            createBook(6, "Educated", "Tara Westover", 15.99, 21.99, "Biography", "New", true, "A memoir about a woman who leaves her survivalist family and goes on to earn a PhD from Cambridge University. An account of the struggle for self-invention and the pursuit of knowledge.", "https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7, "English"),
+            createBook(7, "The Martian", "Andy Weir", 14.50, 18.99, "Science Fiction", "New", true, "A science fiction novel about an astronaut who is mistakenly left behind on Mars and must fight to survive. Told through a series of log entries, it's a gripping story of human ingenuity and the will to survive.", "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.8, "English"),
+            createBook(8, "Steve Jobs", "Walter Isaacson", 17.99, 23.99, "Biography", "New", true, "Based on more than forty interviews with Steve Jobs conducted over two years, this is the exclusive biography of the groundbreaking innovator who transformed six different industries and changed how we live.", "https://images.unsplash.com/photo-1512820790803-83ca734da794?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.5, "English"),
+            createBook(9, "To Kill a Mockingbird", "Harper Lee", 12.99, 15.99, "Fiction", "Old", true, "A novel about the seriousness of the racial inequality in America. It is a classic of modern American literature, winning the Pulitzer Prize.", "https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.8, "English"),
+            createBook(10, "1984", "George Orwell", 11.99, 14.99, "Fiction", "Old", true, "A dystopian social science fiction novel and cautionary tale. The story is set in an imagined future, the year 1984, when much of the world has fallen victim to perpetual war, omnipresent government surveillance, and propaganda.", "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7, "English"),
+            createBook(11, "The Catcher in the Rye", "J.D. Salinger", 13.50, 16.50, "Fiction", "Old", true, "A novel about a few days in the life of a troubled teenage boy, Holden Caulfield, who has just been expelled from his prep school.", "https://images.unsplash.com/photo-1583642711758-47a32332145e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.3, "English"),
+            createBook(12, "A Brief History of Time", "Stephen Hawking", 19.99, 25.99, "Science", "New", true, "A landmark volume in science writing by one of the great minds of our time. It explains a range of subjects in cosmology, including the Big Bang, black holes, and light cones.", "https://images.unsplash.com/photo-1550399105-c4db5fb85c18?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.6, "English"),
+            createBook(13, "The Lord of the Rings", "J.R.R. Tolkien", 25.00, 30.00, "Fantasy", "New", true, "An epic high-fantasy novel. The story began as a sequel to Tolkien's 1937 fantasy novel The Hobbit, but eventually developed into a much larger work.", "https://images.unsplash.com/photo-1509266272358-77a1da62327c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.9, "English"),
+            createBook(14, "Pride and Prejudice", "Jane Austen", 10.99, 13.99, "Fiction", "Old", true, "A romantic novel of manners written by Jane Austen in 1813. The novel follows the character development of Elizabeth Bennet, the dynamic protagonist of the book.", "https://images.unsplash.com/photo-1577985051161-55dae085a6a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.8, "English"),
+            createBook(15, "Cosmos", "Carl Sagan", 18.50, 22.50, "Science", "New", true, "One of the bestselling science books of all time. In clear-eyed prose, Sagan reveals a jewel-like universe of intelligent life forms, supernovae, and other wonders.", "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.9, "English"),
+            createBook(16, "The Diary of a Young Girl", "Anne Frank", 11.50, 14.50, "Biography", "Old", true, "The writings from the Dutch-language diary kept by Anne Frank while she was in hiding for two years with her family during the Nazi occupation of the Netherlands.", "https://images.unsplash.com/photo-1593340573142-0a1586b626e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7, "English"),
+            createBook(17, "Moby Dick", "Herman Melville", 12.00, 15.00, "Fiction", "Old", true, "The saga of Captain Ahab and his relentless pursuit of Moby Dick, the great white whale that crippled him.", "https://images.unsplash.com/photo-1533483152347-578438295880?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.1, "English"),
+            createBook(18, "পথের পাঁচালী", "বিভূতিভূষণ বন্দ্যোপাধ্যায়", 250, 300, "Fiction", "Old", true, "Pather Panchali is a 1929 Bengali novel written by Bibhutibhushan Bandopadhyay and was the first of a trilogy. The novel is about the life of a small boy, Apu, and his elder sister, Durga.", "https://m.media-amazon.com/images/I/81gCjfQOF-L._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.8, "Bengali"),
+            createBook(19, "দেবদাস", "শরৎচন্দ্র চট্টোপাধ্যায়", 180, 220, "Fiction", "Old", true, "Devdas is a Bengali romance novel by Sarat Chandra Chattopadhyay. It follows the lives of Devdas and Paro, childhood sweethearts who are separated by societal pressures.", "https://m.media-amazon.com/images/I/71aFgU4gUjL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.6, "Bengali"),
+            createBook(20, "গোরা", "রবীন্দ্রনাথ ঠাকুর", 320, 380, "Fiction", "New", true, "Gora is a novel by Rabranath Tagore, set in Calcutta in the 1880s during the British Raj. It is one of Tagore's longest and most complex novels.", "https://m.media-amazon.com/images/I/81xK7Q3Z2+L._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.9, "Bengali"),
+            createBook(21, "সেই সময়", "সুনীল গঙ্গোপাধ্যায়", 280, 330, "Historical", "New", true, "Sei Somoy is a historical novel by Sunil Gangopadhyay that portrays the socio-cultural scenario of 19th century Bengal.", "https://m.media-amazon.com/images/I/81C6M5FJG4L._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7, "Bengali"),
+            createBook(22, "হাজার চুরাশির মা", "মহাশ্বেতা দেবী", 200, 250, "Fiction", "Old", true, "Hajar Churashir Maa is a novel by Mahasweta Devi, set during the Naxalite movement in West Bengal. It tells the story of a mother who discovers her son's political involvement after his death.", "https://m.media-amazon.com/images/I/81L5N4Lk5+L._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.5, "Bengali"),
+            createBook(23, "চোখের বালি", "রবীন্দ্রনাথ ঠাকুর", 240, 300, "Fiction", "New", true, "Chokher Bali by Rabindranath Tagore explores love, betrayal, and human emotions through the story of Binodini.", "https://m.media-amazon.com/images/I/81+Kz5QzCFL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.9, "Bengali"),
+            createBook(24, "অরণ্যের দিনরাত্রী", "সুনীল গঙ্গোপাধ্যায়", 180, 220, "Travel Writing", "Old", true, "A novel about four friends who travel to the forests of Bihar, experiencing friendship, love, and discovery.", "https://m.media-amazon.com/images/I/71JYFQrk4DL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.4, "Bengali"),
+            createBook(25, "শঙ্খনীল কারাগار", "হুমায়ূন আহমেদ", 230, 280, "Fiction", "New", true, "A famous Humayun Ahmed novel exploring human psychology, relationships, and complexities of life.", "https://m.media-amazon.com/images/I/81hNnZ3LwEL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7, "Bengali"),
+            createBook(26, "শ্রীকান্ত", "শরৎচন্দ্র চট্টোপাধ্যায়", 220, 270, "Fiction", "Old", true, "Srikanta is a semi-autobiographical novel depicting journeys, friendships, and human passions.", "https://m.media-amazon.com/images/I/81IuQ1tMcXL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.8, "Bengali"),
+            createBook(27, "অরণ্যের আত্মকথা", "বিভূতিভূষণ বন্দ্যোপাধ্যায়", 260, 310, "Adventure", "New", true, "A memoir-like tale depicting adventures and experiences in the forests, blending reality and imagination.", "https://m.media-amazon.com/images/I/91wqDFWxjJL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.6, "Bengali"),
+            createBook(28, "কপালকুণ্ডলা", "বঙ্কিমচন্দ্র চট্টোপাধ্যায়", 200, 240, "Romance", "Old", true, "A romance by Bankim Chandra about the wild beauty Kapalkundala and her tragic fate.", "https://m.media-amazon.com/images/I/71j3O1A1GvL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.5, "Bengali"),
+            createBook(29, "সাতকাহন", "সেলিনা হোসেন", 210, 260, "Fiction", "New", true, "A Bangladeshi novel by Selina Hossain depicting women’s strength and struggles in society.", "https://m.media-amazon.com/images/I/91Yx6+5Qa5L._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.4, "Bengali"),
+            createBook(30, "কর্ণফুলী", "সেলিনา हোসেন", 190, 240, "Historical", "Old", true, "A novel set near the Karnafuli river, exploring the culture and lives of people in Bangladesh.", "https://m.media-amazon.com/images/I/91U+UJnK4lL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.3, "Bengali"),
+            createBook(31, "অপরাজিত", "বিভূতিভূষণ বন্দ্যোপাধ্যায়", 270, 320, "Fiction", "New", true, "Sequel to Pather Panchali, continuing Apu’s journey of life, dreams, and hardships.", "https://m.media-amazon.com/images/I/81p9V2RzZ-L._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.9, "Bengali"),
+            createBook(32, "প্রথম আলো", "সুনীল গঙ্গোপাধ্যায়", 260, 310, "Historical", "New", true, "A historical novel portraying the Bengal Renaissance, focusing on lives of reformers and thinkers.", "https://m.media-amazon.com/images/I/91ClUpq+BLL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.8, "Bengali"),
+            createBook(33, "রাধারাণী", "বঙ্কিমচন্দ্র চট্টোপাধ্যায়", 210, 260, "Fiction", "Old", true, "A Bankim Chandra novel exploring devotion, love, and spirituality.", "https://m.media-amazon.com/images/I/71OpGvUONnL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.2, "Bengali"),
+            createBook(34, "ছায়াসাক্ষী", "শরৎচন্দ্র চট্টোপাধ্যায়", 190, 240, "Fiction", "Old", true, "A lesser-known novel by Sarat Chandra, portraying human weakness and moral struggles.", "https://m.media-amazon.com/images/I/81NcB9Me1aL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.1, "Bengali"),
+            createBook(35, "শুভদ্রষ্টা", "হুমায়ূন আজাদ", 200, 260, "Fiction", "New", true, "A bold novel by Humayun Azad exploring society, identity, and individualism in Bangladesh.", "https://m.media-amazon.com/images/I/81fOCWJknnL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.3, "Bengali"),
+            createBook(36, "মহানদী", "সেলিনা হোসেন", 220, 280, "Historical", "Old", true, "Depicts the mighty river and the stories of people connected with it, symbolizing resilience.", "https://m.media-amazon.com/images/I/91jCSzV1AAL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.2, "Bengali"),
+            createBook(37, "অগ্নিবীণা", "কাজী নজরুল ইসলাম", 250, 300, "Poetry", "New", true, "Nazrul’s fiery collection of poems that voice rebellion, patriotism, and human spirit.", "https://m.media-amazon.com/images/I/81DNT8mpfXL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.9, "Bengali"),
+            createBook(38, "গীতাঞ্জলি", "রবীন্দ্রनाथ ঠাকুর", 300, 350, "Poetry", "New", true, "Tagore’s Nobel-winning collection of poems that express devotion, spirituality, and philosophy.", "https://m.media-amazon.com/images/I/81QIDfM6fnL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 5.0, "Bengali"),
+            createBook(39, "ফেলুদা সমগ্র", "সত্যজিৎ রায়", 400, 450, "Mystery", "New", true, "The complete collection of Feluda stories featuring the iconic Bengali detective.", "https://m.media-amazon.com/images/I/91xZkY+YgnL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 5.0, "Bengali"),
+            createBook(40, "ব্যোমকেশ সমগ্র", "শরদিন্দু বন্দ্যোপাধ্যায়", 380, 430, "Mystery", "New", true, "All the adventures of Byomkesh Bakshi, the legendary Bengali detective.", "https://m.media-amazon.com/images/I/91nKQY6UQHL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.9, "Bengali"),
+            createBook(41, "To Kill a Mockingbird", "Harper Lee", 300, 380, "Fiction", "Old", true, "A timeless classic exploring themes of justice, race, and morality in the Deep South.", "https://m.media-amazon.com/images/I/81OxWqUZf9L._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.9, "English"),
+            createBook(42, "1984", "George Orwell", 290, 360, "Fiction", "New", true, "A dystopian masterpiece that critiques totalitarian regimes and the loss of personal freedom.", "https://m.media-amazon.com/images/I/71kxa1-0mfL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.8, "English"),
+            createBook(43, "Pride and Prejudice", "Jane Austen", 280, 340, "Romance", "Old", true, "A beloved classic about love, manners, and social class in 19th-century England.", "https://m.media-amazon.com/images/I/91b0C2YNSrL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7, "English"),
+            createBook(44, "The Great Gatsby", "F. Scott Fitzgerald", 270, 330, "Fiction", "New", true, "A tragic story of wealth, ambition, and love during the Jazz Age in America.", "https://m.media-amazon.com/images/I/81af+MCATTL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.6, "English"),
+            createBook(45, "Moby-Dick", "Herman Melville", 350, 420, "Adventure", "Old", true, "An epic tale of obsession and revenge between Captain Ahab and the great white whale.", "https://m.media-amazon.com/images/I/81+3imH0zML._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.4, "English"),
+            createBook(46, "The Catcher in the Rye", "J.D. Salinger", 260, 320, "Fiction", "New", true, "A classic novel of teenage rebellion and alienation through the eyes of Holden Caulfield.", "https://m.media-amazon.com/images/I/71Q1Iu4suSL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.5, "English"),
+            createBook(47, "The Hobbit", "J.R.R. Tolkien", 320, 400, "Fantasy", "Old", true, "A fantasy adventure following Bilbo Baggins on his unexpected journey with dwarves and dragons.", "https://m.media-amazon.com/images/I/91b0C2YNSrL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.9, "English"),
+            createBook(48, "Harry Potter and the Philosopher’s Stone", "J.K. Rowling", 350, 420, "Fantasy", "New", true, "The first book in the Harry Potter series introduces the magical world of Hogwarts.", "https://m.media-amazon.com/images/I/81YOuOGFCJL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.9, "English")
+        ];
 
+        // Sample exercise copy data
+        const exerciseCopies = [
+            { id: 'ex1', title: 'Classmate Notebook', img: 'https://images.meesho.com/images/products/112719835/hqino_512.webp?width=512', description: 'Durable and stylish notebook for everyday use.', price: 60 },
+            { id: 'ex2', title: 'Spiral Notebook', img: 'https://rukminim2.flixcart.com/image/850/1000/kfmv9u80/notebook/p/y/g/navneet-youva-soft-bound-long-notebook-17x27-single-line-original-imafwfz7z7hzzfyb.jpeg?q=20&crop=false', description: 'Spiral bound notebook, easy to flip pages.', price: 80 },
+            { id: 'ex3', title: 'Practical Copy', img: 'https://targetpublications.org/media/catalog/product/cache/1/image/700x700/9df78eab33525d08d6e5fb8d27136e95/t/a/target_s_eco-friendly_practical_notebook_for_students_2.jpg', description: 'Eco-friendly practical notebook for students.', price: 100 },
+            { id: 'ex4', title: 'Graph Paper Book', img: 'https://laxmistationery.com/wp-content/uploads/2021/07/Classmate-Graph-Book-32-Pages-Pack-of-12.jpg', description: 'Perfect for math & geometry classes.', price: 50 }
+        ];
 
-// Sample exercise copy data
-const exerciseCopies = [
-    { id: 'ex1', title: 'Classmate Notebook', img: 'https://images.meesho.com/images/products/112719835/hqino_512.webp?width=512', description: 'Durable and stylish notebook for everyday use.', price: 60 },
-    { id: 'ex2', title: 'Spiral Notebook', img: 'https://rukminim2.flixcart.com/image/850/1000/kfmv9u80/notebook/p/y/g/navneet-youva-soft-bound-long-notebook-17x27-single-line-original-imafwfz7z7hzzfyb.jpeg?q=20&crop=false', description: 'Spiral bound notebook, easy to flip pages.', price: 80 },
-    { id: 'ex3', title: 'Practical Copy', img: 'https://targetpublications.org/media/catalog/product/cache/1/image/700x700/9df78eab33525d08d6e5fb8d27136e95/t/a/target_s_eco-friendly_practical_notebook_for_students_2.jpg', description: 'Eco-friendly practical notebook for students.', price: 100 },
-    { id: 'ex4', title: 'Graph Paper Book', img: 'https://laxmistationery.com/wp-content/uploads/2021/07/Classmate-Graph-Book-32-Pages-Pack-of-12.jpg', description: 'Perfect for math & geometry classes.', price: 50 }
-];
+        // DOM Elements
+        const searchInput = document.getElementById('search-input');
+        const searchButton = document.getElementById('search-button');
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const languageButtons = document.querySelectorAll('.language-btn');
+        const subcategoryButtons = document.querySelectorAll('.subcategory-btn');
+        const subcategoriesNav = document.getElementById('subcategories-nav');
+        const languageNav = document.getElementById('language-nav');
+        const categoryBooksGrid = document.getElementById('category-books');
+        const searchResultsGrid = document.getElementById('search-results');
+        const bookDetailsModal = document.getElementById('book-details-modal');
+        const bookDetailsContent = document.getElementById('book-details-content');
+        const closeModalBtns = document.querySelectorAll('.close-modal');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const menuToggle = document.getElementById('menu-toggle');
+        const mainNav = document.getElementById('main-nav');
+        const seeMoreContainer = document.getElementById('see-more-container');
+        const backToTop = document.createElement('div');
+        backToTop.className = 'back-to-top';
+        backToTop.innerHTML = '<i class="fas fa-arrow-up"></i>';
+        document.body.appendChild(backToTop);
 
-// DOM Elements
-const searchInput = document.getElementById('search-input');
-const searchButton = document.getElementById('search-button');
-const categoryButtons = document.querySelectorAll('.category-btn');
-const languageButtons = document.querySelectorAll('.language-btn');
-const subcategoryButtons = document.querySelectorAll('.subcategory-btn');
-const subcategoriesNav = document.getElementById('subcategories-nav');
-const languageNav = document.getElementById('language-nav');
-const categoryBooksGrid = document.getElementById('category-books');
-const searchResultsGrid = document.getElementById('search-results');
-const bookDetailsModal = document.getElementById('book-details-modal');
-const bookDetailsContent = document.getElementById('book-details-content');
-const closeModalBtns = document.querySelectorAll('.close-modal');
-const navLinks = document.querySelectorAll('.nav-link');
-const menuToggle = document.getElementById('menu-toggle');
-const mainNav = document.getElementById('main-nav');
-const seeMoreContainer = document.getElementById('see-more-container');
-const backToTop = document.createElement('div');
-backToTop.className = 'back-to-top';
-backToTop.innerHTML = '<i class="fas fa-arrow-up"></i>';
-document.body.appendChild(backToTop);
+        // App State
+        let selectedCategory = 'all';
+        let selectedType = 'all';
+        let selectedLanguage = 'all';
 
-// App State
-let selectedCategory = 'all';
-let selectedType = 'all';
-let selectedLanguage = 'all';
+        // Pagination state
+        const BOOKS_PER_PAGE = 8;
+        let visibleBookCount = BOOKS_PER_PAGE;
 
-// Pagination state
-const BOOKS_PER_PAGE = 8;
-let visibleBookCount = BOOKS_PER_PAGE;
+        // Subcategory translations mapping
+        const subcategoryTranslations = {
+            "all": { "English": "All", "Bengali": "সমস্ত" },
+            "Fiction": { "English": "Fiction", "Bengali": "উপন্যাস" },
+            "Non-Fiction": { "English": "Non-Fiction", "Bengali": "নন-ফিকশন" },
+            "Science": { "English": "Science", "Bengali": "বিজ্ঞান" },
+            "Technology": { "English": "Technology", "Bengali": "প্রযুক্তি" },
+            "Biography": { "English": "Biography", "Bengali": "জীবনী" },
+            "Fantasy": { "English": "Fantasy", "Bengali": "ফ্যান্টাসি" },
+            "Historical": { "English": "Historical", "Bengali": "ইতিহাসভিত্তিক" },
+            "Science Fiction": { "English": "Science Fiction", "Bengali": "বিজ্ঞান কল্পকাহিনি" },
+            "Mystery": { "English": "Mystery", "Bengali": "রহস্যকাহিনি" },
+            "Adventure": { "English": "Adventure", "Bengali": "অ্যাডভেঞ্চার কাহিনি" },
+            "Horror": { "English": "Horror", "Bengali": "ভৌতিক সাহিত্য" },
+            "Religious": { "English": "Religious", "Bengali": "ধর্মীয় সাহিত্য" },
+            "Children’s Literature": { "English": "Children’s Literature", "Bengali": "শিশু সাহিত্য" },
+            "Fairy Tale": { "English": "Fairy Tale", "Bengali": "রূপকথা" },
+            "Folklore": { "English": "Folklore", "Bengali": "লোকসাহিত্য" },
+            "Philosophy": { "English": "Philosophy", "Bengali": "দর্শন সাহিত্য" },
+            "Technical / Educational": { "English": "Technical / Educational", "Bengali": "প্রযুক্তি বিষয়ক বই" },
+            "Political": { "English": "Political", "Bengali": "রাজনৈতিক সাহিত্য" },
+            "Romance": { "English": "Romance", "Bengali": "ভালবাসার কাহিনি" },
+            "Thriller": { "English": "Thriller", "Bengali": "অপরাধ কাহিনি" },
+            "Motivational": { "English": "Motivational", "Bengali": "প্রেরণামূলক সাহিত্য" },
+            "Poetry": { "English": "Poetry", "Bengali": "কবিতা" },
+            "Short Story": { "English": "Short Story", "Bengali": "গল্প" },
+            "Drama / Play": { "English": "Drama / Play", "Bengali": "নাটক" },
+            "Essay": { "English": "Essay", "Bengali": "প্রবন্ধ" },
+            "Autobiography": { "English": "Autobiography", "Bengali": "আত্মজীবনী" },
+            "Travel Writing": { "English": "Travel Writing", "Bengali": "ভ্রমণকাহিনি" }
+        };
 
-// Subcategory translations mapping - FIX: Corrected keys and values
-const subcategoryTranslations = {
-    "all": { "English": "All", "Bengali": "সমস্ত" },
-    "Fiction": { "English": "Fiction", "Bengali": "উপন্যাস" },
-    "Non-Fiction": { "English": "Non-Fiction", "Bengali": "নন-ফিকশন" },
-    "Science": { "English": "Science", "Bengali": "বিজ্ঞান" },
-    "Technology": { "English": "Technology", "Bengali": "প্রযুক্তি" },
-    "Biography": { "English": "Biography", "Bengali": "জীবনী" },
-    "Fantasy": { "English": "Fantasy", "Bengali": "ফ্যান্টাসি" },
-    "Historical": { "English": "Historical", "Bengali": "ইতিহাসভিত্তিক" },
-    "Science Fiction": { "English": "Science Fiction", "Bengali": "বিজ্ঞান কল্পকাহিনি" },
-    "Mystery": { "English": "Mystery", "Bengali": "রহস্যকাহিনি" },
-    "Adventure": { "English": "Adventure", "Bengali": "অ্যাডভেঞ্চার কাহিনি" },
-    "Horror": { "English": "Horror", "Bengali": "ভৌতিক সাহিত্য" },
-    "Religious": { "English": "Religious", "Bengali": "ধর্মীয় সাহিত্য" },
-    "Children’s Literature": { "English": "Children’s Literature", "Bengali": "শিশু সাহিত্য" },
-    "Fairy Tale": { "English": "Fairy Tale", "Bengali": "রূপকথা" },
-    "Folklore": { "English": "Folklore", "Bengali": "লোকসাহিত্য" },
-    "Philosophy": { "English": "Philosophy", "Bengali": "দর্শন সাহিত্য" },
-    "Technical / Educational": { "English": "Technical / Educational", "Bengali": "প্রযুক্তি বিষয়ক বই" },
-    "Political": { "English": "Political", "Bengali": "রাজনৈতিক সাহিত্য" },
-    "Romance": { "English": "Romance", "Bengali": "ভালবাসার কাহিনি" },
-    "Thriller": { "English": "Thriller", "Bengali": "অপরাধ কাহিনি" },
-    "Motivational": { "English": "Motivational", "Bengali": "প্রেরণামূলক সাহিত্য" },
-    "Poetry": { "English": "Poetry", "Bengali": "কবিতা" },
-    "Short Story": { "English": "Short Story", "Bengali": "গল্প" },
-    "Drama / Play": { "English": "Drama / Play", "Bengali": "নাটক" },
-    "Essay": { "English": "Essay", "Bengali": "প্রবন্ধ" },
-    "Autobiography": { "English": "Autobiography", "Bengali": "আত্মজীবনী" },
-    "Travel Writing": { "English": "Travel Writing", "Bengali": "ভ্রমণকাহিনি" }
-};
+        // Initialize the app
+        function init() {
+            displayBooksByCategory();
+            setupEventListeners();
+            updateSubcategoryButtonText(selectedLanguage);
+        }
 
-// Initialize the app
-function init() {
-    displayBooksByCategory();
-    setupEventListeners();
-    updateSubcategoryButtonText(selectedLanguage);
-}
+        // Set up event listeners
+        function setupEventListeners() {
+            // Mobile menu toggle
+            menuToggle.addEventListener('click', () => {
+                menuToggle.classList.toggle('active');
+                mainNav.classList.toggle('active');
+            });
 
-// Set up event listeners
-function setupEventListeners() {
-    // Mobile menu toggle
-    menuToggle.addEventListener('click', () => {
-        menuToggle.classList.toggle('active');
-        mainNav.classList.toggle('active');
-    });
+            // Navigation smooth scrolling
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
 
-    // Navigation smooth scrolling
-    navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const targetId = link.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        navLinks.forEach(navLink => navLink.classList.remove('active'));
+                        link.classList.add('active');
 
-            if (targetElement) {
-                navLinks.forEach(navLink => navLink.classList.remove('active'));
-                link.classList.add('active');
+                        menuToggle.classList.remove('active');
+                        mainNav.classList.remove('active');
 
-                menuToggle.classList.remove('active');
-                mainNav.classList.remove('active');
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
 
+            // Search functionality
+            searchButton.addEventListener('click', () => {
+                performSearch(searchInput.value);
+            });
+
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    performSearch(searchInput.value);
+                }
+            });
+
+            // Category and type filter event listeners
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    selectedType = button.getAttribute('data-type');
+
+                    if (selectedType === 'exercise') {
+                        subcategoriesNav.style.display = 'none';
+                        languageNav.style.display = 'none';
+                    } else {
+                        subcategoriesNav.style.display = 'flex';
+                        languageNav.style.display = 'flex';
+                    }
+
+                    visibleBookCount = BOOKS_PER_PAGE;
+                    displayBooksByCategory();
+                });
+            });
+
+            // Language filter event listeners
+            document.querySelectorAll('.language-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    document.querySelectorAll('.language-btn').forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    selectedLanguage = button.getAttribute('data-language');
+                    updateSubcategoryButtonText(selectedLanguage);
+                    visibleBookCount = BOOKS_PER_PAGE;
+                    displayBooksByCategory();
+                });
+            });
+
+            subcategoryButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    subcategoryButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    selectedCategory = button.getAttribute('data-category');
+                    visibleBookCount = BOOKS_PER_PAGE;
+                    displayBooksByCategory();
+                });
+            });
+
+            // Close modals
+            closeModalBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    bookDetailsModal.style.display = 'none';
+                    document.getElementById('order-confirm-modal').style.display = 'none';
+                });
+            });
+
+            // Close modal when clicking outside
+            window.addEventListener('click', (e) => {
+                if (e.target === bookDetailsModal) {
+                    bookDetailsModal.style.display = 'none';
+                }
+                if (e.target === document.getElementById('order-confirm-modal')) {
+                    document.getElementById('order-confirm-modal').style.display = 'none';
+                }
+            });
+
+            // Back to top button
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTop.classList.add('show');
+                } else {
+                    backToTop.classList.remove('show');
+                }
+            });
+
+            backToTop.addEventListener('click', () => {
                 window.scrollTo({
-                    top: targetElement.offsetTop - 100,
+                    top: 0,
                     behavior: 'smooth'
                 });
-            }
-        });
-    });
-
-    // Search functionality
-    searchButton.addEventListener('click', () => {
-        performSearch(searchInput.value);
-    });
-
-    searchInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            performSearch(searchInput.value);
+            });
         }
-    });
 
-    // Category and type filter event listeners
-    categoryButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            categoryButtons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-            selectedType = button.getAttribute('data-type');
+        // Update subcategory button text based on selected language
+        function updateSubcategoryButtonText(language) {
+            const lang = (language === 'all' || !language) ? 'English' : language;
+            subcategoryButtons.forEach(button => {
+                const categoryKey = button.getAttribute('data-category');
+                if (subcategoryTranslations[categoryKey] && subcategoryTranslations[categoryKey][lang]) {
+                    button.textContent = subcategoryTranslations[categoryKey][lang];
+                }
+            });
+        }
+
+        // Filtering logic
+        function displayBooksByCategory() {
+            categoryBooksGrid.innerHTML = '';
+            seeMoreContainer.innerHTML = '';
 
             if (selectedType === 'exercise') {
-                subcategoriesNav.style.display = 'none';
-                languageNav.style.display = 'none';
-            } else {
-                subcategoriesNav.style.display = 'flex';
-                languageNav.style.display = 'flex';
+                exerciseCopies.forEach(copy => {
+                    const copyCard = createExerciseCopyCard(copy);
+                    categoryBooksGrid.appendChild(copyCard);
+                });
+                return;
             }
 
-            visibleBookCount = BOOKS_PER_PAGE;
-            displayBooksByCategory();
-        });
-    });
+            const filteredBooks = books.filter(book => {
+                // Condition 1: Category match
+                const categoryMatch = selectedCategory === 'all' || book.category === selectedCategory;
+                
+                // Condition 2: Type match (New/Old)
+                let typeMatch = false;
+                if (selectedType === 'all') {
+                    typeMatch = true;
+                } else if (selectedType === 'new') {
+                    typeMatch = book.condition.toLowerCase() === 'new';
+                } else if (selectedType === 'old') {
+                    typeMatch = book.condition.toLowerCase() === 'old';
+                }
 
-    // Language filter event listeners
-    document.querySelectorAll('.language-btn').forEach(button => {
-        button.addEventListener('click', () => {
-            document.querySelectorAll('.language-btn').forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-            selectedLanguage = button.getAttribute('data-language');
-            updateSubcategoryButtonText(selectedLanguage);
-            visibleBookCount = BOOKS_PER_PAGE;
-            displayBooksByCategory();
-        });
-    });
+                // Condition 3: Language match
+                const languageMatch = selectedLanguage === 'all' || book.language === selectedLanguage;
 
-    subcategoryButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            subcategoryButtons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-            selectedCategory = button.getAttribute('data-category');
-            visibleBookCount = BOOKS_PER_PAGE;
-            displayBooksByCategory();
-        });
-    });
+                return categoryMatch && typeMatch && languageMatch;
+            });
 
-    // Close modals
-    closeModalBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            bookDetailsModal.style.display = 'none';
-        });
-    });
+            if (filteredBooks.length === 0) {
+                categoryBooksGrid.innerHTML = '<div class="no-books">No books found for the selected filters.</div>';
+                return;
+            }
 
-    // Close modal when clicking outside
-    window.addEventListener('click', (e) => {
-        if (e.target === bookDetailsModal) {
-            bookDetailsModal.style.display = 'none';
-        }
-    });
+            const booksToShow = filteredBooks.slice(0, visibleBookCount);
 
-    // Back to top button
-    window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 300) {
-            backToTop.classList.add('show');
-        } else {
-            backToTop.classList.remove('show');
-        }
-    });
+            booksToShow.forEach(book => {
+                const bookCard = createBookCard(book);
+                categoryBooksGrid.appendChild(bookCard);
+            });
 
-    backToTop.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-}
-
-// Update subcategory button text based on selected language
-function updateSubcategoryButtonText(language) {
-    const lang = (language === 'all' || !language) ? 'English' : language;
-    subcategoryButtons.forEach(button => {
-        const categoryKey = button.getAttribute('data-category');
-        if (subcategoryTranslations[categoryKey] && subcategoryTranslations[categoryKey][lang]) {
-            button.textContent = subcategoryTranslations[categoryKey][lang];
-        }
-    });
-}
-
-// FIX: Rewrote the filtering logic to be more robust and clear
-function displayBooksByCategory() {
-    categoryBooksGrid.innerHTML = '';
-    seeMoreContainer.innerHTML = '';
-
-    if (selectedType === 'exercise') {
-        exerciseCopies.forEach(copy => {
-            const copyCard = createExerciseCopyCard(copy);
-            categoryBooksGrid.appendChild(copyCard);
-        });
-        return;
-    }
-
-    const filteredBooks = books.filter(book => {
-        // Condition 1: Category match
-        const categoryMatch = selectedCategory === 'all' || book.category === selectedCategory;
-        
-        // Condition 2: Type match (New/Old)
-        let typeMatch = false;
-        if (selectedType === 'all') {
-            typeMatch = true;
-        } else if (selectedType === 'new') {
-            typeMatch = book.condition.toLowerCase() === 'new';
-        } else if (selectedType === 'old') {
-            typeMatch = book.condition.toLowerCase() === 'old';
+            if (filteredBooks.length > visibleBookCount) {
+                const seeMoreBtn = document.createElement('button');
+                seeMoreBtn.textContent = 'See More';
+                seeMoreBtn.className = 'btn btn-primary';
+                seeMoreBtn.addEventListener('click', () => {
+                    visibleBookCount += BOOKS_PER_PAGE;
+                    displayBooksByCategory();
+                });
+                seeMoreContainer.appendChild(seeMoreBtn);
+            }
         }
 
-        // Condition 3: Language match
-        const languageMatch = selectedLanguage === 'all' || book.language === selectedLanguage;
+        // Create book card element
+        function createBookCard(book) {
+            const card = document.createElement('div');
+            card.className = 'book-card fade-in';
 
-        return categoryMatch && typeMatch && languageMatch;
-    });
+            const discount = book.originalPrice ? Math.round(((book.originalPrice - book.price) / book.originalPrice) * 100) : 0;
 
-    if (filteredBooks.length === 0) {
-        categoryBooksGrid.innerHTML = '<div class="no-books">No books found for the selected filters.</div>';
-        return;
-    }
+            card.innerHTML = `
+                ${book.condition === 'New' ? '<span class="book-badge badge-new">New</span>' : '<span class="book-badge badge-old">Old</span>'}
+                <span class="book-badge badge-category">${book.category}</span>
 
-    const booksToShow = filteredBooks.slice(0, visibleBookCount);
+                <div class="book-img">
+                    <img src="${book.frontImg}" alt="${book.title}">
+                </div>
+                <div class="book-info">
+                    <h3 class="book-title">${book.title}</h3>
+                    <p class="book-author">by ${book.author}</p>
+                    <div class="book-price">
+                        <span class="current-price">₹${book.price.toFixed(2).replace(/\.00$/, '')}</span>
+                        ${book.originalPrice ? `<span class="original-price">₹${book.originalPrice.toFixed(2).replace(/\.00$/, '')}</span>` : ''}
+                        ${discount > 0 ? `<span class="discount">${discount}% off</span>` : ''}
+                    </div>
+                    <p style="font-size: 12px; color: var(--gray); margin-top: -10px; margin-bottom: 10px;">(Free Delivery on Three)</p>
+                    <div class="book-actions">
+                        <button class="btn btn-outline view-details" data-id="${book.id}">
+                            <i class="fas fa-eye"></i> Details
+                        </button>
+                        <button class="btn btn-primary download-sample" data-pdf="${book.pdf}">
+                            <i class="fas fa-download"></i> Sample
+                        </button>
+                    </div>
+                </div>
+            `;
 
-    booksToShow.forEach(book => {
-        const bookCard = createBookCard(book);
-        categoryBooksGrid.appendChild(bookCard);
-    });
+            card.querySelector('.view-details').addEventListener('click', () => showBookDetails(book.id));
+            
+            card.querySelector('.download-sample').addEventListener('click', () => {
+                // Check if the PDF link exists and is not a placeholder/dummy link
+                if (book.pdf && book.pdf.trim() !== "" && !book.pdf.includes('dummy.pdf')) {
+                    window.open(book.pdf, '_blank');
+                } else {
+                    alert('PDF is not available for this book.');
+                }
+            });
 
-    if (filteredBooks.length > visibleBookCount) {
-        const seeMoreBtn = document.createElement('button');
-        seeMoreBtn.textContent = 'See More';
-        seeMoreBtn.className = 'btn btn-primary';
-        seeMoreBtn.addEventListener('click', () => {
-            visibleBookCount += BOOKS_PER_PAGE;
-            displayBooksByCategory();
-        });
-        seeMoreContainer.appendChild(seeMoreBtn);
-    }
-}
-
-// Create book card element
-function createBookCard(book) {
-    const card = document.createElement('div');
-    card.className = 'book-card fade-in';
-
-    const discount = book.originalPrice ? Math.round(((book.originalPrice - book.price) / book.originalPrice) * 100) : 0;
-
-    card.innerHTML = `
-        ${book.condition === 'New' ? '<span class="book-badge badge-new">New</span>' : '<span class="book-badge badge-old">Old</span>'}
-        <span class="book-badge badge-category">${book.category}</span>
-
-        <div class="book-img">
-            <img src="${book.frontImg}" alt="${book.title}">
-        </div>
-        <div class="book-info">
-            <h3 class="book-title">${book.title}</h3>
-            <p class="book-author">by ${book.author}</p>
-            <div class="book-price">
-                <span class="current-price">₹${book.price.toFixed(2).replace(/\.00$/, '')}</span>
-                ${book.originalPrice ? `<span class="original-price">₹${book.originalPrice.toFixed(2).replace(/\.00$/, '')}</span>` : ''}
-                ${discount > 0 ? `<span class="discount">${discount}% off</span>` : ''}
-            </div>
-            <p style="font-size: 12px; color: var(--gray); margin-top: -10px; margin-bottom: 10px;">(Free Delivery on Three)</p>
-            <div class="book-actions">
-                <button class="btn btn-outline view-details" data-id="${book.id}">
-                    <i class="fas fa-eye"></i> Details
-                </button>
-                <button class="btn btn-primary download-sample" data-pdf="${book.pdf}">
-                    <i class="fas fa-download"></i> Sample
-                </button>
-            </div>
-        </div>
-    `;
-
-    card.querySelector('.view-details').addEventListener('click', () => showBookDetails(book.id));
-    
-    card.querySelector('.download-sample').addEventListener('click', () => {
-        // Check if the PDF link exists and is not a placeholder/dummy link
-        if (book.pdf && book.pdf.trim() !== "" && !book.pdf.includes('dummy.pdf')) {
-            window.open(book.pdf, '_blank');
-        } else {
-            alert('PDF is not available for this book.');
+            return card;
         }
-    });
 
-    return card;
-}
+        // Create exercise copy card element
+        function createExerciseCopyCard(copy) {
+            const card = document.createElement('div');
+            card.className = 'book-card fade-in';
+            card.innerHTML = `
+                <div class="book-img">
+                    <img src="${copy.img}" alt="${copy.title}" style="object-fit: contain; padding: 10px;">
+                </div>
+                <div class="book-info">
+                    <h3 class="book-title">${copy.title}</h3>
+                    <div class="book-price">
+                        <span class="current-price">₹${copy.price}/kg</span>
+                    </div>
+                    <div class="book-actions">
+                        <button class="btn btn-primary enquire-btn" style="width:100%;" data-id="${copy.id}">
+                            <i class="fas fa-shopping-cart"></i> Enquire Now
+                        </button>
+                    </div>
+                </div>
+            `;
+            card.querySelector('.enquire-btn').addEventListener('click', () => showExerciseDetails(copy.id));
+            return card;
+        }
 
-// Create exercise copy card element
-function createExerciseCopyCard(copy) {
-    const card = document.createElement('div');
-    card.className = 'book-card fade-in';
-    card.innerHTML = `
-        <div class="book-img">
-            <img src="${copy.img}" alt="${copy.title}" style="object-fit: contain; padding: 10px;">
-        </div>
-        <div class="book-info">
-            <h3 class="book-title">${copy.title}</h3>
-            <div class="book-price">
-                <span class="current-price">₹${copy.price}/kg</span>
-            </div>
-            <div class="book-actions">
-                <button class="btn btn-primary enquire-btn" style="width:100%;" data-id="${copy.id}">
-                    <i class="fas fa-shopping-cart"></i> Enquire Now
-                </button>
-            </div>
-        </div>
-    `;
-    card.querySelector('.enquire-btn').addEventListener('click', () => showExerciseDetails(copy.id));
-    return card;
-}
+        function showExerciseDetails(copyId) {
+            const copy = exerciseCopies.find(c => c.id === copyId);
+            if (!copy) return;
 
-function showExerciseDetails(copyId) {
-    const copy = exerciseCopies.find(c => c.id === copyId);
-    if (!copy) return;
+            bookDetailsContent.innerHTML = `
+                <div class="book-details-img">
+                    <img src="${copy.img}" alt="${copy.title}">
+                </div>
+                <div class="book-details-info">
+                    <h2>${copy.title}</h2>
+                    <div class="book-details-price">₹${copy.price}</div>
+                    <p style="font-size:14px; color: var(--gray); margin-bottom:15px;">(+ Delivery Charge)</p>
+                    <p class="book-details-desc">${copy.description}</p>
+                    <div class="book-details-actions">
+                        <button class="btn btn-primary btn-large show-order-confirm" data-copy-id="${copy.id}">
+                            <i class="fab fa-facebook-messenger"></i> FB Chat To Order
+                        </button>
+                    </div>
+                </div>
+            `;
 
-    const messengerUrl = `https://www.messenger.com/t/718957201308613`;
+            // Add event listener to show order confirmation modal
+            bookDetailsContent.querySelector('.show-order-confirm').addEventListener('click', function() {
+                showOrderConfirmModal(null, copy);
+            });
 
-    bookDetailsContent.innerHTML = `
-        <div class="book-details-img">
-            <img src="${copy.img}" alt="${copy.title}">
-        </div>
-        <div class="book-details-info">
-            <h2>${copy.title}</h2>
-            <div class="book-details-price">₹${copy.price}</div>
-            <p style="font-size:14px; color: var(--gray); margin-bottom:15px;">(+ Delivery Charge)</p>
-            <p class="book-details-desc">${copy.description}</p>
-            <div class="book-details-actions">
-                <button class="btn btn-primary btn-large chat-fb" data-url="${messengerUrl}">
-                    <i class="fab fa-facebook-messenger"></i> FB Chat To Order
-                </button>
-            </div>
-        </div>
-    `;
+            bookDetailsModal.style.display = 'block';
+        }
 
-    bookDetailsContent.querySelector('.chat-fb').addEventListener('click', () => {
-        const orderMessage = 
-            `I want to order this item:\n\n` +
-            `📝 Item Name: ${copy.title}\n` +
-            `💰 Price: ₹${copy.price}\n\n` +
-            `Please confirm availability and delivery details.`;
+        // Perform search
+        function performSearch(query) {
+            if (!query.trim()) {
+                searchResultsGrid.innerHTML = '<div class="no-books">Please enter a search term.</div>';
+                return;
+            }
+            const searchTerm = query.toLowerCase().trim();
+            const bookResults = books.filter(book =>
+                book.title.toLowerCase().includes(searchTerm) ||
+                book.author.toLowerCase().includes(searchTerm) ||
+                book.category.toLowerCase().includes(searchTerm) ||
+                book.language.toLowerCase().includes(searchTerm)
+            );
+            const copyResults = exerciseCopies.filter(copy =>
+                copy.title.toLowerCase().includes(searchTerm)
+            );
+            searchResultsGrid.innerHTML = '';
 
-        // First, show the prompt to the user
-        window.prompt("Please copy the message below, then click OK to go to Messenger to paste it:", orderMessage);
-        
-        // After the user closes the prompt, open Messenger
-        window.open(messengerUrl, '_blank');
-    });
+            if (bookResults.length === 0 && copyResults.length === 0) {
+                const messengerUrl = `https://www.messenger.com/t/718957201308613`;
+                searchResultsGrid.innerHTML = `
+                    <div class="no-books" style="grid-column: 1 / -1;">
+                        <p>Sorry, the book you searched for is not available.</p>
+                        <p style="margin-bottom: 20px;">Please contact us, and we will try to arrange it for you.</p>
+                        <button id="contact-messenger-btn" class="btn btn-primary">
+                            <i class="fab fa-facebook-messenger"></i> Contact on Messenger
+                        </button>
+                    </div>
+                `;
+                
+                document.getElementById('contact-messenger-btn').addEventListener('click', () => {
+                    window.open(messengerUrl, '_blank');
+                    setTimeout(() => {
+                        const requestMessage = 
+                            `Hello, I was searching for a book on your website.\n\n` +
+                            `🔎 Search Term: "${query}"\n\n` +
+                            `Could you please let me know if it's possible to arrange this book for me?`;
 
-    bookDetailsModal.style.display = 'block';
-}
+                        window.prompt("Copy the message below and paste it in Messenger chat:", requestMessage);
+                    }, 500);
+                });
+                
+                return;
+            }
 
-// Perform search
-function performSearch(query) {
-    if (!query.trim()) {
-        searchResultsGrid.innerHTML = '<div class="no-books">Please enter a search term.</div>';
-        return;
-    }
-    const searchTerm = query.toLowerCase().trim();
-    const bookResults = books.filter(book =>
-        book.title.toLowerCase().includes(searchTerm) ||
-        book.author.toLowerCase().includes(searchTerm) ||
-        book.category.toLowerCase().includes(searchTerm) ||
-        book.language.toLowerCase().includes(searchTerm)
-    );
-    const copyResults = exerciseCopies.filter(copy =>
-        copy.title.toLowerCase().includes(searchTerm)
-    );
-    searchResultsGrid.innerHTML = '';
+            bookResults.forEach(book => searchResultsGrid.appendChild(createBookCard(book)));
+            copyResults.forEach(copy => searchResultsGrid.appendChild(createExerciseCopyCard(copy)));
+        }
 
-    if (bookResults.length === 0 && copyResults.length === 0) {
-        const messengerUrl = `https://www.messenger.com/t/718957201308613`;
-        searchResultsGrid.innerHTML = `
-            <div class="no-books" style="grid-column: 1 / -1;">
-                <p>Sorry, the book you searched for is not available.</p>
-                <p style="margin-bottom: 20px;">Please contact us, and we will try to arrange it for you.</p>
-                <button id="contact-messenger-btn" class="btn btn-primary">
-                    <i class="fab fa-facebook-messenger"></i> Contact on Messenger
-                </button>
-            </div>
-        `;
-        
-        document.getElementById('contact-messenger-btn').addEventListener('click', () => {
-            window.open(messengerUrl, '_blank');
-            setTimeout(() => {
-                const requestMessage = 
-                    `Hello, I was searching for a book on your website.\n\n` +
-                    `🔎 Search Term: "${query}"\n\n` +
-                    `Could you please let me know if it's possible to arrange this book for me?`;
+        // Show book details modal
+        function showBookDetails(bookId) {
+            const book = books.find(b => b.id === bookId);
+            if (!book) return;
 
-                window.prompt("Copy the message below and paste it in Messenger chat:", requestMessage);
-            }, 500);
-        });
-        
-        return;
-    }
+            const discount = book.originalPrice ? Math.round(((book.originalPrice - book.price) / book.originalPrice) * 100) : 0;
 
-    bookResults.forEach(book => searchResultsGrid.appendChild(createBookCard(book)));
-    copyResults.forEach(copy => searchResultsGrid.appendChild(createExerciseCopyCard(copy)));
-}
+            bookDetailsContent.innerHTML = `
+                <div class="book-details-img">
+                    <img src="${book.frontImg}" alt="${book.title}">
+                </div>
+                <div class="book-details-info">
+                    <h2>${book.title}</h2>
+                    <p class="book-details-author">by ${book.author}</p>
+                    <p style="font-size: 14px; color: var(--gray); margin-bottom: 10px;">Language: ${book.language}</p>
 
+                    <div class="book-details-price">
+                        ₹${book.price.toFixed(2).replace(/\.00$/, '')}
+                        ${book.originalPrice ? `<span class="original-price">₹${book.originalPrice.toFixed(2).replace(/\.00$/, '')}</span>` : ''}
+                        ${discount > 0 ? `<span class="discount">${discount}% off</span>` : ''}
+                    </div>
+                    <p style="font-size: 14px; color: var(--gray); margin-top: -10px; margin-bottom: 15px;">(Free delivery on 3 items)</p>
+                    <p class="book-details-desc">${book.description}</p>
+                    <div class="book-details-actions">
+                        <button class="btn btn-primary btn-large show-order-confirm" data-book-id="${book.id}">
+                            <i class="fab fa-facebook-messenger"></i> FB Chat To Order
+                        </button>
+                    </div>
+                </div>
+            `;
 
-// Show book details modal
-function showBookDetails(bookId) {
-    const book = books.find(b => b.id === bookId);
-    if (!book) return;
+            // Add event listener to show order confirmation modal
+            bookDetailsContent.querySelector('.show-order-confirm').addEventListener('click', function() {
+                showOrderConfirmModal(book);
+            });
 
-    const discount = book.originalPrice ? Math.round(((book.originalPrice - book.price) / book.originalPrice) * 100) : 0;
+            bookDetailsModal.style.display = 'block';
+        }
 
-    const now = new Date();
-    const dateTime = now.toLocaleString('en-IN', {
-        day: '2-digit',
-        month: '2-digit',
-        year: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
-    });
+        // New function to show order confirmation modal
+        function showOrderConfirmModal(book = null, copy = null) {
+            const orderConfirmModal = document.getElementById('order-confirm-modal');
+            const orderMessageText = document.getElementById('order-message-text');
+            const copyAndRedirectBtn = document.getElementById('copy-and-redirect-btn');
+            const copyOnlyBtn = document.getElementById('copy-only-btn');
+            
+            const now = new Date();
+            const dateTime = now.toLocaleString('en-IN', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            
+            let messageContent = '';
+            let orderText = '';
+            
+            if (book) {
+                messageContent = `
+                    <p><strong>I want to order this book:</strong></p>
+                    <p>📖 Book Name: ${book.title}</p>
+                    <p>✍️ Author: ${book.author}</p>
+                    <p>💰 Price: ₹${book.price.toFixed(2).replace(/\.00$/, '')}</p>
+                    <p>📅 Date & Time: ${dateTime}</p>
+                    <p>Please confirm availability and delivery details.</p>
+                `;
+                
+                orderText = `I want to order this book:\n\n📖 Book Name: ${book.title}\n✍️ Author: ${book.author}\n💰 Price: ₹${book.price.toFixed(2).replace(/\.00$/, '')}\n📅 Date & Time: ${dateTime}\n\nPlease confirm availability and delivery details.`;
+            } else if (copy) {
+                messageContent = `
+                    <p><strong>I want to order this item:</strong></p>
+                    <p>📝 Item Name: ${copy.title}</p>
+                    <p>💰 Price: ₹${copy.price}</p>
+                    <p>📅 Date & Time: ${dateTime}</p>
+                    <p>Please confirm availability and delivery details.</p>
+                `;
+                
+                orderText = `I want to order this item:\n\n📝 Item Name: ${copy.title}\n💰 Price: ₹${copy.price}\n📅 Date & Time: ${dateTime}\n\nPlease confirm availability and delivery details.`;
+            }
+            
+            orderMessageText.innerHTML = messageContent;
+            
+            // Set up event listeners for the buttons
+            copyAndRedirectBtn.onclick = function() {
+                copyToClipboard(orderText);
+                setTimeout(() => {
+                    window.open('https://www.messenger.com/t/718957201308613', '_blank');
+                }, 500);
+            };
+            
+            copyOnlyBtn.onclick = function() {
+                copyToClipboard(orderText);
+            };
+            
+            // Show the modal
+            orderConfirmModal.style.display = 'block';
+            
+            // Close modal when clicking on the X
+            document.querySelector('.close-confirm-modal').onclick = function() {
+                orderConfirmModal.style.display = 'none';
+            };
+            
+            // Close modal when clicking outside
+            orderConfirmModal.onclick = function(event) {
+                if (event.target === orderConfirmModal) {
+                    orderConfirmModal.style.display = 'none';
+                }
+            };
+        }
 
-    const messengerUrl = `https://www.messenger.com/t/718957201308613`;
+        // Function to copy text to clipboard
+        function copyToClipboard(text) {
+            // Create a temporary textarea element
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.setAttribute('readonly', '');
+            textarea.style.position = 'absolute';
+            textarea.style.left = '-9999px';
+            document.body.appendChild(textarea);
+            
+            // Select and copy the text
+            textarea.select();
+            document.execCommand('copy');
+            
+            // Remove the textarea
+            document.body.removeChild(textarea);
+            
+            // Show a brief confirmation
+            alert('Order details copied to clipboard!');
+        }
 
-    bookDetailsContent.innerHTML = `
-        <div class="book-details-img">
-            <img src="${book.frontImg}" alt="${book.title}">
-        </div>
-        <div class="book-details-info">
-            <h2>${book.title}</h2>
-            <p class="book-details-author">by ${book.author}</p>
-            <p style="font-size: 14px; color: var(--gray); margin-bottom: 10px;">Language: ${book.language}</p>
-
-            <div class="book-details-price">
-                ₹${book.price.toFixed(2).replace(/\.00$/, '')}
-                ${book.originalPrice ? `<span class="original-price">₹${book.originalPrice.toFixed(2).replace(/\.00$/, '')}</span>` : ''}
-                ${discount > 0 ? `<span class="discount">${discount}% off</span>` : ''}
-            </div>
-            <p style="font-size: 14px; color: var(--gray); margin-top: -10px; margin-bottom: 15px;">(Free delivery on 3 items)</p>
-            <p class="book-details-desc">${book.description}</p>
-            <div class="book-details-actions">
-                <button class="btn btn-primary btn-large chat-fb" data-url="${messengerUrl}">
-                    <i class="fab fa-facebook-messenger"></i> FB Chat To Order
-                </button>
-            </div>
-        </div>
-    `;
-
-    bookDetailsContent.querySelector('.chat-fb').addEventListener('click', function() {
-        const orderMessage = 
-            `I want to order this book:\n\n` +
-            `📖 Book Name: ${book.title}\n` +
-            `✍️ Author: ${book.author}\n` +
-            `💰 Price: ₹${book.price.toFixed(2).replace(/\.00$/, '')}\n` +
-            `📅 Date & Time: ${dateTime}\n\n` +
-            `Please confirm availability and delivery details.`;
-
-        // First, show the prompt to the user
-        window.prompt("Please copy the message below, then click OK to go to Messenger to paste it:", orderMessage);
-        
-        // After the user closes the prompt, open Messenger
-        window.open(messengerUrl, '_blank');
-    });
-
-    bookDetailsModal.style.display = 'block';
-}
-
-// Initialize the app
-init();
-
+        // Initialize the app
+        init();
     </script>
 </body>
 </html>
