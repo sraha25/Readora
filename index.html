@@ -1355,7 +1355,6 @@
         </div>
     </div>
 
-    <!-- New Order Confirmation Modal -->
     <div id="order-confirm-modal" class="order-confirm-modal">
         <div class="order-confirm-content">
             <div class="order-confirm-header">
@@ -1366,17 +1365,13 @@
                 <p>Please copy the message below and paste it into<br>Messenger to place your order.</p>
                 
                 <div class="order-message" id="order-message-text">
-                    <!-- This will be populated with JavaScript -->
-                </div>
+                    </div>
                 
                 <hr class="order-divider">
                 
                 <div class="order-actions">
                     <button id="copy-and-redirect-btn" class="btn-copy-messenger">
                         <i class="fab fa-facebook-messenger"></i> Copy & Go to Messenger
-                    </button>
-                    <button id="copy-only-btn" class="btn-copy-only">
-                        <i class="fas fa-copy"></i> Copy Text Only
                     </button>
                 </div>
             </div>
@@ -1458,7 +1453,7 @@
             createBook(22, "হাজার চুরাশির মা", "মহাশ্বেতা দেবী", 200, 250, "Fiction", "Old", true, "Hajar Churashir Maa is a novel by Mahasweta Devi, set during the Naxalite movement in West Bengal. It tells the story of a mother who discovers her son's political involvement after his death.", "https://m.media-amazon.com/images/I/81L5N4Lk5+L._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.5, "Bengali"),
             createBook(23, "চোখের বালি", "রবীন্দ্রনাথ ঠাকুর", 240, 300, "Fiction", "New", true, "Chokher Bali by Rabindranath Tagore explores love, betrayal, and human emotions through the story of Binodini.", "https://m.media-amazon.com/images/I/81+Kz5QzCFL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.9, "Bengali"),
             createBook(24, "অরণ্যের দিনরাত্রী", "সুনীল গঙ্গোপাধ্যায়", 180, 220, "Travel Writing", "Old", true, "A novel about four friends who travel to the forests of Bihar, experiencing friendship, love, and discovery.", "https://m.media-amazon.com/images/I/71JYFQrk4DL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.4, "Bengali"),
-            createBook(25, "শঙ্খনীল কারাগار", "হুমায়ূন আহমেদ", 230, 280, "Fiction", "New", true, "A famous Humayun Ahmed novel exploring human psychology, relationships, and complexities of life.", "https://m.media-amazon.com/images/I/81hNnZ3LwEL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7, "Bengali"),
+            createBook(25, "শঙ্খনীল কারাগার", "হুমায়ূন আহমেদ", 230, 280, "Fiction", "New", true, "A famous Humayun Ahmed novel exploring human psychology, relationships, and complexities of life.", "https://m.media-amazon.com/images/I/81hNnZ3LwEL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7, "Bengali"),
             createBook(26, "শ্রীকান্ত", "শরৎচন্দ্র চট্টোপাধ্যায়", 220, 270, "Fiction", "Old", true, "Srikanta is a semi-autobiographical novel depicting journeys, friendships, and human passions.", "https://m.media-amazon.com/images/I/81IuQ1tMcXL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.8, "Bengali"),
             createBook(27, "অরণ্যের আত্মকথা", "বিভূতিভূষণ বন্দ্যোপাধ্যায়", 260, 310, "Adventure", "New", true, "A memoir-like tale depicting adventures and experiences in the forests, blending reality and imagination.", "https://m.media-amazon.com/images/I/91wqDFWxjJL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.6, "Bengali"),
             createBook(28, "কপালকুণ্ডলা", "বঙ্কিমচন্দ্র চট্টোপাধ্যায়", 200, 240, "Romance", "Old", true, "A romance by Bankim Chandra about the wild beauty Kapalkundala and her tragic fate.", "https://m.media-amazon.com/images/I/71j3O1A1GvL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.5, "Bengali"),
@@ -1942,7 +1937,6 @@
             const orderConfirmModal = document.getElementById('order-confirm-modal');
             const orderMessageText = document.getElementById('order-message-text');
             const copyAndRedirectBtn = document.getElementById('copy-and-redirect-btn');
-            const copyOnlyBtn = document.getElementById('copy-only-btn');
             
             const now = new Date();
             const dateTime = now.toLocaleString('en-IN', {
@@ -1989,10 +1983,6 @@
                 }, 500);
             };
             
-            copyOnlyBtn.onclick = function() {
-                copyToClipboard(orderText);
-            };
-            
             // Show the modal
             orderConfirmModal.style.display = 'block';
             
@@ -2025,9 +2015,6 @@
             
             // Remove the textarea
             document.body.removeChild(textarea);
-            
-            // Show a brief confirmation
-            alert('Order details copied to clipboard!');
         }
 
         // Initialize the app
