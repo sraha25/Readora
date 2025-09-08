@@ -485,16 +485,16 @@
         }
 
         .book-img {
-            height: 300px;
+            aspect-ratio: 2 / 3;
             overflow: hidden;
             position: relative;
-            padding: 10px;
+            background-color: #f9f9f9;
         }
 
         .book-img img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            object-fit: cover; /* MODIFIED: This makes the image fill the container box */
             transition: transform 0.5s;
         }
 
@@ -503,10 +503,11 @@
         }
 
         .book-info {
-            padding: 20px;
+            padding: 15px;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
+            text-align: center;
         }
 
         .book-title {
@@ -528,7 +529,10 @@
         .book-price {
             display: flex;
             align-items: center;
-            margin-bottom: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 10px;
         }
 
         .current-price {
@@ -540,14 +544,12 @@
         .original-price {
             text-decoration: line-through;
             color: var(--gray);
-            margin-left: 10px;
             font-size: 14px;
         }
 
         .discount {
             color: var(--danger);
             font-weight: 600;
-            margin-left: 10px;
             font-size: 14px;
         }
 
@@ -1107,7 +1109,7 @@
             color: var(--primary);
         }
 
-        .close-confirm-modal {
+        .close-confirm-modal, .close-request-modal {
             font-size: 28px;
             cursor: pointer;
             color: var(--gray);
@@ -1118,7 +1120,7 @@
             z-index: 10;
         }
 
-        .close-confirm-modal:hover {
+        .close-confirm-modal:hover, .close-request-modal:hover {
             color: var(--dark);
         }
 
@@ -1383,6 +1385,25 @@
             </div>
         </div>
     </div>
+
+    <div id="book-request-modal" class="order-confirm-modal">
+        <div class="order-confirm-content">
+            <div class="order-confirm-header">
+                <h2>Request a Book</h2>
+                <span class="close-request-modal">&times;</span>
+            </div>
+            <div class="order-confirm-body">
+                <p>Copy the message below and paste it in Messenger chat:</p>
+                <div class="order-message" id="request-message-text" style="user-select: all; -webkit-user-select: all; padding: 15px; border-radius: 5px; background-color: #f0f2f5; white-space: pre-wrap; word-wrap: break-word;">
+                    </div>
+                <div class="order-actions">
+                    <button id="copy-request-btn" class="btn-copy-messenger">
+                        <i class="fas fa-copy"></i> Copy & Go to Messenger
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
     
 
     <footer id="footer">
@@ -1435,7 +1456,7 @@
 
         // Cleaned and corrected book category data for consistent filtering
         const books = [
-            createBook(1, "সুনির্বাচিত গল্প", "আশাপূর্ণা দেবী", 300, 350, "Short Story", "New", true, " (Sunirbachita Galpa) by Ashapurna Devi is a collection of her selected short stories, showcasing her skill as a short story writer alongside her more famous novels. The book likely explores the lives, struggles, and psyches of ordinary women in mid-20th century Bengal, a central theme in Devi's broader work.", "https://cdn.dotpe.in/longtail/store-items/7756154/UZPwmFFa.jpeg", "", "https://drive.google.com/file/d/1JCg45mOzVpJEgkVTEMNALPDr99TxPaAj/view?usp=drive_link", 4.5, "Bengali"),
+            createBook(1, "সুনির্বাচিত গল্প", "আশাপূর্ণা দেবী", 300, 350, "Short Story", "New", true, " (Sunirbachita Galpa) by Ashapurna Devi is a collection of her selected short stories, showcasing her skill as a short story writer alongside her more famous novels. The book likely explores the lives, struggles, and psyches of ordinary women in mid-20th century Bengal, a central theme in Devi's broader work.", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6qVcJBDjRpf5TtffQkOggUZqMUS9hKUFFwA&s", "", "https://drive.google.com/file/d/1JCg45mOzVpJEgkVTEMNALPDr99TxPaAj/view?usp=drive_link", 4.5, "Bengali"),
             createBook(2, "Atomic Habits", "James Clear", 14.99, 19.99, "Non-Fiction", "New", true, "Tiny Changes, Remarkable Results: An easy & proven way to build good habits & break bad ones. This book will teach you how to make time for new habits, overcome lack of motivation, and design your environment to make success easier.", "https://images.unsplash.com/photo-1558901357-ca41e027e43a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.8, "English"),
             createBook(3, "The Hobbit", "J.R.R. Tolkien", 16.99, 22.99, "Fantasy", "Old", true, "A fantasy novel about the adventures of hobbit Bilbo Baggins, who is hired by the wizard Gandalf to accompany thirteen dwarves on a quest to reclaim their mountain home from the dragon Smaug.", "https://images.unsplash.com/photo-1629992101753-56d196c8aabb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7, "English"),
             createBook(4, "Sapiens: A Brief History of Humankind", "Yuval Noah Harari", 18.99, 24.99, "Non-Fiction", "New", true, "A groundbreaking narrative of humanity's creation and evolution that explores the ways in which biology and history have defined us and enhanced our understanding of what it means to be human.", "https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.6, "English"),
@@ -1869,7 +1890,6 @@
             searchResultsGrid.innerHTML = '';
 
             if (bookResults.length === 0 && copyResults.length === 0) {
-                const messengerUrl = `https://www.messenger.com/t/718957201308613`;
                 searchResultsGrid.innerHTML = `
                     <div class="no-books" style="grid-column: 1 / -1;">
                         <p>Sorry, the book you searched for is not available.</p>
@@ -1881,15 +1901,37 @@
                 `;
                 
                 document.getElementById('contact-messenger-btn').addEventListener('click', () => {
-                    window.open(messengerUrl, '_blank');
-                    setTimeout(() => {
-                        const requestMessage = 
-                            `Hello, I was searching for a book on your website.\n\n` +
-                            `🔎 Search Term: "${query}"\n\n` +
-                            `Could you please let me know if it's possible to arrange this book for me?`;
+                    const requestMessage = `Book request: "${query}"\n\nLet me know if it's possible to arrange this book for me?`;
 
-                        window.prompt("Copy the message below and paste it in Messenger chat:", requestMessage);
-                    }, 500);
+                    const requestModal = document.getElementById('book-request-modal');
+                    const requestMessageContainer = document.getElementById('request-message-text');
+                    const copyRequestBtn = document.getElementById('copy-request-btn');
+                    const closeRequestModal = requestModal.querySelector('.close-request-modal');
+
+                    if (!requestModal || !requestMessageContainer || !copyRequestBtn || !closeRequestModal) {
+                        console.error("Book request modal elements not found!");
+                        return;
+                    }
+
+                    requestMessageContainer.innerText = requestMessage;
+                    requestModal.style.display = 'block';
+
+                    copyRequestBtn.onclick = () => {
+                        copyToClipboard(requestMessage);
+                        setTimeout(() => {
+                            window.open('https://www.messenger.com/t/718957201308613', '_blank');
+                        }, 150);
+                    };
+
+                    closeRequestModal.onclick = () => {
+                        requestModal.style.display = 'none';
+                    };
+
+                    requestModal.onclick = (event) => {
+                        if (event.target === requestModal) {
+                            requestModal.style.display = 'none';
+                        }
+                    };
                 });
                 
                 return;
@@ -1986,7 +2028,7 @@
                 copyToClipboard(orderText);
                 setTimeout(() => {
                     window.open('https://www.messenger.com/t/718957201308613', '_blank');
-                }, 500);
+                }, 150);
             };
             
             // Show the modal
