@@ -2106,82 +2106,112 @@ text-align: justify;
         }
 
         // New function to show order confirmation modal
-        function showOrderConfirmModal(book = null, copy = null) {
-            const orderConfirmModal = document.getElementById('order-confirm-modal');
-            const orderMessageText = document.getElementById('order-message-text');
-            const copyAndRedirectBtn = document.getElementById('copy-and-redirect-btn');
-            
-            const now = new Date();
-            const dateTime = now.toLocaleString('en-IN', {
-                day: '2-digit',
-                month: '2-digit',
-                year: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit'
-            });
-            
-            let messageContent = '';
-            let orderText = '';
-            
-            if (book) {
-                messageContent = `
-                    <p><strong>I want to order this book:</strong></p>
-                    <p>📖 Book Name: ${book.title}</p>
-                    <p>✍️ Author: ${book.author}</p>
-                    <p>💰 Price: ₹${book.price.toFixed(2).replace(/\.00$/, '')}</p>
-                    <p>📅 Date & Time: ${dateTime}</p>
-                    <p>Please confirm availability and delivery details.</p>
-                `;
-                
-                orderText = `I want to order this book:\n\n📖 Book Name: ${book.title}\n✍️ Author: ${book.author}\n💰 Price: ₹${book.price.toFixed(2).replace(/\.00$/, '')}\n📅 Date & Time: ${dateTime}\n\nPlease confirm availability and delivery details.`;
-            } else if (copy) {
-                messageContent = `
-                    <p><strong>I want to order this item:</strong></p>
-                    <p>📝 Item Name: ${copy.title}</p>
-                    <p>💰 Price: ₹${copy.price}</p>
-                    <p>📅 Date & Time: ${dateTime}</p>
-                    <p>Please confirm availability and delivery details.</p>
-                `;
-                
-                orderText = `I want to order this item:\n\n📝 Item Name: ${copy.title}\n💰 Price: ₹${copy.price}\n📅 Date & Time: ${dateTime}\n\nPlease confirm availability and delivery details.`;
-            }
-            
-            orderMessageText.innerHTML = messageContent;
-            
-            copyAndRedirectBtn.onclick = function() {
-                copyToClipboard(orderText);
-                setTimeout(() => {
-                    window.open('https://www.messenger.com/t/718957201308613', '_blank');
-                }, 150);
-            };
-            
-            orderConfirmModal.style.display = 'block';
-            
-            document.querySelector('.close-confirm-modal').onclick = function() {
-                orderConfirmModal.style.display = 'none';
-            };
-            
-            orderConfirmModal.onclick = function(event) {
-                if (event.target === orderConfirmModal) {
-                    orderConfirmModal.style.display = 'none';
-                }
-            };
-        }
+        // New function to show order confirmation modal
+function showOrderConfirmModal(book = null, copy = null) {
+    const orderConfirmModal = document.getElementById('order-confirm-modal');
+    const orderMessageText = document.getElementById('order-message-text');
+    const copyAndRedirectBtn = document.getElementById('copy-and-redirect-btn');
+    
+    const now = new Date();
+    const dateTime = now.toLocaleString('en-IN', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+    });
+    
+    let messageContent = '';
+    let orderText = '';
+    
+    if (book) {
+        messageContent = `
+            <p><strong>I want to order this book:</strong></p>
+            <p>📖 Book Name: ${book.title}</p>
+            <p>✍️ Author: ${book.author}</p>
+            <p>💰 Price: ₹${book.price.toFixed(2).replace(/\.00$/, '')}</p>
+            <p>📅 Date & Time: ${dateTime}</p>
+            <p>Please confirm availability and delivery details.</p>
+        `;
+        
+        orderText = `I want to order this book:\n\n📖 Book Name: ${book.title}\n✍️ Author: ${book.author}\n💰 Price: ₹${book.price.toFixed(2).replace(/\.00$/, '')}\n📅 Date & Time: ${dateTime}\n\nPlease confirm availability and delivery details.`;
+    } else if (copy) {
+        messageContent = `
+            <p><strong>I want to order this item:</strong></p>
+            <p>📝 Item Name: ${copy.title}</p>
+            <p>💰 Price: ₹${copy.price}</p>
+            <p>📅 Date & Time: ${dateTime}</p>
+            <p>Please confirm availability and delivery details.</p>
+        `;
+        
+        orderText = `I want to order this item:\n\n📝 Item Name: ${copy.title}\n💰 Price: ₹${copy.price}\n📅 Date & Time: ${dateTime}\n\nPlease confirm availability and delivery details.`;
+    }
+    
+    orderMessageText.innerHTML = messageContent;
 
-        // Function to copy text to clipboard
-        function copyToClipboard(text) {
-            const textarea = document.createElement('textarea');
-            textarea.value = text;
-            textarea.setAttribute('readonly', '');
-            textarea.style.position = 'absolute';
-            textarea.style.left = '-9999px';
-            document.body.appendChild(textarea);
-            
-            textarea.select();
-            document.execCommand('copy');
-            
-            document.body.removeChild(textarea);
+    copyAndRedirectBtn.onclick = async function() {
+        try {
+            // First, copy the text
+            await copyToClipboard(orderText);
+
+            // Then, open the Messenger link
+            window.open('https://www.messenger.com/t/718957201308613', '_blank');
+        } catch (err) {
+            console.error('Error copying or opening Messenger:', err);
+            // Still try to open the Messenger link even if copy fails
+            window.open('https://www.messenger.com/t/718957201308613', '_blank');
         }
+    };
+    
+    orderConfirmModal.style.display = 'block';
+    
+    document.querySelector('.close-confirm-modal').onclick = function() {
+        orderConfirmModal.style.display = 'none';
+    };
+    
+    orderConfirmModal.onclick = function(event) {
+        if (event.target === orderConfirmModal) {
+            orderConfirmModal.style.display = 'none';
+        }
+    };
+}
+
+// Copy to clipboard function using async/await
+function copyToClipboard(text) {
+    return new Promise((resolve, reject) => {
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(text).then(() => {
+                console.log('Message copied to clipboard!');
+                resolve();
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+                fallbackCopy(text) ? resolve() : reject(err);
+            });
+        } else {
+            fallbackCopy(text) ? resolve() : reject(new Error('Fallback copy failed'));
+        }
+    });
+}
+
+// Fallback method for copying text
+function fallbackCopy(text) {
+    const textArea = document.createElement("textarea");
+    textArea.value = text;
+    document.body.appendChild(textArea);
+    textArea.select();
+    try {
+        const successful = document.execCommand('copy');
+        if (successful) {
+            console.log('Fallback: message copied!');
+        }
+        return successful;
+    } catch (err) {
+        console.error('Fallback: unable to copy', err);
+        return false;
+    } finally {
+        document.body.removeChild(textArea);
+    }
+}
 
         // Initialize the app
         init();
