@@ -494,7 +494,7 @@
         .book-img img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* MODIFIED: This makes the image fill the container box */
+            object-fit: cover;
             transition: transform 0.5s;
         }
 
@@ -691,6 +691,9 @@
 
         .modal-body {
             padding: 30px;
+            /* MODIFICATION: Added max-height and overflow-y for mobile scroll fix */
+            max-height: 70vh;
+            overflow-y: auto;
         }
 
         .book-details {
@@ -859,6 +862,45 @@
             padding-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
+        
+        /* NEW: Custom Alert Modal Styles */
+        .custom-alert {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.6);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .custom-alert-content {
+            background-color: #fff;
+            margin: auto;
+            padding: 25px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            animation: modalFade 0.3s;
+        }
+
+        .close-alert-btn {
+            color: #aaa;
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
 
         /* Responsive Styles */
         @media (max-width: 992px) {
@@ -1021,7 +1063,6 @@
         gap: 15px;
     }
     
-    /* Adjust book card for 2-column layout */
     .book-card {
         margin-bottom: 0;
     }
@@ -1303,7 +1344,7 @@
                 <button class="category-btn" data-type="exercise">Exercise Copy</button>
             </div>
 
-            <hr class="category-separator">
+            <hr class="category-separator" id="separator-1">
             
             <div class="language-subcategories" id="language-nav">
                 <button class="language-btn" data-language="all">All</button>
@@ -1311,7 +1352,7 @@
                 <button class="language-btn" data-language="English">English</button>
             </div>
             
-            <hr class="category-separator">
+            <hr class="category-separator" id="separator-2">
             
             <div class="subcategories" id="subcategories-nav">
               <button class="subcategory-btn active" data-category="all">All</button>
@@ -1404,8 +1445,14 @@
             </div>
         </div>
     </div>
-    
 
+    <div id="custom-alert-modal" class="custom-alert">
+        <div class="custom-alert-content">
+            <span class="close-alert-btn">&times;</span>
+            <p id="custom-alert-message"></p>
+        </div>
+    </div>
+    
     <footer id="footer">
         <div class="container">
             <div class="footer-content">
@@ -1536,6 +1583,11 @@
         backToTop.innerHTML = '<i class="fas fa-arrow-up"></i>';
         document.body.appendChild(backToTop);
 
+        // NEW: Custom Alert Modal Elements
+        const customAlertModal = document.getElementById('custom-alert-modal');
+        const customAlertMessage = document.getElementById('custom-alert-message');
+        const closeAlertBtn = document.querySelector('.close-alert-btn');
+
         // App State
         let selectedCategory = 'all';
         let selectedType = 'all';
@@ -1631,13 +1683,21 @@
                     categoryButtons.forEach(btn => btn.classList.remove('active'));
                     button.classList.add('active');
                     selectedType = button.getAttribute('data-type');
+                    
+                    // MODIFICATION: Logic to hide/show separators
+                    const separator1 = document.getElementById('separator-1');
+                    const separator2 = document.getElementById('separator-2');
 
                     if (selectedType === 'exercise') {
                         subcategoriesNav.style.display = 'none';
                         languageNav.style.display = 'none';
+                        separator1.style.display = 'none';
+                        separator2.style.display = 'none';
                     } else {
                         subcategoriesNav.style.display = 'flex';
                         languageNav.style.display = 'flex';
+                        separator1.style.display = 'block';
+                        separator2.style.display = 'block';
                     }
 
                     visibleBookCount = BOOKS_PER_PAGE;
@@ -1675,6 +1735,11 @@
                 });
             });
 
+            // MODIFICATION: Added listener for custom alert modal
+            closeAlertBtn.addEventListener('click', () => {
+                customAlertModal.style.display = 'none';
+            });
+
             // Close modal when clicking outside
             window.addEventListener('click', (e) => {
                 if (e.target === bookDetailsModal) {
@@ -1682,6 +1747,10 @@
                 }
                 if (e.target === document.getElementById('order-confirm-modal')) {
                     document.getElementById('order-confirm-modal').style.display = 'none';
+                }
+                // MODIFICATION: Added listener for custom alert modal
+                if (e.target === customAlertModal) {
+                    customAlertModal.style.display = 'none';
                 }
             });
 
@@ -1700,6 +1769,12 @@
                     behavior: 'smooth'
                 });
             });
+        }
+        
+        // NEW: Function to show custom alert
+        function showCustomAlert(message) {
+            customAlertMessage.textContent = message;
+            customAlertModal.style.display = 'flex';
         }
 
         // Update subcategory button text based on selected language
@@ -1807,11 +1882,11 @@
             card.querySelector('.view-details').addEventListener('click', () => showBookDetails(book.id));
             
             card.querySelector('.download-sample').addEventListener('click', () => {
-                // Check if the PDF link exists and is not a placeholder/dummy link
+                // MODIFICATION: Replaced alert with custom modal
                 if (book.pdf && book.pdf.trim() !== "" && !book.pdf.includes('dummy.pdf')) {
                     window.open(book.pdf, '_blank');
                 } else {
-                    alert('PDF is not available for this book.');
+                    showCustomAlert('PDF is not available for this book.');
                 }
             });
 
