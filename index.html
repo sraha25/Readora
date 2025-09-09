@@ -148,7 +148,7 @@
         /* Hero Section */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(45, 52, 54, 0.8), rgba(45, 52, 54, 0.8)), url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1350&q=80');
+            background: linear-gradient(rgba(45, 52, 54, 0.8), rgba(45, 52, 54, 0.8)), url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%D%D&auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -691,7 +691,6 @@
 
         .modal-body {
             padding: 30px;
-            /* MODIFICATION: Added max-height and overflow-y for mobile scroll fix */
             max-height: 70vh;
             overflow-y: auto;
         }
@@ -863,7 +862,7 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        /* NEW: Custom Alert Modal Styles */
+        /* Custom Alert Modal Styles */
         .custom-alert {
             display: none;
             position: fixed;
@@ -906,6 +905,12 @@
         @media (max-width: 992px) {
             .book-details {
                 grid-template-columns: 1fr;
+            }
+
+            /* MODIFICATION: Constrain image size in modal on mobile */
+            .book-details-img {
+                max-width: 300px;
+                margin: 0 auto;
             }
             
             .hero h1 {
@@ -1308,13 +1313,13 @@
                 </div>
                 <div class="about-image-collage">
                     <div class="about-img about-img-1">
-                        <img src="https://images.unsplash.com/photo-1551029506-0807df4e2031?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Book collection">
+                        <img src="https://images.unsplash.com/photo-1551029506-0807df4e2031?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%D%D&auto=format&fit=crop&w=800&q=80" alt="Book collection">
                     </div>
                     <div class="about-img about-img-2">
-                        <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Reading time">
+                        <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%D%D&auto=format&fit=crop&w=800&q=80" alt="Reading time">
                     </div>
                     <div class="about-img about-img-3">
-                        <img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Bookstore">
+                        <img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%D%D&auto=format&fit=crop&w=800&q=80" alt="Bookstore">
                     </div>
                 </div>
             </div>
@@ -1504,22 +1509,22 @@
         // Cleaned and corrected book category data for consistent filtering
         const books = [
             createBook(1, "সুনির্বাচিত গল্প", "আশাপূর্ণা দেবী", 300, 350, "Short Story", "New", true, " (Sunirbachita Galpa) by Ashapurna Devi is a collection of her selected short stories, showcasing her skill as a short story writer alongside her more famous novels. The book likely explores the lives, struggles, and psyches of ordinary women in mid-20th century Bengal, a central theme in Devi's broader work.", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6qVcJBDjRpf5TtffQkOggUZqMUS9hKUFFwA&s", "", "https://drive.google.com/file/d/1JCg45mOzVpJEgkVTEMNALPDr99TxPaAj/view?usp=drive_link", 4.5, "Bengali"),
-            createBook(2, "Atomic Habits", "James Clear", 14.99, 19.99, "Non-Fiction", "New", true, "Tiny Changes, Remarkable Results: An easy & proven way to build good habits & break bad ones. This book will teach you how to make time for new habits, overcome lack of motivation, and design your environment to make success easier.", "https://images.unsplash.com/photo-1558901357-ca41e027e43a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.8, "English"),
-            createBook(3, "The Hobbit", "J.R.R. Tolkien", 16.99, 22.99, "Fantasy", "Old", true, "A fantasy novel about the adventures of hobbit Bilbo Baggins, who is hired by the wizard Gandalf to accompany thirteen dwarves on a quest to reclaim their mountain home from the dragon Smaug.", "https://images.unsplash.com/photo-1629992101753-56d196c8aabb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7, "English"),
-            createBook(4, "Sapiens: A Brief History of Humankind", "Yuval Noah Harari", 18.99, 24.99, "Non-Fiction", "New", true, "A groundbreaking narrative of humanity's creation and evolution that explores the ways in which biology and history have defined us and enhanced our understanding of what it means to be human.", "https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.6, "English"),
-            createBook(5, "Dune", "Frank Herbert", 13.99, 17.99, "Science Fiction", "Old", true, "A science fiction novel set in the distant future amidst a feudal interstellar society in which various noble houses control planetary fiefs. It tells the story of young Paul Atreides, whose family accepts the stewardship of the planet Arrakis.", "https://images.unsplash.com/photo-1531072901881-4a7e5df0ab7f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.9, "English"),
-            createBook(6, "Educated", "Tara Westover", 15.99, 21.99, "Biography", "New", true, "A memoir about a woman who leaves her survivalist family and goes on to earn a PhD from Cambridge University. An account of the struggle for self-invention and the pursuit of knowledge.", "https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7, "English"),
-            createBook(7, "The Martian", "Andy Weir", 14.50, 18.99, "Science Fiction", "New", true, "A science fiction novel about an astronaut who is mistakenly left behind on Mars and must fight to survive. Told through a series of log entries, it's a gripping story of human ingenuity and the will to survive.", "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.8, "English"),
-            createBook(8, "Steve Jobs", "Walter Isaacson", 17.99, 23.99, "Biography", "New", true, "Based on more than forty interviews with Steve Jobs conducted over two years, this is the exclusive biography of the groundbreaking innovator who transformed six different industries and changed how we live.", "https://images.unsplash.com/photo-1512820790803-83ca734da794?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.5, "English"),
-            createBook(9, "To Kill a Mockingbird", "Harper Lee", 12.99, 15.99, "Fiction", "Old", true, "A novel about the seriousness of the racial inequality in America. It is a classic of modern American literature, winning the Pulitzer Prize.", "https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.8, "English"),
-            createBook(10, "1984", "George Orwell", 11.99, 14.99, "Fiction", "Old", true, "A dystopian social science fiction novel and cautionary tale. The story is set in an imagined future, the year 1984, when much of the world has fallen victim to perpetual war, omnipresent government surveillance, and propaganda.", "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7, "English"),
-            createBook(11, "The Catcher in the Rye", "J.D. Salinger", 13.50, 16.50, "Fiction", "Old", true, "A novel about a few days in the life of a troubled teenage boy, Holden Caulfield, who has just been expelled from his prep school.", "https://images.unsplash.com/photo-1583642711758-47a32332145e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.3, "English"),
-            createBook(12, "A Brief History of Time", "Stephen Hawking", 19.99, 25.99, "Science", "New", true, "A landmark volume in science writing by one of the great minds of our time. It explains a range of subjects in cosmology, including the Big Bang, black holes, and light cones.", "https://images.unsplash.com/photo-1550399105-c4db5fb85c18?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.6, "English"),
-            createBook(13, "The Lord of the Rings", "J.R.R. Tolkien", 25.00, 30.00, "Fantasy", "New", true, "An epic high-fantasy novel. The story began as a sequel to Tolkien's 1937 fantasy novel The Hobbit, but eventually developed into a much larger work.", "https://images.unsplash.com/photo-1509266272358-77a1da62327c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.9, "English"),
-            createBook(14, "Pride and Prejudice", "Jane Austen", 10.99, 13.99, "Fiction", "Old", true, "A romantic novel of manners written by Jane Austen in 1813. The novel follows the character development of Elizabeth Bennet, the dynamic protagonist of the book.", "https://images.unsplash.com/photo-1577985051161-55dae085a6a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.8, "English"),
-            createBook(15, "Cosmos", "Carl Sagan", 18.50, 22.50, "Science", "New", true, "One of the bestselling science books of all time. In clear-eyed prose, Sagan reveals a jewel-like universe of intelligent life forms, supernovae, and other wonders.", "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.9, "English"),
-            createBook(16, "The Diary of a Young Girl", "Anne Frank", 11.50, 14.50, "Biography", "Old", true, "The writings from the Dutch-language diary kept by Anne Frank while she was in hiding for two years with her family during the Nazi occupation of the Netherlands.", "https://images.unsplash.com/photo-1593340573142-0a1586b626e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7, "English"),
-            createBook(17, "Moby Dick", "Herman Melville", 12.00, 15.00, "Fiction", "Old", true, "The saga of Captain Ahab and his relentless pursuit of Moby Dick, the great white whale that crippled him.", "https://images.unsplash.com/photo-1533483152347-578438295880?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.1, "English"),
+            createBook(2, "Atomic Habits", "James Clear", 14.99, 19.99, "Non-Fiction", "New", true, "Tiny Changes, Remarkable Results: An easy & proven way to build good habits & break bad ones. This book will teach you how to make time for new habits, overcome lack of motivation, and design your environment to make success easier.", "https://images.unsplash.com/photo-1558901357-ca41e027e43a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%D%D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.8, "English"),
+            createBook(3, "The Hobbit", "J.R.R. Tolkien", 16.99, 22.99, "Fantasy", "Old", true, "A fantasy novel about the adventures of hobbit Bilbo Baggins, who is hired by the wizard Gandalf to accompany thirteen dwarves on a quest to reclaim their mountain home from the dragon Smaug.", "https://images.unsplash.com/photo-1629992101753-56d196c8aabb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%D%D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7, "English"),
+            createBook(4, "Sapiens: A Brief History of Humankind", "Yuval Noah Harari", 18.99, 24.99, "Non-Fiction", "New", true, "A groundbreaking narrative of humanity's creation and evolution that explores the ways in which biology and history have defined us and enhanced our understanding of what it means to be human.", "https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%D%D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.6, "English"),
+            createBook(5, "Dune", "Frank Herbert", 13.99, 17.99, "Science Fiction", "Old", true, "A science fiction novel set in the distant future amidst a feudal interstellar society in which various noble houses control planetary fiefs. It tells the story of young Paul Atreides, whose family accepts the stewardship of the planet Arrakis.", "https://images.unsplash.com/photo-1531072901881-4a7e5df0ab7f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%D%D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.9, "English"),
+            createBook(6, "Educated", "Tara Westover", 15.99, 21.99, "Biography", "New", true, "A memoir about a woman who leaves her survivalist family and goes on to earn a PhD from Cambridge University. An account of the struggle for self-invention and the pursuit of knowledge.", "https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%D%D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7, "English"),
+            createBook(7, "The Martian", "Andy Weir", 14.50, 18.99, "Science Fiction", "New", true, "A science fiction novel about an astronaut who is mistakenly left behind on Mars and must fight to survive. Told through a series of log entries, it's a gripping story of human ingenuity and the will to survive.", "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%D%D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.8, "English"),
+            createBook(8, "Steve Jobs", "Walter Isaacson", 17.99, 23.99, "Biography", "New", true, "Based on more than forty interviews with Steve Jobs conducted over two years, this is the exclusive biography of the groundbreaking innovator who transformed six different industries and changed how we live.", "https://images.unsplash.com/photo-1512820790803-83ca734da794?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%D%D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.5, "English"),
+            createBook(9, "To Kill a Mockingbird", "Harper Lee", 12.99, 15.99, "Fiction", "Old", true, "A novel about the seriousness of the racial inequality in America. It is a classic of modern American literature, winning the Pulitzer Prize.", "https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%D%D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.8, "English"),
+            createBook(10, "1984", "George Orwell", 11.99, 14.99, "Fiction", "Old", true, "A dystopian social science fiction novel and cautionary tale. The story is set in an imagined future, the year 1984, when much of the world has fallen victim to perpetual war, omnipresent government surveillance, and propaganda.", "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%D%D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7, "English"),
+            createBook(11, "The Catcher in the Rye", "J.D. Salinger", 13.50, 16.50, "Fiction", "Old", true, "A novel about a few days in the life of a troubled teenage boy, Holden Caulfield, who has just been expelled from his prep school.", "https://images.unsplash.com/photo-1583642711758-47a32332145e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%D%D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.3, "English"),
+            createBook(12, "A Brief History of Time", "Stephen Hawking", 19.99, 25.99, "Science", "New", true, "A landmark volume in science writing by one of the great minds of our time. It explains a range of subjects in cosmology, including the Big Bang, black holes, and light cones.", "https://images.unsplash.com/photo-1550399105-c4db5fb85c18?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%D%D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.6, "English"),
+            createBook(13, "The Lord of the Rings", "J.R.R. Tolkien", 25.00, 30.00, "Fantasy", "New", true, "An epic high-fantasy novel. The story began as a sequel to Tolkien's 1937 fantasy novel The Hobbit, but eventually developed into a much larger work.", "https://images.unsplash.com/photo-1509266272358-77a1da62327c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%D%D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.9, "English"),
+            createBook(14, "Pride and Prejudice", "Jane Austen", 10.99, 13.99, "Fiction", "Old", true, "A romantic novel of manners written by Jane Austen in 1813. The novel follows the character development of Elizabeth Bennet, the dynamic protagonist of the book.", "https://images.unsplash.com/photo-1577985051161-55dae085a6a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%D%D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.8, "English"),
+            createBook(15, "Cosmos", "Carl Sagan", 18.50, 22.50, "Science", "New", true, "One of the bestselling science books of all time. In clear-eyed prose, Sagan reveals a jewel-like universe of intelligent life forms, supernovae, and other wonders.", "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%D%D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.9, "English"),
+            createBook(16, "The Diary of a Young Girl", "Anne Frank", 11.50, 14.50, "Biography", "Old", true, "The writings from the Dutch-language diary kept by Anne Frank while she was in hiding for two years with her family during the Nazi occupation of the Netherlands.", "https://images.unsplash.com/photo-1593340573142-0a1586b626e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%D%D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.7, "English"),
+            createBook(17, "Moby Dick", "Herman Melville", 12.00, 15.00, "Fiction", "Old", true, "The saga of Captain Ahab and his relentless pursuit of Moby Dick, the great white whale that crippled him.", "https://images.unsplash.com/photo-1533483152347-578438295880?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%D%D&auto=format&fit=crop&w=800&q=80", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.1, "English"),
             createBook(18, "পথের পাঁচালী", "বিভূতিভূষণ বন্দ্যোপাধ্যায়", 250, 300, "Fiction", "Old", true, "Pather Panchali is a 1929 Bengali novel written by Bibhutibhushan Bandopadhyay and was the first of a trilogy. The novel is about the life of a small boy, Apu, and his elder sister, Durga.", "https://m.media-amazon.com/images/I/81gCjfQOF-L._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.8, "Bengali"),
             createBook(19, "দেবদাস", "শরৎচন্দ্র চট্টোপাধ্যায়", 180, 220, "Fiction", "Old", true, "Devdas is a Bengali romance novel by Sarat Chandra Chattopadhyay. It follows the lives of Devdas and Paro, childhood sweethearts who are separated by societal pressures.", "https://m.media-amazon.com/images/I/71aFgU4gUjL._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.6, "Bengali"),
             createBook(20, "গোরা", "রবীন্দ্রনাথ ঠাকুর", 320, 380, "Fiction", "New", true, "Gora is a novel by Rabranath Tagore, set in Calcutta in the 1880s during the British Raj. It is one of Tagore's longest and most complex novels.", "https://m.media-amazon.com/images/I/81xK7Q3Z2+L._AC_UF1000,1000_QL80_.jpg", "", "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", 4.9, "Bengali"),
@@ -1583,7 +1588,7 @@
         backToTop.innerHTML = '<i class="fas fa-arrow-up"></i>';
         document.body.appendChild(backToTop);
 
-        // NEW: Custom Alert Modal Elements
+        // Custom Alert Modal Elements
         const customAlertModal = document.getElementById('custom-alert-modal');
         const customAlertMessage = document.getElementById('custom-alert-message');
         const closeAlertBtn = document.querySelector('.close-alert-btn');
@@ -1684,7 +1689,6 @@
                     button.classList.add('active');
                     selectedType = button.getAttribute('data-type');
                     
-                    // MODIFICATION: Logic to hide/show separators
                     const separator1 = document.getElementById('separator-1');
                     const separator2 = document.getElementById('separator-2');
 
@@ -1735,7 +1739,6 @@
                 });
             });
 
-            // MODIFICATION: Added listener for custom alert modal
             closeAlertBtn.addEventListener('click', () => {
                 customAlertModal.style.display = 'none';
             });
@@ -1748,7 +1751,6 @@
                 if (e.target === document.getElementById('order-confirm-modal')) {
                     document.getElementById('order-confirm-modal').style.display = 'none';
                 }
-                // MODIFICATION: Added listener for custom alert modal
                 if (e.target === customAlertModal) {
                     customAlertModal.style.display = 'none';
                 }
@@ -1771,7 +1773,7 @@
             });
         }
         
-        // NEW: Function to show custom alert
+        // Function to show custom alert
         function showCustomAlert(message) {
             customAlertMessage.textContent = message;
             customAlertModal.style.display = 'flex';
@@ -1802,10 +1804,8 @@
             }
 
             const filteredBooks = books.filter(book => {
-                // Condition 1: Category match
                 const categoryMatch = selectedCategory === 'all' || book.category === selectedCategory;
                 
-                // Condition 2: Type match (New/Old)
                 let typeMatch = false;
                 if (selectedType === 'all') {
                     typeMatch = true;
@@ -1815,7 +1815,6 @@
                     typeMatch = book.condition.toLowerCase() === 'old';
                 }
 
-                // Condition 3: Language match
                 const languageMatch = selectedLanguage === 'all' || book.language === selectedLanguage;
 
                 return categoryMatch && typeMatch && languageMatch;
@@ -1882,7 +1881,6 @@
             card.querySelector('.view-details').addEventListener('click', () => showBookDetails(book.id));
             
             card.querySelector('.download-sample').addEventListener('click', () => {
-                // MODIFICATION: Replaced alert with custom modal
                 if (book.pdf && book.pdf.trim() !== "" && !book.pdf.includes('dummy.pdf')) {
                     window.open(book.pdf, '_blank');
                 } else {
@@ -1938,7 +1936,6 @@
                 </div>
             `;
 
-            // Add event listener to show order confirmation modal
             bookDetailsContent.querySelector('.show-order-confirm').addEventListener('click', function() {
                 showOrderConfirmModal(null, copy);
             });
@@ -2047,7 +2044,6 @@
                 </div>
             `;
 
-            // Add event listener to show order confirmation modal
             bookDetailsContent.querySelector('.show-order-confirm').addEventListener('click', function() {
                 showOrderConfirmModal(book);
             });
@@ -2098,7 +2094,6 @@
             
             orderMessageText.innerHTML = messageContent;
             
-            // Set up event listeners for the buttons
             copyAndRedirectBtn.onclick = function() {
                 copyToClipboard(orderText);
                 setTimeout(() => {
@@ -2106,15 +2101,12 @@
                 }, 150);
             };
             
-            // Show the modal
             orderConfirmModal.style.display = 'block';
             
-            // Close modal when clicking on the X
             document.querySelector('.close-confirm-modal').onclick = function() {
                 orderConfirmModal.style.display = 'none';
             };
             
-            // Close modal when clicking outside
             orderConfirmModal.onclick = function(event) {
                 if (event.target === orderConfirmModal) {
                     orderConfirmModal.style.display = 'none';
@@ -2124,7 +2116,6 @@
 
         // Function to copy text to clipboard
         function copyToClipboard(text) {
-            // Create a temporary textarea element
             const textarea = document.createElement('textarea');
             textarea.value = text;
             textarea.setAttribute('readonly', '');
@@ -2132,11 +2123,9 @@
             textarea.style.left = '-9999px';
             document.body.appendChild(textarea);
             
-            // Select and copy the text
             textarea.select();
             document.execCommand('copy');
             
-            // Remove the textarea
             document.body.removeChild(textarea);
         }
 
