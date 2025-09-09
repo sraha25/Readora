@@ -699,6 +699,7 @@
             display: grid;
             grid-template-columns: 1fr 2fr;
             gap: 30px;
+text-align: justify; 
         }
 
         .book-details-img {
@@ -1001,6 +1002,59 @@
                 width: 95%;
                 margin: 20px auto;
             }
+
+             .modal-body {
+        max-height: 80vh;  /* Adjust based on screen size */
+        overflow-y: auto;  /* Allow scroll only if content overflows */
+ padding: 20px 15px; 
+    }
+
+ .book-details-img {
+        max-width: 50%;      /* Allow it to fill the container width */
+        margin: 0 auto;       /* Center the image horizontally */
+        text-align: center;   /* Center content inside if needed */
+    }
+
+.book-details-img img {
+        width: 100%;          /* Make the image responsive */
+        height: auto;         /* Keep the aspect ratio */
+        object-fit: contain;  /* Ensure the entire image is visible */
+        border-radius: 8px;   /* Rounded corners */
+    }
+
+.book-details h2 {
+         font-size: 20px;       /* Smaller author text */
+    display: flex;         /* Enable flex layout */
+    justify-content: center; /* Center content horizontally */
+    text-align: center; 
+    }
+
+.book-details-author {
+         font-size: 14px;       /* Smaller author text */
+    display: flex;         /* Enable flex layout */
+    justify-content: center; /* Center content horizontally */
+    text-align: center; 
+    }
+
+.book-details-price {
+        font-size: 18px;       /* Smaller price text */
+    }
+
+.book-details-meta {
+        gap: 10px;             /* Reduce space between meta info */
+        font-size: 12px;       /* Smaller meta text */
+    }
+
+.book-details-desc {
+        font-size: 14px;       /* Smaller description text */
+        line-height: 1.6;      /* Adjust line height for readability */
+text-align: justify; 
+    }
+
+ .book-details-actions .btn {
+        font-size: 14px;       /* Smaller buttons */
+        padding: 10px 20px;
+    }
 
             /* Footer mobile improvements */
             .footer-content {
