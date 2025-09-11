@@ -468,18 +468,6 @@
             transform: translateY(-8px);
             box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
         }
-        
-        /* Disable hover effects on touch devices */
-        @media (hover: none) {
-            .book-card:hover {
-                transform: none;
-                box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
-            }
-            .book-card .quick-view {
-                display: none;
-            }
-        }
-
 
         .book-img {
             aspect-ratio: 2 / 3;
@@ -1048,8 +1036,19 @@
             
             nav ul {
                 flex-direction: column;
-                padding: 20px;
+                padding: 0;
                 width: 100%;
+                text-align: center;
+            }
+
+            nav ul li {
+                margin: 0;
+            }
+            
+            nav ul li a {
+                display: block;
+                padding: 18px 20px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             }
 
             .header-right-icons {
@@ -1153,6 +1152,12 @@
             .cart-footer {
                 flex-direction: column;
                 gap: 15px;
+            }
+            
+            .cart-footer .btn-large {
+                padding: 12px 20px;
+                font-size: 14px;
+                width: 100%;
             }
 
             /* Footer mobile improvements */
@@ -2235,7 +2240,7 @@
         function toggleCartItem(bookId) {
             const itemInCart = cart.some(item => item.id === bookId);
             if (itemInCart) {
-                removeFromCart(bookId);
+                removeFromCart(bookId, true);
             } else {
                 addToCart(bookId);
             }
@@ -2336,9 +2341,11 @@
             }
         }
 
-        function removeFromCart(bookId) {
+        function removeFromCart(bookId, isSilent = false) {
             cart = cart.filter(item => item.id !== bookId);
-            displayCart();
+            if (!isSilent) {
+                displayCart();
+            }
             updateCartBadge();
             updateAddToCartButtonsUI();
         }
@@ -2449,3 +2456,5 @@
     </script>
 </body>
 </html>
+}
+
