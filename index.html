@@ -104,7 +104,7 @@
         nav ul li a:hover,
         nav ul li a.active {
             background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-2px);
+            color: var(--accent);
         }
 
         .header-right-icons {
@@ -612,6 +612,11 @@
         .btn-outline:hover {
             background: var(--primary);
             color: white;
+        }
+        
+        #see-more-btn {
+            margin: 30px auto 0;
+            display: block;
         }
 
         /* Search Section */
@@ -1224,6 +1229,11 @@
                 width: 100%;
             }
             
+            #see-more-btn {
+                width: auto;
+                padding: 10px 30px;
+            }
+
             .about-image-collage {
                 height: 300px;
             }
@@ -1548,7 +1558,7 @@
             
             <div class="books-grid" id="category-books">
                 </div>
-            <div id="see-more-container" style="text-align: center; margin-top: 30px;"></div>
+            <div id="see-more-container"></div>
         </div>
     </section>
 
@@ -1938,21 +1948,53 @@
                 if (e.target === document.getElementById('order-confirm-modal')) document.getElementById('order-confirm-modal').style.display = 'none';
                 if (e.target === customAlertModal) customAlertModal.style.display = 'none';
             });
-
-            // Back to top button
+            
+            // Scroll listeners for nav highlighting and back-to-top button
             window.addEventListener('scroll', () => {
+                // Back to top
                 if (window.pageYOffset > 300) {
                     backToTop.classList.add('show');
                 } else {
                     backToTop.classList.remove('show');
                 }
+                // Nav highlight
+                highlightNavOnScroll();
             });
+
 
             backToTop.addEventListener('click', () => {
                 window.scrollTo({
                     top: 0,
                     behavior: 'smooth'
                 });
+            });
+        }
+        
+        function highlightNavOnScroll() {
+            const scrollPosition = window.scrollY;
+            const sections = document.querySelectorAll('.section-target');
+            
+            let currentSectionId = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150; // Adjust offset for header
+                const sectionHeight = section.offsetHeight;
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    currentSectionId = section.getAttribute('id');
+                }
+            });
+
+            // Fallback for top of page
+            if (scrollPosition < sections[0].offsetTop - 150) {
+                 currentSectionId = 'home';
+            }
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSectionId}`) {
+                    link.classList.add('active');
+                }
             });
         }
         
@@ -2020,6 +2062,7 @@
             if (filteredBooks.length > visibleBookCount) {
                 const seeMoreBtn = document.createElement('button');
                 seeMoreBtn.textContent = 'See More';
+                seeMoreBtn.id = 'see-more-btn'; // Assign ID for specific styling
                 seeMoreBtn.className = 'btn btn-primary';
                 seeMoreBtn.addEventListener('click', () => {
                     visibleBookCount += BOOKS_PER_PAGE;
@@ -2261,8 +2304,7 @@
         }
         
         function updateCartBadge() {
-            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            cartBadge.textContent = totalItems;
+            cartBadge.textContent = cart.length;
         }
 
         function updateAddToCartButtonsUI() {
@@ -2395,7 +2437,7 @@
                             this.disabled = false;
                             orderConfirmModal.style.display = 'none';
                         }, 1500);
-                    }, 300);
+                    }, 500);
                 } catch (err) {
                     console.error('Error copying or opening Messenger:', err);
                     window.open('https://www.messenger.com/t/718957201308613', '_blank');
@@ -2456,5 +2498,3 @@
     </script>
 </body>
 </html>
-}
-
