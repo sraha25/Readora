@@ -78,6 +78,11 @@
             font-size: 2.2rem;
         }
 
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
         nav ul {
             display: flex;
             list-style: none;
@@ -102,27 +107,29 @@
             transform: translateY(-2px);
         }
 
-        .search-icon {
+        .cart-icon {
+            margin-left: 25px;
+            position: relative;
             cursor: pointer;
-            font-size: 1.2rem;
-            margin-left: 20px;
+            font-size: 1.5rem;
         }
 
-        .btn-login {
-            background: var(--accent);
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -12px;
+            background: var(--danger);
             color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 4px;
-            cursor: pointer;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
             font-weight: 600;
-            transition: background 0.3s;
-            margin-left: 15px;
         }
 
-        .btn-login:hover {
-            background: var(--accent-dark);
-        }
 
         /* Mobile Menu Toggle */
         .menu-toggle {
@@ -456,34 +463,6 @@
             box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
         }
 
-        .book-badge {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            padding: 5px 12px;
-            border-radius: 4px;
-            font-size: 12px;
-            font-weight: 600;
-            z-index: 2;
-        }
-
-        .badge-new {
-            background: var(--success);
-            color: white;
-        }
-
-        .badge-old {
-            background: var(--warning);
-            color: var(--dark);
-        }
-
-        .badge-category {
-            background: var(--primary);
-            color: white;
-            right: 15px;
-            left: auto;
-        }
-
         .book-img {
             aspect-ratio: 2 / 3;
             overflow: hidden;
@@ -500,6 +479,28 @@
 
         .book-card:hover .book-img img {
             transform: scale(1.08);
+        }
+
+        .quick-view {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(79, 195, 161, 0.9);
+            color: white;
+            text-align: center;
+            padding: 12px 5px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transform: translateY(100%);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            z-index: 3;
+        }
+
+        .book-card:hover .quick-view {
+            transform: translateY(0);
+            opacity: 1;
         }
 
         .book-info {
@@ -558,6 +559,7 @@
             justify-content: space-between;
             margin-top: auto;
             padding-top: 15px;
+            gap: 10px;
         }
 
         .btn {
@@ -572,10 +574,17 @@
             align-items: center;
             justify-content: center;
             min-height: 40px;
+            flex-grow: 1;
+        }
+
+        .btn.added {
+            background-color: var(--success);
+            color: white;
+            cursor: not-allowed;
         }
 
         .btn i {
-            margin-right: 5px;
+            margin-right: 8px;
             font-size: 14px;
         }
 
@@ -652,6 +661,8 @@
             animation: modalFade 0.4s;
             overflow: hidden;
             position: relative;
+            display: flex;
+            flex-direction: column;
         }
 
         @keyframes modalFade {
@@ -672,9 +683,10 @@
             justify-content: space-between;
             align-items: center;
             background: var(--light);
+            flex-shrink: 0;
         }
 
-        .close-modal {
+        .close-modal, .close-cart-modal {
             font-size: 28px;
             cursor: pointer;
             color: var(--gray);
@@ -685,21 +697,21 @@
             z-index: 10;
         }
 
-        .close-modal:hover {
+        .close-modal:hover, .close-cart-modal:hover {
             color: var(--dark);
         }
 
         .modal-body {
             padding: 30px;
-            max-height: 70vh;
             overflow-y: auto;
+            flex-grow: 1;
         }
 
         .book-details {
             display: grid;
             grid-template-columns: 1fr 2fr;
             gap: 30px;
-text-align: justify; 
+            text-align: justify; 
         }
 
         .book-details-img {
@@ -755,6 +767,76 @@ text-align: justify;
             padding: 15px 25px;
             font-size: 16px;
         }
+
+        /* Cart Modal Specific Styles */
+        #cart-modal .modal-content {
+            max-width: 800px;
+            max-height: 90vh;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid var(--light-gray);
+            padding: 15px 0;
+        }
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        .cart-item-img {
+            width: 80px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        .cart-item-info {
+            flex-grow: 1;
+        }
+        .cart-item-info h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        .cart-item-price {
+            font-weight: 600;
+            color: var(--secondary);
+        }
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            border: 1px solid var(--light-gray);
+            background: white;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+        .cart-item-remove {
+            color: var(--danger);
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+        .cart-empty-message {
+            text-align: center;
+            padding: 50px 0;
+            color: var(--gray);
+        }
+        .cart-footer {
+            padding: 20px 30px;
+            border-top: 1px solid var(--light-gray);
+            background: var(--light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        .cart-total {
+            font-size: 1.2rem;
+        }
+
 
         /* Footer */
         footer {
@@ -908,7 +990,6 @@ text-align: justify;
                 grid-template-columns: 1fr;
             }
 
-            /* MODIFICATION: Constrain image size in modal on mobile */
             .book-details-img {
                 max-width: 300px;
                 margin: 0 auto;
@@ -944,6 +1025,8 @@ text-align: justify;
                 transition: right 0.3s ease;
                 z-index: 1000;
                 padding-top: 60px;
+                flex-direction: column;
+                align-items: stretch;
             }
             
             nav.active {
@@ -994,7 +1077,7 @@ text-align: justify;
             }
             
             .book-actions {
-                flex-direction: column;
+                flex-direction: row;
                 gap: 10px;
             }
 
@@ -1002,59 +1085,62 @@ text-align: justify;
                 width: 95%;
                 margin: 20px auto;
             }
+            
+            .modal-body {
+                padding: 20px 15px; 
+            }
 
-             .modal-body {
-        max-height: 80vh;  /* Adjust based on screen size */
-        overflow-y: auto;  /* Allow scroll only if content overflows */
- padding: 20px 15px; 
-    }
+             .book-details-img {
+                max-width: 50%;
+                margin: 0 auto;
+                text-align: center;
+            }
 
- .book-details-img {
-        max-width: 50%;      /* Allow it to fill the container width */
-        margin: 0 auto;       /* Center the image horizontally */
-        text-align: center;   /* Center content inside if needed */
-    }
+            .book-details-img img {
+                width: 100%;
+                height: auto;
+                object-fit: contain;
+                border-radius: 8px;
+            }
 
-.book-details-img img {
-        width: 100%;          /* Make the image responsive */
-        height: auto;         /* Keep the aspect ratio */
-        object-fit: contain;  /* Ensure the entire image is visible */
-        border-radius: 8px;   /* Rounded corners */
-    }
+            .book-details h2 {
+                font-size: 20px;
+                display: flex;
+                justify-content: center;
+                text-align: center; 
+            }
 
-.book-details h2 {
-         font-size: 20px;       /* Smaller author text */
-    display: flex;         /* Enable flex layout */
-    justify-content: center; /* Center content horizontally */
-    text-align: center; 
-    }
+            .book-details-author {
+                font-size: 14px;
+                display: flex;
+                justify-content: center;
+                text-align: center; 
+            }
 
-.book-details-author {
-         font-size: 14px;       /* Smaller author text */
-    display: flex;         /* Enable flex layout */
-    justify-content: center; /* Center content horizontally */
-    text-align: center; 
-    }
+            .book-details-price {
+                font-size: 18px;
+            }
 
-.book-details-price {
-        font-size: 18px;       /* Smaller price text */
-    }
+            .book-details-meta {
+                gap: 10px;
+                font-size: 12px;
+            }
 
-.book-details-meta {
-        gap: 10px;             /* Reduce space between meta info */
-        font-size: 12px;       /* Smaller meta text */
-    }
+            .book-details-desc {
+                font-size: 14px;
+                line-height: 1.6;
+                text-align: justify; 
+            }
 
-.book-details-desc {
-        font-size: 14px;       /* Smaller description text */
-        line-height: 1.6;      /* Adjust line height for readability */
-text-align: justify; 
-    }
+            .book-details-actions .btn {
+                font-size: 14px;
+                padding: 10px 20px;
+            }
 
- .book-details-actions .btn {
-        font-size: 14px;       /* Smaller buttons */
-        padding: 10px 20px;
-    }
+            .cart-footer {
+                flex-direction: column;
+                gap: 15px;
+            }
 
             /* Footer mobile improvements */
             .footer-content {
@@ -1236,12 +1322,10 @@ text-align: justify;
             border-radius: 4px;
             font-size: 14px;
             line-height: 1.6;
+            white-space: pre-wrap;
+            word-wrap: break-word;
         }
-
-        .order-message p {
-            margin: 8px 0;
-        }
-
+        
         .order-divider {
             border: none;
             height: 1px;
@@ -1276,25 +1360,11 @@ text-align: justify;
             transform: translateY(-2px);
         }
 
-        .btn-copy-only {
-            background: transparent;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-            padding: 12px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            transition: all 0.3s;
+        .btn-copy-messenger:disabled {
+            background-color: var(--gray);
+            cursor: not-allowed;
         }
-
-        .btn-copy-only:hover {
-            background: rgba(74, 111, 165, 0.1);
-        }
-
+        
         @media (max-width: 768px) {
             .order-confirm-content {
                 width: 95%;
@@ -1329,6 +1399,10 @@ text-align: justify;
                     <li><a href="#categories" class="nav-link">Categories</a></li>
                     <li><a href="#footer" class="nav-link">Contact</a></li>
                 </ul>
+                <div class="cart-icon" id="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cart-badge" class="cart-badge">0</span>
+                </div>
             </nav>
         </div>
     </header>
@@ -1463,6 +1537,26 @@ text-align: justify;
         </div>
     </div>
 
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Your Shopping Cart</h2>
+                <span class="close-cart-modal">&times;</span>
+            </div>
+            <div class="modal-body" id="cart-items-container">
+                </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <strong>Total:</strong> <span id="cart-total-price">₹0</span>
+                </div>
+                <button id="checkout-btn" class="btn btn-primary btn-large">
+                    <i class="fab fa-facebook-messenger"></i> FB Chat to Order
+                </button>
+            </div>
+        </div>
+    </div>
+
+
     <div id="order-confirm-modal" class="order-confirm-modal">
         <div class="order-confirm-content">
             <div class="order-confirm-header">
@@ -1473,7 +1567,7 @@ text-align: justify;
                 <p>Just copy this and send it in Messenger to place your order!</p>
                 
                 <div class="order-message" id="order-message-text">
-                    </div>
+                </div>
                 
                 <hr class="order-divider">
                 
@@ -1642,12 +1736,23 @@ text-align: justify;
         backToTop.innerHTML = '<i class="fas fa-arrow-up"></i>';
         document.body.appendChild(backToTop);
 
+        // Cart Elements
+        const cartIcon = document.getElementById('cart-icon');
+        const cartBadge = document.getElementById('cart-badge');
+        const cartModal = document.getElementById('cart-modal');
+        const closeCartModalBtn = cartModal.querySelector('.close-cart-modal');
+        const cartItemsContainer = document.getElementById('cart-items-container');
+        const cartTotalPriceEl = document.getElementById('cart-total-price');
+        const checkoutBtn = document.getElementById('checkout-btn');
+
+
         // Custom Alert Modal Elements
         const customAlertModal = document.getElementById('custom-alert-modal');
         const customAlertMessage = document.getElementById('custom-alert-message');
         const closeAlertBtn = document.querySelector('.close-alert-btn');
 
         // App State
+        let cart = [];
         let selectedCategory = 'all';
         let selectedType = 'all';
         let selectedLanguage = 'all';
@@ -1789,7 +1894,6 @@ text-align: justify;
             closeModalBtns.forEach(btn => {
                 btn.addEventListener('click', () => {
                     bookDetailsModal.style.display = 'none';
-                    document.getElementById('order-confirm-modal').style.display = 'none';
                 });
             });
 
@@ -1797,17 +1901,17 @@ text-align: justify;
                 customAlertModal.style.display = 'none';
             });
 
+            closeCartModalBtn.addEventListener('click', () => cartModal.style.display = 'none');
+            cartIcon.addEventListener('click', displayCart);
+            checkoutBtn.addEventListener('click', handleCheckout);
+
+
             // Close modal when clicking outside
             window.addEventListener('click', (e) => {
-                if (e.target === bookDetailsModal) {
-                    bookDetailsModal.style.display = 'none';
-                }
-                if (e.target === document.getElementById('order-confirm-modal')) {
-                    document.getElementById('order-confirm-modal').style.display = 'none';
-                }
-                if (e.target === customAlertModal) {
-                    customAlertModal.style.display = 'none';
-                }
+                if (e.target === bookDetailsModal) bookDetailsModal.style.display = 'none';
+                if (e.target === cartModal) cartModal.style.display = 'none';
+                if (e.target === document.getElementById('order-confirm-modal')) document.getElementById('order-confirm-modal').style.display = 'none';
+                if (e.target === customAlertModal) customAlertModal.style.display = 'none';
             });
 
             // Back to top button
@@ -1906,11 +2010,9 @@ text-align: justify;
             const discount = book.originalPrice ? Math.round(((book.originalPrice - book.price) / book.originalPrice) * 100) : 0;
 
             card.innerHTML = `
-                ${book.condition === 'New' ? '<span class="book-badge badge-new">New</span>' : '<span class="book-badge badge-old">Old</span>'}
-                <span class="book-badge badge-category">${book.category}</span>
-
                 <div class="book-img">
                     <img src="${book.frontImg}" alt="${book.title}">
+                    <div class="quick-view">${book.condition} | ${book.category}</div>
                 </div>
                 <div class="book-info">
                     <h3 class="book-title">${book.title}</h3>
@@ -1925,22 +2027,25 @@ text-align: justify;
                         <button class="btn btn-outline view-details" data-id="${book.id}">
                             <i class="fas fa-eye"></i> Details
                         </button>
-                        <button class="btn btn-primary download-sample" data-pdf="${book.pdf}">
-                            <i class="fas fa-download"></i> Sample
+                        <button class="btn btn-primary add-to-cart-btn" data-id="${book.id}">
+                            <i class="fas fa-cart-plus"></i> Add to Cart
                         </button>
                     </div>
                 </div>
             `;
 
             card.querySelector('.view-details').addEventListener('click', () => showBookDetails(book.id));
-            
-            card.querySelector('.download-sample').addEventListener('click', () => {
-                if (book.pdf && book.pdf.trim() !== "" && !book.pdf.includes('dummy.pdf')) {
-                    window.open(book.pdf, '_blank');
-                } else {
-                    showCustomAlert('PDF is not available for this book.');
-                }
+            const addToCartBtn = card.querySelector('.add-to-cart-btn');
+            addToCartBtn.addEventListener('click', (e) => {
+                addToCart(book.id);
+                e.target.closest('button').innerHTML = `<i class="fas fa-check"></i> Added`;
+                e.target.closest('button').classList.add('added');
+                setTimeout(() => {
+                    e.target.closest('button').innerHTML = `<i class="fas fa-cart-plus"></i> Add to Cart`;
+                    e.target.closest('button').classList.remove('added');
+                }, 2000);
             });
+
 
             return card;
         }
@@ -1991,7 +2096,8 @@ text-align: justify;
             `;
 
             bookDetailsContent.querySelector('.show-order-confirm').addEventListener('click', function() {
-                showOrderConfirmModal(null, copy);
+                const orderText = `I want to order this item:\n\n📝 Item Name: ${copy.title}\n💰 Price: ₹${copy.price}\n\nPlease confirm availability and delivery details.`;
+                showOrderConfirmModal(orderText);
             });
 
             bookDetailsModal.style.display = 'block';
@@ -2091,127 +2197,213 @@ text-align: justify;
                     <p style="font-size: 14px; color: var(--gray); margin-top: -10px; margin-bottom: 15px;">(Free delivery on 3 items)</p>
                     <p class="book-details-desc">${book.description}</p>
                     <div class="book-details-actions">
-                        <button class="btn btn-primary btn-large show-order-confirm" data-book-id="${book.id}">
-                            <i class="fab fa-facebook-messenger"></i> FB Chat To Order
+                        <button class="btn btn-outline btn-large download-sample-modal" data-pdf="${book.pdf}" style="width: 100%;">
+                            <i class="fas fa-download"></i> Sample
                         </button>
                     </div>
                 </div>
             `;
-
-            bookDetailsContent.querySelector('.show-order-confirm').addEventListener('click', function() {
-                showOrderConfirmModal(book);
+            
+            bookDetailsContent.querySelector('.download-sample-modal').addEventListener('click', function() {
+                const pdfUrl = this.getAttribute('data-pdf');
+                 if (pdfUrl && pdfUrl.trim() !== "" && !pdfUrl.includes('dummy.pdf')) {
+                    window.open(pdfUrl, '_blank');
+                } else {
+                    showCustomAlert('PDF is not available for this book.');
+                }
             });
 
             bookDetailsModal.style.display = 'block';
         }
 
-        // New function to show order confirmation modal
-        // New function to show order confirmation modal
-function showOrderConfirmModal(book = null, copy = null) {
-    const orderConfirmModal = document.getElementById('order-confirm-modal');
-    const orderMessageText = document.getElementById('order-message-text');
-    const copyAndRedirectBtn = document.getElementById('copy-and-redirect-btn');
-    
-    const now = new Date();
-    const dateTime = now.toLocaleString('en-IN', {
-        day: '2-digit',
-        month: '2-digit',
-        year: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
-    });
-    
-    let messageContent = '';
-    let orderText = '';
-    
-    if (book) {
-        messageContent = `
-            <p><strong>I want to order this book:</strong></p>
-            <p>📖 Book Name: ${book.title}</p>
-            <p>✍️ Author: ${book.author}</p>
-            <p>💰 Price: ₹${book.price.toFixed(2).replace(/\.00$/, '')}</p>
-            <p>📅 Date & Time: ${dateTime}</p>
-            <p>Please confirm availability and delivery details.</p>
-        `;
-        
-        orderText = `I want to order this book:\n\n📖 Book Name: ${book.title}\n✍️ Author: ${book.author}\n💰 Price: ₹${book.price.toFixed(2).replace(/\.00$/, '')}\n📅 Date & Time: ${dateTime}\n\nPlease confirm availability and delivery details.`;
-    } else if (copy) {
-        messageContent = `
-            <p><strong>I want to order this item:</strong></p>
-            <p>📝 Item Name: ${copy.title}</p>
-            <p>💰 Price: ₹${copy.price}</p>
-            <p>📅 Date & Time: ${dateTime}</p>
-            <p>Please confirm availability and delivery details.</p>
-        `;
-        
-        orderText = `I want to order this item:\n\n📝 Item Name: ${copy.title}\n💰 Price: ₹${copy.price}\n📅 Date & Time: ${dateTime}\n\nPlease confirm availability and delivery details.`;
-    }
-    
-    orderMessageText.innerHTML = messageContent;
+        // Cart Functions
+        function addToCart(bookId) {
+            const book = books.find(b => b.id === bookId);
+            const itemInCart = cart.find(item => item.id === bookId);
 
-    copyAndRedirectBtn.onclick = async function() {
-        try {
-            // First, copy the text
-            await copyToClipboard(orderText);
-
-            // Then, open the Messenger link
-            window.open('https://www.messenger.com/t/718957201308613', '_blank');
-        } catch (err) {
-            console.error('Error copying or opening Messenger:', err);
-            // Still try to open the Messenger link even if copy fails
-            window.open('https://www.messenger.com/t/718957201308613', '_blank');
+            if (itemInCart) {
+                itemInCart.quantity++;
+            } else {
+                cart.push({ ...book, quantity: 1 });
+            }
+            updateCartBadge();
+            showCustomAlert(`${book.title} added to cart!`);
         }
-    };
-    
-    orderConfirmModal.style.display = 'block';
-    
-    document.querySelector('.close-confirm-modal').onclick = function() {
-        orderConfirmModal.style.display = 'none';
-    };
-    
-    orderConfirmModal.onclick = function(event) {
-        if (event.target === orderConfirmModal) {
-            orderConfirmModal.style.display = 'none';
+        
+        function updateCartBadge() {
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartBadge.textContent = totalItems;
         }
-    };
-}
 
-// Copy to clipboard function using async/await
-function copyToClipboard(text) {
-    return new Promise((resolve, reject) => {
-        if (navigator.clipboard) {
-            navigator.clipboard.writeText(text).then(() => {
-                console.log('Message copied to clipboard!');
-                resolve();
-            }).catch(err => {
-                console.error('Failed to copy text: ', err);
-                fallbackCopy(text) ? resolve() : reject(err);
+        function displayCart() {
+            cartItemsContainer.innerHTML = '';
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = `<p class="cart-empty-message">Your cart is empty.</p>`;
+                checkoutBtn.style.display = 'none';
+            } else {
+                cart.forEach(item => {
+                    const cartItemEl = document.createElement('div');
+                    cartItemEl.className = 'cart-item';
+                    cartItemEl.innerHTML = `
+                        <img src="${item.frontImg}" alt="${item.title}" class="cart-item-img">
+                        <div class="cart-item-info">
+                            <h4>${item.title}</h4>
+                            <p class="cart-item-price">₹${item.price.toFixed(2).replace(/\.00$/, '')}</p>
+                        </div>
+                        <div class="cart-item-quantity">
+                            <button class="quantity-btn" data-id="${item.id}" data-change="-1">-</button>
+                            <span>${item.quantity}</span>
+                            <button class="quantity-btn" data-id="${item.id}" data-change="1">+</button>
+                        </div>
+                        <i class="fas fa-trash cart-item-remove" data-id="${item.id}"></i>
+                    `;
+                    cartItemsContainer.appendChild(cartItemEl);
+                });
+                checkoutBtn.style.display = 'flex';
+            }
+
+            updateCartTotal();
+            addCartEventListeners();
+            cartModal.style.display = 'block';
+        }
+
+        function addCartEventListeners() {
+            cartItemsContainer.querySelectorAll('.quantity-btn').forEach(btn => {
+                btn.addEventListener('click', e => {
+                    const bookId = parseInt(e.target.dataset.id);
+                    const change = parseInt(e.target.dataset.change);
+                    updateQuantity(bookId, change);
+                });
             });
-        } else {
-            fallbackCopy(text) ? resolve() : reject(new Error('Fallback copy failed'));
-        }
-    });
-}
 
-// Fallback method for copying text
-function fallbackCopy(text) {
-    const textArea = document.createElement("textarea");
-    textArea.value = text;
-    document.body.appendChild(textArea);
-    textArea.select();
-    try {
-        const successful = document.execCommand('copy');
-        if (successful) {
-            console.log('Fallback: message copied!');
+            cartItemsContainer.querySelectorAll('.cart-item-remove').forEach(btn => {
+                btn.addEventListener('click', e => {
+                    const bookId = parseInt(e.target.dataset.id);
+                    removeFromCart(bookId);
+                });
+            });
         }
-        return successful;
-    } catch (err) {
-        console.error('Fallback: unable to copy', err);
-        return false;
-    } finally {
-        document.body.removeChild(textArea);
-    }
-}
+
+        function updateQuantity(bookId, change) {
+            const itemInCart = cart.find(item => item.id === bookId);
+            if (itemInCart) {
+                itemInCart.quantity += change;
+                if (itemInCart.quantity <= 0) {
+                    removeFromCart(bookId);
+                } else {
+                    displayCart();
+                    updateCartBadge();
+                }
+            }
+        }
+
+        function removeFromCart(bookId) {
+            cart = cart.filter(item => item.id !== bookId);
+            displayCart();
+            updateCartBadge();
+        }
+
+        function updateCartTotal() {
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            cartTotalPriceEl.textContent = `₹${total.toFixed(2).replace(/\.00$/, '')}`;
+        }
+
+        function handleCheckout() {
+            const now = new Date();
+            const dateTime = now.toLocaleString('en-IN', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+
+            let orderDetails = "I would like to order the following books:\n\n";
+            cart.forEach(item => {
+                orderDetails += `📖 ${item.title}\n - Quantity: ${item.quantity}\n - Price: ₹${(item.price * item.quantity).toFixed(2).replace(/\.00$/, '')}\n\n`;
+            });
+
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            orderDetails += `--------------------\n`;
+            orderDetails += `💰 Total Bill: ₹${total.toFixed(2).replace(/\.00$/, '')}\n`;
+            orderDetails += `📅 Order Time: ${dateTime}\n\n`;
+            orderDetails += `Please confirm availability and delivery details.`;
+
+            showOrderConfirmModal(orderDetails);
+            cartModal.style.display = 'none';
+        }
+
+        function showOrderConfirmModal(orderText) {
+            const orderConfirmModal = document.getElementById('order-confirm-modal');
+            const orderMessageText = document.getElementById('order-message-text');
+            const copyAndRedirectBtn = document.getElementById('copy-and-redirect-btn');
+
+            orderMessageText.innerText = orderText;
+
+            copyAndRedirectBtn.onclick = async function() {
+                const originalContent = this.innerHTML;
+                this.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Opening...`;
+                this.disabled = true;
+
+                try {
+                    await copyToClipboard(orderText);
+                    setTimeout(() => {
+                        window.open('https://www.messenger.com/t/718957201308613', '_blank');
+                        setTimeout(() => {
+                            this.innerHTML = originalContent;
+                            this.disabled = false;
+                        }, 1500);
+                    }, 500);
+                } catch (err) {
+                    console.error('Error copying or opening Messenger:', err);
+                    window.open('https://www.messenger.com/t/718957201308613', '_blank');
+                    setTimeout(() => {
+                        this.innerHTML = originalContent;
+                        this.disabled = false;
+                    }, 1500);
+                }
+            };
+
+            orderConfirmModal.style.display = 'block';
+
+            document.querySelector('.close-confirm-modal').onclick = function() {
+                orderConfirmModal.style.display = 'none';
+            };
+
+            orderConfirmModal.onclick = function(event) {
+                if (event.target === orderConfirmModal) {
+                    orderConfirmModal.style.display = 'none';
+                }
+            };
+        }
+
+        // Copy to clipboard function
+        function copyToClipboard(text) {
+            return new Promise((resolve, reject) => {
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(text).then(() => {
+                        showCustomAlert('Order details copied!');
+                        resolve();
+                    }).catch(err => {
+                        console.error('Failed to copy text: ', err);
+                        fallbackCopy(text) ? resolve() : reject(err);
+                    });
+                } else {
+                    fallbackCopy(text) ? resolve() : reject(new Error('Fallback copy failed'));
+                }
+            });
+        }
+
+        function fallbackCopy(text) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) showCustomAlert('Order details copied!');
+                return successful;
+            } catch (err) {
+                console.error('Fallback: unable to copy', err);
+                return false;
+            } finally {
+                document.body.removeChild(textArea);
+            }
+        }
 
         // Initialize the app
         init();
