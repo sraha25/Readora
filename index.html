@@ -107,8 +107,13 @@
             transform: translateY(-2px);
         }
 
+        .header-right-icons {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
         .cart-icon {
-            margin-left: 25px;
             position: relative;
             cursor: pointer;
             font-size: 1.5rem;
@@ -142,6 +147,7 @@
             border: none;
             cursor: pointer;
             padding: 0;
+            z-index: 1001;
         }
 
         .menu-toggle span {
@@ -462,6 +468,18 @@
             transform: translateY(-8px);
             box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
         }
+        
+        /* Disable hover effects on touch devices */
+        @media (hover: none) {
+            .book-card:hover {
+                transform: none;
+                box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+            }
+            .book-card .quick-view {
+                display: none;
+            }
+        }
+
 
         .book-img {
             aspect-ratio: 2 / 3;
@@ -580,7 +598,6 @@
         .btn.added {
             background-color: var(--success);
             color: white;
-            cursor: not-allowed;
         }
 
         .btn i {
@@ -1010,11 +1027,6 @@
         }
 
         @media (max-width: 768px) {
-            .header-content {
-                flex-direction: row;
-                text-align: center;
-            }
-            
             nav {
                 position: fixed;
                 top: 0;
@@ -1022,9 +1034,10 @@
                 width: 300px;
                 height: 100vh;
                 background: var(--darker);
-                transition: right 0.3s ease;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+                transition: right 0.3s ease-in-out;
                 z-index: 1000;
-                padding-top: 60px;
+                padding-top: 80px;
                 flex-direction: column;
                 align-items: stretch;
             }
@@ -1036,15 +1049,15 @@
             nav ul {
                 flex-direction: column;
                 padding: 20px;
+                width: 100%;
             }
-            
-            nav ul li {
-                margin: 10px 0;
+
+            .header-right-icons {
+                display: flex;
             }
-            
+
             .menu-toggle {
                 display: flex;
-                z-index: 1001;
             }
             
             .menu-toggle.active span:nth-child(1) {
@@ -1160,6 +1173,12 @@
 
             .social-links {
                 justify-content: center;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .header-right-icons .menu-toggle {
+                display: none;
             }
         }
 
@@ -1313,17 +1332,19 @@
         .order-confirm-body {
             padding: 30px;
         }
-
+        
         .order-message {
             background: #f9f9f9;
             border-left: 4px solid var(--accent);
             padding: 15px;
-            margin: 20px 0;
+            margin-top: 10px;
             border-radius: 4px;
             font-size: 14px;
             line-height: 1.6;
             white-space: pre-wrap;
             word-wrap: break-word;
+            max-height: 250px;
+            overflow-y: auto;
         }
         
         .order-divider {
@@ -1385,12 +1406,6 @@
                 <span>Readora</span>
             </div>
             
-            <button class="menu-toggle" id="menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            
             <nav id="main-nav">
                 <ul>
                     <li><a href="#home" class="active nav-link">Home</a></li>
@@ -1399,11 +1414,19 @@
                     <li><a href="#categories" class="nav-link">Categories</a></li>
                     <li><a href="#footer" class="nav-link">Contact</a></li>
                 </ul>
+            </nav>
+
+            <div class="header-right-icons">
                 <div class="cart-icon" id="cart-icon">
                     <i class="fas fa-shopping-cart"></i>
                     <span id="cart-badge" class="cart-badge">0</span>
                 </div>
-            </nav>
+                <button class="menu-toggle" id="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
         </div>
     </header>
 
@@ -1564,12 +1587,9 @@
                 <span class="close-confirm-modal">&times;</span>
             </div>
             <div class="order-confirm-body">
-                <p>Just copy this and send it in Messenger to place your order!</p>
-                
+                <p>Please review your order and click the button below to proceed.</p>
                 <div class="order-message" id="order-message-text">
                 </div>
-                
-                <hr class="order-divider">
                 
                 <div class="order-actions">
                     <button id="copy-and-redirect-btn" class="btn-copy-messenger">
@@ -1990,6 +2010,8 @@
                 categoryBooksGrid.appendChild(bookCard);
             });
 
+            updateAddToCartButtonsUI();
+
             if (filteredBooks.length > visibleBookCount) {
                 const seeMoreBtn = document.createElement('button');
                 seeMoreBtn.textContent = 'See More';
@@ -2036,16 +2058,9 @@
 
             card.querySelector('.view-details').addEventListener('click', () => showBookDetails(book.id));
             const addToCartBtn = card.querySelector('.add-to-cart-btn');
-            addToCartBtn.addEventListener('click', (e) => {
-                addToCart(book.id);
-                e.target.closest('button').innerHTML = `<i class="fas fa-check"></i> Added`;
-                e.target.closest('button').classList.add('added');
-                setTimeout(() => {
-                    e.target.closest('button').innerHTML = `<i class="fas fa-cart-plus"></i> Add to Cart`;
-                    e.target.closest('button').classList.remove('added');
-                }, 2000);
+            addToCartBtn.addEventListener('click', () => {
+                toggleCartItem(book.id);
             });
-
 
             return card;
         }
@@ -2217,6 +2232,17 @@
         }
 
         // Cart Functions
+        function toggleCartItem(bookId) {
+            const itemInCart = cart.some(item => item.id === bookId);
+            if (itemInCart) {
+                removeFromCart(bookId);
+            } else {
+                addToCart(bookId);
+            }
+            updateAddToCartButtonsUI();
+        }
+
+
         function addToCart(bookId) {
             const book = books.find(b => b.id === bookId);
             const itemInCart = cart.find(item => item.id === bookId);
@@ -2227,13 +2253,26 @@
                 cart.push({ ...book, quantity: 1 });
             }
             updateCartBadge();
-            showCustomAlert(`${book.title} added to cart!`);
         }
         
         function updateCartBadge() {
             const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
             cartBadge.textContent = totalItems;
         }
+
+        function updateAddToCartButtonsUI() {
+            document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+                const bookId = parseInt(btn.dataset.id);
+                if (cart.some(item => item.id === bookId)) {
+                    btn.innerHTML = `<i class="fas fa-check"></i> Added`;
+                    btn.classList.add('added');
+                } else {
+                    btn.innerHTML = `<i class="fas fa-cart-plus"></i> Add to Cart`;
+                    btn.classList.remove('added');
+                }
+            });
+        }
+
 
         function displayCart() {
             cartItemsContainer.innerHTML = '';
@@ -2301,6 +2340,7 @@
             cart = cart.filter(item => item.id !== bookId);
             displayCart();
             updateCartBadge();
+            updateAddToCartButtonsUI();
         }
 
         function updateCartTotal() {
@@ -2314,7 +2354,7 @@
 
             let orderDetails = "I would like to order the following books:\n\n";
             cart.forEach(item => {
-                orderDetails += `📖 ${item.title}\n - Quantity: ${item.quantity}\n - Price: ₹${(item.price * item.quantity).toFixed(2).replace(/\.00$/, '')}\n\n`;
+                orderDetails += `📖 ${item.title}\n✍️ by ${item.author}\n- Quantity: ${item.quantity}\n- Price: ₹${(item.price * item.quantity).toFixed(2).replace(/\.00$/, '')}\n\n`;
             });
 
             const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
@@ -2346,8 +2386,9 @@
                         setTimeout(() => {
                             this.innerHTML = originalContent;
                             this.disabled = false;
+                            orderConfirmModal.style.display = 'none';
                         }, 1500);
-                    }, 500);
+                    }, 300);
                 } catch (err) {
                     console.error('Error copying or opening Messenger:', err);
                     window.open('https://www.messenger.com/t/718957201308613', '_blank');
@@ -2376,7 +2417,6 @@
             return new Promise((resolve, reject) => {
                 if (navigator.clipboard) {
                     navigator.clipboard.writeText(text).then(() => {
-                        showCustomAlert('Order details copied!');
                         resolve();
                     }).catch(err => {
                         console.error('Failed to copy text: ', err);
@@ -2395,7 +2435,6 @@
             textArea.select();
             try {
                 const successful = document.execCommand('copy');
-                if (successful) showCustomAlert('Order details copied!');
                 return successful;
             } catch (err) {
                 console.error('Fallback: unable to copy', err);
