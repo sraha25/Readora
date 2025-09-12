@@ -762,7 +762,7 @@
         }
 
         .book-details-desc {
-            margin: 25px 0;
+            margin: 25px 0 5px;
             line-height: 1.8;
         }
 
@@ -1532,7 +1532,7 @@
               <button class="subcategory-btn" data-category="Science">Science</button>
               <button class="subcategory-btn" data-category="Technology">Technology</button>
               <button class="subcategory-btn" data-category="Biography">Biography</button>
-              <button class="subcategory-btn" data-category="Fantasy">Fantasy</button>
+              
               <button class="subcategory-btn" data-category="Historical">Historical</button>
               <button class="subcategory-btn" data-category="Science Fiction">Science Fiction</button>
               <button class="subcategory-btn" data-category="Mystery">Mystery</button>
@@ -1541,7 +1541,7 @@
               <button class="subcategory-btn" data-category="Religious">Religious</button>
               <button class="subcategory-btn" data-category="Fairy Tale">Fairy Tale</button>
               <button class="subcategory-btn" data-category="Children’s Literature">Children’s Literature</button>
-              <button class="subcategory-btn" data-category="Folklore">Folklore</button>
+             
               <button class="subcategory-btn" data-category="Philosophy">Philosophy</button>
               <button class="subcategory-btn" data-category="Technical / Educational">Technical / Educational</button>
               <button class="subcategory-btn" data-category="Political">Political</button>
@@ -1551,7 +1551,7 @@
               <button class="subcategory-btn" data-category="Poetry">Poetry</button>
               <button class="subcategory-btn" data-category="Short Story">Short Story</button>
               <button class="subcategory-btn" data-category="Drama / Play">Drama / Play</button>
-              <button class="subcategory-btn" data-category="Essay">Essay</button>
+             
               <button class="subcategory-btn" data-category="Autobiography">Autobiography</button>
               <button class="subcategory-btn" data-category="Travel Writing">Travel Writing</button>
             </div>
@@ -1688,21 +1688,21 @@
             return { id, title, author, price, originalPrice, category, condition, description, frontImg, pdf, language };
         }
 
-        // Updated book data with the simplified structure and corrected image links
+        // Updated book data with corrected image links
         const books = [
-           createBook(1, "রাধা", "তারাশঙ্কর বন্দ্যোপাধ্যায়", 240, 250, "উপন্যাস", "New", "Tarasankar Bandyopadhyay's Radha is a Bengali novel focusing on the classic love story of Radha and Krishna.", "https://boibipani.in/public/product/Radha%20By%20Tarashankar%20Bandyopadhyay.jpg", "", "Bengali"),
-           createBook(2, "দত্তা", "শরৎচন্দ্র চট্টোপাধ্যায়", 90, 100, "উপন্যাস", "New", "Datta by Sarat Chandra Chattopadhyay is a romantic Bengali novel that follows the story of an affluent Brahmo woman and a brilliant but poor Hindu man and their evolving relationship.", "https://matribhasa.com/wp-content/uploads/2024/06/httpsboichitro.inwp-contentuploads20240651V8iijSqUL.webp", "", "Bengali"),
-           createBook(3, "আদর্শ হিন্দু হোটেল", "বিভূতিভূষণ বন্দ্যোপাধ্যায়", 70, 100, "উপন্যাস", "New", "Adarsha Hindu Hotel by Bibhutibhushan Bandyopadhyay is a story about Hajari Thakur, a talented cook who dreams of opening his own establishment.", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfzt-fhUFG1IYM0iYpecVNyNH2V_JgtxJe7Q&s", "", "Bengali"),
-           createBook(4, "বিষবৃক্ষ", "বঙ্কিমচন্দ্র চট্টোপাধ্যায়", 60, 60, "উপন্যাস", "New", "Bishbrikkho (The Poison Tree) is a Bengali novel by Bankim Chandra Chatterjee which explores the societal issue of widow remarriage in 19th-century Bengal.", "https://ds.rokomari.store/rokomari110/ProductNew20190903/260X372/Bishbrikkho_-Bankimchandra_Chattopadhyay-3747a9563-195973.jpg", "", "Bengali"),
-           createBook(5, "তিতাস একটি নদীর নাম", "অদ্বৈত মল্লবর্মণ", 180, 200, "উপন্যাস", "New", "Titas Ekti Nadir Nam is a classic Bengali novel by Adwaita Mallabarman depicting the life of the Malo fishing community along the Titas River in British India.", "https://ds.rokomari.store/rokomari110/ProductNew20190903/260X372/Titas_Ekti_Nadir_Nam-Adwaita_Mallabarman-cd0534882-195863.jpg", "", "Bengali"),
-           createBook(6, "শেষের কবিতা", "রবীন্দ্রনাথ ঠাকুর", 80, 80, "উপন্যাস", "New", "Rabindranath Tagore's Shesher Kobita is a lyrical novel detailing the complex love affair between the intellectual, romantic Amit Ray and the simple governess, Labanyalata.", "https://ds.rokomari.store/rokomari110/ProductNew20190903/260X372/Shesher_Kabita-Rabindranath_Tagore-424756515-201317.jpg", "https://drive.google.com/file/d/1uunS643iFc53R7ChsFE6yee4pgEOaXZ6/view?usp=drive_link", "Bengali"),
-           createBook(7, "রক্ত করবী", "রবীন্দ্রনাথ ঠাকুর", 70, 70, "নাটক", "New", "Rabindranath Tagore's play, Roktokorobi (Red Oleanders), is a symbolic drama about the struggle between humanity and a materialistic, exploitative capitalist system.", "https://ds.rokomari.store/rokomari110/ProductNew20190903/260X372/Raktakarabi-Rabindranath_Tagore-2c969a531-197171.jpg", "https://drive.google.com/file/d/1U9ZVSDUtwvHrNtt6WcXkRthMSLmDhH1t/view?usp=drive_link", "Bengali"),
-           createBook(8, "নৌকাডুবি", "রবীন্দ্রনাথ ঠাকুর", 90, 90, "উপন্যাস", "New", "Noukadubi (The Boat-Wreck) is a Bengali novel by Rabindranath Tagore centered on a boat accident that dramatically intertwines the lives of several people.", "https://ds.rokomari.store/rokomari110/ProductNew20190903/260X372/Noukadubi-Rabindranath_Tagore-268e64c5d-201460.jpg", "https://drive.google.com/file/d/1s6VLtpBKEYYLsGpb79HHhFhYUBP12Zfg/view?usp=drive_link", "Bengali"),
-           createBook(9, "দেবদাস", "শরৎচন্দ্র চট্টোপাধ্যায়", 60, 60, "উপন্যাস", "New", "Devdas by Sarat Chandra Chattopadhyay is a classic Bengali romantic novel about a wealthy young man whose love is thwarted by societal class differences.", "https://m.media-amazon.com/images/I/71aFgU4gUjL._AC_UF1000_1000_QL80_.jpg", "https://drive.google.com/file/d/1NZkIRKJIgoQhIx2vaGLMgnaG8tw_wrzq/view?usp=drive_link", "Bengali"),
-           createBook(10, "অশনি সংকেত", "বিভূতিভূষন বন্দ্যোপাধ্যায়", 60, 60, "উপন্যাস", "New", "Ashani Sanket by Bibhutibhushan Bandyopadhyay is a novel depicting the devastating impact of the 1943 Bengal famine on rural life.", "https://ds.rokomari.store/rokomari110/ProductNew20190903/260X372/Ashani_Sanket-Bibhutibhushan_Bandyopadhyay-4a11f5e82-199424.jpg", "https://drive.google.com/file/d/1dEA4IWY24DSV9kjR0dkz81QkluBwGD6c/view?usp=drive_link", "Bengali"),
-           createBook(11, "নবান্ন", "বিজন ভট্টাচার্য", 180, 180, "নাটক", "New", "Nabanna is a seminal 1944 Bengali play by Bijon Bhattacharya that vividly portrays the horrors of the 1943 Bengal Famine.", "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1353301923i/16157766.jpg", "https://drive.google.com/file/d/1urGPkpPeNReuz8hW10Sdsk0LIYOEOiGe/view?usp=drive_link", "Bengali"),
-           createBook(12, "কৃষ্ণ কুমারী নাটক", "মাইকেল মধুসূদন দত্ত", 150, 150, "নাটক", "New", "Michael Madhusudan Dutt's Krishnakumari is the first successful tragic play in Bengali literature, based on a historical incident from Rajput history.", "https://ds.rokomari.store/rokomari110/ProductNew20190903/260X372/Krishnakumari-Michael_Madhusudan_Dutta-889814631-199047.jpg", "https://drive.google.com/file/d/1erKhuutEduhXRRff1L6bp85jenwfIAAN/view?usp=drive_link", "Bengali"),
-           createBook(13, "ইংল্যান্ড বঙ্গ মহিলা", "কৃষ্ণ ভাবিনী দেবী", 120, 110, "ভ্রমণকাহিনি", "New", "A travelogue by Krishna Bhabini Devi, documenting her experiences and observations as a Bengali woman in England.", "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1628173959l/58735274.jpg", "https://drive.google.com/file/d/1nKEX2QEe8OO8hdiiT-bS7T68xtXgiu5W/view?usp=drive_link", "Bengali")
+            createBook(1, "রাধা", "তারাশঙ্কর বন্দ্যোপাধ্যায়", 240, 250, "উপন্যাস", "New", "Tarasankar Bandyopadhyay's Radha is a Bengali novel focusing on the classic love story of Radha and Krishna. While details are limited, it is described as a \"Bengali Classical Novel\" published by Mitra & Ghosh Publishers. Unlike some modern interpretations, Bandyopadhyay's work likely explores the established mythological narratives and themes of the beloved epic relationship.", "https://boibipani.in/public/product/Radha%20By%20Tarashankar%20Bandyopadhyay.jpg", "", "Bengali"),
+            createBook(2, "দত্তা", "শরৎচন্দ্র চট্টোপাধ্যায়", 90, 100, "উপন্যাস", "New", "Datta by Sarat Chandra Chattopadhyay is a romantic Bengali novel, set in the early 20th century, that follows the story of an affluent Brahmo woman and a brilliant but poor Hindu man and their evolving relationship amid societal complexities and personal challenges. The narrative explores themes of love, tradition versus modernity, and individual aspirations, creating a story that is simultaneously light-hearted and serious, with a deep understanding of human psychology and a respect for women.", "https://matribhasa.com/wp-content/uploads/2024/06/httpsboichitro.inwp-contentuploads20240651V8iijSqUL.webp", "", "Bengali"),
+            createBook(3, "আদর্শ হিন্দু হোটেল", "বিভূতিভূষণ বন্দ্যোপাধ্যায়", 70, 100, "উপন্যাস", "New", "Adarsha Hindu Hotel by Bibhutibhushan Bandyopadhyay is a story about Hajari Thakur, a talented cook working at a hotel in Ranaghat who dreams of opening his own establishment. After being falsely accused of theft and fired, Hajari uses his skills, honesty, and help from others to establish his own hotel, which quickly becomes a popular success. The novel explores themes of hard work, integrity, and the journey of an underdog to achieve his dreams.", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfzt-fhUFG1IYM0iYpecVNyNH2V_JgtxJe7Q&s", "", "Bengali"),
+            createBook(4, "বিষবৃক্ষ", "বঙ্কিমচন্দ্র চট্টোপাধ্যায়", 60, 60, "উপন্যাস", "New", "Bishbrikkho (The Poison Tree) is a Bengali novel by Bankim Chandra Chatterjee published in 1873, which explores the societal issue of widow remarriage in 19th-century Bengal. The story follows Nagendra, a landowner attracted to the young widow Kundanandini, creating a conflict between his loyalty to his devoted wife, Suryamukhi, and his desire for the newcomer, highlighting the norms and challenges faced by women in that era.", "https://via.placeholder.com/250x375.png?text=Book+Cover", "", "Bengali"),
+            createBook(5, "তিতাস একটি নদীর নাম", "অদ্বৈত মল্লবর্মণ", 180, 200, "উপন্যাস", "New", "Titas Ekti Nadir Nam is a classic Bengali novel by Adwaita Mallabarman depicting the life of the Malo fishing community along the Titas River in British India, exploring their culture, rituals, and struggles against natural disasters and modernization, ultimately portraying a way of life lost to the violent Partition of Bengal. The novel is praised for its ethnography, folk poetry, and detailed portrayal of the community, which was published posthumously in 1956 after first appearing in a literary magazine.", "https://via.placeholder.com/250x375.png?text=Book+Cover", "", "Bengali"),
+            createBook(6, "শেষের কবিতা", "রবীন্দ্রনাথ ঠাকুর", 80, 80, "উপন্যাস", "New", "Rabindranath Tagore's Shesher Kobita (also known as Farewell Song or The Last Poem) is a lyrical novel set in the idyllic, mountainous landscape of Shillong, detailing the complex love affair between the intellectual, romantic Amit Ray and the simple governess, Labanyalata. The story blends prose and poetry to explore themes of love, desire, and the tension between idealized romance and societal expectations, reflecting Tagore's engagement with modernist ideas and a rejection of rigid traditions.", "https://via.placeholder.com/250x375.png?text=Book+Cover", "https://drive.google.com/file/d/1uunS643iFc53R7ChsFE6yee4pgEOaXZ6/view?usp=drive_link", "Bengali"),
+            createBook(7, "রক্ত করবী", "রবীন্দ্রনাথ ঠাকুর", 70, 70, "নাটক", "New", "Rabindranath Tagore's play, Roktokorobi (or Red Oleanders), is a symbolic drama about the struggle between humanity and a materialistic, exploitative capitalist system embodied by the autocrat King of Yaksapuri. The story centers on the vibrant Nandini, a symbol of freedom and nature, who brings love and life to the oppressive, gold-obsessed kingdom, ultimately leading to a confrontation with the King's power and the realization of the human cost of greed.", "https://via.placeholder.com/250x375.png?text=Book+Cover", "https://drive.google.com/file/d/1U9ZVSDUtwvHrNtt6WcXkRthMSLmDhH1t/view?usp=drive_link", "Bengali"),
+            createBook(8, "নৌকাডুবি", "রবীন্দ্রনাথ ঠাকুর", 90, 90, "উপন্যাস", "New", "Noukadubi (The Boat-Wreck) is a 1906 Bengali novel by Rabindranath Tagore centered on a boat accident that dramatically intertwines the lives of several people, particularly Ramesh, Hemnalini, and Kamala. The story explores themes of arranged marriage, duty versus desire, identity, and fate in early 20th-century Bengal, as the accident leads to a case of mistaken identity and an entangled romance that challenges societal norms and emotional loyalties. \nKey Plot Elements:", "https://via.placeholder.com/250x375.png?text=Book+Cover", "https://drive.google.com/file/d/1s6VLtpBKEYYLsGpb79HHhFhYUBP12Zfg/view?usp=drive_link", "Bengali"),
+            createBook(9, "দেবদাস", "শরৎচন্দ্র চট্টোপাধ্যায়", 60, 60, "উপন্যাস", "New", "Devdas by Sarat Chandra Chattopadhyay is a classic Bengali romantic novel about a wealthy young man, Devdas, whose love for his childhood friend Parvati is thwarted by societal class differences and parental opposition. Overwhelmed by rejection, Devdas descends into alcoholism and self-destruction, falling further into despair while pining for Parvati and finding brief solace with a courtesan named Chandramukhi, ultimately dying of his illness on Parvati's doorstep. The novel is a poignant tale of unfulfilled love, the constraints of social hierarchy in early 20th-century Bengal, and the tragic consequences of an individual's inability to overcome personal and societal obstacles.", "https://via.placeholder.com/250x375.png?text=Book+Cover", "https://drive.google.com/file/d/1NZkIRKJIgoQhIx2vaGLMgnaG8tw_wrzq/view?usp=drive_link", "Bengali"),
+            createBook(10, "অশনি সংকেত", "বিভূতিভূষন বন্দ্যোপাধ্যায়", 60, 60, "উপন্যাস", "New", "Ashani Sanket by Bibhutibhushan Bandyopadhyay is a novel depicting the devastating impact of the 1943 Bengal famine on rural life, showcasing the hardship, human vulnerability, and resilience in the face of widespread starvation and societal upheaval. Set in a remote village, the story follows characters as they experience the unfolding famine—a \"thunderbolt\" that changes their lives forever—exploring the profound social and economic consequences of the man-made crisis.", "https://via.placeholder.com/250x375.png?text=Book+Cover", "https://drive.google.com/file/d/1dEA4IWY24DSV9kjR0dkz81QkluBwGD6c/view?usp=drive_link", "Bengali"),
+            createBook(11, "নবান্ন", "বিজন ভট্টাচার্য", 180, 180, "নাটক", "New", "Nabanna is a seminal 1944 Bengali play by Bijon Bhattacharya, staged by the Indian People's Theatre Association (IPTA), that vividly portrays the horrors of the 1943 Bengal Famine. The drama follows the Samaddar family's desperate journey from their ravaged village to Kolkata in search of sustenance, exposing the man-made famine caused by British war efforts and highlighting the apathy of the urban middle class. Nabanna marked a significant shift towards activist, amateur theater, breaking from the commercial stage and becoming a powerful voice for the rural poor and oppressed.", "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1353301923i/16157766.jpg", "https://drive.google.com/file/d/1urGPkpPeNReuz8hW10Sdsk0LIYOEOiGe/view?usp=drive_link", "https://drive.google.com/file/d/1urGPkpPeNReuz8hW10Sdsk0LIYOEOiGe/view?usp=drive_link", "Bengali"),
+            createBook(12, "কৃষ্ণ কুমারী নাটক", "মাইকেল মধুসূদন দত্ত", 150, 150, "নাটক", "New", "Michael Madhusudan Dutt's Krishnakumari is the first successful tragic play in Bengali literature, based on a historical incident from Rajput history, as depicted in James Tod's Annals of Rajasthan. The play centers on the ill-fated love and tragic demise of Princess Krishnakumari, driven by factors like political rivalry, wealth, and honor among the rulers of Rajasthan.", "https://via.placeholder.com/250x375.png?text=Book+Cover", "https://drive.google.com/file/d/1erKhuutEduhXRRff1L6bp85jenwfIAAN/view?usp=drive_link", "Bengali"),
+            createBook(13, "ইংল্যান্ড বঙ্গ মহিলা", "কৃষ্ণ ভাবিনী দেবী", 120, 110, "ভ্রমণকাহিনি", "New", "", "https://via.placeholder.com/250x375.png?text=Book+Cover", "https://drive.google.com/file/d/1nKEX2QEe8OO8hdiiT-bS7T68xtXgiu5W/view?usp=drive_link", "Bengali")
         ];
 
         // Sample exercise copy data
@@ -1768,7 +1768,7 @@
             "Science": { "English": "Science", "Bengali": "বিজ্ঞান" },
             "Technology": { "English": "Technology", "Bengali": "প্রযুক্তি" },
             "Biography": { "English": "Biography", "Bengali": "জীবনী" },
-            "Fantasy": { "English": "Fantasy", "Bengali": "ফ্যান্টাসি" },
+           
             "Historical": { "English": "Historical", "Bengali": "ইতিহাসভিত্তিক" },
             "Science Fiction": { "English": "Science Fiction", "Bengali": "বিজ্ঞান কল্পকাহিনি" },
             "Mystery": { "English": "Mystery", "Bengali": "রহস্যকাহিনি" },
@@ -1777,7 +1777,7 @@
             "Religious": { "English": "Religious", "Bengali": "ধর্মীয় সাহিত্য" },
             "Children’s Literature": { "English": "Children’s Literature", "Bengali": "শিশু সাহিত্য" },
             "Fairy Tale": { "English": "Fairy Tale", "Bengali": "রূপকথা" },
-            "Folklore": { "English": "Folklore", "Bengali": "লোকসাহিত্য" },
+            
             "Philosophy": { "English": "Philosophy", "Bengali": "দর্শন সাহিত্য" },
             "Technical / Educational": { "English": "Technical / Educational", "Bengali": "প্রযুক্তি বিষয়ক বই" },
             "Political": { "English": "Political", "Bengali": "রাজনৈতিক সাহিত্য" },
@@ -1787,7 +1787,7 @@
             "Poetry": { "English": "Poetry", "Bengali": "কবিতা" },
             "Short Story": { "English": "Short Story", "Bengali": "গল্প" },
             "Drama / Play": { "English": "Drama / Play", "Bengali": "নাটক" },
-            "Essay": { "English": "Essay", "Bengali": "প্রবন্ধ" },
+           
             "Autobiography": { "English": "Autobiography", "Bengali": "আত্মজীবনী" },
             "Travel Writing": { "English": "Travel Writing", "Bengali": "ভ্রমণকাহিনি" }
         };
@@ -2211,6 +2211,22 @@
             if (!book) return;
 
             const discount = book.originalPrice ? Math.round(((book.originalPrice - book.price) / book.originalPrice) * 100) : 0;
+            
+            // --- MODIFICATION START ---
+            let descriptionHTML = '';
+            const maxLength = 250; // Max characters before truncating
+
+            if (book.description && book.description.length > maxLength) {
+                const truncatedDesc = book.description.substring(0, maxLength) + '...';
+                descriptionHTML = `
+                    <p class="book-details-desc" id="book-desc-text" style="margin-bottom: 5px;">${truncatedDesc}</p>
+                    <button id="see-more-desc" style="background:none; border:none; color:var(--primary); cursor:pointer; padding: 0; font-weight:600; font-size: 14px; text-align: left;">See More</button>
+                `;
+            } else {
+                descriptionHTML = `<p class="book-details-desc">${book.description || ''}</p>`;
+            }
+            // --- MODIFICATION END ---
+
 
             bookDetailsContent.innerHTML = `
                 <div class="book-details-img">
@@ -2227,7 +2243,9 @@
                         ${discount > 0 ? `<span class="discount">${discount}% off</span>` : ''}
                     </div>
                     <p style="font-size: 14px; color: var(--gray); margin-top: -10px; margin-bottom: 15px;">(Free delivery on 3 items)</p>
-                    <p class="book-details-desc">${book.description}</p>
+                    
+                    ${descriptionHTML}
+
                     <div class="book-details-actions">
                         <button class="btn btn-outline btn-large download-sample-modal" data-pdf="${book.pdf}" style="width: 100%;">
                             <i class="fas fa-download"></i> Sample
@@ -2236,6 +2254,19 @@
                 </div>
             `;
             
+            // --- MODIFICATION START: Add event listener for the new button ---
+            const seeMoreBtn = bookDetailsContent.querySelector('#see-more-desc');
+            if (seeMoreBtn) {
+                seeMoreBtn.addEventListener('click', () => {
+                    const descElement = bookDetailsContent.querySelector('#book-desc-text');
+                    if (descElement) {
+                        descElement.textContent = book.description;
+                    }
+                    seeMoreBtn.style.display = 'none'; // Hide the button after clicking
+                }, { once: true }); // The listener will be removed after it is invoked
+            }
+            // --- MODIFICATION END ---
+
             bookDetailsContent.querySelector('.download-sample-modal').addEventListener('click', function() {
                 const pdfUrl = this.getAttribute('data-pdf');
                  if (pdfUrl && pdfUrl.trim() !== "" && !pdfUrl.includes('dummy.pdf')) {
