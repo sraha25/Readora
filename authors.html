@@ -44,11 +44,13 @@
         .section-title { text-align: center; margin-bottom: 3rem; position: relative; font-size: 2.5rem; }
         .section-title:after { content: ''; display: block; width: 80px; height: 4px; background: var(--accent); margin: 15px auto; border-radius: 2px; }
 
-        .authors-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; justify-content: center; }
-        .author-card { padding: 1.5rem; background: white; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); text-align: center; cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; }
-        .author-card:hover { transform: translateY(-6px); box-shadow: 0 15px 35px rgba(0,0,0,0.12); background: var(--light); }
+        .authors-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 2rem; }
+        .author-card { background: white; padding: 2rem; border-radius: 12px; text-align: center; font-family: 'Merriweather', serif; font-size: 1.1rem; font-weight: 700; box-shadow: 0 8px 20px rgba(0,0,0,0.08); cursor: pointer; position: relative; overflow: hidden; transition: all 0.4s ease; border-left: 5px solid var(--primary); }
+        .author-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 15px 30px rgba(0,0,0,0.12); border-left-color: var(--accent); }
+        .author-card.active { background: var(--light); color: var(--primary); border-left-color: var(--accent); transform: translateY(-8px) scale(1.02); box-shadow: 0 15px 30px rgba(0,0,0,0.12); }
         .author-name { font-family: 'Merriweather', serif; font-weight: 700; font-size: 1.1rem; color: var(--dark); }
-
+        .author-card.active .author-name { color: var(--primary); }
+        
         #author-details-section { display: none; margin-top: 4rem; padding: 3rem 0; background: white; border-radius: 15px; box-shadow: 0 15px 40px rgba(0,0,0,0.1); scroll-margin-top: 100px; }
         #author-details-container { text-align: center; }
         .author-books-title {
@@ -64,6 +66,25 @@
         .book-img { width: 130px; min-width: 130px; height: 180px; overflow: hidden; position: relative; background-color: #f9f9f9; border-radius: 4px; flex-shrink: 0; border: 3px solid #8B7355; padding: 3px; margin-right: 20px;}
         .book-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
         .book-card:hover .book-img img { transform: scale(1.05); }
+        .book-hover-badge {
+            position: absolute;
+            bottom: 5px;
+            left: 5px;
+            background: var(--accent);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 5;
+        }
+        .book-card:hover .book-hover-badge {
+            opacity: 1;
+            transform: translateY(0);
+        }
         .book-info { padding: 0; display: flex; flex-direction: column; flex-grow: 0; flex-shrink: 0; flex-basis: 250px; text-align: left; justify-content: space-between; height: 180px; }
         .book-description-wrapper { flex-grow: 1; padding-left: 15px; margin-left: 15px; border-left: 1px solid #f0f0f0; font-size: 13px; color: #666; line-height: 1.5; display: flex; align-items: center; }
         .book-description { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; text-overflow: ellipsis; margin: 0; font-weight: normal; max-height: 2.8em; }
@@ -125,26 +146,150 @@
         .btn-primary { background: var(--primary); color: white; }
         .btn-large { padding: 15px 25px; font-size: 16px; }
 
-        footer { background: #2d3436; color: white; padding: 40px 0 20px; }
-        .footer-content { display: grid; grid-template-columns: 2fr 1.5fr 1.5fr; gap: 80px; margin-bottom: 50px; }
-        .footer-logo { font-size: 1.4rem; font-weight: 700; margin-bottom: 15px; display: flex; align-items: center; }
-        .footer-logo i { margin-right: 10px; color: var(--accent); font-size: 1.6rem; }
-        .footer-about p { margin-bottom: 25px; line-height: 1.6; color: rgba(255, 255, 255, 0.75); font-size: 13px; }
-        .social-links { display: flex; gap: 10px; margin-top: 25px; }
-        .social-link { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: rgba(255, 255, 255, 0.15); border-radius: 4px; color: white; transition: all 0.3s; font-size: 13px; }
-        .social-link:hover { background: var(--accent); transform: translateY(-2px); }
-        .footer-heading { font-size: 1rem; margin-bottom: 18px; position: relative; padding-bottom: 10px; font-weight: 600; }
-        .footer-heading:after { content: ''; position: absolute; left: 0; bottom: 0; width: 40px; height: 2px; background: var(--accent); }
-        .footer-comments form { display: flex; flex-direction: column; gap: 12px; }
-        .footer-comments input, .footer-comments textarea { width: 100%; padding: 10px 12px; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.15); background: rgba(255, 255, 255, 0.08); color: #fff; font-size: 13px; transition: border-color 0.3s ease, background 0.3s ease; }
-        .footer-comments input::placeholder, .footer-comments textarea::placeholder { color: rgba(255, 255, 255, 0.6); }
-        .footer-comments input:focus, .footer-comments textarea:focus { outline: none; border-color: var(--accent); background: rgba(255, 255, 255, 0.12); }
-        .footer-comments textarea { min-height: 100px; resize: vertical; }
-        .footer-comments button { align-self: flex-start; padding: 10px 20px; border: none; border-radius: 6px; background: var(--accent); color: #0b1221; font-weight: 600; cursor: pointer; transition: background 0.3s ease, transform 0.3s ease; }
-        .footer-comments button:hover { background: #fff; transform: translateY(-2px); }
-        .contact-info p { display: flex; align-items: flex-start; margin-bottom: 12px; color: rgba(255, 255, 255, 0.75); font-size: 13px; }
-        .contact-info i { margin-right: 10px; color: var(--accent); margin-top: 2px; font-size: 14px; }
-        .copyright { text-align: center; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1); color: rgba(255, 255, 255, 0.5); font-size: 13px; }
+        footer { 
+            background: #2d3436; 
+            color: white; 
+            padding: 40px 0 20px; 
+        }
+        
+        .footer-content { 
+            display: grid; 
+            grid-template-columns: 2fr 1.5fr 1.5fr; 
+            gap: 80px; 
+            margin-bottom: 50px; 
+        }
+        
+        .footer-logo { 
+            font-size: 1.4rem; 
+            font-weight: 700; 
+            margin-bottom: 15px; 
+            display: flex; 
+            align-items: center; 
+        }
+        
+        .footer-logo i { 
+            margin-right: 10px; 
+            color: var(--accent); 
+            font-size: 1.6rem; 
+        }
+        
+        .footer-about p { 
+            margin-bottom: 25px; 
+            line-height: 1.6; 
+            color: rgba(255, 255, 255, 0.75); 
+            font-size: 13px; 
+        }
+        
+        .social-links { 
+            display: flex; 
+            gap: 10px; 
+            margin-top: 25px; 
+        }
+        
+        .social-link { 
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center; 
+            width: 32px; 
+            height: 32px; 
+            background: rgba(255, 255, 255, 0.15); 
+            border-radius: 4px; 
+            color: white; 
+            transition: all 0.3s; 
+            font-size: 13px; 
+        }
+        
+        .social-link:hover { 
+            background: var(--accent); 
+            transform: translateY(-2px); 
+        }
+        
+        .footer-heading { 
+            font-size: 1rem; 
+            margin-bottom: 18px; 
+            position: relative; 
+            padding-bottom: 10px; 
+            font-weight: 600; 
+        }
+        
+        .footer-heading:after { 
+            content: ''; 
+            position: absolute; 
+            left: 0; 
+            bottom: 0; 
+            width: 40px; 
+            height: 2px; 
+            background: var(--accent); 
+        }
+        
+        .footer-comments form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .footer-comments input,
+        .footer-comments textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+            font-size: 13px;
+            transition: border-color 0.3s ease, background 0.3s ease;
+        }
+        .footer-comments input::placeholder,
+        .footer-comments textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        .footer-comments input:focus,
+        .footer-comments textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(255, 255, 255, 0.12);
+        }
+        .footer-comments textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        .footer-comments button {
+            align-self: flex-start;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            background: var(--accent);
+            color: #0b1221;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+        .footer-comments button:hover {
+            background: #fff;
+            transform: translateY(-2px);
+        }
+        
+        .contact-info p { 
+            display: flex; 
+            align-items: flex-start; 
+            margin-bottom: 12px; 
+            color: rgba(255, 255, 255, 0.75); 
+            font-size: 13px; 
+        }
+        
+        .contact-info i { 
+            margin-right: 10px; 
+            color: var(--accent); 
+            margin-top: 2px; 
+            font-size: 14px; 
+        }
+        
+        .copyright { 
+            text-align: center; 
+            padding-top: 20px; 
+            border-top: 1px solid rgba(255, 255, 255, 0.1); 
+            color: rgba(255, 255, 255, 0.5); 
+            font-size: 13px; 
+        }
         
         @media (min-width: 768px) {
             .authors-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -166,8 +311,7 @@
             nav ul li a { display: block; padding: 18px 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
             .author-details-content { grid-template-columns: 1fr; text-align: center; }
             .author-details-img { margin: 0 auto; }
-            .footer-content { grid-template-columns: 1fr; text-align: center; gap: 40px; justify-items: center; }
-            .footer-heading { text-align: center; }
+            .footer-content { grid-template-columns: 1fr; text-align: center; gap: 40px; }
             .footer-heading:after { left: 50%; transform: translateX(-50%); }
             .footer-logo, .contact-info p, .social-links { justify-content: center; }
             
@@ -181,11 +325,11 @@
             .books-grid { display: flex; flex-direction: column; gap: 12px; }
             .book-card { flex-direction: row; align-items: center; padding: 10px; min-height: 150px; }
             .book-img { width: 100px; min-width: 100px; height: 140px; }
-            .book-info { padding: 0 15px; text-align: left; }
+            .book-info { padding: 0 15px; text-align: left; flex-grow: 1; flex-basis: auto; height: auto; justify-content: center; }
             .book-title { font-size: 15px; }
             .current-price { font-size: 20px; }
-            .btn-add-cart { width: 50%; padding: 6px 5px; font-size: 12px; }
-            .book-actions { flex-direction: column; gap: 10px; }
+            .btn-add-cart { width: 100%; padding: 6px 15px; font-size: 12px; }
+            .book-actions { flex-direction: column; gap: 8px; margin-top: 8px; }
             .book-actions .btn { width: 100%; }
             .book-description-wrapper { display: none; }
             .book-price { flex-direction: column; align-items: flex-start; gap: 2px !important; }
@@ -208,8 +352,12 @@
         }
         
         @media (max-width: 480px) {
-            .authors-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+            .authors-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+            .author-card { padding: 1.5rem 1rem; font-size: 0.9rem; }
             .author-name { font-size: 0.8rem; line-height: 1.2; }
+            .footer-logo { justify-content: center; }
+            .footer-heading { font-size: 1.1rem; }
+            .contact-info p { font-size: 0.9rem; }
         }
     </style>
 </head>
@@ -276,6 +424,7 @@
             <div class="modal-body">
                 <div class="book-details" id="book-details-content"></div>
             </div>
+            
         </div>
     </div>
     
@@ -450,7 +599,11 @@
                 const authorCard = document.createElement('div');
                 authorCard.className = 'author-card';
                 authorCard.innerHTML = `<h3 class="author-name">${authorName}</h3>`;
-                authorCard.addEventListener('click', () => showAuthorDetails(authorName));
+                authorCard.addEventListener('click', (e) => {
+                    document.querySelectorAll('.author-card').forEach(box => box.classList.remove('active'));
+                    e.currentTarget.classList.add('active');
+                    showAuthorDetails(authorName)
+                });
                 authorsGridContainer.appendChild(authorCard);
             });
         }
@@ -484,6 +637,7 @@
             card.innerHTML = `
                 <div class="book-img">
                     <img src="${imageUrl}" alt="${book.title}" onerror="this.onerror=null; this.src='https://dummyimage.com/130x180/5c5c5c/ffffff&text=No+Image';">
+                    <div class="book-hover-badge">${book.category || 'Book'}</div>
                 </div>
                 <div class="book-info">
                     <div>
