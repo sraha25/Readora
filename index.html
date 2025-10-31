@@ -1849,12 +1849,9 @@
                 <div class="order-message" id="order-message-text">
                 </div>
                 
-                <div class="order-actions" style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
-                    <button id="copy-and-redirect-fb" class="btn-copy-messenger" style="background-color: #0084ff;">
+                <div class="order-actions">
+                    <button id="copy-and-redirect-btn" class="btn-copy-messenger">
                         <i class="fab fa-facebook-messenger"></i> Copy & Go to Messenger
-                    </button>
-                    <button id="copy-and-redirect-ig" class="btn-copy-messenger" style="background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);">
-                        <i class="fab fa-instagram"></i> Copy & Go to Instagram
                     </button>
                 </div>
             </div>
@@ -2754,39 +2751,22 @@
         modal.querySelector('#order-message-text').innerText = orderText;
         modal.style.display = 'block';
         modal.querySelector('.close-confirm-modal').onclick = () => modal.style.display = 'none';
-            // Facebook Messenger button click handler
-            document.getElementById('copy-and-redirect-fb')?.addEventListener('click', async function() {
-                const btn = this;
-                const originalContent = btn.innerHTML;
-                btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Opening...`;
-                btn.disabled = true;
-                await copyToClipboard(document.getElementById('order-message-text').innerText);
+        modal.querySelector('#copy-and-redirect-btn').onclick = async function() {
+            this.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Copying...`;
+            this.disabled = true;
+            try {
+                await copyToClipboard(orderText);
+                window.open('https://www.messenger.com/t/718957201308613', '_blank');
+            } catch (err) {
+                console.error('Failed to copy or open:', err);
+            } finally {
                 setTimeout(() => {
-                    window.open('https://www.messenger.com/t/718957201308613', '_blank');
-                    setTimeout(() => {
-                        btn.innerHTML = originalContent;
-                        btn.disabled = false;
-                        document.getElementById('order-confirm-modal').style.display = 'none';
-                    }, 1500);
-                }, 500);
-            });
-
-            // Instagram button click handler
-            document.getElementById('copy-and-redirect-ig')?.addEventListener('click', async function() {
-                const btn = this;
-                const originalContent = btn.innerHTML;
-                btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Opening...`;
-                btn.disabled = true;
-                await copyToClipboard(document.getElementById('order-message-text').innerText);
-                setTimeout(() => {
-                    window.open('https://www.instagram.com/readora_books/', '_blank');
-                    setTimeout(() => {
-                        btn.innerHTML = originalContent;
-                        btn.disabled = false;
-                        document.getElementById('order-confirm-modal').style.display = 'none';
-                    }, 1500);
-                }, 500);
-            });    
+                    this.innerHTML = `<i class="fab fa-facebook-messenger"></i> Copy & Go to Messenger`;
+                    this.disabled = false;
+                    modal.style.display = 'none';
+                }, 1000);
+            }
+        };
     }
 
     function copyToClipboard(text) {
