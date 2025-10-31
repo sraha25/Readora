@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Readora - Trending Books</title>
+    <title>Readora - New Arrivals</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
@@ -31,30 +31,28 @@
         .header-right-icons { display: flex; align-items: center; gap: 25px; }
         .cart-icon { position: relative; cursor: pointer; font-size: 1.5rem; }
         .cart-badge { position: absolute; top: -8px; right: -12px; background: var(--danger); color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 12px; font-weight: 600; }
-        
-        /* Mobile Menu Toggle */
         .menu-toggle { display: none; flex-direction: column; justify-content: space-around; width: 30px; height: 25px; background: transparent; border: none; cursor: pointer; padding: 0; z-index: 1001; }
         .menu-toggle span { width: 100%; height: 3px; background-color: white; border-radius: 5px; transition: all 0.3s linear; }
-
-        /* Footer */
-        footer { background: var(--darker); color: white; padding: 60px 0 30px; }
-        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px; }
-        .footer-logo { font-size: 1.8rem; font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; }
-        .footer-logo i { margin-right: 10px; color: var(--accent); }
-        .footer-about p { margin-bottom: 20px; line-height: 1.8; }
-        .social-links { display: flex; gap: 15px; margin-top: 20px; }
-        .social-link { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; color: white; transition: all 0.3s; }
-        .social-link:hover { background: var(--accent); transform: translateY(-3px); }
-        .footer-heading { font-size: 1.2rem; margin-bottom: 20px; position: relative; padding-bottom: 10px; }
-        .footer-heading:after { content: ''; position: absolute; left: 0; bottom: 0; width: 40px; height: 3px; background: var(--accent); }
-        .footer-links ul { list-style: none; }
-        .footer-links ul li { margin-bottom: 10px; }
-        .footer-links ul li a { color: rgba(255, 255, 255, 0.7); text-decoration: none; transition: color 0.3s; }
-        .footer-links ul li a:hover { color: var(--accent); }
-        .contact-info p { display: flex; align-items: center; margin-bottom: 15px; }
-        .contact-info i { margin-right: 10px; color: var(--accent); }
-        .copyright { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.1); }
-        
+        footer { background: #2d3436; color: white; padding: 40px 0 20px; }
+        .footer-content { display: grid; grid-template-columns: 2fr 1.5fr 1.5fr; gap: 80px; margin-bottom: 50px; }
+        .footer-logo { font-size: 1.4rem; font-weight: 700; margin-bottom: 15px; display: flex; align-items: center; }
+        .footer-logo i { margin-right: 10px; color: var(--accent); font-size: 1.6rem; }
+        .footer-about p { margin-bottom: 25px; line-height: 1.6; color: rgba(255, 255, 255, 0.75); font-size: 13px; }
+        .social-links { display: flex; gap: 10px; margin-top: 25px; }
+        .social-link { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: rgba(255, 255, 255, 0.15); border-radius: 4px; color: white; transition: all 0.3s; font-size: 13px; }
+        .social-link:hover { background: var(--accent); transform: translateY(-2px); }
+        .footer-heading { font-size: 1rem; margin-bottom: 18px; position: relative; padding-bottom: 10px; font-weight: 600; }
+        .footer-heading:after { content: ''; position: absolute; left: 0; bottom: 0; width: 40px; height: 2px; background: var(--accent); }
+        .footer-comments form { display: flex; flex-direction: column; gap: 12px; }
+        .footer-comments input, .footer-comments textarea { width: 100%; padding: 10px 12px; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.15); background: rgba(255, 255, 255, 0.08); color: #fff; font-size: 13px; transition: border-color 0.3s ease, background 0.3s ease; }
+        .footer-comments input::placeholder, .footer-comments textarea::placeholder { color: rgba(255, 255, 255, 0.6); }
+        .footer-comments input:focus, .footer-comments textarea:focus { outline: none; border-color: var(--accent); background: rgba(255, 255, 255, 0.12); }
+        .footer-comments textarea { min-height: 100px; resize: vertical; }
+        .footer-comments button { align-self: flex-start; padding: 10px 20px; border: none; border-radius: 6px; background: var(--accent); color: #0b1221; font-weight: 600; cursor: pointer; transition: background 0.3s ease, transform 0.3s ease; }
+        .footer-comments button:hover { background: #fff; transform: translateY(-2px); }
+        .contact-info p { display: flex; align-items: flex-start; margin-bottom: 12px; color: rgba(255, 255, 255, 0.75); font-size: 13px; }
+        .contact-info i { margin-right: 10px; color: var(--accent); margin-top: 2px; font-size: 14px; }
+        .copyright { text-align: center; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1); color: rgba(255, 255, 255, 0.5); font-size: 13px; }
         nav ul li.dropdown { position: relative; }
         nav ul li.dropdown .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--darker); list-style: none; padding: 10px 0; margin: 0; border-radius: 4px; box-shadow: 0 8px 16px rgba(0,0,0,0.3); min-width: 160px; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; z-index: 1001;}
         nav ul li.dropdown:hover .dropdown-menu { display: block; opacity: 1; visibility: visible; }
@@ -69,31 +67,158 @@
         .section-title { text-align: center; margin-bottom: 3rem; position: relative; font-size: 2.5rem; }
         .section-title:after { content: ''; display: block; width: 80px; height: 4px; background: var(--accent); margin: 15px auto; border-radius: 2px; }
         
-        /* Book Card Styles */
-        .books-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 30px; }
-        .book-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08); transition: all 0.3s ease; display: flex; flex-direction: column; position: relative; }
-        .book-card:hover { transform: translateY(-8px); box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15); }
-        .book-img { aspect-ratio: 2 / 3; overflow: hidden; position: relative; background-color: #f9f9f9; }
-        .book-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
-        .book-card:hover .book-img img { transform: scale(1.08); }
-        .quick-view { position: absolute; bottom: 0; left: 0; width: 100%; background-color: rgba(79, 195, 161, 0.9); color: white; text-align: center; padding: 12px 5px; font-weight: 600; font-size: 0.9rem; transform: translateY(100%); opacity: 0; transition: transform 0.3s ease, opacity 0.3s ease; z-index: 3; }
-        .book-card:hover .quick-view { transform: translateY(0); opacity: 1; }
-        .book-info { padding: 15px; display: flex; flex-direction: column; flex-grow: 1; text-align: center; }
-        .book-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-        .book-author { color: var(--gray); margin-bottom: 12px; font-size: 14px; }
-        .book-price { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
-        .current-price { font-size: 20px; font-weight: 700; color: var(--secondary); }
-        .original-price { text-decoration: line-through; color: var(--gray); font-size: 14px; }
-        .discount { color: var(--danger); font-weight: 600; font-size: 14px; }
-        .book-actions { display: flex; justify-content: space-between; margin-top: auto; padding-top: 15px; gap: 10px; }
-        .btn { padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; font-weight: 600; transition: all 0.3s; display: inline-flex; align-items: center; justify-content: center; min-height: 40px; flex-grow: 1; }
-        .btn.added { background-color: var(--success); color: white; }
-        .btn i { margin-right: 8px; font-size: 14px; }
-        .btn-primary { background: var(--primary); color: white; }
-        .btn-primary:hover { background: var(--secondary); transform: translateY(-2px); }
-        .btn-outline { background: transparent; border: 2px solid var(--primary); color: var(--primary); }
-        .btn-outline:hover { background: var(--primary); color: white; }
+        /* --- START: EXACT BOOK CARD STYLES FROM index.html --- */
+        .books-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .book-card {
+            background: white;
+            border-radius: 8px;
+            overflow: visible; 
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 12px;
+            border: 1px solid #e0e0e0;
+            cursor: pointer;
+            min-height: 180px; 
+        }
+        .book-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            border-color: var(--primary);
+        }
+        .book-img {
+            width: 130px;
+            min-width: 130px;
+            height: 180px;
+            overflow: hidden;
+            position: relative;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+            flex-shrink: 0;
+            border: 3px solid #8B7355;
+            padding: 3px;
+            margin-right: 20px;
+        }
+        .book-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        .book-card:hover .book-img img {
+            transform: scale(1.05);
+        }
+        .book-info {
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 0;
+            flex-shrink: 0;
+            flex-basis: 250px;
+            text-align: left;
+            justify-content: space-between;
+            height: 180px;
+        }
+        .book-description-wrapper {
+            flex-grow: 1;
+            padding-left: 15px;
+            margin-left: 15px;
+            border-left: 1px solid #f0f0f0;
+            font-size: 13px;
+            color: #666;
+            line-height: 1.5;
+            display: flex;
+            align-items: center;
+        }
+        .book-description {
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            text-overflow: ellipsis;
+            margin: 0;
+            font-weight: normal;
+            max-height: 2.8em;
+        }
+        .book-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: var(--dark);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+        }
+        .book-author {
+            color: var(--gray);
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        .book-price {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+        .current-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: #B12704;
+        }
+        .original-price {
+            text-decoration: line-through;
+            color: var(--gray);
+            font-size: 13px;
+            margin-left: 8px;
+        }
+        .discount {
+            color: #B12704;
+            font-weight: 600;
+            font-size: 13px;
+        }
+        .free-delivery {
+            font-size: 12px;
+            color: #007600;
+            font-weight: 600;
+            margin-top: 5px;
+            margin-bottom: 8px;
+        }
+        .btn-add-cart {
+            background: #FFD814;
+            color: #0F1111;
+            border: 1px solid #FCD200;
+            border-radius: 8px;
+            padding: 8px 20px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-add-cart:hover {
+            background: #F7CA00;
+        }
+        .btn-add-cart.added {
+            background: #90EE90;
+            border-color: #90EE90;
+            color: #0F1111;
+        }
+        .btn-add-cart.added:hover {
+            background: #7FD87F;
+        }
+        .book-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
         .no-books { text-align: center; grid-column: 1 / -1; padding: 2rem; font-size: 1.2rem; color: var(--gray); }
+        /* --- END: EXACT BOOK CARD STYLES --- */
 
         /* Modal & Cart Styles */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); z-index: 1000; overflow-y: auto; }
@@ -103,14 +228,13 @@
         .close-modal, .close-cart-modal, .close-confirm-modal { font-size: 28px; cursor: pointer; color: var(--gray); transition: color 0.3s; position: absolute; top: 15px; right: 20px; z-index: 10; }
         .close-modal:hover, .close-cart-modal:hover, .close-confirm-modal:hover { color: var(--dark); }
         .modal-body { padding: 30px; overflow-y: auto; flex-grow: 1; }
-        .book-details { display: grid; grid-template-columns: 1fr 2fr; gap: 30px; text-align: justify; }
-        .book-details-img { border-radius: 8px; overflow: hidden; box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); }
-        .book-details-img img { width: 100%; height: auto; display: block; }
-        .book-details-info h2 { margin-bottom: 10px; font-size: 28px; color: var(--dark); }
-        .book-details-author { color: var(--gray); margin-bottom: 15px; font-size: 18px; }
-        .book-details-price { font-size: 28px; color: var(--secondary); font-weight: 700; margin: 15px 0; }
-        .book-details-desc { margin: 25px 0 5px; line-height: 1.8; }
-        .book-details-actions { display: flex; gap: 15px; margin-top: 25px; flex-wrap: wrap; }
+        .book-details { display: grid; grid-template-columns: 320px 1fr; gap: 40px; text-align: left; }
+        .book-details-img { border-radius: 8px; overflow: hidden; box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); background: #f9f9f9; display: flex; align-items: center; justify-content: center; width: 320px; height: 480px; border: 3px solid #8B7355; padding: 5px; }
+        .book-details-img img { width: 100%; height: 100%; display: block; object-fit: cover; }
+        .book-details-info h2 { margin-bottom: 10px; font-size: 26px; color: var(--dark); line-height: 1.3; text-align: center; }
+        .book-details-author { color: var(--gray); margin-bottom: 15px; font-size: 16px; text-align: center; }
+        .book-details-price { font-size: 32px; color: #B12704; font-weight: 700; margin: 15px 0; display: flex; align-items: center; flex-wrap: wrap; }
+        .book-details-desc { line-height: 1.8; color: var(--dark); text-align: justify; }
         #cart-modal .modal-content { max-width: 800px; max-height: 90vh; }
         .cart-item { display: flex; align-items: center; gap: 15px; border-bottom: 1px solid var(--light-gray); padding: 15px 0; }
         .cart-item:last-child { border-bottom: none; }
@@ -124,8 +248,9 @@
         .cart-empty-message { text-align: center; padding: 50px 0; color: var(--gray); }
         .cart-footer { padding: 20px 30px; border-top: 1px solid var(--light-gray); background: var(--light); display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
         .cart-total { font-size: 1.2rem; }
-        
-        /* Custom Alert & Order Confirmation Modals */
+        .btn { padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; font-weight: 600; transition: all 0.3s; display: inline-flex; align-items: center; justify-content: center; min-height: 40px; }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-large { padding: 15px 25px; font-size: 16px; }
         .custom-alert, .order-confirm-modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.6); align-items: center; justify-content: center; }
         .custom-alert-content, .order-confirm-content { background-color: #fff; margin: auto; padding: 25px; border: 1px solid #888; width: 80%; max-width: 400px; border-radius: 10px; text-align: center; position: relative; box-shadow: 0 5px 15px rgba(0,0,0,0.3); animation: modalFade 0.3s; }
         .close-alert-btn { color: #aaa; position: absolute; top: 10px; right: 15px; font-size: 28px; font-weight: bold; cursor: pointer; }
@@ -140,13 +265,13 @@
         .btn-copy-messenger:disabled { background-color: var(--gray); cursor: not-allowed; }
 
         /* --- RESPONSIVE STYLES --- */
+        @media (max-width: 992px) {
+            .book-details { grid-template-columns: 1fr; }
+            .book-details-img { max-width: 300px; margin: 0 auto; }
+        }
+
         @media (max-width: 768px) {
-            nav {
-                position: fixed; top: 0; right: -300px; width: 300px; height: 100vh;
-                background: var(--darker); box-shadow: -5px 0 15px rgba(0,0,0,0.2);
-                transition: right 0.3s ease-in-out; z-index: 1000; padding-top: 80px;
-                flex-direction: column; align-items: stretch;
-            }
+            nav { position: fixed; top: 0; right: -300px; width: 300px; height: 100vh; background: var(--darker); box-shadow: -5px 0 15px rgba(0,0,0,0.2); transition: right 0.3s ease-in-out; z-index: 1000; padding-top: 80px; flex-direction: column; align-items: stretch; }
             nav.active { right: 0; }
             nav ul { flex-direction: column; padding: 0; width: 100%; text-align: center; }
             nav ul li { margin: 0; position: relative; }
@@ -158,31 +283,44 @@
             .menu-toggle.active span:nth-child(2) { opacity: 0; }
             .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -6px); }
 
-            .books-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+            .book-card { padding: 10px; min-height: 150px; }
+            .book-img { width: 100px; min-width: 100px; height: 140px; margin-right: 15px; }
+            .book-info { padding: 0; text-align: left; max-width: none; flex-grow: 1; flex-basis: auto; height: auto; justify-content: center; }
+            .book-title { font-size: 15px; }
+            .current-price { font-size: 20px; }
+            .book-description-wrapper { display: none; }
+            .book-actions { flex-direction: column; gap: 8px; margin-top: 8px; padding-top: 0;}
+            .btn-add-cart { width: 100%; padding: 6px 15px; font-size: 12px; }
+
+            /* --- START: MOBILE PRICE STACKING --- */
+            .book-price {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 2px !important;
+            }
+            .discount {
+                margin-left: 10 !important;
+                display: block;
+                margin-top: 2px;
+            }
+            /* --- END: MOBILE PRICE STACKING --- */
+
             .footer-content { grid-template-columns: 1fr; text-align: center; gap: 40px; }
             .footer-heading:after { left: 50%; transform: translateX(-50%); }
-            .contact-info p { justify-content: center; }
-            .social-links { justify-content: center; }
+            .footer-logo, .contact-info p, .social-links { justify-content: center; }
             
-            /* Mobile Modal Fixes */
             .modal-content { width: 95%; margin: 20px auto; }
-            .modal-body { padding: 20px 15px; }
-            .book-details { grid-template-columns: 1fr; }
-            .book-details-img { max-width: 50%; margin: 0 auto; text-align: center; }
-            .book-details h2 { font-size: 20px; text-align: center; }
-            .book-details-author { font-size: 14px; text-align: center; }
-            .book-details-price { font-size: 18px; }
-            .book-details-desc { font-size: 14px; line-height: 1.6; }
+            .modal-body { padding: 15px; }
+            .book-details { gap: 15px; }
+            .book-details-img { width: 100%; max-width: 250px; height: 350px; }
+            .book-details-info h2 { font-size: 20px; }
+            .book-details-price { font-size: 24px !important; justify-content: center; margin: 8px 0 !important; }
             .cart-footer { flex-direction: column; gap: 15px; }
         }
 
         @media (max-width: 480px) {
-            .footer-logo { justify-content: center; }
             .footer-heading { font-size: 1.1rem; }
             .contact-info p { font-size: 0.9rem; }
-            .books-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
-            .book-actions { flex-direction: column; gap: 10px; }
-            .btn { width: 100%; }
         }
 
     </style>
@@ -198,13 +336,13 @@
                 <ul>
                     <li><a href="index.html#home" class="nav-link">Home</a></li>
                     <li><a href="about.html" class="nav-link">About</a></li>
-                     <li><a href="index.html#search" class="nav-link">Search</a></li>
+                    <li><a href="index.html#search" class="nav-link">Search</a></li>
                     <li><a href="index.html#categories" class="nav-link">Categories</a></li>
-
+                    
                     <li class="dropdown">
                         <a href="#" class="nav-link active">Collections <i class="fas fa-caret-down"></i></a>
                         <ul class="dropdown-menu">
-                            <li><a href="trending.html">Trending</a></li>
+                            <li><a href="newarrival.html">New Arrivals</a></li>
                             <li><a href="bestselling.html">Bestselling</a></li>
                         </ul>
                     </li>
@@ -234,10 +372,10 @@
     </header>
 
     <main class="main-content">
-        <section class="book-category-section" id="trending-books">
+        <section class="book-category-section" id="new-arrivals">
             <div class="container">
-                <h2 class="section-title">Trending Books</h2>
-                <div class="books-grid" id="trending-books-grid">
+                <h2 class="section-title">New Arrivals</h2>
+                <div class="books-grid" id="new-arrivals-grid">
                     </div>
             </div>
         </section>
@@ -246,7 +384,7 @@
     <div id="book-details-modal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>Book Details</h2>
+                <h2>Details</h2>
                 <span class="close-modal">&times;</span>
             </div>
             <div class="modal-body">
@@ -315,15 +453,14 @@
                     </div>
                 </div>
                 
-                <div class="footer-links">
-                    <h3 class="footer-heading">Quick Links</h3>
-                    <ul>
-                        <li><a href="index.html#home">Home</a></li>
-                        <li><a href="about.html">About</a></li>                        
-                        <li><a href="index.html#search">Search</a></li>
-                        <li><a href="index.html#categories">Categories</a></li>
-                        <li><a href="index.html#footer">Contact</a></li>
-                    </ul>
+                <div class="footer-comments">
+                    <h3 class="footer-heading">Share Your Comments</h3>
+                    <form class="comment-form">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Email Address" required>
+                        <textarea name="message" placeholder="Your Comment" required></textarea>
+                        <button type="submit">Send Comment</button>
+                    </form>
                 </div>
                 
                 <div class="contact-info">
@@ -360,105 +497,112 @@
             }
         }
 
+        // --- START: EXACT createBookCard function from index.html ---
         function createBookCard(book) {
             const card = document.createElement('div');
             card.className = 'book-card';
-            const discount = book.originalPrice ? Math.round(((book.originalPrice - book.price) / book.originalPrice) * 100) : 0;
+            const discount = book.originalPrice > 0 ? Math.round(((book.originalPrice - book.price) / book.originalPrice) * 100) : 0;
+            const imageUrl = book.frontImg ? book.frontImg : 'https://dummyimage.com/130x180/5c5c5c/ffffff&text=No+Image';
+            const descriptionSnippet = book.description || '';
 
             card.innerHTML = `
                 <div class="book-img">
-                    <img src="${book.frontImg}" alt="${book.title}" onerror="this.onerror=null;this.src='https://via.placeholder.com/250x375.png?text=No+Image';">
-                    <div class="quick-view">${book.condition} | ${book.category}</div>
+                    <img src="${imageUrl}" alt="${book.title}" onerror="this.onerror=null; this.src='https://dummyimage.com/130x180/5c5c5c/ffffff&text=No+Image';">
                 </div>
                 <div class="book-info">
-                    <h3 class="book-title">${book.title}</h3>
-                    <p class="book-author">by ${book.author}</p>
-                    <div class="book-price">
-                        <span class="current-price">₹${book.price}</span>
-                        ${book.originalPrice ? `<span class="original-price">₹${book.originalPrice}</span>` : ''}
-                        ${discount > 0 ? `<span class="discount">${discount}% off</span>` : ''}
+                    <div>
+                        <h3 class="book-title">${book.title}</h3>
+                        <p class="book-author">by ${book.author}</p>
+                        <div class="book-price">
+                            <span class="current-price">₹${book.price}</span>
+                            ${book.originalPrice > 0 ? `<span class="original-price">M.R.P.: ₹${book.originalPrice}</span>` : ''}
+                            ${discount > 0 ? `<span class="discount">(${discount}% off)</span>` : ''}
+                        </div>
+                        <p class="free-delivery">Free delivery on 3 books</p>
                     </div>
-                    <p style="font-size: 12px; color: var(--gray); margin-top: -10px; margin-bottom: 10px;">(Free Delivery on Three)</p>
                     <div class="book-actions">
-                        <button class="btn btn-outline view-details" data-id="${book.id}">
-                            <i class="fas fa-eye"></i> Details
-                        </button>
-                        <button class="btn btn-primary add-to-cart-btn" data-id="${book.id}">
-                            <i class="fas fa-cart-plus"></i> Add to Cart
+                        <button class="btn-add-cart add-to-cart-btn" data-id="${book.id}">
+                            Add to cart
                         </button>
                     </div>
+                </div>
+                <div class="book-description-wrapper">
+                    <p class="book-description">${descriptionSnippet}</p>
                 </div>
             `;
 
-            card.querySelector('.view-details').addEventListener('click', () => showBookDetails(book.id));
-            card.querySelector('.add-to-cart-btn').addEventListener('click', () => toggleCartItem(book.id));
+            card.addEventListener('click', (e) => {
+                if (!e.target.closest('.add-to-cart-btn')) {
+                    showBookDetails(book.id);
+                }
+            });
+            card.querySelector('.add-to-cart-btn').addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleCartItem(book.id);
+            });
             return card;
         }
+        // --- END: EXACT createBookCard function ---
 
         function updateAddToCartButtonsUI() {
             document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
                 const bookId = parseInt(btn.dataset.id);
-                if (cart.some(item => item.id === bookId)) {
-                    btn.innerHTML = `<i class="fas fa-check"></i> Added`;
-                    btn.classList.add('added');
-                } else {
-                    btn.innerHTML = `<i class="fas fa-cart-plus"></i> Add to Cart`;
-                    btn.classList.remove('added');
-                }
+                const inCart = cart.some(item => item.id === bookId);
+                btn.textContent = inCart ? 'Added' : 'Add to cart';
+                btn.classList.toggle('added', inCart);
             });
         }
         
+        // --- START: EXACT showBookDetails function from index.html ---
         function showBookDetails(bookId) {
             const book = allBooks.find(b => b.id === bookId);
             if (!book) return;
+
             const bookDetailsContent = document.getElementById('book-details-content');
             const bookDetailsModal = document.getElementById('book-details-modal');
-            const discount = book.originalPrice ? Math.round(((book.originalPrice - book.price) / book.originalPrice) * 100) : 0;
-
-            let descriptionHTML = '';
-            const maxLength = 250; 
-            if (book.description && book.description.length > maxLength) {
-                const truncatedDesc = book.description.substring(0, maxLength) + '...';
-                descriptionHTML = `<p class="book-details-desc" id="book-desc-text">${truncatedDesc}</p><button id="see-more-desc" style="background:none; border:none; color:var(--primary); cursor:pointer; padding: 0; font-weight:600; font-size: 14px; text-align: left;">See More</button>`;
-            } else {
-                descriptionHTML = `<p class="book-details-desc">${book.description || ''}</p>`;
+            const discount = book.originalPrice > 0 ? Math.round(((book.originalPrice - book.price) / book.originalPrice) * 100) : 0;
+            
+            let language = 'English';
+            if (book.language) {
+                language = book.language;
+            } else if (book.publication && (book.publication.toLowerCase().includes('ananda') || book.publication.toLowerCase().includes('dey') || book.publication.toLowerCase().includes('বাংলা'))) {
+                language = 'Bengali';
             }
 
+            let descriptionHTML = '';
+            if (book.description) {
+                descriptionHTML = `
+                    <div style="margin-top: 20px;">
+                        <h3 style="font-size: 16px; margin-bottom: 10px; color: var(--dark);">Description:</h3>
+                        <p class="book-details-desc">${book.description}</p>
+                    </div>`;
+            }
+
+            const imageUrl = book.frontImg ? book.frontImg : 'https://dummyimage.com/250x375/5c5c5c/ffffff&text=No+Image';
+
             bookDetailsContent.innerHTML = `
-                <div class="book-details-img"><img src="${book.frontImg}" alt="${book.title}" onerror="this.onerror=null;this.src='https://via.placeholder.com/250x375.png?text=No+Image';"></div>
+                <div class="book-details-img">
+                    <img src="${imageUrl}" alt="${book.title}" onerror="this.onerror=null; this.src='https://dummyimage.com/250x375/5c5c5c/ffffff&text=No+Image';">
+                </div>
                 <div class="book-details-info">
                     <h2>${book.title}</h2>
                     <p class="book-details-author">by ${book.author}</p>
-                    <p style="font-size: 14px; color: var(--gray); margin-bottom: 10px;">Publication: ${book.publication || 'N/A'}</p>
-                    <p style="font-size: 14px; color: var(--gray); margin-bottom: 10px;">Language: ${book.language}</p>
+                    <div style="margin: 15px 0; padding: 15px; background: #f9f9f9; border-radius: 6px;">
+                        <p style="font-size: 14px; color: var(--dark); margin-bottom: 8px;"><strong>Publisher:</strong> ${book.publication || 'N/A'}</p>
+                        <p style="font-size: 14px; color: var(--dark); margin-bottom: 8px;"><strong>Language:</strong> ${language}</p>
+                        <p style="font-size: 14px; color: var(--dark); margin-bottom: 0;"><strong>ISBN:</strong> ${book.isbn || 'N/A'}</p>
+                    </div>
                     <div class="book-details-price">
                         ₹${book.price}
-                        ${book.originalPrice ? `<span class="original-price" style="font-size: 1rem; text-decoration: line-through; color: var(--gray); margin-left: 10px;">₹${book.originalPrice}</span>` : ''}
-                        ${discount > 0 ? `<span class="discount" style="font-size: 1rem; color: var(--danger); margin-left: 10px;">${discount}% off</span>` : ''}
+                        ${book.originalPrice > 0 ? `<span class="original-price" style="font-size: 18px; margin-left: 10px;">₹${book.originalPrice}</span>` : ''}
+                        ${discount > 0 ? `<span class="discount" style="margin-left: 10px;">${discount}% off</span>` : ''}
                     </div>
                     ${descriptionHTML}
-                    <div class="book-details-actions"><button class="btn btn-outline btn-large download-sample-modal" data-pdf="${book.pdf}" style="width: 100%;"><i class="fas fa-download"></i> Sample</button></div>
                 </div>`;
-
-            const seeMoreBtn = bookDetailsContent.querySelector('#see-more-desc');
-            if (seeMoreBtn) {
-                seeMoreBtn.addEventListener('click', () => {
-                    bookDetailsContent.querySelector('#book-desc-text').textContent = book.description;
-                    seeMoreBtn.style.display = 'none'; 
-                }, { once: true });
-            }
-
-            bookDetailsContent.querySelector('.download-sample-modal').addEventListener('click', function() {
-                const pdfUrl = this.getAttribute('data-pdf');
-                if (pdfUrl && pdfUrl.trim() !== "" && !pdfUrl.includes('dummy.pdf')) {
-                    window.open(pdfUrl, '_blank');
-                } else {
-                    showCustomAlert('PDF is not available for this book.');
-                }
-            });
-
+            
             bookDetailsModal.style.display = 'block';
         }
+        // --- END: EXACT showBookDetails function ---
 
         function toggleCartItem(bookId) {
             const itemInCart = cart.some(item => item.id === bookId);
@@ -466,7 +610,9 @@
                 cart = cart.filter(item => item.id !== bookId);
             } else {
                 const book = allBooks.find(b => b.id === bookId);
-                cart.push({ ...book, quantity: 1 });
+                if(book) {
+                    cart.push({ ...book, quantity: 1 });
+                }
             }
             saveCartToStorage();
             updateCartBadge();
@@ -486,8 +632,9 @@
                 cart.forEach(item => {
                     const cartItemEl = document.createElement('div');
                     cartItemEl.className = 'cart-item';
+                    const imageUrl = item.frontImg || 'https://dummyimage.com/80x120/ccc/fff&text=No+Image';
                     cartItemEl.innerHTML = `
-                        <img src="${item.frontImg}" alt="${item.title}" class="cart-item-img" onerror="this.onerror=null;this.src='https://via.placeholder.com/80x120.png?text=No+Image';">
+                        <img src="${imageUrl}" alt="${item.title}" class="cart-item-img" onerror="this.onerror=null;this.src='https://dummyimage.com/80x120/ccc/fff&text=No+Image';">
                         <div class="cart-item-info"><h4>${item.title}</h4><p class="cart-item-price">₹${item.price}</p></div>
                         <div class="cart-item-quantity">
                             <button class="quantity-btn" data-id="${item.id}" data-change="-1">-</button>
@@ -514,7 +661,7 @@
             if (itemInCart) {
                 itemInCart.quantity += change;
                 if (itemInCart.quantity <= 0) removeFromCart(bookId);
-                else { saveCartToStorage(); displayCart(); updateCartBadge(); }
+                else { saveCartToStorage(); displayCart(); }
             }
         }
 
@@ -546,27 +693,24 @@
         }
 
         function copyToClipboard(text) {
-            return navigator.clipboard ? navigator.clipboard.writeText(text) : new Promise(resolve => {
-                const textArea = document.createElement("textarea");
-                textArea.value = text;
-                document.body.appendChild(textArea);
-                textArea.select();
-                const success = document.execCommand('copy');
-                document.body.removeChild(textArea);
-                resolve(success);
-            });
+            return navigator.clipboard.writeText(text);
         }
-
 
         // --- INITIALIZATION ---
         document.addEventListener('DOMContentLoaded', () => {
             allBooks = JSON.parse(localStorage.getItem('readoraBooks')) || [];
             
-            const trendingGrid = document.getElementById('trending-books-grid');
-            const trendingBooks = allBooks.filter(book => book.status === 'trending');
+            const newArrivalsGrid = document.getElementById('new-arrivals-grid');
+            const newArrivalsBooks = allBooks.filter(book => {
+                const condition = book.condition ? book.condition.toLowerCase() : '';
+                return condition === 'new' || condition === 'both';
+            });
             
-            if (trendingBooks.length > 0) trendingBooks.forEach(book => trendingGrid.appendChild(createBookCard(book)));
-            else trendingGrid.innerHTML = '<p class="no-books">No trending books at the moment. Check back soon!</p>';
+            if (newArrivalsBooks.length > 0) {
+                newArrivalsBooks.forEach(book => newArrivalsGrid.appendChild(createBookCard(book)));
+            } else {
+                newArrivalsGrid.innerHTML = '<p class="no-books">No new arrival books at the moment. Check back soon!</p>';
+            }
             
             updateCartBadge();
             updateAddToCartButtonsUI();
@@ -604,13 +748,29 @@
                 }, 500);
             });
             
-            // Modal Closing Logic
             document.querySelectorAll('.close-modal, .close-cart-modal, .close-confirm-modal, .close-alert-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
                     btn.closest('.modal, .order-confirm-modal, .custom-alert').style.display = 'none';
                 });
             });
-             window.addEventListener('click', (e) => {
+
+            const commentForm = document.querySelector('.comment-form');
+            if (commentForm) {
+                commentForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const name = commentForm.elements['name'].value.trim();
+                    const email = commentForm.elements['email'].value.trim();
+                    const message = commentForm.elements['message'].value.trim();
+                    if (!name || !email || !message) {
+                        showCustomAlert('Please fill in all fields.');
+                        return;
+                    }
+                    const subject = `Website comment from ${name}`;
+                    const body = `Name: ${name}\nEmail: ${email}\n\nComment:\n${message}`;
+                    window.location.href = `mailto:readora07@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                });
+            }
+            window.addEventListener('click', (e) => {
                 if (e.target.classList.contains('modal') || e.target.classList.contains('order-confirm-modal') || e.target.classList.contains('custom-alert')) {
                     e.target.style.display = 'none';
                 }
