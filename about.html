@@ -390,110 +390,185 @@
         }
 
         /* Footer */
-        footer {
-            background: var(--darker);
-            color: white;
-            padding: 60px 0 30px;
+        footer { 
+            background: #2d3436; 
+            color: white; 
+            padding: 40px 0 20px; 
         }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-bottom: 30px;
+        
+        .footer-content { 
+            display: grid; 
+            grid-template-columns: 2fr 1.5fr 1.5fr; 
+            gap: 80px; 
+            margin-bottom: 50px; 
         }
-
-        .footer-logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
+        
+        .footer-logo { 
+            font-size: 1.4rem; 
+            font-weight: 700; 
+            margin-bottom: 15px; 
+            display: flex; 
+            align-items: center; 
         }
-
-        .footer-logo i {
-            margin-right: 10px;
-            color: var(--accent);
+        
+        .footer-logo i { 
+            margin-right: 10px; 
+            color: var(--accent); 
+            font-size: 1.6rem; 
         }
-
-        .footer-about p {
-            margin-bottom: 20px;
-            line-height: 1.8;
+        
+        .footer-about p { 
+            margin-bottom: 25px; 
+            line-height: 1.6; 
+            color: rgba(255, 255, 255, 0.75); 
+            font-size: 13px; 
         }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
+        
+        .social-links { 
+            display: flex; 
+            gap: 10px; 
+            margin-top: 25px; 
         }
-
-        .social-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: white;
-            transition: all 0.3s;
+        
+        .social-link { 
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center; 
+            width: 32px; 
+            height: 32px; 
+            background: rgba(255, 255, 255, 0.15); 
+            border-radius: 4px; 
+            color: white; 
+            transition: all 0.3s; 
+            font-size: 13px; 
         }
-
-        .social-link:hover {
-            background: var(--accent);
-            transform: translateY(-3px);
+        
+        .social-link:hover { 
+            background: var(--accent); 
+            transform: translateY(-2px); 
         }
-
-        .footer-heading {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
+        
+        .footer-heading { 
+            font-size: 1rem; 
+            margin-bottom: 18px; 
+            position: relative; 
+            padding-bottom: 10px; 
+            font-weight: 600; 
         }
-
-        .footer-heading:after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 40px;
-            height: 3px;
-            background: var(--accent);
+        
+        .footer-heading:after { 
+            content: ''; 
+            position: absolute; 
+            left: 0; 
+            bottom: 0; 
+            width: 40px; 
+            height: 2px; 
+            background: var(--accent); 
         }
-
-        .footer-links ul {
+        
+        .footer-links ul { 
+            list-style: none; 
+        }
+        
+        .footer-links ul li { 
+            margin-bottom: 10px; 
+        }
+        
+        .footer-links ul li a { 
+            color: rgba(255, 255, 255, 0.7); 
+            text-decoration: none; 
+            transition: all 0.3s; 
+            font-size: 13px; 
+        }
+        .footer-links ul li a i {
+            margin-left: 6px;
+            font-size: 0.7rem;
+        }
+        .footer-links ul li.has-sub .sub-links {
             list-style: none;
+            margin-top: 8px;
+            margin-left: 14px;
+        }
+        .footer-links ul li.has-sub .sub-links li {
+            margin-bottom: 8px;
+        }
+        .footer-links ul li.has-sub .sub-links li a {
+            font-size: 12.5px;
+            color: rgba(255, 255, 255, 0.65);
+        }
+        
+        .footer-links ul li a:hover { 
+            color: var(--accent); 
+            padding-left: 5px; 
         }
 
-        .footer-links ul li {
-            margin-bottom: 10px;
-        }
-
-        .footer-links ul li a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-links ul li a:hover {
-            color: var(--accent);
-        }
-
-        .contact-info p {
+        .footer-comments form {
             display: flex;
-            align-items: center;
-            margin-bottom: 15px;
+            flex-direction: column;
+            gap: 12px;
         }
-
-        .contact-info i {
-            margin-right: 10px;
-            color: var(--accent);
+        .footer-comments input,
+        .footer-comments textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+            font-size: 13px;
+            transition: border-color 0.3s ease, background 0.3s ease;
         }
-
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        .footer-comments input::placeholder,
+        .footer-comments textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        .footer-comments input:focus,
+        .footer-comments textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(255, 255, 255, 0.12);
+        }
+        .footer-comments textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        .footer-comments button {
+            align-self: flex-start;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            background: var(--accent);
+            color: #0b1221;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+        .footer-comments button:hover {
+            background: #fff;
+            transform: translateY(-2px);
+        }
+        
+        .contact-info p { 
+            display: flex; 
+            align-items: flex-start; 
+            margin-bottom: 12px; 
+            color: rgba(255, 255, 255, 0.75); 
+            font-size: 13px; 
+        }
+        
+        .contact-info i { 
+            margin-right: 10px; 
+            color: var(--accent); 
+            margin-top: 2px; 
+            font-size: 14px; 
+        }
+        
+        .copyright { 
+            text-align: center; 
+            padding-top: 20px; 
+            border-top: 1px solid rgba(255, 255, 255, 0.1); 
+            color: rgba(255, 255, 255, 0.5); 
+            font-size: 13px; 
         }
         
         /* Modal, Cart & Order Confirmation Styles */
@@ -586,7 +661,7 @@
                     <li class="dropdown">
                         <a href="#">Collections <i class="fas fa-caret-down"></i></a>
                         <ul class="dropdown-menu">
-                            <li><a href="trending.html">Trending</a></li>
+                            <li><a href="newarrival.html">New Arrivals</a></li>
                             <li><a href="bestselling.html">Bestselling</a></li>
                         </ul>
                     </li>
@@ -750,15 +825,14 @@
                     </div>
                 </div>
                 
-                <div class="footer-links">
-                    <h3 class="footer-heading">Quick Links</h3>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>                        
-                        <li><a href="index.html#search">Search</a></li>
-                        <li><a href="index.html#categories">Categories</a></li>
-                        <li><a href="index.html#footer">Contact</a></li>
-                    </ul>
+                <div class="footer-comments">
+                    <h3 class="footer-heading">Share Your Comments</h3>
+                    <form class="comment-form">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Email Address" required>
+                        <textarea name="message" placeholder="Your Comment" required></textarea>
+                        <button type="submit">Send Comment</button>
+                    </form>
                 </div>
                 
                 <div class="contact-info">
@@ -836,6 +910,28 @@
                     orderConfirmModal.style.display = 'none';
                 });
                 document.getElementById('copy-and-redirect-btn').addEventListener('click', handleCopyAndRedirect);
+            }
+
+            const commentForm = document.querySelector('.comment-form');
+            if (commentForm) {
+                commentForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+
+                    const name = commentForm.elements['name'].value.trim();
+                    const email = commentForm.elements['email'].value.trim();
+                    const message = commentForm.elements['message'].value.trim();
+
+                    if (!name || !email || !message) {
+                        showCustomAlert('Please fill in your name, email, and comment before sending.');
+                        return;
+                    }
+
+                    const subject = `Website comment from ${name}`;
+                    const body = `Name: ${name}\nEmail: ${email}\n\nComment:\n${message}`;
+                    const mailtoLink = `mailto:readora07@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+                    window.location.href = mailtoLink;
+                });
             }
         }
 
