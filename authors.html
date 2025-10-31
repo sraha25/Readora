@@ -39,80 +39,65 @@
         nav ul li.dropdown .dropdown-menu li a:hover { background: rgba(255, 255, 255, 0.1); color: var(--accent); }
         nav ul li a .fa-caret-down { margin-left: 5px; font-size: 0.8em; }
         
-        /* --- NEW Hero Section Styles --- */
-        .hero { min-height: 60vh; background-size: cover; background-position: center; background-attachment: fixed; color: white; display: flex; align-items: center; text-align: center; position: relative; }
-        .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(45, 52, 54, 0.8); }
-        .hero-content { max-width: 800px; margin: 0 auto; padding: 20px; z-index: 2; }
-        .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); }
-        .hero p { font-size: 1.3rem; margin-bottom: 2rem; opacity: 0.9; }
-
-        .main-content { padding-top: 0; } /* Adjusted for hero section */
+        .main-content { padding-top: 0; }
         .authors-section { padding: 4rem 0; scroll-margin-top: 100px; }
         .section-title { text-align: center; margin-bottom: 3rem; position: relative; font-size: 2.5rem; }
         .section-title:after { content: ''; display: block; width: 80px; height: 4px; background: var(--accent); margin: 15px auto; border-radius: 2px; }
 
-        .authors-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 2.5rem; justify-content: center; }
-        .author-card { text-align: center; cursor: pointer; transition: transform 0.3s ease; }
-        .author-card:hover { transform: translateY(-10px); }
-        .author-image-wrapper { width: 150px; height: 150px; border-radius: 50%; margin: 0 auto 1rem; overflow: hidden; position: relative; border: 5px solid white; box-shadow: 0 10px 25px rgba(0,0,0,0.1); transition: all 0.4s ease; }
-        .author-card:hover .author-image-wrapper { transform: scale(1.05); box-shadow: 0 0 25px var(--accent); }
-        .author-image-wrapper img { width: 100%; height: 100%; object-fit: cover; }
-        .author-name { font-family: 'Merriweather', serif; font-weight: 700; font-size: 1.1rem; }
+        .authors-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; justify-content: center; }
+        .author-card { padding: 1.5rem; background: white; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); text-align: center; cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; }
+        .author-card:hover { transform: translateY(-6px); box-shadow: 0 15px 35px rgba(0,0,0,0.12); background: var(--light); }
+        .author-name { font-family: 'Merriweather', serif; font-weight: 700; font-size: 1.1rem; color: var(--dark); }
 
-        #author-details-section { display: none; margin-top: 4rem; padding: 3rem; background: white; border-radius: 15px; box-shadow: 0 15px 40px rgba(0,0,0,0.1); scroll-margin-top: 100px; }
-        .author-details-content { display: grid; grid-template-columns: 200px 1fr; gap: 2rem; align-items: flex-start; }
-        .author-details-img { width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 6px solid var(--light); }
-        .author-bio h3 { font-size: 2rem; margin-bottom: 1rem; }
-        .author-bio p { line-height: 1.8; margin-bottom: 1.5rem; text-align: justify; }
-        .author-books-title { margin-top: 3rem; font-size: 1.8rem; text-align: center; position: relative; padding-bottom: 15px; }
-        .author-books-title:after { content: ''; display: block; width: 60px; height: 3px; background: var(--accent); margin: 10px auto 0; }
+        #author-details-section { display: none; margin-top: 4rem; padding: 3rem 0; background: white; border-radius: 15px; box-shadow: 0 15px 40px rgba(0,0,0,0.1); scroll-margin-top: 100px; }
+        #author-details-container { text-align: center; }
+        .author-books-title {
+            margin: 0 0 2rem;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        /* Books Grid - Amazon Style */
+        .books-grid { display: flex; flex-direction: column; gap: 15px; margin-top: 30px;}
+        .book-card { background: white; border-radius: 8px; overflow: visible; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); transition: all 0.3s ease; position: relative; display: flex; flex-direction: row; align-items: center; padding: 12px; border: 1px solid #e0e0e0; cursor: pointer; min-height: 180px; }
+        .book-card:hover { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); border-color: var(--primary); }
+        .book-img { width: 130px; min-width: 130px; height: 180px; overflow: hidden; position: relative; background-color: #f9f9f9; border-radius: 4px; flex-shrink: 0; border: 3px solid #8B7355; padding: 3px; margin-right: 20px;}
+        .book-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+        .book-card:hover .book-img img { transform: scale(1.05); }
+        .book-info { padding: 0; display: flex; flex-direction: column; flex-grow: 0; flex-shrink: 0; flex-basis: 250px; text-align: left; justify-content: space-between; height: 180px; }
+        .book-description-wrapper { flex-grow: 1; padding-left: 15px; margin-left: 15px; border-left: 1px solid #f0f0f0; font-size: 13px; color: #666; line-height: 1.5; display: flex; align-items: center; }
+        .book-description { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; text-overflow: ellipsis; margin: 0; font-weight: normal; max-height: 2.8em; }
+        .book-title { font-size: 18px; font-weight: 700; margin-bottom: 5px; color: var(--dark); display: -webkit-box; -webkit-line-clamp: 2; overflow: hidden; }
+        .book-author { color: var(--gray); margin-bottom: 8px; font-size: 14px; line-height: 1.4; }
+        .book-price { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 8px; }
+        .current-price { font-size: 24px; font-weight: 700; color: #B12704; }
+        .original-price { text-decoration: line-through; color: var(--gray); font-size: 13px; margin-left: 8px; }
+        .discount { color: #B12704; font-weight: 600; font-size: 13px; }
+        .free-delivery { font-size: 12px; color: #007600; font-weight: 600; margin-top: 5px; margin-bottom: 8px; }
+        .btn-add-cart { background: #FFD814; color: #0F1111; border: 1px solid #FCD200; border-radius: 8px; padding: 8px 20px; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s; }
+        .btn-add-cart:hover { background: #F7CA00; transform: none; }
+        .btn-add-cart.added { background: #90EE90; border-color: #90EE90; color: #0F1111; }
+        .btn-add-cart.added:hover { background: #7FD87F; }
+        .book-actions { display: flex; gap: 10px; margin-top: 10px; }
         
-        /* Styles from index.html */
-        .books-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 30px; margin-top: 30px;}
-        .book-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08); transition: all 0.3s ease; position: relative; display: flex; flex-direction: column; }
-        .book-card:hover { transform: translateY(-8px); box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15); }
-        .book-img { aspect-ratio: 2 / 3; overflow: hidden; position: relative; background-color: #f9f9f9; }
-        .book-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
-        .book-card:hover .book-img img { transform: scale(1.08); }
-        .quick-view { position: absolute; bottom: 0; left: 0; width: 100%; background-color: rgba(79, 195, 161, 0.9); color: white; text-align: center; padding: 12px 5px; font-weight: 600; font-size: 0.9rem; transform: translateY(100%); opacity: 0; transition: transform 0.3s ease, opacity 0.3s ease; z-index: 3; }
-        .book-card:hover .quick-view { transform: translateY(0); opacity: 1; }
-        .book-info { padding: 15px; display: flex; flex-direction: column; flex-grow: 1; text-align: center; }
-        .book-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-        .book-author { color: var(--gray); margin-bottom: 12px; font-size: 14px; line-height: 1.4; word-wrap: break-word; }
-        .book-price { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
-        .current-price { font-size: 20px; font-weight: 700; color: var(--secondary); }
-        .original-price { text-decoration: line-through; color: var(--gray); font-size: 14px; }
-        .discount { color: var(--danger); font-weight: 600; font-size: 14px; }
-        .book-actions { display: flex; justify-content: space-between; margin-top: auto; padding-top: 15px; gap: 10px; }
-        .btn { padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; font-weight: 600; transition: all 0.3s; display: inline-flex; align-items: center; justify-content: center; min-height: 40px; flex-grow: 1; }
-        .btn.added { background-color: var(--success); color: white; }
-        .btn i { margin-right: 8px; font-size: 14px; }
-        .btn-primary { background: var(--primary); color: white; }
-        .btn-primary:hover { background: var(--secondary); transform: translateY(-2px); }
-        .btn-outline { background: transparent; border: 2px solid var(--primary); color: var(--primary); }
-        .btn-outline:hover { background: var(--primary); color: white; }
-        .no-books { text-align: center; grid-column: 1 / -1; padding: 2rem; font-size: 1.2rem; color: var(--gray); }
-
+        /* Modal Styles */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); z-index: 1000; overflow-y: auto; }
-        .modal-content { background: white; margin: 50px auto; border-radius: 12px; width: 90%; animation: modalFade 0.4s; overflow: hidden; position: relative; display: flex; flex-direction: column; }
-        #book-details-modal .modal-content { max-width: 900px; }
-        #cart-modal .modal-content { max-width: 800px; }
+        .modal-content { background: white; margin: 50px auto; border-radius: 12px; max-width: 900px; width: 90%; animation: modalFade 0.4s; overflow: hidden; position: relative; display: flex; flex-direction: column; }
         @keyframes modalFade { from { opacity: 0; transform: translateY(-60px); } to { opacity: 1; transform: translateY(0); } }
         .modal-header { padding: 20px; border-bottom: 1px solid var(--light-gray); display: flex; justify-content: space-between; align-items: center; background: var(--light); flex-shrink: 0; }
-        .close-modal, .close-cart-modal, .close-confirm-modal { font-size: 28px; cursor: pointer; color: var(--gray); transition: color 0.3s; position: absolute; top: 15px; right: 20px; z-index: 10; }
-        .close-modal:hover, .close-cart-modal:hover, .close-confirm-modal:hover { color: var(--dark); }
+        .close-modal, .close-cart-modal { font-size: 28px; cursor: pointer; color: var(--gray); transition: color 0.3s; position: absolute; top: 15px; right: 20px; z-index: 10; }
+        .close-modal:hover, .close-cart-modal:hover { color: var(--dark); }
         .modal-body { padding: 30px; overflow-y: auto; flex-grow: 1; }
-        
-        .book-details { display: grid; grid-template-columns: 1fr 2fr; gap: 30px; text-align: justify; }
-        .book-details-img { border-radius: 8px; overflow: hidden; box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); }
-        .book-details-img img { width: 100%; height: auto; display: block; }
-        .book-details-info h2 { margin-bottom: 10px; font-size: 28px; color: var(--dark); }
-        .book-details-author { color: var(--gray); margin-bottom: 15px; font-size: 18px; }
-        .book-details-price { font-size: 28px; color: var(--secondary); font-weight: 700; margin: 15px 0; }
-        .book-details-desc { margin: 25px 0 5px; line-height: 1.8; }
-        .book-details-actions { display: flex; gap: 15px; margin-top: 25px; flex-wrap: wrap; }
-        .btn-large { padding: 15px 25px; font-size: 16px; }
+        .book-details { display: grid; grid-template-columns: 320px 1fr; gap: 40px; text-align: left; }
+        .book-details-img { border-radius: 8px; overflow: hidden; box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); background: #f9f9f9; display: flex; align-items: center; justify-content: center; width: 320px; height: 480px; border: 3px solid #8B7355; padding: 5px; }
+        .book-details-img img { width: 100%; height: 100%; display: block; object-fit: cover; }
+        .book-details-info h2 { margin-bottom: 10px; font-size: 26px; color: var(--dark); line-height: 1.3; text-align: left; }
+        .book-details-author { color: var(--gray); margin-bottom: 15px; font-size: 16px; text-align: left; }
+        .book-details-price { font-size: 28px; color: #B12704; font-weight: 700; margin: 15px 0; display: flex; align-items: center; flex-wrap: wrap; }
+        .book-details-desc { line-height: 1.8; color: var(--dark); text-align: justify; }
 
+        /* Cart & Other Modals */
+        #cart-modal .modal-content { max-width: 800px; max-height: 90vh; }
         .cart-item { display: flex; align-items: center; gap: 15px; border-bottom: 1px solid var(--light-gray); padding: 15px 0; }
         .cart-item:last-child { border-bottom: none; }
         .cart-item-img { width: 80px; height: 120px; object-fit: cover; border-radius: 4px; }
@@ -124,10 +109,9 @@
         .cart-empty-message { text-align: center; padding: 50px 0; color: var(--gray); }
         .cart-footer { padding: 20px; border-top: 1px solid var(--light-gray); background: var(--light); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; flex-shrink: 0; }
         .cart-total { font-size: 1.2rem; }
-        
         .custom-alert, .order-confirm-modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.6); align-items: center; justify-content: center; }
         .custom-alert-content, .order-confirm-content { background-color: #fff; margin: auto; padding: 25px; border: 1px solid #888; width: 80%; max-width: 400px; border-radius: 10px; text-align: center; position: relative; box-shadow: 0 5px 15px rgba(0,0,0,0.3); animation: modalFade 0.3s; }
-        .close-alert-btn { color: #aaa; position: absolute; top: 10px; right: 15px; font-size: 28px; font-weight: bold; cursor: pointer; }
+        .close-alert-btn, .close-confirm-modal { color: #aaa; position: absolute; top: 10px; right: 15px; font-size: 28px; font-weight: bold; cursor: pointer; }
         .order-confirm-content { max-width: 500px; padding: 0; text-align: left; }
         .order-confirm-header { padding: 20px; border-bottom: 1px solid var(--light-gray); background: var(--light); }
         .order-confirm-header h2 { margin: 0; font-size: 1.5rem; color: var(--primary); }
@@ -137,35 +121,42 @@
         .btn-copy-messenger { background: var(--primary); color: white; border: none; padding: 15px; border-radius: 4px; cursor: pointer; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 10px; transition: all 0.3s; }
         .btn-copy-messenger:hover { background: var(--secondary); transform: translateY(-2px); }
         .btn-copy-messenger:disabled { background-color: var(--gray); cursor: not-allowed; }
+        .btn { padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; font-weight: 600; transition: all 0.3s; display: inline-flex; align-items: center; justify-content: center; min-height: 40px; }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-large { padding: 15px 25px; font-size: 16px; }
+
+        footer { background: #2d3436; color: white; padding: 40px 0 20px; }
+        .footer-content { display: grid; grid-template-columns: 2fr 1.5fr 1.5fr; gap: 80px; margin-bottom: 50px; }
+        .footer-logo { font-size: 1.4rem; font-weight: 700; margin-bottom: 15px; display: flex; align-items: center; }
+        .footer-logo i { margin-right: 10px; color: var(--accent); font-size: 1.6rem; }
+        .footer-about p { margin-bottom: 25px; line-height: 1.6; color: rgba(255, 255, 255, 0.75); font-size: 13px; }
+        .social-links { display: flex; gap: 10px; margin-top: 25px; }
+        .social-link { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: rgba(255, 255, 255, 0.15); border-radius: 4px; color: white; transition: all 0.3s; font-size: 13px; }
+        .social-link:hover { background: var(--accent); transform: translateY(-2px); }
+        .footer-heading { font-size: 1rem; margin-bottom: 18px; position: relative; padding-bottom: 10px; font-weight: 600; }
+        .footer-heading:after { content: ''; position: absolute; left: 0; bottom: 0; width: 40px; height: 2px; background: var(--accent); }
+        .footer-comments form { display: flex; flex-direction: column; gap: 12px; }
+        .footer-comments input, .footer-comments textarea { width: 100%; padding: 10px 12px; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.15); background: rgba(255, 255, 255, 0.08); color: #fff; font-size: 13px; transition: border-color 0.3s ease, background 0.3s ease; }
+        .footer-comments input::placeholder, .footer-comments textarea::placeholder { color: rgba(255, 255, 255, 0.6); }
+        .footer-comments input:focus, .footer-comments textarea:focus { outline: none; border-color: var(--accent); background: rgba(255, 255, 255, 0.12); }
+        .footer-comments textarea { min-height: 100px; resize: vertical; }
+        .footer-comments button { align-self: flex-start; padding: 10px 20px; border: none; border-radius: 6px; background: var(--accent); color: #0b1221; font-weight: 600; cursor: pointer; transition: background 0.3s ease, transform 0.3s ease; }
+        .footer-comments button:hover { background: #fff; transform: translateY(-2px); }
+        .contact-info p { display: flex; align-items: flex-start; margin-bottom: 12px; color: rgba(255, 255, 255, 0.75); font-size: 13px; }
+        .contact-info i { margin-right: 10px; color: var(--accent); margin-top: 2px; font-size: 14px; }
+        .copyright { text-align: center; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1); color: rgba(255, 255, 255, 0.5); font-size: 13px; }
         
-        footer { background: var(--darker); color: white; padding: 60px 0 30px; }
-        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px; }
-        .footer-logo { font-size: 1.8rem; font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; }
-        .footer-logo i { margin-right: 10px; color: var(--accent); }
-        .footer-about p { margin-bottom: 20px; line-height: 1.8; }
-        .social-links { display: flex; gap: 15px; margin-top: 20px; }
-        .social-link { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; color: white; transition: all 0.3s; }
-        .social-link:hover { background: var(--accent); transform: translateY(-3px); }
-        .footer-heading { font-size: 1.2rem; margin-bottom: 20px; position: relative; padding-bottom: 10px; }
-        .footer-heading:after { content: ''; position: absolute; left: 0; bottom: 0; width: 40px; height: 3px; background: var(--accent); }
-        .footer-links ul { list-style: none; }
-        .footer-links ul li { margin-bottom: 10px; }
-        .footer-links ul li a { color: rgba(255, 255, 255, 0.7); text-decoration: none; transition: color 0.3s; }
-        .footer-links ul li a:hover { color: var(--accent); }
-        .contact-info p { display: flex; align-items: center; margin-bottom: 15px; }
-        .contact-info i { margin-right: 10px; color: var(--accent); }
-        .copyright { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.1); }
-        
-        @media (max-width: 992px) {
-            .book-details { grid-template-columns: 1fr; }
-            .book-details-img { max-width: 300px; margin: 0 auto; }
-            .hero h1 { font-size: 2.5rem; }
+        @media (min-width: 768px) {
+            .authors-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        }
+        @media (min-width: 1024px) {
+            .authors-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
         }
 
         @media (max-width: 768px) {
             .menu-toggle { display: flex; flex-direction: column; justify-content: space-around; width: 30px; height: 25px; background: transparent; border: none; cursor: pointer; padding: 0; z-index: 1001;}
             .menu-toggle span { width: 100%; height: 3px; background-color: white; border-radius: 5px; transition: all 0.3s linear;}
-            .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+            .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
             .menu-toggle.active span:nth-child(2) { opacity: 0; }
             .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -6px); }
             nav { position: fixed; top: 0; right: -300px; width: 300px; height: 100vh; background: var(--darker); box-shadow: -5px 0 15px rgba(0,0,0,0.2); transition: right 0.3s ease-in-out; z-index: 1000; padding-top: 80px; flex-direction: column; align-items: stretch; }
@@ -175,27 +166,50 @@
             nav ul li a { display: block; padding: 18px 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
             .author-details-content { grid-template-columns: 1fr; text-align: center; }
             .author-details-img { margin: 0 auto; }
-            .footer-content { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+            .footer-content { grid-template-columns: 1fr; text-align: center; gap: 40px; justify-items: center; }
+            .footer-heading { text-align: center; }
             .footer-heading:after { left: 50%; transform: translateX(-50%); }
-            .contact-info p, .social-links { justify-content: center; }
-            .books-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+            .footer-logo, .contact-info p, .social-links { justify-content: center; }
+            
             nav ul li.dropdown .dropdown-menu { display: block; position: static; background: var(--dark); box-shadow: none; padding: 0; max-height: 0; overflow: hidden; transition: max-height 0.3s ease-in-out; }
             nav ul li.dropdown.open .dropdown-menu { max-height: 500px; }
-            nav ul li.dropdown .dropdown-menu li a { padding-left: 40px; text-align: left; background-color: var(--dark); font-size: 15px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
-            nav ul li.dropdown .dropdown-menu li:last-child a { border-bottom: none; }
-            .modal-content { width: 95%; margin: 20px auto; }
-            .book-details-img { max-width: 50%; }
-        }
+            .modal-content { width: 95%; margin: 10px auto; max-height: 95vh; }
+            .modal-header { padding: 15px; }
+            .modal-body { padding: 15px; }
+            .cart-footer { flex-direction: column; gap: 15px; }
 
-        @media (max-width: 480px) {
-            .hero h1 { font-size: 2rem; }
-            .hero p { font-size: 1.1rem; }
-            .authors-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-            .author-image-wrapper { width: 80px; height: 80px; margin-bottom: 0.5rem; }
-            .author-name { font-size: 0.8rem; line-height: 1.2; }
-            /* --- MODIFIED: Mobile Button Layout --- */
+            .books-grid { display: flex; flex-direction: column; gap: 12px; }
+            .book-card { flex-direction: row; align-items: center; padding: 10px; min-height: 150px; }
+            .book-img { width: 100px; min-width: 100px; height: 140px; }
+            .book-info { padding: 0 15px; text-align: left; }
+            .book-title { font-size: 15px; }
+            .current-price { font-size: 20px; }
+            .btn-add-cart { width: 50%; padding: 6px 5px; font-size: 12px; }
             .book-actions { flex-direction: column; gap: 10px; }
-            .btn { width: 100%; }
+            .book-actions .btn { width: 100%; }
+            .book-description-wrapper { display: none; }
+            .book-price { flex-direction: column; align-items: flex-start; gap: 2px !important; }
+            .discount { margin-left: 0 !important; display: block; margin-top: 2px; }
+            
+            /* --- START: MOBILE MODAL FIXES --- */
+            .book-details { grid-template-columns: 1fr; gap: 15px; }
+            .book-details-img { max-width: 250px; width: 100%; height: 350px; margin: 0 auto; }
+            .book-details-info { text-align: center; }
+            .book-details-info h2 { font-size: 20px; text-align: center; margin-bottom: 5px; }
+            .book-details-author { font-size: 14px; text-align: center; margin-bottom: 8px; }
+            .book-details-info > div { margin: 8px 0; padding: 10px; background: #f9f9f9; border-radius: 6px; text-align: left; }
+            .book-details-info > div p { font-size: 13px; margin-bottom: 4px; line-height: 1.4; }
+            .book-details-info > div p:last-child { margin-bottom: 0; }
+            .book-details-price { font-size: 24px !important; justify-content: center; margin: 8px 0 !important; }
+            .book-details-price .original-price { font-size: 16px !important; }
+            .book-details-price .discount { font-size: 14px !important; }
+            .book-details-desc { font-size: 14px; line-height: 1.6; text-align: justify; margin: 0; }
+             /* --- END: MOBILE MODAL FIXES --- */
+        }
+        
+        @media (max-width: 480px) {
+            .authors-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+            .author-name { font-size: 0.8rem; line-height: 1.2; }
         }
     </style>
 </head>
@@ -215,7 +229,7 @@
                     <li class="dropdown">
                         <a href="#">Collections <i class="fas fa-caret-down"></i></a>
                         <ul class="dropdown-menu">
-                            <li><a href="trending.html">Trending</a></li>
+                            <li><a href="newarrival.html">New Arrivals</a></li>
                             <li><a href="bestselling.html">Bestselling</a></li>
                         </ul>
                     </li>
@@ -241,12 +255,10 @@
         </div>
     </header>
 
-   
-
     <main class="main-content">
         <section class="authors-section" id="authors">
             <div class="container">
-                <h2 class="section-title">Discover the minds behind your favorite books</h2>
+                <h2 class="section-title">Discover the Minds Behind the Books</h2>
                 <div class="authors-grid" id="authors-grid-container"></div>
             </div>
         </section>
@@ -261,7 +273,9 @@
                 <h2>Book Details</h2>
                 <span class="close-modal">&times;</span>
             </div>
-            <div class="modal-body" id="book-details-content"></div>
+            <div class="modal-body">
+                <div class="book-details" id="book-details-content"></div>
+            </div>
         </div>
     </div>
     
@@ -308,7 +322,7 @@
         </div>
     </div>
 
-    <footer id="footer">
+    <footer id="footer" class="section-target">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-about">
@@ -318,22 +332,23 @@
                     </div>
                     <p>Your one-stop destination for all books. We offer a wide selection of books across all genres at competitive prices.</p>
                     <div class="social-links">
-                        <a href="https://www.facebook.com/share/17JzLNsUGm/" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.instagram.com/readora_books/" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="tel:+919163621264" class="social-link"><i class="fas fa-phone"></i></a>
-                        <a href="mailto:readora07@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
+                        <a href="https://www.facebook.com/share/17JzLNsUGm/" class="social-link facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/readora_books/" class="social-link instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="tel:+919163621264" class="social-link call"><i class="fas fa-phone"></i></a>
+                        <a href="mailto:readora07@gmail.com" class="social-link email"><i class="fas fa-envelope"></i></a>
                     </div>
                 </div>
-                <div class="footer-links">
-                    <h3 class="footer-heading">Quick Links</h3>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>                        
-                        <li><a href="index.html#search">Search</a></li>
-                        <li><a href="index.html#categories">Categories</a></li>
-                        <li><a href="index.html#footer">Contact</a></li>
-                    </ul>
+                
+                <div class="footer-comments">
+                    <h3 class="footer-heading">Share Your Comments</h3>
+                    <form class="comment-form">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Email Address" required>
+                        <textarea name="message" placeholder="Your Comment" required></textarea>
+                        <button type="submit">Send Comment</button>
+                    </form>
                 </div>
+                
                 <div class="contact-info">
                     <h3 class="footer-heading">Contact Us</h3>
                     <p><i class="fas fa-map-marker-alt"></i> Sajirhat,Madhyamgram,Kolkata-700130</p>
@@ -341,6 +356,7 @@
                     <p><i class="fas fa-envelope"></i>readora07@gmail.com</p>
                 </div>
             </div>
+            
             <div class="copyright">
                 <p>&copy; 2020 Readora. All rights reserved.</p>
             </div>
@@ -348,19 +364,6 @@
     </footer>
 
     <script>
-        const authorDetails = {
-            "তারাশঙ্কর বন্দ্যোপাধ্যায়": { image: "https://upload.wikimedia.org/wikipedia/commons/d/d9/Tarasankar_Bandyopadhyay.jpg", bio: "Tarasankar Bandyopadhyay (23 July 1898 – 14 September 1971) was an Indian novelist who wrote in the Bengali language. He wrote 65 novels, 53-story-books, 12 plays, 4 essay-books, 4 autobiographies, 2 travel stories and composed several songs. He was awarded Rabindra Puraskar, Sahitya Akademi Award, Jnanpith Award, and Padma Bhushan." },
-            "শরৎচন্দ্র চট্টোপাধ্যায়": { image: "https://upload.wikimedia.org/wikipedia/commons/8/8a/Sarat_Chandra_Chattopadhyay_portrait.jpg", bio: "Sarat Chandra Chattopadhyay (15 September 1876 – 16 January 1938) was a Bengali novelist and short story writer of the early 20th century. Most of his works deal with the lifestyle, tragedy and struggle of the village people and the contemporary social practices that prevailed in Bengal." },
-            "বিভূতিভূষণ বন্দ্যোপাধ্যায়": { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Bibhutibhushan_Bandopadhyay_Autobiography.jpg/440px-Bibhutibhushan_Bandopadhyay_Autobiography.jpg", bio: "Bibhutibhushan Bandyopadhyay (12 September 1894 – 1 November 1950) was an Indian writer in the Bengali language. His best known work is the autobiographical novel, Pather Panchali (The Song of the Road), which was later adapted into a film of the same name by Satyajit Ray." },
-            "রবীন্দ্রনাথ ঠাকুর": { image: "https://upload.wikimedia.org/wikipedia/commons/d/d1/Rabindranath_Tagore.jpg", bio: "Rabindranath Tagore (7 May 1861 – 7 August 1941) was a Bengali polymath who worked as a poet, writer, playwright, composer, philosopher, social reformer and painter. He reshaped Bengali literature and music, as well as Indian art with Contextual Modernism in the late 19th and early 20th centuries. Author of the 'profoundly sensitive, fresh and beautiful verse' of Gitanjali, he became in 1913 the first non-European to win the Nobel Prize in Literature." },
-            "বঙ্কিমচন্দ্র চট্টোপাধ্যায়": { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d_Bankim_Chandra_Chatterjee.jpg/440px-Bankim_Chandra_Chatterjee.jpg", bio: "Bankim Chandra Chatterjee (26 June 1838 – 8 April 1894) was an Indian novelist, poet and journalist. He was the composer of Vande Mataram, originally in Sanskrit, personifying India as a mother goddess and inspiring activists during the Indian Independence Movement." },
-            "অদ্বৈত মল্লবর্মণ": { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Advaita_Mallabarman.jpg/440px-Advaita_Mallabarman.jpg", bio: "Advaita Mallabarman (1 January 1914 – 16 April 1951) was a Bengali Indian writer. He is mostly known for his novel Titash Ekti Nadir Naam (A River Called Titash), which was later adapted into a film of the same name by Ritwik Ghatak." },
-            "বিজন ভট্টাচার্য": { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Bijon_Bhattacharya_in_Meghe_Dhaka_Tara.jpg/440px-Bijon_Bhattacharya_in_Meghe_Dhaka_Tara.jpg", bio: "Bijon Bhattacharya (17 July 1917 – 19 January 1978) was an Indian theatre and film actor from Calcutta. He was one of the pioneers of the Group Theatre movement in India, and was a leading figure in the Indian People's Theatre Association (IPTA)." },
-            "মাইকেল মধুসূদন দত্ত": { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Michael_Madhusudan_Dutt.jpg/440px-Michael_Madhusudan_Dutt.jpg", bio: "Michael Madhusudan Dutt (25 January 1824 – 29 June 1873) was a Bengali poet, writer and dramatist. He is a pioneer of Bengali drama. His famous work Meghnadbad Kavya is a tragic epic. It consists of nine cantos and is exceptional in Bengali literature both in terms of style and content." },
-            "কৃষ্ণভাবিনী দাস": { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Krishnabhabini_Das.gif/440px-Krishnabhabini_Das.gif", bio: "Krishnabhabini Das (1864 – 1919) was a Bengali writer and a women's rights activist. She was one of the earliest Bengali women to travel to England and write a book about her experiences. Her book 'England-e Bangamahila' (A Bengali Woman in England) provides a unique perspective on Victorian society." }
-        };
-
-        const authorNameMap = { "বিভূতিভূষন বন্দ্যোপাধ্যায়": "বিভূতিভূষণ বন্দ্যোপাধ্যায়" };
         let allBooks = [];
         let cart = [];
 
@@ -410,7 +413,28 @@
                     btn.closest('.modal, .order-confirm-modal, .custom-alert').style.display = 'none';
                 });
             });
-             window.addEventListener('click', (e) => {
+            const commentForm = document.querySelector('.comment-form');
+            if (commentForm) {
+                commentForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+
+                    const name = commentForm.elements['name'].value.trim();
+                    const email = commentForm.elements['email'].value.trim();
+                    const message = commentForm.elements['message'].value.trim();
+
+                    if (!name || !email || !message) {
+                        showCustomAlert('Please fill in your name, email, and comment before sending.');
+                        return;
+                    }
+
+                    const subject = `Website comment from ${name}`;
+                    const body = `Name: ${name}\nEmail: ${email}\n\nComment:\n${message}`;
+                    const mailtoLink = `mailto:readora07@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+                    window.location.href = mailtoLink;
+                });
+            }
+            window.addEventListener('click', (e) => {
                 if (e.target.classList.contains('modal') || e.target.classList.contains('order-confirm-modal') || e.target.classList.contains('custom-alert')) {
                     e.target.style.display = 'none';
                 }
@@ -420,18 +444,12 @@
         function populateAuthors() {
             const authorsGridContainer = document.getElementById('authors-grid-container');
             if (!authorsGridContainer) return;
-            const normalizedAuthors = allBooks.map(book => authorNameMap[book.author] || book.author);
-            const uniqueAuthors = [...new Set(normalizedAuthors)];
+            const uniqueAuthors = [...new Set(allBooks.map(book => book.author).filter(Boolean))];
             authorsGridContainer.innerHTML = '';
-            uniqueAuthors.forEach(authorName => {
-                const author = authorDetails[authorName] || { image: '' };
+            uniqueAuthors.sort().forEach(authorName => {
                 const authorCard = document.createElement('div');
                 authorCard.className = 'author-card';
-                authorCard.innerHTML = `
-                    <div class="author-image-wrapper">
-                        <img src="${author.image}" alt="${authorName}" onerror="this.onerror=null;this.src='https://placehold.co/150x150/f0f0f0/cccccc?text=?';">
-                    </div>
-                    <h3 class="author-name">${authorName}</h3>`;
+                authorCard.innerHTML = `<h3 class="author-name">${authorName}</h3>`;
                 authorCard.addEventListener('click', () => showAuthorDetails(authorName));
                 authorsGridContainer.appendChild(authorCard);
             });
@@ -440,17 +458,8 @@
         function showAuthorDetails(authorName) {
             const authorDetailsSection = document.getElementById('author-details-section');
             const authorDetailsContainer = document.getElementById('author-details-container');
-            const author = authorDetails[authorName] || { image: '', bio: 'No biography available.' };
-            const authorBooks = allBooks.filter(b => (authorNameMap[b.author] || b.author) === authorName);
-            authorDetailsContainer.innerHTML = `
-                <div class="author-details-content">
-                    <img src="${author.image}" alt="${authorName}" class="author-details-img" onerror="this.onerror=null;this.src='https://placehold.co/200x200/f0f0f0/cccccc?text=?';">
-                    <div class="author-bio">
-                        <h3>${authorName}</h3>
-                        <p>${author.bio}</p>
-                    </div>
-                </div>
-                <h3 class="author-books-title">Books by ${authorName}</h3>`;
+            const authorBooks = allBooks.filter(b => b.author === authorName);
+            authorDetailsContainer.innerHTML = `<h3 class="author-books-title">${authorName}'s Books</h3>`;
             const booksGrid = document.createElement('div');
             booksGrid.className = 'books-grid';
             if (authorBooks.length > 0) {
@@ -463,93 +472,104 @@
             authorDetailsSection.style.display = 'block';
             authorDetailsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
-
+        
+        // --- START: EXACT createBookCard function from publications.html ---
         function createBookCard(book) {
             const card = document.createElement('div');
             card.className = 'book-card';
-            const discount = book.originalPrice ? Math.round(((book.originalPrice - book.price) / book.originalPrice) * 100) : 0;
+            const discount = book.originalPrice > 0 ? Math.round(((book.originalPrice - book.price) / book.originalPrice) * 100) : 0;
+            const imageUrl = book.frontImg ? book.frontImg : 'https://dummyimage.com/130x180/5c5c5c/ffffff&text=No+Image';
+            const descriptionSnippet = book.description || '';
+
             card.innerHTML = `
                 <div class="book-img">
-                    <img src="${book.frontImg}" alt="${book.title}" onerror="this.onerror=null;this.src='https://via.placeholder.com/250x375.png?text=No+Image';">
-                    <div class="quick-view">${book.condition} | ${book.category}</div>
+                    <img src="${imageUrl}" alt="${book.title}" onerror="this.onerror=null; this.src='https://dummyimage.com/130x180/5c5c5c/ffffff&text=No+Image';">
                 </div>
                 <div class="book-info">
-                    <h3 class="book-title">${book.title}</h3>
-                    <p class="book-author">by ${book.author}</p>
-                    <div class="book-price">
-                        <span class="current-price">₹${book.price.toFixed(2).replace(/\.00$/, '')}</span>
-                        ${book.originalPrice ? `<span class="original-price">₹${book.originalPrice.toFixed(2).replace(/\.00$/, '')}</span>` : ''}
-                        ${discount > 0 ? `<span class="discount">${discount}% off</span>` : ''}
+                    <div>
+                        <h3 class="book-title">${book.title}</h3>
+                        <p class="book-author">by ${book.author}</p>
+                        <div class="book-price">
+                            <span class="current-price">₹${book.price}</span>
+                            ${book.originalPrice > 0 ? `<span class="original-price">M.R.P.: ₹${book.originalPrice}</span>` : ''}
+                            ${discount > 0 ? `<span class="discount">(${discount}% off)</span>` : ''}
+                        </div>
+                        <p class="free-delivery">Free delivery on 3 books</p>
                     </div>
-                    <p style="font-size: 12px; color: var(--gray); margin-top: -10px; margin-bottom: 10px;">(Free Delivery on Three)</p>
                     <div class="book-actions">
-                        <button class="btn btn-outline view-details" data-id="${book.id}"><i class="fas fa-eye"></i> Details</button>
-                        <button class="btn btn-primary add-to-cart-btn" data-id="${book.id}"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                        <button class="btn-add-cart add-to-cart-btn" data-id="${book.id}">
+                            Add to cart
+                        </button>
                     </div>
-                </div>`;
-            card.querySelector('.view-details').addEventListener('click', () => showBookDetails(book.id));
-            card.querySelector('.add-to-cart-btn').addEventListener('click', () => toggleCartItem(book.id));
+                </div>
+                <div class="book-description-wrapper">
+                    <p class="book-description">${descriptionSnippet}</p>
+                </div>
+            `;
+
+            card.addEventListener('click', (e) => {
+                if (!e.target.closest('.add-to-cart-btn')) {
+                    showBookDetails(book.id);
+                }
+            });
+            card.querySelector('.add-to-cart-btn').addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleCartItem(book.id);
+            });
             return card;
         }
+        // --- END: EXACT createBookCard function ---
 
+        // --- START: EXACT showBookDetails function from publications.html ---
         function showBookDetails(bookId) {
             const book = allBooks.find(b => b.id === bookId);
             if (!book) return;
 
             const bookDetailsContent = document.getElementById('book-details-content');
             const bookDetailsModal = document.getElementById('book-details-modal');
-            const discount = book.originalPrice ? Math.round(((book.originalPrice - book.price) / book.originalPrice) * 100) : 0;
+            const discount = book.originalPrice > 0 ? Math.round(((book.originalPrice - book.price) / book.originalPrice) * 100) : 0;
             
-            let descriptionHTML = '';
-            const maxLength = 250; 
-            if (book.description && book.description.length > maxLength) {
-                const truncatedDesc = book.description.substring(0, maxLength) + '...';
-                descriptionHTML = `<p class="book-details-desc" id="book-desc-text" style="margin-bottom: 5px;">${truncatedDesc}</p><button id="see-more-desc" style="background:none; border:none; color:var(--primary); cursor:pointer; padding: 0; font-weight:600; font-size: 14px; text-align: left;">See More</button>`;
-            } else {
-                descriptionHTML = `<p class="book-details-desc">${book.description || ''}</p>`;
+            let language = 'English';
+            if (book.language) {
+                language = book.language;
+            } else if (book.publication && (book.publication.toLowerCase().includes('ananda') || book.publication.toLowerCase().includes('dey') || book.publication.toLowerCase().includes('বাংলা'))) {
+                language = 'Bengali';
             }
 
+            let descriptionHTML = '';
+            if (book.description) {
+                descriptionHTML = `
+                    <div style="margin-top: 20px;">
+                        <h3 style="font-size: 16px; margin-bottom: 10px; color: var(--dark);">Description:</h3>
+                        <p class="book-details-desc">${book.description}</p>
+                    </div>`;
+            }
+
+            const imageUrl = book.frontImg ? book.frontImg : 'https://dummyimage.com/250x375/5c5c5c/ffffff&text=No+Image';
+
             bookDetailsContent.innerHTML = `
-            <div class="book-details">
                 <div class="book-details-img">
-                    <img src="${book.frontImg}" alt="${book.title}" onerror="this.onerror=null;this.src='https://via.placeholder.com/250x375.png?text=No+Image';">
+                    <img src="${imageUrl}" alt="${book.title}" onerror="this.onerror=null; this.src='https://dummyimage.com/250x375/5c5c5c/ffffff&text=No+Image';">
                 </div>
                 <div class="book-details-info">
                     <h2>${book.title}</h2>
                     <p class="book-details-author">by ${book.author}</p>
-                    <p style="font-size: 14px; color: var(--gray); margin-bottom: 10px;">Publication: ${book.publication || 'N/A'}</p>
-                    <p style="font-size: 14px; color: var(--gray); margin-bottom: 10px;">Language: ${book.language}</p>
+                    <div style="margin: 15px 0; padding: 15px; background: #f9f9f9; border-radius: 6px;">
+                        <p style="font-size: 14px; color: var(--dark); margin-bottom: 8px;"><strong>Publisher:</strong> ${book.publication || 'N/A'}</p>
+                        <p style="font-size: 14px; color: var(--dark); margin-bottom: 8px;"><strong>Language:</strong> ${language}</p>
+                        <p style="font-size: 14px; color: var(--dark); margin-bottom: 0;"><strong>ISBN:</strong> ${book.isbn || 'N/A'}</p>
+                    </div>
                     <div class="book-details-price">
-                        ₹${book.price.toFixed(2).replace(/\.00$/, '')}
-                        ${book.originalPrice ? `<span class="original-price" style="font-size:1rem; text-decoration:line-through; color: var(--gray); margin-left:10px;">₹${book.originalPrice.toFixed(2).replace(/\.00$/, '')}</span>` : ''}
-                        ${discount > 0 ? `<span class="discount" style="font-size:1rem; color:var(--danger); margin-left:10px;">${discount}% off</span>` : ''}
+                        <span style="font-size: 28px; color: #B12704; font-weight: 700;">₹${book.price}</span>
+                        ${book.originalPrice > 0 ? `<span style="font-size: 1rem; text-decoration: line-through; color: var(--gray); margin-left: 10px;">₹${book.originalPrice}</span>` : ''}
+                        ${discount > 0 ? `<span style="font-size: 1rem; color: #B12704; font-weight: 600; margin-left: 10px;">(${discount}% off)</span>` : ''}
                     </div>
-                    <p style="font-size: 14px; color: var(--gray); margin-top: -10px; margin-bottom: 15px;">(Free delivery on 3 items)</p>
                     ${descriptionHTML}
-                    <div class="book-details-actions">
-                        <button class="btn btn-outline btn-large download-sample-modal" data-pdf="${book.pdf}" style="width: 100%;">
-                            <i class="fas fa-download"></i> Sample
-                        </button>
-                    </div>
-                </div>
-            </div>`;
+                </div>`;
             
-            const seeMoreBtn = bookDetailsContent.querySelector('#see-more-desc');
-            if (seeMoreBtn) {
-                seeMoreBtn.addEventListener('click', () => {
-                    const descElement = bookDetailsContent.querySelector('#book-desc-text');
-                    if (descElement) descElement.textContent = book.description;
-                    seeMoreBtn.style.display = 'none'; 
-                }, { once: true });
-            }
-
-            bookDetailsContent.querySelector('.download-sample-modal').addEventListener('click', function() {
-                const pdfUrl = this.getAttribute('data-pdf');
-                if (pdfUrl && pdfUrl.trim() !== "" && !pdfUrl.includes('dummy.pdf')) { window.open(pdfUrl, '_blank'); } 
-                else { showCustomAlert('PDF is not available for this book.'); }
-            });
             bookDetailsModal.style.display = 'block';
         }
+        // --- END: EXACT showBookDetails function ---
         
         function showCustomAlert(message) {
             document.getElementById('custom-alert-message').textContent = message;
@@ -571,12 +591,13 @@
         function updateAddToCartButtonsUI() {
             document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
                 const bookId = parseInt(btn.dataset.id);
-                if (cart.some(item => item.id === bookId)) {
-                    btn.innerHTML = `<i class="fas fa-check"></i> Added`;
-                    btn.classList.add('added');
+                const inCart = cart.some(item => item.id === bookId);
+                if(btn.classList.contains('btn-add-cart')) {
+                    btn.textContent = inCart ? 'Added' : 'Add to cart';
+                    btn.classList.toggle('added', inCart);
                 } else {
-                    btn.innerHTML = `<i class="fas fa-cart-plus"></i> Add to Cart`;
-                    btn.classList.remove('added');
+                    btn.innerHTML = inCart ? `<i class="fas fa-check"></i> Added` : `<i class="fas fa-cart-plus"></i> Cart`;
+                    btn.classList.toggle('added', inCart);
                 }
             });
         }
@@ -661,7 +682,3 @@
     </script>
 </body>
 </html>
-
-
-
-
