@@ -186,6 +186,9 @@
         .order-actions { margin-top: 25px; }
         .btn-copy-messenger { background: var(--primary); color: white; border: none; padding: 15px; border-radius: 4px; cursor: pointer; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; }
         .btn-copy-messenger:disabled { background-color: var(--gray); cursor: not-allowed; }
+        .cart-checkout-buttons { display: flex; gap: 10px; }
+        .btn-instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: white; border: none; }
+        .btn-instagram:hover { opacity: 0.9; transform: translateY(-2px); }
         /* --- END: EXACT MODAL STYLES --- */
 
         /* --- RESPONSIVE STYLES --- */
@@ -277,7 +280,9 @@
             }
             /* --- END: MOBILE MODAL FIXES --- */
 
-            .cart-footer { flex-direction: column; gap: 15px; }
+            .cart-footer { flex-direction: column; gap: 15px; align-items: stretch; }
+            .cart-checkout-buttons { flex-direction: column; width: 100%;}
+            .cart-footer .btn-large { width: 100%; }
         }
         @media (max-width: 480px) {
             .book-actions { flex-direction: column; gap: 10px; }
@@ -367,9 +372,14 @@
             <div class="modal-body" id="cart-items-container"></div>
             <div class="cart-footer">
                 <div class="cart-total"><strong>Total:</strong> <span id="cart-total-price">₹0</span></div>
-                <button id="checkout-btn" class="btn btn-primary btn-large">
-                    <i class="fab fa-facebook-messenger"></i> FB Chat to Order
-                </button>
+                <div class="cart-checkout-buttons">
+                    <button id="checkout-btn" class="btn btn-primary btn-large">
+                        <i class="fab fa-facebook-messenger"></i> FB Chat to Order
+                    </button>
+                    <button id="checkout-insta-btn" class="btn btn-instagram btn-large">
+                        <i class="fab fa-instagram"></i> Insta Chat to Order
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -380,12 +390,11 @@
                 <span class="close-confirm-modal">&times;</span>
             </div>
             <div class="order-confirm-body">
-                <p>Review your order, copy the message, and paste it into Messenger to confirm.</p>
+                <p>Review your order, copy the message, and paste it into the chat to confirm.</p>
                 <div class="order-message" id="order-message-text"></div>
                 <div class="order-actions">
                     <button id="copy-and-redirect-btn" class="btn-copy-messenger">
-                        <i class="fab fa-facebook-messenger"></i> Copy & Go to Messenger
-                    </button>
+                        </button>
                 </div>
             </div>
         </div>
@@ -462,27 +471,16 @@
             }
             
             document.getElementById('cart-icon')?.addEventListener('click', displayCart);
-            document.getElementById('checkout-btn')?.addEventListener('click', handleCheckout);
-            document.getElementById('copy-and-redirect-btn')?.addEventListener('click', async function() {
-                const btn = this;
-                btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Opening...`;
-                btn.disabled = true;
-                await copyToClipboard(document.getElementById('order-message-text').innerText);
-                window.open('https://www.messenger.com/t/718957201308613', '_blank');
-                setTimeout(() => {
-                    btn.innerHTML = `<i class="fab fa-facebook-messenger"></i> Copy & Go to Messenger`;
-                    btn.disabled = false;
-                    document.getElementById('order-confirm-modal').style.display = 'none';
-                }, 1500);
-            });
-            
+            document.getElementById('checkout-btn')?.addEventListener('click', () => handleCheckoutWithPlatform('facebook'));
+            document.getElementById('checkout-insta-btn')?.addEventListener('click', () => handleCheckoutWithPlatform('instagram'));
+
             document.querySelectorAll('.close-modal, .close-cart-modal, .close-confirm-modal, .close-alert-btn').forEach(btn => {
                 btn.addEventListener('click', () => btn.closest('.modal, .order-confirm-modal, .custom-alert').style.display = 'none');
             });
 
             const commentForm = document.querySelector('.comment-form');
             if (commentForm) {
-                commentForm.addEventListener('submit', (e) => {
+                commentForm.addEventListener('submit', async (e) => {
                     e.preventDefault();
                     const name = commentForm.elements['name'].value.trim();
                     const email = commentForm.elements['email'].value.trim();
@@ -491,7 +489,17 @@
                         showCustomAlert('Please fill in all fields.');
                         return;
                     }
-                    window.location.href = `mailto:readora07@gmail.com?subject=Website comment from ${encodeURIComponent(name)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nComment:\n${message}`)}`;
+                    const body = `Comment from: ${name} (${email})\n\nMessage:\n${message}`;
+                    try {
+                        await copyToClipboard(body);
+                        showCustomAlert('Message copied! Opening Messenger...');
+                        setTimeout(() => {
+                            window.open('https://www.messenger.com/t/718957201308613', '_blank');
+                        }, 1500);
+                        commentForm.reset();
+                    } catch (err) {
+                        showCustomAlert('Could not copy message. Please copy it manually.');
+                    }
                 });
             }
             window.addEventListener('click', (e) => {
@@ -670,12 +678,12 @@
         function displayCart() {
             const cartModal = document.getElementById('cart-modal');
             const cartItemsContainer = document.getElementById('cart-items-container');
-            const checkoutBtn = document.getElementById('checkout-btn');
+            const checkoutButtons = cartModal.querySelector('.cart-checkout-buttons');
             if (!cartItemsContainer) return;
             cartItemsContainer.innerHTML = '';
             if (cart.length === 0) {
                 cartItemsContainer.innerHTML = `<p class="cart-empty-message">Your cart is empty.</p>`;
-                if(checkoutBtn) checkoutBtn.style.display = 'none';
+                if(checkoutButtons) checkoutButtons.style.display = 'none';
             } else {
                 cart.forEach(item => {
                     const cartItemEl = document.createElement('div');
@@ -692,7 +700,7 @@
                         <i class="fas fa-trash cart-item-remove" data-id="${item.id}"></i>`;
                     cartItemsContainer.appendChild(cartItemEl);
                 });
-                if(checkoutBtn) checkoutBtn.style.display = 'flex';
+                if(checkoutButtons) checkoutButtons.style.display = 'flex';
             }
             updateCartTotal();
             addCartEventListeners();
@@ -718,21 +726,56 @@
             const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             document.getElementById('cart-total-price').textContent = `₹${total}`;
         }
-        function handleCheckout() {
-            const dateTime = new Date().toLocaleString('en-IN', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
-            let orderDetails = "I would like to order the following books:\n\n";
-            cart.forEach(item => { orderDetails += `📖 ${item.title}\n✍️ by ${item.author}\n- Quantity: ${item.quantity}\n- Price: ₹${item.price * item.quantity}\n\n`; });
-            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            orderDetails += `--------------------\n💰 Total Bill: ₹${total}\n📅 Order Time: ${dateTime}\n\nPlease confirm availability and delivery details.`;
-            showOrderConfirmModal(orderDetails);
-            document.getElementById('cart-modal').style.display = 'none';
-        }
-        function showOrderConfirmModal(orderText) {
-            const orderConfirmModal = document.getElementById('order-confirm-modal');
-            if(orderConfirmModal) {
-                orderConfirmModal.querySelector('#order-message-text').innerText = orderText;
-                orderConfirmModal.style.display = 'flex';
-            }
+        function handleCheckoutWithPlatform(platform) {
+    const dateTime = new Date().toLocaleString('en-IN', { dateStyle: 'short', timeStyle: 'short' });
+    let orderDetails = "I would like to order the following books:\n\n";
+    cart.forEach(item => {
+        // This is the corrected line that now includes the publisher
+        orderDetails += `📖 ${item.title}\n✍️ by ${item.author}\n🏢 Publisher: ${item.publication || 'N/A'}\n- Qty: ${item.quantity}, Price: ₹${item.price * item.quantity}\n\n`;
+    });
+    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    orderDetails += `--------------------\n💰 Total Bill: ₹${total}\n📅 Order Time: ${dateTime}\n\nPlease confirm availability and delivery details.`;
+    
+    showOrderConfirmModal(orderDetails, platform);
+    document.getElementById('cart-modal').style.display = 'none';
+}
+
+        function showOrderConfirmModal(orderText, platform) {
+            const modal = document.getElementById('order-confirm-modal');
+            modal.querySelector('#order-message-text').innerText = orderText;
+            const copyBtn = modal.querySelector('#copy-and-redirect-btn');
+
+            const platformDetails = {
+                facebook: { url: 'https://www.messenger.com/t/718957201308613', name: 'Messenger', icon: 'fa-facebook-messenger', style: '' },
+                instagram: { url: 'https://ig.me/m/readora_books', name: 'Instagram', icon: 'fa-instagram', style: 'linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)' }
+            };
+            const details = platformDetails[platform];
+
+            copyBtn.innerHTML = `<i class="fab ${details.icon}"></i> Copy & Go to ${details.name}`;
+            copyBtn.style.background = details.style;
+
+            modal.style.display = 'block';
+            const closeModalHandler = () => {
+                modal.style.display = 'none';
+                copyBtn.style.background = ''; // Reset style on close
+            };
+            modal.querySelector('.close-confirm-modal').onclick = closeModalHandler;
+
+            copyBtn.onclick = async function() {
+                this.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Copying...`;
+                this.disabled = true;
+                try {
+                    await copyToClipboard(orderText);
+                    window.open(details.url, '_blank');
+                } catch (err) {
+                    console.error('Failed to copy or open:', err);
+                } finally {
+                    setTimeout(() => {
+                        this.disabled = false;
+                        closeModalHandler();
+                    }, 1000);
+                }
+            };
         }
         function copyToClipboard(text) { return navigator.clipboard.writeText(text); }
 
