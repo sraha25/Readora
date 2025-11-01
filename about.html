@@ -613,6 +613,10 @@
         .btn-large { padding: 15px 25px; font-size: 16px; }
         .btn-primary:hover { background: var(--secondary); }
         
+        .cart-checkout-buttons { display: flex; gap: 10px; }
+        .btn-instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: white; border: none; }
+        .btn-instagram:hover { opacity: 0.9; transform: translateY(-2px); }
+        
         /* Responsive Styles */
         @media (max-width: 992px) {
             .about-content { grid-template-columns: 1fr; }
@@ -634,6 +638,9 @@
             .footer-content { grid-template-columns: 1fr; text-align: center; gap: 40px; }
             .footer-heading:after { left: 50%; transform: translateX(-50%); }
             .contact-info p, .social-links { justify-content: center; }
+            .cart-footer { flex-direction: column; gap: 15px; align-items: stretch;}
+            .cart-checkout-buttons { flex-direction: column; width: 100%;}
+            .cart-footer .btn-large { width: 100%; }
         }
         @media (min-width: 769px) { .header-right-icons .menu-toggle { display: none; } }
         @media (max-width: 480px) {
@@ -776,9 +783,14 @@
                 <div class="cart-total">
                     <strong>Total:</strong> <span id="cart-total-price">₹0</span>
                 </div>
-                <button id="checkout-btn" class="btn btn-primary btn-large">
-                    <i class="fab fa-facebook-messenger"></i> FB Chat to Order
-                </button>
+                <div class="cart-checkout-buttons">
+                    <button id="checkout-btn" class="btn btn-primary btn-large">
+                        <i class="fab fa-facebook-messenger"></i> FB Chat to Order
+                    </button>
+                    <button id="checkout-insta-btn" class="btn btn-instagram btn-large">
+                        <i class="fab fa-instagram"></i> Insta Chat to Order
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -790,12 +802,11 @@
                 <span class="close-confirm-modal">&times;</span>
             </div>
             <div class="order-confirm-body">
-                <p>Review your order, copy the message, and paste it into Messenger to confirm.</p>
+                <p>Review your order, copy the message, and paste it into the chat to confirm.</p>
                 <div class="order-message" id="order-message-text"></div>
                 <div class="order-actions">
                     <button id="copy-and-redirect-btn" class="btn-copy-messenger">
-                        <i class="fab fa-facebook-messenger"></i> Copy & Go to Messenger
-                    </button>
+                        </button>
                 </div>
             </div>
         </div>
@@ -864,6 +875,7 @@
         const cartItemsContainer = document.getElementById('cart-items-container');
         const cartTotalPriceEl = document.getElementById('cart-total-price');
         const checkoutBtn = document.getElementById('checkout-btn');
+        const checkoutInstaBtn = document.getElementById('checkout-insta-btn');
         const menuToggle = document.getElementById('menu-toggle');
         const mainNav = document.getElementById('main-nav');
 
@@ -894,7 +906,9 @@
             // Cart interactions
             if (cartIcon) cartIcon.addEventListener('click', displayCart);
             if (closeCartModalBtn) closeCartModalBtn.addEventListener('click', () => cartModal.style.display = 'none');
-            if (checkoutBtn) checkoutBtn.addEventListener('click', handleCheckout);
+            if (checkoutBtn) checkoutBtn.addEventListener('click', () => handleCheckoutWithPlatform('facebook'));
+            if (checkoutInstaBtn) checkoutInstaBtn.addEventListener('click', () => handleCheckoutWithPlatform('instagram'));
+
 
             // Close modal when clicking outside
             window.addEventListener('click', (e) => {
@@ -909,29 +923,39 @@
                 orderConfirmModal.querySelector('.close-confirm-modal').addEventListener('click', () => {
                     orderConfirmModal.style.display = 'none';
                 });
-                document.getElementById('copy-and-redirect-btn').addEventListener('click', handleCopyAndRedirect);
             }
 
             const commentForm = document.querySelector('.comment-form');
             if (commentForm) {
-                commentForm.addEventListener('submit', (e) => {
+                commentForm.addEventListener('submit', async (e) => {
                     e.preventDefault();
-
                     const name = commentForm.elements['name'].value.trim();
                     const email = commentForm.elements['email'].value.trim();
                     const message = commentForm.elements['message'].value.trim();
-
                     if (!name || !email || !message) {
-                        showCustomAlert('Please fill in your name, email, and comment before sending.');
+                        showCustomAlert('Please fill in all fields.');
                         return;
                     }
-
-                    const subject = `Website comment from ${name}`;
-                    const body = `Name: ${name}\nEmail: ${email}\n\nComment:\n${message}`;
-                    const mailtoLink = `mailto:readora07@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-                    window.location.href = mailtoLink;
+                    const body = `Comment from: ${name} (${email})\n\nMessage:\n${message}`;
+                    try {
+                        await copyToClipboard(body);
+                        showCustomAlert('Message copied! Opening Messenger...');
+                        setTimeout(() => {
+                             window.open('https://www.messenger.com/t/718957201308613', '_blank');
+                        }, 1500);
+                        commentForm.reset();
+                    } catch (err) {
+                        showCustomAlert('Could not copy message. Please copy it manually.');
+                    }
                 });
+            }
+        }
+        
+        function showCustomAlert(message) {
+            const modal = document.getElementById('custom-alert-modal');
+            if (modal) {
+                modal.querySelector('#custom-alert-message').textContent = message;
+                modal.style.display = 'flex';
             }
         }
 
@@ -942,16 +966,17 @@
 
         function updateCartBadge() {
             if (cartBadge) {
-                // **MODIFIED**: Counts the number of unique items (different books).
                 cartBadge.textContent = cart.length;
             }
         }
 
         function displayCart() {
             cartItemsContainer.innerHTML = '';
+            const checkoutButtons = cartModal.querySelector('.cart-checkout-buttons');
+
             if (cart.length === 0) {
                 cartItemsContainer.innerHTML = `<p class="cart-empty-message">Your cart is empty.</p>`;
-                checkoutBtn.style.display = 'none';
+                if(checkoutButtons) checkoutButtons.style.display = 'none';
             } else {
                 cart.forEach(item => {
                     const cartItemEl = document.createElement('div');
@@ -971,7 +996,7 @@
                     `;
                     cartItemsContainer.appendChild(cartItemEl);
                 });
-                checkoutBtn.style.display = 'flex';
+                if(checkoutButtons) checkoutButtons.style.display = 'flex';
             }
 
             updateCartTotal();
@@ -1024,55 +1049,59 @@
             if(cartTotalPriceEl) cartTotalPriceEl.textContent = `₹${total.toFixed(2).replace(/\.00$/, '')}`;
         }
 
-        function handleCheckout() {
-            const now = new Date();
-            const dateTime = now.toLocaleString('en-IN', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+        function handleCheckoutWithPlatform(platform) {
+    const dateTime = new Date().toLocaleString('en-IN', { dateStyle: 'short', timeStyle: 'short' });
+    let orderDetails = "I would like to order the following books:\n\n";
+    cart.forEach(item => {
+        // This is the corrected line that now includes the publisher
+        orderDetails += `📖 ${item.title}\n✍️ by ${item.author}\n🏢 Publisher: ${item.publication || 'N/A'}\n- Qty: ${item.quantity}, Price: ₹${item.price * item.quantity}\n\n`;
+    });
+    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    orderDetails += `--------------------\n💰 Total Bill: ₹${total}\n📅 Order Time: ${dateTime}\n\nPlease confirm availability and delivery details.`;
+    
+    showOrderConfirmModal(orderDetails, platform);
+    document.getElementById('cart-modal').style.display = 'none';
+}
+        function showOrderConfirmModal(orderText, platform) {
+            const modal = document.getElementById('order-confirm-modal');
+            modal.querySelector('#order-message-text').innerText = orderText;
+            const copyBtn = modal.querySelector('#copy-and-redirect-btn');
 
-            let orderDetails = "I would like to order the following books:\n\n";
-            cart.forEach(item => {
-                orderDetails += `📖 ${item.title}\n✍️ by ${item.author}\n- Quantity: ${item.quantity}\n- Price: ₹${(item.price * item.quantity).toFixed(2).replace(/\.00$/, '')}\n\n`;
-            });
+            const platformDetails = {
+                facebook: { url: 'https://www.messenger.com/t/718957201308613', name: 'Messenger', icon: 'fa-facebook-messenger', style: '' },
+                instagram: { url: 'https://ig.me/m/readora_books', name: 'Instagram', icon: 'fa-instagram', style: 'linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)' }
+            };
+            const details = platformDetails[platform];
 
-            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            orderDetails += `--------------------\n`;
-            orderDetails += `💰 Total Bill: ₹${total.toFixed(2).replace(/\.00$/, '')}\n`;
-            orderDetails += `📅 Order Time: ${dateTime}\n\n`;
-            orderDetails += `Please confirm availability and delivery details.`;
+            copyBtn.innerHTML = `<i class="fab ${details.icon}"></i> Copy & Go to ${details.name}`;
+            copyBtn.style.background = details.style;
 
-            showOrderConfirmModal(orderDetails);
-            cartModal.style.display = 'none';
-        }
+            modal.style.display = 'block';
+            const closeModalHandler = () => {
+                modal.style.display = 'none';
+                copyBtn.style.background = '';
+            };
+            modal.querySelector('.close-confirm-modal').onclick = closeModalHandler;
 
-        function showOrderConfirmModal(orderText) {
-            const orderConfirmModal = document.getElementById('order-confirm-modal');
-            const orderMessageText = document.getElementById('order-message-text');
-
-            orderMessageText.innerText = orderText;
-            orderConfirmModal.style.display = 'flex';
-        }
-
-        async function handleCopyAndRedirect() {
-            const btn = this;
-            const originalContent = btn.innerHTML;
-            btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Opening...`;
-            btn.disabled = true;
-
-            const messageText = document.getElementById('order-message-text').innerText;
-            try {
-                await navigator.clipboard.writeText(messageText);
-                setTimeout(() => {
-                    window.open('https://www.messenger.com/t/718957201308613', '_blank');
+            copyBtn.onclick = async function() {
+                this.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Copying...`;
+                this.disabled = true;
+                try {
+                    await copyToClipboard(orderText);
+                    window.open(details.url, '_blank');
+                } catch (err) {
+                    console.error('Failed to copy or open:', err);
+                } finally {
                     setTimeout(() => {
-                        btn.innerHTML = originalContent;
-                        btn.disabled = false;
-                        document.getElementById('order-confirm-modal').style.display = 'none';
-                    }, 1500);
-                }, 500);
-            } catch (err) {
-                console.error('Failed to copy text: ', err);
-                btn.innerHTML = originalContent;
-                btn.disabled = false;
-            }
+                        this.disabled = false;
+                        closeModalHandler();
+                    }, 1000);
+                }
+            };
+        }
+
+        function copyToClipboard(text) {
+            return navigator.clipboard.writeText(text);
         }
 
         // Run initialization on page load
