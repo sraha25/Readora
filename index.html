@@ -628,6 +628,16 @@
             background: var(--secondary);
             transform: translateY(-2px);
         }
+        
+        .btn-instagram {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            color: white;
+            border: none;
+        }
+        .btn-instagram:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
 
         .btn-outline {
             background: transparent;
@@ -889,6 +899,11 @@
         }
         .cart-total {
             font-size: 1.2rem;
+        }
+
+        .cart-checkout-buttons {
+            display: flex;
+            gap: 10px;
         }
 
 
@@ -1371,6 +1386,11 @@
             .cart-footer {
                 flex-direction: column;
                 gap: 15px;
+                align-items: stretch;
+            }
+            .cart-checkout-buttons {
+                flex-direction: column;
+                width: 100%;
             }
             
             .cart-footer .btn-large {
@@ -1829,10 +1849,14 @@
                 <div class="cart-total">
                     <strong>Total:</strong> <span id="cart-total-price">₹0</span>
                 </div>
-                <button id="checkout-btn" class="btn btn-primary btn-large">
-                    <i class="fab fa-facebook-messenger"></i> FB Chat to Order
-                </button>
-                
+                 <div class="cart-checkout-buttons">
+                    <button id="checkout-btn" class="btn btn-primary btn-large">
+                        <i class="fab fa-facebook-messenger"></i> FB Chat to Order
+                    </button>
+                    <button id="checkout-insta-btn" class="btn btn-instagram btn-large">
+                        <i class="fab fa-instagram"></i> Insta Chat to Order
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -1845,14 +1869,13 @@
                 <span class="close-confirm-modal">&times;</span>
             </div>
             <div class="order-confirm-body">
-                <p>Review your order details, copy the message, and paste it into Messenger using the button below to confirm your order.</p>
+                <p>Review your order details, copy the message, and paste it into the chat using the button below to confirm your order.</p>
                 <div class="order-message" id="order-message-text">
                 </div>
                 
                 <div class="order-actions">
                     <button id="copy-and-redirect-btn" class="btn-copy-messenger">
-                        <i class="fab fa-facebook-messenger"></i> Copy & Go to Messenger
-                    </button>
+                         </button>
                 </div>
             </div>
         </div>
@@ -1926,7 +1949,7 @@
     </footer>
 
 <script>
-    // --- START OF MODIFIED SCRIPT ---
+    // --- START OF SCRIPT ---
 
     // Global variable to hold book data fetched from Google Sheets.
     let books = [];
@@ -1964,55 +1987,88 @@
     // Ensure this is the correct DEPLOYED Web App URL, not the script editor link.
     const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbxrru1twKwtB2GXXOMMZwV29LrvLfJY2fP1yOs_LAgA1o2NBu3HcF6eRYbcnWk6TMGd/exec';
 
-    // This function fetches book data and then initializes the website.
+    // --- START: CACHING & FETCHING LOGIC ---
     async function fetchBooksAndInitialize() {
         const grid = document.getElementById('category-books');
-        grid.innerHTML = '<div class="no-books"><div class="loader"></div>Loading books...</div>';
-        console.log("Attempting to fetch data from:", GOOGLE_SHEET_URL); // Log URL
+        let isInitiallyRendered = false;
+
+        // 1. Try to load from cache first for instant UI
+        try {
+            const cachedBooks = JSON.parse(localStorage.getItem('readoraBooks'));
+            if (cachedBooks && cachedBooks.length > 0) {
+                console.log("Loaded", cachedBooks.length, "books from cache for initial display.");
+                books = cachedBooks;
+                init(); // Initialize event listeners and render the page with cached data
+                isInitiallyRendered = true;
+            }
+        } catch(e) {
+            console.error("Could not parse cached books:", e);
+        }
+
+        // 2. If no cache, show loader
+        if (!isInitiallyRendered) {
+            grid.innerHTML = '<div class="no-books"><div class="loader"></div>Loading books...</div>';
+        }
+
+        // 3. Always fetch fresh data from the network
+        console.log("Attempting to fetch fresh data from:", GOOGLE_SHEET_URL);
         try {
             const response = await fetch(GOOGLE_SHEET_URL);
-            console.log("Fetch response status:", response.status); // Log status
             if (!response.ok) {
-                 // Log more details on error
-                 const errorText = await response.text();
-                 console.error('Fetch error response text:', errorText);
-                 throw new Error(`HTTP error! Status: ${response.status} - ${response.statusText}`);
+                const errorText = await response.text();
+                throw new Error(`HTTP error! Status: ${response.status} - ${errorText}`);
             }
             
-            // Try to parse JSON, log raw text if it fails
-            const responseText = await response.text();
             let data;
             try {
-                 data = JSON.parse(responseText);
+                 data = await response.json();
             } catch (jsonError) {
                  console.error("Failed to parse JSON:", jsonError);
-                 console.error("Raw response text:", responseText);
+                 console.error("Raw response text:", await response.text());
                  throw new Error("Received invalid data format from server.");
             }
 
-            console.log("Data received from Google Sheet:", data); 
             if (data.error) {
-                 console.error("Error reported by Google Apps Script:", data.error);
-                 throw new Error(data.error);
+                throw new Error(data.error);
             }
 
             const processedData = data.map(book => {
-                const newBook = { ...book };
-                newBook.frontImg = book.frontImg || book['Front Img'] || book['front_img'] || book.img || book.image || book.imageUrl;
-                return newBook;
+                return { ...book, frontImg: book.frontImg || book['Front Img'] || book.img };
             });
+            
+            // 4. Compare and update if necessary
+            const oldDataJSON = isInitiallyRendered ? localStorage.getItem('readoraBooks') : '[]';
+            const newDataJSON = JSON.stringify(processedData);
 
-            books = processedData; 
-            console.log("Processed books data:", books.length, "books loaded."); // Log count
-
-            init(); // Initialize the rest of the page
+            if (oldDataJSON !== newDataJSON) {
+                console.log("Fresh data received. Updating books and cache.");
+                books = processedData;
+                localStorage.setItem('readoraBooks', newDataJSON);
+                
+                if (isInitiallyRendered) {
+                    // Re-render with new data
+                    displayBooksByCategory();
+                } else {
+                    // First time render
+                    init();
+                }
+            } else {
+                console.log("Book data is already up-to-date.");
+                if (!isInitiallyRendered) {
+                    // If there was no cache, we still need to render the page now.
+                    init();
+                }
+            }
         } catch (error) {
-            console.error('Failed to fetch or process books:', error);
-            grid.innerHTML = `<div class="no-books">Error loading books. Please check the console for details and verify the Google Sheet URL and permissions. <br> <small>${error.message}</small></div>`;
+            console.error('Failed to fetch or process fresh books:', error);
+            if (!isInitiallyRendered) {
+                // Only show error if we couldn't show anything to the user
+                grid.innerHTML = `<div class="no-books">Error loading books. Please check your connection. <br> <small>${error.message}</small></div>`;
+            }
         }
     }
-    
-    
+    // --- END: CACHING & FETCHING LOGIC ---
+
     // Sample exercise copy data remains hard-coded
     const exerciseCopies = [
         { id: 'ex1', title: 'Classmate Notebook', img: 'https://images.meesho.com/images/products/112719835/hqino_512.webp?width=512', description: 'Durable notebook for everyday use.', price: 60 },
@@ -2050,6 +2106,7 @@
     const cartItemsContainer = document.getElementById('cart-items-container');
     const cartTotalPriceEl = document.getElementById('cart-total-price');
     const checkoutBtn = document.getElementById('checkout-btn');
+    const checkoutInstaBtn = document.getElementById('checkout-insta-btn');
 
     // Custom Alert Modal Elements
     const customAlertModal = document.getElementById('custom-alert-modal');
@@ -2065,9 +2122,7 @@
     // Pagination state
     const BOOKS_PER_PAGE = 8;
     let visibleBookCount = BOOKS_PER_PAGE;
-
-    // --- START OF FIX ---
-    // Moved updateSubcategoryLabels outside of init and setupEventListeners
+    
     // Function to update subcategory labels based on language
     function updateSubcategoryLabels(language) {
          // Default to English if 'all' languages are selected or if Bengali translation missing
@@ -2082,17 +2137,14 @@
             }
         });
     }
-    // --- END OF FIX ---
 
     function init() {
-        localStorage.setItem('readoraBooks', JSON.stringify(books));
         // Set default language button state
-        updateSubcategoryLabels(selectedLanguage); // Now accessible
+        updateSubcategoryLabels(selectedLanguage);
         displayBooksByCategory();
         setupEventListeners();
         updateCartBadge();
     }
-
 
     function setupEventListeners() {
         menuToggle.addEventListener('click', () => {
@@ -2112,7 +2164,7 @@
         navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 const targetId = link.getAttribute('href');
-                if (!targetId || targetId.includes('.html') || targetId === '#') return; // Added check for null/empty targetId
+                if (!targetId || targetId.includes('.html') || targetId === '#') return;
                 
                 e.preventDefault();
                 try {
@@ -2125,15 +2177,12 @@
                             mainNav.classList.remove('active');
                         }
                         window.scrollTo({ top: targetElement.offsetTop - 100, behavior: 'smooth' });
-                    } else {
-                         console.warn("Target element not found for selector:", targetId);
                     }
                 } catch (error) {
                      console.error("Error finding or scrolling to target element:", targetId, error);
                  }
             });
         });
-
 
         searchButton.addEventListener('click', () => performSearch(searchInput.value));
         searchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') performSearch(searchInput.value); });
@@ -2144,18 +2193,15 @@
                 button.classList.add('active');
                 selectedType = button.getAttribute('data-type');
                 
-                // Get the separator elements
                 const separator1 = document.getElementById('separator-1');
                 const separator2 = document.getElementById('separator-2');
                 
                 if (selectedType === 'exercise') {
                     subcategoriesNav.style.display = 'none';
                     languageNav.style.display = 'none';
-                    // Hide the separators for exercise filter
                     if (separator1) separator1.style.display = 'none';
                     if (separator2) separator2.style.display = 'none';
                 } else {
-                    // Show the separators for all other filters
                     if (separator1) separator1.style.display = 'block';
                     if (separator2) separator2.style.display = 'block';
                     subcategoriesNav.style.display = 'flex';
@@ -2168,7 +2214,6 @@
         
         document.querySelectorAll('.language-btn').forEach(button => {
             button.addEventListener('click', () => {
-                // Toggle behavior: If clicking the active button, deactivate it (select 'all')
                 if (button.classList.contains('active')) {
                     button.classList.remove('active');
                     selectedLanguage = 'all';
@@ -2180,23 +2225,20 @@
                 
                 updateSubcategoryLabels(selectedLanguage);
                 
-                // Reset subcategory to 'all' when language changes
                 subcategoryButtons.forEach(btn => btn.classList.remove('active'));
                 document.querySelector('.subcategory-btn[data-category="all"]').classList.add('active');
-                selectedCategory = 'all'; // Reset English category name
+                selectedCategory = 'all';
                 
                 visibleBookCount = BOOKS_PER_PAGE;
                 displayBooksByCategory();
             });
         });
-        
-        // --- MOVED function updateSubcategoryLabels ---
 
         subcategoryButtons.forEach(button => {
             button.addEventListener('click', () => {
                 subcategoryButtons.forEach(btn => btn.classList.remove('active'));
                 button.classList.add('active');
-                selectedCategory = button.getAttribute('data-category'); // Always store the English key
+                selectedCategory = button.getAttribute('data-category');
                 visibleBookCount = BOOKS_PER_PAGE;
                 displayBooksByCategory();
             });
@@ -2204,22 +2246,24 @@
 
         closeModalBtns.forEach(btn => btn.addEventListener('click', () => { 
             bookDetailsModal.style.display = 'none'; 
-            document.body.style.overflow = ''; // Restore body scroll
+            document.body.style.overflow = '';
         }));
         closeAlertBtn.addEventListener('click', () => { customAlertModal.style.display = 'none'; });
         closeCartModalBtn.addEventListener('click', () => { cartModal.style.display = 'none'; });
+        
         cartIcon.addEventListener('click', displayCart);
-        checkoutBtn.addEventListener('click', handleCheckout);
+        checkoutBtn.addEventListener('click', () => handleCheckoutWithPlatform('facebook'));
+        if(checkoutInstaBtn) checkoutInstaBtn.addEventListener('click', () => handleCheckoutWithPlatform('instagram'));
+
 
         window.addEventListener('click', (e) => {
             if (e.target === bookDetailsModal) {
                  bookDetailsModal.style.display = 'none'; 
-                 document.body.style.overflow = ''; // Restore body scroll
+                 document.body.style.overflow = '';
             }
             if (e.target === cartModal) cartModal.style.display = 'none';
             if (e.target === document.getElementById('order-confirm-modal')) document.getElementById('order-confirm-modal').style.display = 'none';
             if (e.target === customAlertModal) customAlertModal.style.display = 'none';
-             // Close request modal on outside click
              if (e.target === document.getElementById('book-request-modal')) document.getElementById('book-request-modal').style.display = 'none';
         });
         
@@ -2232,26 +2276,26 @@
 
         const commentForm = document.querySelector('.comment-form');
         if (commentForm) {
-            commentForm.addEventListener('submit', (e) => {
+            commentForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
-
                 const name = commentForm.elements['name'].value.trim();
                 const email = commentForm.elements['email'].value.trim();
                 const message = commentForm.elements['message'].value.trim();
-
                 if (!name || !email || !message) {
-                    showCustomAlert('Please fill in your name, email, and comment before sending.');
+                    showCustomAlert('Please fill in all fields.');
                     return;
                 }
-
-                const subject = `Website comment from ${name}`;
-                const body = `Name: ${name}\nEmail: ${email}\n\nComment:\n${message}`;
-                const mailtoLink = `mailto:readora07@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-                window.location.href = mailtoLink;
-                 // Optionally clear the form
-                 commentForm.reset();
-                 showCustomAlert('Thank you! Your comment will be sent via your email client.');
+                const body = `Comment from: ${name} (${email})\n\nMessage:\n${message}`;
+                try {
+                    await copyToClipboard(body);
+                    showCustomAlert('Message copied! Opening Messenger...');
+                    setTimeout(() => {
+                         window.open('https://www.messenger.com/t/718957201308613', '_blank');
+                    }, 1500);
+                    commentForm.reset();
+                } catch (err) {
+                    showCustomAlert('Could not copy message. Please copy it manually.');
+                }
             });
         }
     }
@@ -2284,83 +2328,60 @@
         customAlertModal.style.display = 'flex';
     }
 
-    // --- START OF REFINED FILTER LOGIC ---
     function displayBooksByCategory() {
         categoryBooksGrid.innerHTML = '';
         seeMoreContainer.innerHTML = '';
 
-        // Handle exercise copies separately
         if (selectedType === 'exercise') {
             exerciseCopies.forEach(copy => categoryBooksGrid.appendChild(createExerciseCopyCard(copy)));
             return;
         }
 
         const filteredBooks = books.filter(book => {
-            // Filter by Type (New/Old/Both)
             const typeMatch = selectedType === 'all' ||
                               (book.condition && (book.condition.toLowerCase() === selectedType || book.condition.toLowerCase() === 'both'));
             if (!typeMatch) return false;
 
-            // Determine if the book should be considered Bengali based on its own data
             const bookLangLower = (book.language || '').toLowerCase();
             const bookPubLower = (book.publication || '').toLowerCase();
-             // More robust Bengali check: includes language field, publication, or even category name itself
             const isBookBengali = bookLangLower.includes('bengali') || bookLangLower.includes('বাংলা') ||
                                   bookPubLower.includes('ananda') || bookPubLower.includes('dey') || bookPubLower.includes('বাংলা') ||
-                                  (book.category && (book.category === "উপন্যাস" || book.category === "কবিতা" || book.category === "গল্প" )); // Add more Bengali categories if needed
+                                  (book.category && (book.category === "উপন্যাস" || book.category === "কবিতা" || book.category === "গল্প" ));
 
-
-             // Filter by Language Selection
-             let languageMatch = true; // Assume match initially
+             let languageMatch = true;
              if (selectedLanguage !== 'all') {
                 if (selectedLanguage === 'Bengali') {
                     languageMatch = isBookBengali;
                 } else if (selectedLanguage === 'English') {
-                    // Consider English if not explicitly Bengali and language field isn't explicitly Bengali
                     languageMatch = !isBookBengali || bookLangLower.includes('english');
                  } else {
-                     // For other specific languages if added later
                      languageMatch = bookLangLower.includes(selectedLanguage.toLowerCase());
                  }
              }
              if (!languageMatch) return false;
 
-
-            // Filter by Sub-Category
-            let categoryMatch = true; // Assume match initially
-            if (selectedCategory !== 'all') { // 'selectedCategory' holds the English key
-                if (!book.category) return false; // Book must have a category to match
-
-                const bookCategoryValue = book.category; // Can be English or Bengali
-
-                // Check direct match (English key vs book's category value)
-                 // Trim and lowercase comparison for robustness
+            let categoryMatch = true;
+            if (selectedCategory !== 'all') {
+                if (!book.category) return false;
+                const bookCategoryValue = book.category;
                 if (bookCategoryValue.trim().toLowerCase() === selectedCategory.trim().toLowerCase()) {
                     categoryMatch = true;
                 }
-                // If language is Bengali (or book is inferred as Bengali when 'all' languages selected), check translation match
                 else if (selectedLanguage === 'Bengali' || (selectedLanguage === 'all' && isBookBengali)) {
                     const expectedBengaliCategory = subcategoryTranslations[selectedCategory]?.Bengali;
-                    // Trim comparison for robustness
                     categoryMatch = expectedBengaliCategory && bookCategoryValue.trim() === expectedBengaliCategory.trim();
                 }
-                 // If language is English (or default when 'all' is selected and book is not Bengali)
                  else if (selectedLanguage === 'English' || (selectedLanguage === 'all' && !isBookBengali)) {
-                      // Already checked direct English match above, so if we are here, it's not a match
                       categoryMatch = false;
                  }
                  else {
-                     categoryMatch = false; // No match if language/category doesn't fit criteria
+                     categoryMatch = false;
                  }
             }
              if (!categoryMatch) return false;
-
-
-            // If all filters pass
             return true;
         });
 
-        // --- Display Logic (Remains the same) ---
         if (filteredBooks.length === 0) {
             categoryBooksGrid.innerHTML = '<div class="no-books">No books found for the selected filters.</div>';
             return;
@@ -2378,23 +2399,18 @@
             seeMoreBtn.className = 'btn btn-primary';
             seeMoreBtn.onclick = () => {
                 visibleBookCount += BOOKS_PER_PAGE;
-                displayBooksByCategory(); // Redisplay with more books
+                displayBooksByCategory();
             };
             seeMoreContainer.appendChild(seeMoreBtn);
         }
     }
-    // --- END OF REFINED FILTER LOGIC ---
 
-    // --- START: MODIFIED createBookCard ---
     function createBookCard(book) {
         const card = document.createElement('div');
         card.className = 'book-card fade-in';
         const discount = book.originalPrice > 0 ? Math.round(((book.originalPrice - book.price) / book.originalPrice) * 100) : 0;
         const imageUrl = book.frontImg ? book.frontImg : 'https://dummyimage.com/130x180/5c5c5c/ffffff&text=No+Image';
-
-        // Add description snippet
-        const descriptionSnippet = book.description || ''; // Get full description or empty string
-
+        const descriptionSnippet = book.description || '';
 
         card.innerHTML = `
             <div class="book-img">
@@ -2424,18 +2440,16 @@
             </div>
         `; 
         card.addEventListener('click', (e) => {
-            // Prevent modal open if clicking the add to cart button
             if (!e.target.closest('.add-to-cart-btn')) {
                  showBookDetails(book.id);
             }
         });
         card.querySelector('.add-to-cart-btn').addEventListener('click', (e) => {
-            e.stopPropagation(); // Prevent card click event when clicking button
+            e.stopPropagation();
             toggleCartItem(book.id);
         });
         return card;
     }
-     // --- END: MODIFIED createBookCard ---
 
     function createExerciseCopyCard(copy) {
         const card = document.createElement('div');
@@ -2479,10 +2493,10 @@
             </div>`;
         bookDetailsContent.querySelector('.show-order-confirm').addEventListener('click', () => {
             const orderText = `I want to order this item:\n\n📝 Item Name: ${copy.title}\n💰 Price: ₹${copy.price}\n\nPlease confirm availability.`;
-            showOrderConfirmModal(orderText);
+            showOrderConfirmModal(orderText, 'facebook');
         });
         bookDetailsModal.style.display = 'block';
-         document.body.style.overflow = 'hidden'; // Prevent body scroll
+         document.body.style.overflow = 'hidden';
     }
 
     function performSearch(query) {
@@ -2526,10 +2540,9 @@
 
         bookResults.forEach(book => searchResultsGrid.appendChild(createBookCard(book)));
         copyResults.forEach(copy => searchResultsGrid.appendChild(createExerciseCopyCard(copy)));
-         updateAddToCartButtonsUI(); // Update buttons after search results are displayed
+         updateAddToCartButtonsUI();
     }
 
-    // --- START: MODIFIED showBookDetails ---
     function showBookDetails(bookId) {
         const book = books.find(b => b.id === bookId);
         if (!book) return;
@@ -2543,17 +2556,14 @@
              language = 'Bengali';
         }
 
-        // --- RESTORED: descriptionHTML logic ---
         let descriptionHTML = '';
         if (book.description) {
-            // Show full description in modal
             descriptionHTML = `
                 <div style="margin-top: 20px;">
                     <h3 style="font-size: 16px; margin-bottom: 10px; color: var(--dark);">Description:</h3>
                     <p class="book-details-desc" id="book-desc-text">${book.description}</p>
                 </div>`;
         }
-        // --- END RESTORED ---
 
         const imageUrl = book.frontImg ? book.frontImg : 'https://dummyimage.com/250x375/5c5c5c/ffffff&text=No+Image';
 
@@ -2577,14 +2587,9 @@
                 ${descriptionHTML} 
             </div>`;
             
-        // --- REMOVED: "Show More" button logic as we show full description ---
-        
         bookDetailsModal.style.display = 'block';
-        
-        // Prevent body scroll when modal is open
         document.body.style.overflow = 'hidden';
         
-        // Close modal when clicking the close button or outside the modal
         const closeModal = () => {
             bookDetailsModal.style.display = 'none';
             document.body.style.overflow = '';
@@ -2595,20 +2600,14 @@
             closeBtn.onclick = closeModal;
         }
         
-        // Update cart button UI
         updateAddToCartButtonsUI();
     }
-     // --- END: MODIFIED showBookDetails ---
 
     // --- CART FUNCTIONS ---
     function saveCartToStorage() { localStorage.setItem('readoraCart', JSON.stringify(cart)); }
 
     function toggleCartItem(bookId) {
-         // Ensure bookId is valid before proceeding
-         if (bookId == null) {
-             console.error("toggleCartItem called with invalid bookId:", bookId);
-             return;
-         }
+         if (bookId == null) return;
         if (cart.some(item => item.id === bookId)) {
             removeFromCart(bookId, true);
         } else {
@@ -2619,10 +2618,7 @@
 
     function addToCart(bookId) {
         const book = books.find(b => b.id === bookId);
-        if (!book) {
-             console.error("Could not find book with ID to add to cart:", bookId);
-             return; // Add check if book exists
-        }
+        if (!book) return;
         const itemInCart = cart.find(item => item.id === bookId);
         if (itemInCart) itemInCart.quantity++;
         else cart.push({ ...book, quantity: 1 });
@@ -2646,7 +2642,6 @@
                     btn.classList.toggle('added', inCart);
                 }
             } else {
-                 // Don't log warning for enquire buttons
                  if (!btn.classList.contains('enquire-btn')) {
                     console.warn("Add to cart button found without a valid data-id:", btn);
                  }
@@ -2654,12 +2649,11 @@
         });
     }
 
-
     function displayCart() {
         cartItemsContainer.innerHTML = '';
         if (cart.length === 0) {
             cartItemsContainer.innerHTML = `<p class="cart-empty-message">Your cart is empty.</p>`;
-            checkoutBtn.style.display = 'none';
+            document.querySelector('.cart-checkout-buttons').style.display = 'none';
         } else {
             cart.forEach(item => {
                 if (item && item.id != null) {
@@ -2678,17 +2672,14 @@
                         </div>
                         <i class="fas fa-trash cart-item-remove" data-id="${item.id}"></i>`;
                     cartItemsContainer.appendChild(cartItemEl);
-                } else {
-                    console.error("Cart item is invalid or missing ID:", item);
-                 }
+                }
             });
-            checkoutBtn.style.display = 'flex';
+            document.querySelector('.cart-checkout-buttons').style.display = 'flex';
         }
         updateCartTotal();
         addCartEventListeners();
         cartModal.style.display = 'block';
     }
-
 
     function addCartEventListeners() {
         cartItemsContainer.querySelectorAll('.quantity-btn, .cart-item-remove').forEach(btn => {
@@ -2702,9 +2693,7 @@
                         const change = parseInt(e.currentTarget.dataset.change);
                         updateQuantity(bookId, change);
                     }
-                } else {
-                     console.error("Clicked button in cart without a valid data-id:", e.currentTarget);
-                 }
+                }
             };
         });
     }
@@ -2734,75 +2723,90 @@
         cartTotalPriceEl.textContent = `₹${total}`;
     }
 
-    function handleCheckout() {
+    function handleCheckoutWithPlatform(platform) {
         const dateTime = new Date().toLocaleString('en-IN', { dateStyle: 'short', timeStyle: 'short' });
         let orderDetails = "I would like to order the following books:\n\n";
         cart.forEach(item => {
-            orderDetails += `📖 ${item.title}\n✍️ by ${item.author}\n- Qty: ${item.quantity}, Price: ₹${item.price * item.quantity}\n\n`;
+            orderDetails += `📖 ${item.title}\n✍️ by ${item.author}\n🏢 Publisher: ${item.publication || 'N/A'}\n- Qty: ${item.quantity}, Price: ₹${item.price * item.quantity}\n\n`;
         });
         const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
         orderDetails += `--------------------\n💰 Total Bill: ₹${total}\n📅 Order Time: ${dateTime}\n\nPlease confirm availability and delivery details.`;
-        showOrderConfirmModal(orderDetails);
+        
+        showOrderConfirmModal(orderDetails, platform);
         cartModal.style.display = 'none';
     }
 
-    function showOrderConfirmModal(orderText) {
+    function showOrderConfirmModal(orderText, platform) {
         const modal = document.getElementById('order-confirm-modal');
         modal.querySelector('#order-message-text').innerText = orderText;
+        const copyBtn = modal.querySelector('#copy-and-redirect-btn');
+
+        const platformDetails = {
+            facebook: {
+                url: 'https://www.messenger.com/t/718957201308613',
+                name: 'Messenger',
+                icon: 'fa-facebook-messenger',
+                style: '' // Resets to default CSS
+            },
+            instagram: {
+                url: 'https://ig.me/m/readora_books',
+                name: 'Instagram',
+                icon: 'fa-instagram',
+                style: 'linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)'
+            }
+        };
+        const details = platformDetails[platform];
+
+        copyBtn.innerHTML = `<i class="fab ${details.icon}"></i> Copy & Go to ${details.name}`;
+        copyBtn.style.background = details.style;
+
         modal.style.display = 'block';
-        modal.querySelector('.close-confirm-modal').onclick = () => modal.style.display = 'none';
-        modal.querySelector('#copy-and-redirect-btn').onclick = async function() {
+        const closeBtn = modal.querySelector('.close-confirm-modal');
+        const closeModalHandler = () => {
+            modal.style.display = 'none';
+            copyBtn.style.background = ''; // Reset style on close
+        };
+        closeBtn.onclick = closeModalHandler;
+
+        copyBtn.onclick = async function() {
             this.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Copying...`;
             this.disabled = true;
             try {
                 await copyToClipboard(orderText);
-                window.open('https://www.messenger.com/t/718957201308613', '_blank');
+                window.open(details.url, '_blank');
             } catch (err) {
                 console.error('Failed to copy or open:', err);
             } finally {
                 setTimeout(() => {
-                    this.innerHTML = `<i class="fab fa-facebook-messenger"></i> Copy & Go to Messenger`;
                     this.disabled = false;
-                    modal.style.display = 'none';
+                    closeModalHandler();
                 }, 1000);
             }
         };
     }
 
     function copyToClipboard(text) {
-        // Use document.execCommand as a fallback for potential iframe restrictions
         try {
             const textArea = document.createElement("textarea");
             textArea.value = text;
-            textArea.style.position = "fixed"; // Prevent scrolling to bottom of page in MS Edge.
+            textArea.style.position = "fixed";
             textArea.style.top = "0";
             textArea.style.left = "0";
-            textArea.style.width = "2em";
-            textArea.style.height = "2em";
-            textArea.style.padding = "0";
-            textArea.style.border = "none";
-            textArea.style.outline = "none";
-            textArea.style.boxShadow = "none";
-            textArea.style.background = "transparent";
+            textArea.style.opacity = "0";
             document.body.appendChild(textArea);
             textArea.focus();
             textArea.select();
             const successful = document.execCommand('copy');
             document.body.removeChild(textArea);
-            if (successful) {
-                return Promise.resolve();
-            } else {
-                 return Promise.reject(new Error('Copy command was unsuccessful'));
-            }
+            return successful ? Promise.resolve() : Promise.reject(new Error('Copy command failed'));
         } catch (err) {
-            console.error('Fallback: Oops, unable to copy', err);
-             return Promise.reject(err);
+            console.error('Fallback copy failed:', err);
+            return Promise.reject(err);
         }
     }
 
-
     // Initialize the app by fetching data first.
-    fetchBooksAndInitialize();
+    document.addEventListener('DOMContentLoaded', fetchBooksAndInitialize);
 </script>
 </body>
 </html>
