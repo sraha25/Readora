@@ -1064,6 +1064,29 @@
             background: #fff;
             transform: translateY(-2px);
         }
+
+        /* NEW: Star Rating CSS */
+        .footer-comments .star-rating {
+            display: flex;
+            justify-content: flex-start;
+            gap: 5px;
+            margin-bottom: 12px;
+            font-size: 1.5rem;
+            color: var(--gray);
+            cursor: pointer;
+        }
+        .footer-comments .star-rating > .fa-star {
+            transition: color 0.2s;
+        }
+        .footer-comments .star-rating:hover .fa-star {
+            color: #ffdd6a;
+        }
+        .footer-comments .star-rating .fa-star:hover ~ .fa-star {
+            color: var(--gray);
+        }
+        .footer-comments .star-rating > .fa-star.selected {
+            color: var(--warning);
+        }
         
         .contact-info p { 
             display: flex; 
@@ -1411,8 +1434,7 @@
                 transform: translateX(-50%);
             }
 
-            .footer-logo, .contact-info p, 
-            .social-links {
+            .footer-logo, .contact-info p, .social-links {
                 justify-content: center;
             }
         }
@@ -1729,7 +1751,13 @@
                         </ul>
                     </li>
                     
-                    <li><a href="index.html#footer" class="nav-link">Contact</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link" onclick="event.preventDefault()">Contact <i class="fas fa-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#footer" class="smooth-scroll">Contact Us</a></li>
+                            <li><a href="Review.html">Reviews</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </nav>
 
@@ -1918,7 +1946,7 @@
                     <p>Your one-stop destination for all books. We offer a wide selection of books across all genres at competitive prices.</p>
                     <div class="social-links">
                         <a href="https://www.facebook.com/share/17JzLNsUGm/" class="social-link facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.instagram.com/readora_books/" class="social-link instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/readorabookshop?igsh=MWxvZDk4cmswMGk1MA==" class="social-link instagram"><i class="fab fa-instagram"></i></a>
                         <a href="tel:+919163621264" class="social-link call"><i class="fas fa-phone"></i></a>
                         <a href="mailto:readora07@gmail.com" class="social-link email"><i class="fas fa-envelope"></i></a>
                     </div>
@@ -1929,6 +1957,10 @@
                     <form class="comment-form">
                         <input type="text" name="name" placeholder="Your Name" required>
                         <input type="email" name="email" placeholder="Email Address" required>
+                        <div class="star-rating">
+                            <i class="fas fa-star" data-value="1"></i><i class="fas fa-star" data-value="2"></i><i class="fas fa-star" data-value="3"></i><i class="fas fa-star" data-value="4"></i><i class="fas fa-star" data-value="5"></i>
+                        </div>
+                        <input type="hidden" name="rating" id="rating-input" value="0">
                         <textarea name="message" placeholder="Your Comment" required></textarea>
                         <button type="submit">Send Comment</button>
                     </form>
@@ -1984,8 +2016,11 @@
     };
     
     // **IMPORTANT**: PASTE YOUR NEW WEB APP URL HERE
-    // Ensure this is the correct DEPLOYED Web App URL, not the script editor link.
     const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbxrru1twKwtB2GXXOMMZwV29LrvLfJY2fP1yOs_LAgA1o2NBu3HcF6eRYbcnWk6TMGd/exec';
+    
+    // FIXED: Using the functional Apps Script URL from authors.html for comments
+    const COMMENT_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzB8EpgD4l6bufe8xpFIWGkT8UnJ4PFYpdH3l1X8TJeYnDRK630cvKKN-a4FJ0pp_G2/exec';
+
 
     // --- START: CACHING & FETCHING LOGIC ---
     async function fetchBooksAndInitialize() {
@@ -2071,10 +2106,10 @@
 
     // Sample exercise copy data remains hard-coded
     const exerciseCopies = [
-        { id: 'ex1', title: 'Classmate Notebook', img: 'https://images.meesho.com/images/products/112719835/hqino_512.webp?width=512', description: 'Durable notebook for everyday use.', price: 60 },
-        { id: 'ex2', title: 'Spiral Notebook', img: 'https://rukminim2.flixcart.com/image/850/1000/kfmv9u80/notebook/p/y/g/navneet-youva-soft-bound-long-notebook-17x27-single-line-original-imafwfz7z7hzzfyb.jpeg?q=20&crop=false', description: 'Spiral bound, easy to flip pages.', price: 80 },
-        { id: 'ex3', title: 'Practical Copy', img: 'https://targetpublications.org/media/catalog/product/cache/1/image/700x700/9df78eab33525d08d6e5fb8d27136e95/t/a/target_s_eco-friendly_practical_notebook_for_students_2.jpg', description: 'Eco-friendly practical notebook.', price: 100 },
-        { id: 'ex4', title: 'Graph Paper Book', img: 'https://laxmistationery.com/wp-content/uploads/2021/07/Classmate-Graph-Book-32-Pages-Pack-of-12.jpg', description: 'Perfect for math & geometry.', price: 50 }
+        { id: 'ex1', title: 'Classmate Notebook', img: 'https://images.meesho.com/images/products/112719835/hqino_512.webp?width=512', description: 'Durable notebook for everyday use.', price: 60, author: 'Classmate', publication: 'ITC' },
+        { id: 'ex2', title: 'Spiral Notebook', img: 'https://rukminim2.flixcart.com/image/850/1000/kfmv9u80/notebook/p/y/g/navneet-youva-soft-bound-long-notebook-17x27-single-line-original-imafwfz7z7hzzfyb.jpeg?q=20&crop=false', description: 'Spiral bound, easy to flip pages.', price: 80, author: 'Navneet', publication: 'Navneet' },
+        { id: 'ex3', title: 'Practical Copy', img: 'https://targetpublications.org/media/catalog/product/cache/1/image/700x700/9df78eab33525d08d6e5fb8d27136e95/t/a/target_s_eco-friendly_practical_notebook_for_students_2.jpg', description: 'Eco-friendly practical notebook.', price: 100, author: 'Target', publication: 'Target' },
+        { id: 'ex4', title: 'Graph Paper Book', img: 'https://laxmistationery.com/wp-content/uploads/2021/07/Classmate-Graph-Book-32-Pages-Pack-of-12.jpg', description: 'Perfect for math & geometry.', price: 50, author: 'Classmate', publication: 'ITC' }
     ];
 
     // DOM Elements
@@ -2146,21 +2181,107 @@
         updateCartBadge();
     }
 
+    // NEW: Function to update star display
+    function updateStars(rating) {
+        const stars = document.querySelectorAll('.star-rating .fa-star');
+        stars.forEach(star => {
+            star.classList.toggle('selected', star.dataset.value <= rating);
+        });
+    }
+
     function setupEventListeners() {
-        menuToggle.addEventListener('click', () => {
+        // Mobile menu toggle
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
             menuToggle.classList.toggle('active');
             mainNav.classList.toggle('active');
+            
+            // Close all dropdowns when toggling mobile menu
+            if (!mainNav.classList.contains('active')) {
+                document.querySelectorAll('.dropdown').forEach(dropdown => {
+                    dropdown.classList.remove('open');
+                });
+            }
         });
-        
-        mainNav.querySelectorAll('.dropdown > a').forEach(link => {
-            link.addEventListener('click', function(e) {
+
+        // Handle dropdown toggle for all dropdowns including contact
+        document.querySelectorAll('.dropdown > a').forEach(dropdownToggle => {
+            // Remove any existing click event listeners to prevent duplicates
+            const newToggle = dropdownToggle.cloneNode(true);
+            dropdownToggle.parentNode.replaceChild(newToggle, dropdownToggle);
+            
+            newToggle.addEventListener('click', function(e) {
+                // Prevent default for all dropdown toggles
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const dropdown = this.parentElement;
+                const isOpen = dropdown.classList.contains('open');
+                
+                // Close all other dropdowns
+                document.querySelectorAll('.dropdown').forEach(d => {
+                    if (d !== dropdown) d.classList.remove('open');
+                });
+                
+                // Toggle current dropdown
+                if (!isOpen) {
+                    dropdown.classList.add('open');
+                } else {
+                    dropdown.classList.remove('open');
+                }
+                
+                // If on mobile and clicking a dropdown in the mobile menu, don't close the menu
                 if (window.innerWidth <= 768) {
-                    e.preventDefault();
-                    this.parentElement.classList.toggle('open');
+                    e.stopPropagation();
                 }
             });
         });
-
+        
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function() {
+            document.querySelectorAll('.dropdown').forEach(dropdown => {
+                dropdown.classList.remove('open');
+            });
+        });
+        
+        // Handle smooth scrolling for navigation links
+        document.querySelectorAll('a.smooth-scroll, .dropdown-menu a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                
+                // Skip if it's just a # or points to an external page
+                if (!targetId || targetId === '#' || targetId.includes('.html')) return;
+                
+                e.preventDefault();
+                try {
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        // Close mobile menu if open
+                        const mainNav = document.getElementById('main-nav');
+                        const menuToggle = document.getElementById('menu-toggle');
+                        if (mainNav && mainNav.classList.contains('active')) {
+                            menuToggle.classList.remove('active');
+                            mainNav.classList.remove('active');
+                        }
+                        
+                        // Close all dropdowns
+                        document.querySelectorAll('.dropdown').forEach(dropdown => {
+                            dropdown.classList.remove('open');
+                        });
+                        
+                        // Smooth scroll to target
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                } catch (error) {
+                    console.error("Error finding or scrolling to target element:", targetId, error);
+                }
+            });
+        });
+        
+        // Original navLinks click handler for non-dropdown navigation
         navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 const targetId = link.getAttribute('href');
@@ -2179,8 +2300,8 @@
                         window.scrollTo({ top: targetElement.offsetTop - 100, behavior: 'smooth' });
                     }
                 } catch (error) {
-                     console.error("Error finding or scrolling to target element:", targetId, error);
-                 }
+                    console.error("Error finding or scrolling to target element:", targetId, error);
+                }
             });
         });
 
@@ -2276,25 +2397,68 @@
 
         const commentForm = document.querySelector('.comment-form');
         if (commentForm) {
+            const stars = document.querySelectorAll('.star-rating .fa-star');
+            const ratingInput = document.getElementById('rating-input');
+
+            // Star rating interaction logic
+            stars.forEach(star => {
+                star.addEventListener('click', function() {
+                    ratingInput.value = this.dataset.value;
+                    updateStars(parseInt(this.dataset.value));
+                });
+                star.addEventListener('mouseover', function() {
+                    updateStars(parseInt(this.dataset.value));
+                });
+                star.addEventListener('mouseout', function() {
+                    updateStars(parseInt(ratingInput.value || 0));
+                });
+            });
+
             commentForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
+                const submitButton = commentForm.querySelector('button[type="submit"]');
                 const name = commentForm.elements['name'].value.trim();
                 const email = commentForm.elements['email'].value.trim();
                 const message = commentForm.elements['message'].value.trim();
-                if (!name || !email || !message) {
-                    showCustomAlert('Please fill in all fields.');
+                const rating = ratingInput.value;
+
+                if (!name || !email || !message || rating === "0") {
+                    showCustomAlert('Please fill in all fields and provide a star rating.');
                     return;
                 }
-                const body = `Comment from: ${name} (${email})\n\nMessage:\n${message}`;
+
+                submitButton.textContent = 'Submitting...';
+                submitButton.disabled = true;
+
                 try {
-                    await copyToClipboard(body);
-                    showCustomAlert('Message copied! Opening Messenger...');
-                    setTimeout(() => {
-                         window.open('https://www.messenger.com/t/718957201308613', '_blank');
-                    }, 1500);
+                    await fetch(COMMENT_SCRIPT_URL, {
+                        method: 'POST',
+                        mode: 'no-cors', // Important for this type of App Script deployment
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            name: name,
+                            email: email,
+                            message: message,
+                            rating: rating,
+                            timestamp: new Date().toISOString()
+                        })
+                    });
+
+                    // Since it's a no-cors request, we can't read the response. 
+                    // We'll assume success and provide feedback to the user.
+                    showCustomAlert('Thank you for your review!');
                     commentForm.reset();
-                } catch (err) {
-                    showCustomAlert('Could not copy message. Please copy it manually.');
+                    ratingInput.value = '0';
+                    updateStars(0);
+
+                } catch (error) {
+                    console.error('Error submitting review:', error);
+                    showCustomAlert('Could not submit your review. Please try again later.');
+                } finally {
+                    submitButton.textContent = 'Send Comment';
+                    submitButton.disabled = false;
                 }
             });
         }
@@ -2334,6 +2498,7 @@
 
         if (selectedType === 'exercise') {
             exerciseCopies.forEach(copy => categoryBooksGrid.appendChild(createExerciseCopyCard(copy)));
+            updateAddToCartButtonsUI(); // *** ADDED THIS LINE ***
             return;
         }
 
@@ -2451,6 +2616,7 @@
         return card;
     }
 
+    // --- *** THIS FUNCTION IS UPDATED *** ---
     function createExerciseCopyCard(copy) {
         const card = document.createElement('div');
         card.className = 'book-card fade-in';
@@ -2459,11 +2625,11 @@
             <div class="book-info">
                  <div>
                     <h3 class="book-title">${copy.title}</h3>
-                    <div class="book-price"><span class="current-price">₹${copy.price}/kg</span></div>
+                    <div class="book-price"><span class="current-price">₹${copy.price}</span></div>
                 </div>
                 <div class="book-actions">
-                    <button class="btn btn-primary enquire-btn" style="width:100%;" data-id="${copy.id}">
-                        <i class="fas fa-shopping-cart"></i> Enquire Now
+                    <button class="btn-add-cart add-to-cart-btn" data-id="${copy.id}">
+                        Add to cart
                     </button>
                 </div>
             </div>
@@ -2471,7 +2637,17 @@
                 <p class="book-description">${copy.description || ''}</p>
             </div>
         `;
-        card.querySelector('.enquire-btn').addEventListener('click', () => showExerciseDetails(copy.id));
+        // Card click listener to open details modal
+        card.addEventListener('click', (e) => {
+            if (!e.target.closest('.add-to-cart-btn')) {
+                 showExerciseDetails(copy.id); // Call the correct details function
+            }
+        });
+        // Button click listener to add to cart
+        card.querySelector('.btn-add-cart').addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleCartItem(copy.id); 
+        });
         return card;
     }
 
@@ -2485,16 +2661,7 @@
                 <div class="book-details-price">₹${copy.price}</div>
                 <p style="font-size:14px; color: var(--gray); margin-bottom:15px;">(+ Delivery Charge)</p>
                 <p class="book-details-desc">${copy.description}</p>
-                <div class="book-details-actions">
-                    <button class="btn btn-primary btn-large show-order-confirm" data-copy-id="${copy.id}">
-                        <i class="fab fa-facebook-messenger"></i> FB Chat To Order
-                    </button>
-                </div>
-            </div>`;
-        bookDetailsContent.querySelector('.show-order-confirm').addEventListener('click', () => {
-            const orderText = `I want to order this item:\n\n📝 Item Name: ${copy.title}\n💰 Price: ₹${copy.price}\n\nPlease confirm availability.`;
-            showOrderConfirmModal(orderText, 'facebook');
-        });
+                </div>`;
         bookDetailsModal.style.display = 'block';
          document.body.style.overflow = 'hidden';
     }
@@ -2606,34 +2773,46 @@
     // --- CART FUNCTIONS ---
     function saveCartToStorage() { localStorage.setItem('readoraCart', JSON.stringify(cart)); }
 
-    function toggleCartItem(bookId) {
-         if (bookId == null) return;
-        if (cart.some(item => item.id === bookId)) {
-            removeFromCart(bookId, true);
+    function toggleCartItem(itemId) {
+         if (itemId == null) return;
+        if (cart.some(item => String(item.id) === String(itemId))) {
+            removeFromCart(itemId, true);
         } else {
-            addToCart(bookId);
+            addToCart(itemId);
         }
         updateAddToCartButtonsUI();
     }
 
-    function addToCart(bookId) {
-        const book = books.find(b => b.id === bookId);
-        if (!book) return;
-        const itemInCart = cart.find(item => item.id === bookId);
-        if (itemInCart) itemInCart.quantity++;
-        else cart.push({ ...book, quantity: 1 });
+    // --- *** THIS FUNCTION IS UPDATED *** ---
+    function addToCart(itemId) {
+        // Find the item in either the books array or the exerciseCopies array
+        const itemToAdd = books.find(b => String(b.id) === String(itemId)) || exerciseCopies.find(c => String(c.id) === String(itemId));
+        if (!itemToAdd) {
+            console.error("Item not found:", itemId);
+            return; // Exit if the item isn't found
+        }
+
+        const itemInCart = cart.find(item => String(item.id) === String(itemId));
+        if (itemInCart) {
+            itemInCart.quantity++;
+        } else {
+            // Add the found item to the cart with a quantity of 1
+            cart.push({ ...itemToAdd, quantity: 1 });
+        }
         saveCartToStorage();
         updateCartBadge();
     }
+
     
-    function updateCartBadge() { cartBadge.textContent = cart.length; }
+    function updateCartBadge() { 
+        cartBadge.textContent = cart.length; // FIXED: show unique items
+    }
 
     function updateAddToCartButtonsUI() {
         document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
-            const bookIdStr = btn.dataset.id;
-             if (bookIdStr && !isNaN(parseInt(bookIdStr))) {
-                const bookId = parseInt(bookIdStr);
-                const inCart = cart.some(item => item.id === bookId);
+            const itemId = btn.dataset.id;
+             if (itemId) {
+                const inCart = cart.some(item => String(item.id) === String(itemId));
                 if(btn.classList.contains('btn-add-cart')) {
                     btn.textContent = inCart ? 'Added' : 'Add to cart';
                     btn.classList.toggle('added', inCart);
@@ -2660,7 +2839,7 @@
                     const cartItemEl = document.createElement('div');
                     cartItemEl.className = 'cart-item';
                     cartItemEl.innerHTML = `
-                        <img src="${item.frontImg || 'https://dummyimage.com/80x120/ccc/fff&text=No+Image'}" alt="${item.title}" class="cart-item-img" onerror="this.onerror=null;this.src='https://dummyimage.com/80x120/ccc/fff&text=No+Image';">
+                        <img src="${item.frontImg || item.img || 'https://dummyimage.com/80x120/ccc/fff&text=No+Image'}" alt="${item.title}" class="cart-item-img" onerror="this.onerror=null;this.src='https://dummyimage.com/80x120/ccc/fff&text=No+Image';">
                         <div class="cart-item-info">
                             <h4>${item.title}</h4>
                             <p class="cart-item-price">₹${item.price}</p>
@@ -2684,25 +2863,24 @@
     function addCartEventListeners() {
         cartItemsContainer.querySelectorAll('.quantity-btn, .cart-item-remove').forEach(btn => {
             btn.onclick = (e) => {
-                 const bookIdStr = e.currentTarget.dataset.id;
-                 if (bookIdStr && !isNaN(parseInt(bookIdStr))) {
-                    const bookId = parseInt(bookIdStr);
+                 const itemId = e.currentTarget.dataset.id;
+                 if (itemId) {
                     if (e.currentTarget.classList.contains('cart-item-remove')) {
-                        removeFromCart(bookId);
+                        removeFromCart(itemId);
                     } else {
                         const change = parseInt(e.currentTarget.dataset.change);
-                        updateQuantity(bookId, change);
+                        updateQuantity(itemId, change);
                     }
                 }
             };
         });
     }
 
-    function updateQuantity(bookId, change) {
-        const itemInCart = cart.find(item => item.id === bookId);
+    function updateQuantity(itemId, change) {
+        const itemInCart = cart.find(item => String(item.id) === String(itemId));
         if (itemInCart) {
             itemInCart.quantity += change;
-            if (itemInCart.quantity <= 0) removeFromCart(bookId);
+            if (itemInCart.quantity <= 0) removeFromCart(itemId);
             else {
                 saveCartToStorage();
                 displayCart();
@@ -2710,8 +2888,8 @@
         }
     }
 
-    function removeFromCart(bookId, isSilent = false) {
-        cart = cart.filter(item => item.id !== bookId);
+    function removeFromCart(itemId, isSilent = false) {
+        cart = cart.filter(item => String(item.id) !== String(itemId));
         saveCartToStorage();
         if (!isSilent) displayCart();
         updateCartBadge();
@@ -2725,9 +2903,9 @@
 
     function handleCheckoutWithPlatform(platform) {
         const dateTime = new Date().toLocaleString('en-IN', { dateStyle: 'short', timeStyle: 'short' });
-        let orderDetails = "I would like to order the following books:\n\n";
+        let orderDetails = "I would like to order the following items:\n\n";
         cart.forEach(item => {
-            orderDetails += `📖 ${item.title}\n✍️ by ${item.author}\n🏢 Publisher: ${item.publication || 'N/A'}\n- Qty: ${item.quantity}, Price: ₹${item.price * item.quantity}\n\n`;
+            orderDetails += `📖 ${item.title}\n✍️ by ${item.author || 'N/A'}\n🏢 Publisher: ${item.publication || 'N/A'}\n- Qty: ${item.quantity}, Price: ₹${item.price * item.quantity}\n\n`;
         });
         const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
         orderDetails += `--------------------\n💰 Total Bill: ₹${total}\n📅 Order Time: ${dateTime}\n\nPlease confirm availability and delivery details.`;
@@ -2749,7 +2927,7 @@
                 style: '' // Resets to default CSS
             },
             instagram: {
-                url: 'https://ig.me/m/readora_books',
+                url: 'https://www.instagram.com/direct/t/17847140604595484/',
                 name: 'Instagram',
                 icon: 'fa-instagram',
                 style: 'linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)'
