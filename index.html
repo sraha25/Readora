@@ -2674,14 +2674,29 @@
             searchSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
         
-        const lowerQuery = query.toLowerCase();
+        const lowerQuery = query.trim().toLowerCase();
+        
+        // Function to check if any word in the search query matches any word in the target string
+        const matchesAnyWord = (searchStr, targetStr) => {
+            if (!targetStr) return false;
+            const searchWords = searchStr.split(/\s+/).filter(Boolean);
+            const targetWords = targetStr.toLowerCase().split(/\s+/);
+            return searchWords.some(word => 
+                targetWords.some(tWord => tWord.startsWith(word))
+            );
+        };
+        
         const bookResults = books.filter(book => 
             book.title.toLowerCase().includes(lowerQuery) || 
-            book.author.toLowerCase().includes(lowerQuery) ||
+            (book.author && matchesAnyWord(lowerQuery, book.author)) ||
             (book.category && book.category.toLowerCase().includes(lowerQuery)) ||
             (book.publication && book.publication.toLowerCase().includes(lowerQuery))
         );
-        const copyResults = exerciseCopies.filter(copy => copy.title.toLowerCase().includes(lowerQuery));
+        
+        const copyResults = exerciseCopies.filter(copy => 
+            copy.title.toLowerCase().includes(lowerQuery) ||
+            (copy.author && matchesAnyWord(lowerQuery, copy.author))
+        );
 
         searchResultsGrid.innerHTML = '';
         if (bookResults.length === 0 && copyResults.length === 0) {
