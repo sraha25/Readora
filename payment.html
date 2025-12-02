@@ -185,10 +185,12 @@
         }
         #checkout-items-container .cart-item-img {
             width: 60px;
+            min-width: 60px; /* Ensure image width is fixed */
             height: 90px;
         }
         #checkout-items-container .cart-item-info {
             flex-grow: 1; /* Make info block take up space */
+            flex-shrink: 1;
         }
         #checkout-items-container .cart-item-info h4 {
             font-size: 1rem;
@@ -377,6 +379,38 @@
             .checkout-details h3, .checkout-payment h3 {
                 font-size: 1.3rem;
             }
+
+            /* --- FIX for Checkout Item Layout on Mobile --- */
+            #checkout-items-container .cart-item {
+                flex-wrap: wrap; /* Allow items to wrap to the next line */
+                align-items: flex-start; /* Align items to the top */
+                position: relative;
+                padding-bottom: 30px; /* Add space for the controls below */
+            }
+            #checkout-items-container .cart-item-img {
+                 /* Image size is fine */
+            }
+            #checkout-items-container .cart-item-info {
+                max-width: calc(100% - 70px); /* Leave room for image */
+                margin-left: 0;
+                order: 1; /* Keep info next to image */
+            }
+            #checkout-items-container .cart-item-quantity {
+                /* MODIFIED: Shifted to the right */
+                position: absolute; /* Position controls absolutely */
+                bottom: 5px; /* Place them below the info block */
+                right: 40px; /* Aligned to the right, leaving space for trash icon */
+                left: auto; /* Reset left property */
+                order: 2;
+            }
+            #checkout-items-container .cart-item-remove {
+                position: absolute; /* Position remove button absolutely */
+                bottom: 5px; /* Place it below the info block */
+                right: 0; /* Align to the right edge */
+                margin-left: 0; /* Remove extra margin */
+                order: 3;
+            }
+            /* --- END FIX --- */
         }
         @media (max-width: 480px) {
             .footer-heading { font-size: 1.1rem; }
@@ -816,18 +850,18 @@
                     
                     const cartItemEl = document.createElement('div');
                     cartItemEl.className = 'cart-item';
-                    const imageUrl = bookDetails.frontImg || bookDetails.img || 'https://dummyimage.com/80x120/ccc/fff&text=No+Image';
+                    const imageUrl = bookDetails.frontImg || bookDetails.img || 'https://dummyimage.com/60x90/ccc/fff&text=No+Image';
                     
                     // --- UPDATED HTML STRUCTURE ---
                     cartItemEl.innerHTML = `
-                        <img src="${imageUrl}" alt="${bookDetails.title}" class="cart-item-img" onerror="this.onerror=null;this.src='https://dummyimage.com/80x120/ccc/fff&text=No+Image';">
+                        <img src="${imageUrl}" alt="${bookDetails.title}" class="cart-item-img" onerror="this.onerror=null;this.src='https://dummyimage.com/60x90/ccc/fff&text=No+Image';">
                         <div class="cart-item-info">
                             <h4 style="font-size: 1rem; font-weight: 700;">${bookDetails.title}</h4>
                             <p style="font-size: 0.9em; color: var(--gray); margin: 2px 0;">by ${bookDetails.author || 'N/A'}</p>
                             <p style="font-size: 0.9em; color: var(--gray); margin-bottom: 5px;">Pub: ${bookDetails.publication || 'N/A'}</p>
                             <p class="cart-item-price" style="font-weight: 600; font-size: 1rem;">₹${bookDetails.price}</p>
                         </div>
-                        <div class="cart-item-quantity">
+                        <div class="cart-item-quantity" data-id="${item.id}">
                             <button class="quantity-btn" data-id="${item.id}" data-change="-1">-</button>
                             <span style="padding: 0 5px; font-weight: 600;">${item.quantity}</span>
                             <button class="quantity-btn" data-id="${item.id}" data-change="1">+</button>
