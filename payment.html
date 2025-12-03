@@ -380,6 +380,13 @@
                 font-size: 1.3rem;
             }
 
+            /* --- FIX: Hide Messenger and Instagram buttons on mobile --- */
+            #place-order-btn,
+            #place-order-insta-btn {
+                display: none !important; /* This hides the two buttons on mobile */
+            }
+            /* --- END FIX --- */
+
             /* --- FIX for Checkout Item Layout on Mobile --- */
             #checkout-items-container .cart-item {
                 flex-wrap: wrap; /* Allow items to wrap to the next line */
@@ -626,8 +633,7 @@
         // --- NEW: Global Checkout Variables ---
         let checkoutSubtotal = 0;
         let checkoutDiscount = 0;
-        // UPDATED: Delivery Fee is now 49 (from 40)
-        // **REPLACED LOGIC: Delivery fee is fixed at 49, but will be set to 0 if total quantity >= 3.**
+        // Delivery fee is fixed at 49, but will be set to 0 if total quantity >= 3.
         const fixedDeliveryFee = 49; 
         // --- END: Global Checkout Variables ---
 
