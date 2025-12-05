@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -381,142 +379,30 @@
             border-color: var(--secondary);
         }
 
-        /* Books Grid - DEFAULT DESKTOP/LARGE VIEW */
+        /* Books Grid - Amazon Style */
         .books-grid {
             display: flex;
             flex-direction: column;
             gap: 15px;
-            margin: 30px auto 60px auto; 
-            max-width: 100%;
-            position: relative;
+            margin: 30px 0 60px 0;
         }
-        
-        #category-books {
-            min-height: 400px;
-        }
-        
-        /* Style adjustments for cards in non-swipe mode */
+
         .book-card {
             background: white;
             border-radius: 8px;
             overflow: visible; 
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease; /* Maintain hover effect */
+            transition: all 0.3s ease;
             position: relative;
             display: flex;
             flex-direction: row;
-            align-items: center; 
+            align-items: center; /* MODIFIED: Vertically center all items */
             padding: 12px;
             border: 1px solid #e0e0e0;
-            cursor: pointer; /* Restore cursor pointer for standard click */
-            min-height: 180px; 
-            transform: none !important; /* Ensure no residual swipe transform */
-        }
-
-        /* Swiping related styles, should only apply in mobile view */
-        .book-card.moving,
-        .book-card.dismissed-right,
-        .book-card.dismissed-left {
-            transition: all 0.3s ease;
-        }
-        
-        /* START: MOBILE SWIPE STYLES (Applies stacking for mobile) */
-        @media (max-width: 768px) {
-            /* REVERTED: Remove stacking/grid changes to restore previous list view */
-            .books-grid {
-                display: flex;
-                flex-direction: column;
-                gap: 15px;
-                max-width: 100%;
-            }
-            
-            /* Remove absolute positioning and z-index to revert to list flow */
-            #category-books .book-card, 
-            #search-results .book-card {
-                position: relative;
-                top: auto;
-                left: auto;
-                width: 100%;
-                margin: 0;
-            }
-            
-            #category-books .book-card:nth-child(2),
-            #category-books .book-card:nth-child(3) {
-                 transform: none !important;
-            }
-            
-            /* Mobile list view layout kept from previous versions */
-            .book-card {
-                flex-direction: row;
-                align-items: center; 
-                padding: 10px;
-                min-height: 150px;
-            }
-            
-            .book-img {
-                width: 100px;
-                min-width: 100px;
-                height: 140px;
-                 margin-right: 15px; 
-            }
-            
-            .book-info {
-                max-width: none;
-            }
-            
-            /* Hide description on mobile for all cards including stacked ones */
-            .book-description-wrapper {
-                display: none; 
-            }
-        }
-        /* END: MOBILE SWIPE STYLES */
-        
-        /* NEW: Swipe navigation indicators inside the modal */
-        #book-details-modal .swipe-nav-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            pointer-events: none; /* Allows clicks to pass through by default */
-            z-index: 1000;
-        }
-
-        #book-details-modal .swipe-nav-btn {
-            /* Updated style for smaller, subtle arrows matching site theme */
-            background: rgba(74, 111, 165, 0.6); /* --primary with opacity */
-            color: white;
-            border: 2px solid white;
-            padding: 8px 12px;
             cursor: pointer;
-            font-size: 1.2rem; /* Smaller size */
-            width: 40px; /* Fixed width */
-            height: 40px; /* Fixed height */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0.9;
-            transition: opacity 0.2s, background 0.2s;
-            pointer-events: auto; /* Re-enable pointer events for the buttons */
-            border-radius: 50%; /* Circular buttons */
-            margin: 0 10px;
-            user-select: none;
+            min-height: 180px; 
         }
-        #book-details-modal .swipe-nav-btn:hover {
-            background: var(--primary); /* Solid primary on hover */
-            opacity: 1;
-        }
-        
-        /* Ensure the modal content can still transition */
-        /* IMPORTANT: This transition is used for the snap-back effect */
-        #book-details-modal .modal-content {
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s;
-            will-change: transform, opacity; /* Hint browser for smoother animation */
-        }
-        
+
         .book-card:hover {
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             border-color: var(--primary);
@@ -1283,11 +1169,6 @@
         }
 
         @media (max-width: 768px) {
-             /* Adjust grid for mobile swipe stack to take full width */
-            .books-grid {
-                max-width: 100%;
-            }
-            
             nav {
                 position: fixed;
                 top: 0;
@@ -1370,9 +1251,8 @@
                 flex-direction: column;
             }
             
-            /* Mobile layout for books-grid (reverted to list view) */
             .books-grid {
-                display: flex; 
+                display: flex;
                 flex-direction: column;
                 gap: 12px;
             }
@@ -1747,7 +1627,7 @@
             color: var(--primary);
         }
 
-        .close-confirm-modal, .close-cart-modal {
+        .close-confirm-modal, .close-request-modal {
             font-size: 28px;
             cursor: pointer;
             color: var(--gray);
@@ -1977,12 +1857,6 @@
 
     <div id="book-details-modal" class="modal">
         <div class="modal-content">
-            <!-- NEW: Swipe navigation arrows (visible on desktop and touch devices) -->
-            <div class="swipe-nav-overlay">
-                <button class="swipe-nav-btn" id="prev-book-btn" style="border-radius: 0 50% 50% 0;"><i class="fas fa-chevron-left"></i></button>
-                <button class="swipe-nav-btn" id="next-book-btn" style="border-radius: 50% 0 0 50%;"><i class="fas fa-chevron-right"></i></button>
-            </div>
-            
             <div class="modal-header">
                 <h2> Details</h2>
                 <span class="close-modal">&times;</span>
@@ -2101,10 +1975,6 @@
     // Global variable to hold book data fetched from Google Sheets.
     let books = [];
     
-    // State to manage swipeable modal viewing
-    let modalBookList = []; // List of books currently visible in the category (used for swiping)
-    let currentModalBookIndex = -1; // Index of the book currently shown in the modal
-    
     // Subcategory translations
     const subcategoryTranslations = {
         "all": { "English": "All", "Bengali": "সমস্ত" },
@@ -2127,7 +1997,7 @@
         "Romance": { "English": "Romance", "Bengali": "ভালবাসার কাহিনি" },
         "Thriller": { "English": "Thriller", "Bengali": "অপরাধ কাহিনি" },
         "Motivational": { "English": "Motivational", "Bengali": "প্রেরণামূলক সাহিত্য" },
-        "Poetry": { "English": "Poetry", "Bengali": "কবita" },
+        "Poetry": { "English": "Poetry", "Bengali": "কবিতা" },
         "Short Story": { "English": "Short Story", "Bengali": "গল্প" },
         "Drama / Play": { "English": "Drama / Play", "Bengali": "নাটক" },
         "Autobiography": { "English": "Autobiography", "Bengali": "আত্মজীবনী" },
@@ -2242,14 +2112,11 @@
     const searchResultsGrid = document.getElementById('search-results');
     const bookDetailsModal = document.getElementById('book-details-modal');
     const bookDetailsContent = document.getElementById('book-details-content');
-    const modalContent = bookDetailsModal.querySelector('.modal-content');
     const closeModalBtns = document.querySelectorAll('.close-modal');
     const navLinks = document.querySelectorAll('.nav-link');
     const menuToggle = document.getElementById('menu-toggle');
     const mainNav = document.getElementById('main-nav');
     const seeMoreContainer = document.getElementById('see-more-container');
-    const prevBookBtn = document.getElementById('prev-book-btn');
-    const nextBookBtn = document.getElementById('next-book-btn');
     const backToTop = document.createElement('div');
     backToTop.className = 'back-to-top';
     backToTop.innerHTML = '<i class="fas fa-arrow-up"></i>';
@@ -2301,147 +2168,6 @@
         displayBooksByCategory();
         setupEventListeners();
         updateCartBadge();
-        setupModalSwipeListeners(); // Setup modal swipe listeners once on init
-    }
-    
-    // Function to update visibility of modal navigation buttons
-    function updateModalNavButtons() {
-        prevBookBtn.style.visibility = (currentModalBookIndex > 0 && modalBookList.length > 1) ? 'visible' : 'hidden';
-        nextBookBtn.style.visibility = (currentModalBookIndex < modalBookList.length - 1 && modalBookList.length > 1) ? 'visible' : 'hidden';
-    }
-    
-    // Function to navigate to the next/previous book in the modal
-    function navigateModalBook(direction) {
-        const newIndex = currentModalBookIndex + direction;
-        if (newIndex >= 0 && newIndex < modalBookList.length) {
-            
-            // Phase 1: Animate current book out
-            modalContent.style.transition = 'transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s';
-            modalContent.style.transform = `perspective(1000px) translateX(${-direction * 100}%) rotateY(${-direction * 5}deg)`;
-            modalContent.style.opacity = 0;
-
-            // Phase 2: Wait for transition end, then swap content immediately
-            setTimeout(() => {
-                const nextBook = modalBookList[newIndex];
-                currentModalBookIndex = newIndex;
-                showBookDetails(nextBook.id, nextBook.isExercise, true); // Load new content
-
-                // Phase 3: Reset position for incoming card (off-screen)
-                modalContent.style.transition = 'none';
-                modalContent.style.transform = `perspective(1000px) translateX(${direction * 100}%) rotateY(${direction * 5}deg)`; 
-                modalContent.style.opacity = 0;
-
-                // Phase 4: Animate the incoming card into view
-                setTimeout(() => {
-                    modalContent.style.transition = 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s';
-                    modalContent.style.transform = 'perspective(1000px) translateX(0) rotateY(0deg)';
-                    modalContent.style.opacity = 1;
-                    updateModalNavButtons();
-                }, 10); // Small delay to force repaint
-                
-            }, 200); // Duration of the swipe out transition
-        }
-    }
-    
-    function setupModalSwipeListeners() {
-        if (!bookDetailsModal) return;
-        
-        // --- Button Click Listeners (Always available on all devices) ---
-        prevBookBtn.onclick = () => navigateModalBook(-1);
-        nextBookBtn.onclick = () => navigateModalBook(1);
-
-        // --- Touch/Swipe & Mouse Drag Listeners ---
-        const SWIPE_THRESHOLD = 80; 
-        let startX = 0;
-        let isDragging = false;
-        let isTouch = false;
-        let animationFrameId = null; // For requestAnimationFrame
-
-        const getClientX = (e) => e.touches ? e.touches[0].clientX : e.clientX;
-
-        const onStart = (e) => {
-            if (e.type === 'touchstart') isTouch = true;
-            if (e.target.closest('.swipe-nav-btn') || e.target.closest('.close-modal')) return;
-
-            isDragging = true;
-            startX = getClientX(e);
-            modalContent.style.transition = 'none'; // Disable CSS transition during drag
-            if (!isTouch) e.preventDefault(); // Prevent text selection on desktop
-        };
-        
-        const updateTransform = (deltaX) => {
-            // Apply a slight dampening effect for natural feel
-            const dampeningFactor = 0.6;
-            const dampenedDeltaX = deltaX * dampeningFactor;
-            
-            // Limit swipe extent
-            const limitedDeltaX = Math.sign(dampenedDeltaX) * Math.min(Math.abs(dampenedDeltaX), 250);
-            
-            const rotationY = -limitedDeltaX / 10;
-            
-            // Apply drag transform with subtle perspective for 3D feel
-            modalContent.style.transform = `perspective(1000px) translateX(${limitedDeltaX}px) rotateY(${rotationY * 0.2}deg)`;
-        };
-
-        const onMove = (e) => {
-            if (!isDragging) return;
-            
-            // Cancel any existing animation frame request
-            if (animationFrameId) {
-                cancelAnimationFrame(animationFrameId);
-            }
-
-            // Use requestAnimationFrame for smooth drawing
-            animationFrameId = requestAnimationFrame(() => {
-                const currentX = getClientX(e);
-                const deltaX = currentX - startX;
-                updateTransform(deltaX);
-            });
-        };
-
-        const onEnd = (e) => {
-            if (!isDragging) return;
-            
-            if (animationFrameId) {
-                cancelAnimationFrame(animationFrameId);
-            }
-
-            isDragging = false;
-            
-            // Re-enable transition for snap-back/navigation animation
-            modalContent.style.transition = 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s';
-            
-            const currentX = getClientX(e);
-            const deltaX = currentX - startX;
-            
-            if (deltaX > SWIPE_THRESHOLD) {
-                // Swiped right (to previous book)
-                navigateModalBook(-1);
-            } else if (deltaX < -SWIPE_THRESHOLD) {
-                // Swiped left (to next book)
-                navigateModalBook(1);
-            } else {
-                // Snap back
-                modalContent.style.transform = 'translateX(0) rotateY(0deg)';
-            }
-        };
-        
-        // Attach event listeners
-        bookDetailsModal.addEventListener('touchstart', onStart);
-        bookDetailsModal.addEventListener('touchmove', onMove, { passive: true });
-        bookDetailsModal.addEventListener('touchend', onEnd);
-        
-        bookDetailsModal.addEventListener('mousedown', onStart);
-        document.addEventListener('mousemove', onMove);
-        document.addEventListener('mouseup', onEnd);
-
-        // Cleanup mouse dragging if leaving modal area (just in case mouseup misses)
-        bookDetailsModal.addEventListener('mouseleave', () => {
-             if (isDragging && !isTouch) {
-                // Trigger snapback if mouse leaves while dragging desktop
-                onEnd({ clientX: startX }); // Simulate ending the drag where it started
-            }
-        });
     }
 
     // NEW: Function to update star display
@@ -2760,43 +2486,15 @@
         customAlertModal.style.display = 'flex';
     }
 
-    // Swiping cards in the main grid is removed. The function is kept empty for compatibility.
-    function attachSwipeEvents(card) {
-        // No operation: Swiping moved to modal details.
-    }
-
-    // Swiping cards in the main grid is removed. The function is kept empty for compatibility.
-    function initSwipeableCards(containerId) {
-        // No operation: Swiping moved to modal details.
-    }
-
-    function displayBooksByCategory(isSwipeRender = false) {
-        // Only clear the grid if it's the initial load or filter change, not during a swipe
-        if (!isSwipeRender) {
-             categoryBooksGrid.innerHTML = '';
-             seeMoreContainer.innerHTML = '';
-        }
-        
-        const isMobileView = window.innerWidth <= 768;
+    function displayBooksByCategory() {
+        categoryBooksGrid.innerHTML = '';
+        seeMoreContainer.innerHTML = '';
 
         if (selectedType === 'exercise') {
             exerciseCopies.forEach(copy => categoryBooksGrid.appendChild(createExerciseCopyCard(copy)));
-            updateAddToCartButtonsUI();
-            
-            // Ensure no swipe styles applied to Exercise view
-            categoryBooksGrid.style.position = 'static';
-            categoryBooksGrid.style.display = 'flex';
-            categoryBooksGrid.style.flexDirection = 'column';
-            categoryBooksGrid.style.maxWidth = '100%';
+            updateAddToCartButtonsUI(); // *** ADDED THIS LINE ***
             return;
-        } 
-        
-        // --- Configure display for desktop/mobile list view ---
-        categoryBooksGrid.style.position = 'static';
-        categoryBooksGrid.style.display = 'flex';
-        categoryBooksGrid.style.flexDirection = 'column';
-        categoryBooksGrid.style.maxWidth = '100%'; 
-        // ----------------------------------------------------
+        }
 
         const filteredBooks = books.filter(book => {
             const typeMatch = selectedType === 'all' ||
@@ -2842,28 +2540,20 @@
              if (!categoryMatch) return false;
             return true;
         });
-        
-        // Update modal book list (used for modal swiping)
-        modalBookList = filteredBooks.map(book => ({ id: book.id, isExercise: false }));
-        
-        const finalBooks = filteredBooks.slice(0, visibleBookCount);
-        
-        // Rebuild the list in the main grid
-        categoryBooksGrid.innerHTML = ''; 
-        finalBooks.forEach(book => categoryBooksGrid.appendChild(createBookCard(book)));
 
-        if (finalBooks.length === 0) {
-             categoryBooksGrid.innerHTML = '<div class="no-books">No books found for the selected filters.</div>';
-             return;
+        if (filteredBooks.length === 0) {
+            categoryBooksGrid.innerHTML = '<div class="no-books">No books found for the selected filters.</div>';
+            return;
         }
+
+        const booksToShow = filteredBooks.slice(0, visibleBookCount);
+        booksToShow.forEach(book => categoryBooksGrid.appendChild(createBookCard(book)));
 
         updateAddToCartButtonsUI();
 
         if (filteredBooks.length > visibleBookCount) {
-            const booksRemaining = filteredBooks.length - finalBooks.length;
-            seeMoreContainer.innerHTML = '';
             const seeMoreBtn = document.createElement('button');
-            seeMoreBtn.textContent = `See More (${booksRemaining} more)`;
+            seeMoreBtn.textContent = 'See More';
             seeMoreBtn.id = 'see-more-btn';
             seeMoreBtn.className = 'btn btn-primary';
             seeMoreBtn.onclick = () => {
@@ -2871,15 +2561,12 @@
                 displayBooksByCategory();
             };
             seeMoreContainer.appendChild(seeMoreBtn);
-        } else {
-             seeMoreContainer.innerHTML = '';
         }
     }
 
     function createBookCard(book) {
         const card = document.createElement('div');
         card.className = 'book-card fade-in';
-        card.dataset.bookId = book.id; /* Add book ID for DOM tracking */
         const discount = book.originalPrice > 0 ? Math.round(((book.originalPrice - book.price) / book.originalPrice) * 100) : 0;
         const imageUrl = book.frontImg ? book.frontImg : 'https://dummyimage.com/130x180/5c5c5c/ffffff&text=No+Image';
         const descriptionSnippet = book.description || '';
@@ -2912,23 +2599,21 @@
             </div>
         `; 
         card.addEventListener('click', (e) => {
-            // Only show details if not clicking the cart button
             if (!e.target.closest('.add-to-cart-btn')) {
                  showBookDetails(book.id);
             }
         });
-        card.querySelector('.btn-add-cart').addEventListener('click', (e) => {
+        card.querySelector('.add-to-cart-btn').addEventListener('click', (e) => {
             e.stopPropagation();
             toggleCartItem(book.id);
         });
         return card;
     }
 
-    // --- *** THIS FUNCTION IS UPDATED (Reverted to standard click behavior) *** ---
+    // --- *** THIS FUNCTION IS UPDATED *** ---
     function createExerciseCopyCard(copy) {
         const card = document.createElement('div');
         card.className = 'book-card fade-in';
-        card.dataset.bookId = copy.id; /* Add book ID for DOM tracking */
         card.innerHTML = `
             <div class="book-img"><img src="${copy.img}" alt="${copy.title}" style="object-fit: contain; padding: 10px;"></div>
             <div class="book-info">
@@ -2963,12 +2648,6 @@
     function showExerciseDetails(copyId) {
         const copy = exerciseCopies.find(c => c.id === copyId);
         if (!copy) return;
-        
-        // Update modal book list for exercise items too, though swiping between books/copies might not make sense
-        modalBookList = exerciseCopies.map(copy => ({ id: copy.id, isExercise: true }));
-        currentModalBookIndex = modalBookList.findIndex(item => String(item.id) === String(copyId));
-        updateModalNavButtons();
-
         bookDetailsContent.innerHTML = `
             <div class="book-details-img"><img src="${copy.img}" alt="${copy.title}"></div>
             <div class="book-details-info">
@@ -2980,19 +2659,10 @@
         bookDetailsModal.style.display = 'block';
          document.body.style.overflow = 'hidden';
     }
-
+    
+    // --- UPDATED performSearch FUNCTION FOR WHATSAPP BUTTON ---
     function performSearch(query) {
         if (!query.trim()) return;
-        
-        // Reset category view if searching
-        categoryBooksGrid.innerHTML = '';
-        seeMoreContainer.innerHTML = '';
-        
-        // Ensure search results grid uses flex layout for standard display, not swipe stack
-        searchResultsGrid.style.position = 'static';
-        searchResultsGrid.style.display = 'flex';
-        searchResultsGrid.style.flexDirection = 'column';
-        searchResultsGrid.style.maxWidth = '100%';
         
         const searchSection = document.getElementById('search');
         if (searchSection) {
@@ -3022,10 +2692,6 @@
             copy.title.toLowerCase().includes(lowerQuery) ||
             (copy.author && matchesAnyWord(lowerQuery, copy.author))
         );
-        
-        // Update modal book list for search results too
-        modalBookList = bookResults.map(book => ({ id: book.id, isExercise: false }))
-                           .concat(copyResults.map(copy => ({ id: copy.id, isExercise: true })));
 
         searchResultsGrid.innerHTML = '';
         if (bookResults.length === 0 && copyResults.length === 0) {
@@ -3039,8 +2705,8 @@
             
             const whatsappBtn = document.getElementById('contact-whatsapp-btn');
             whatsappBtn.addEventListener('click', () => {
-                // Phone number found in the footer contact info: +91 9163621264
-                const whatsappNumber = '919163621264'; 
+                // Phone number found in the footer contact info: +919330233178
+                const whatsappNumber = '919330233178'; 
                 const requestMessage = `Hello Readora, I'm requesting a book. The search query was: "${query}". Can this book be arranged?`;
                 const encodedMessage = encodeURIComponent(requestMessage);
                 
@@ -3058,67 +2724,9 @@
     }
     // --- END UPDATED performSearch FUNCTION ---
 
-    function showBookDetails(bookId, isExercise = false, skipModalListUpdate = false) {
-        let book;
-        if (isExercise) {
-            book = exerciseCopies.find(c => String(c.id) === String(bookId));
-        } else {
-            book = books.find(b => String(b.id) === String(bookId));
-        }
-        
+    function showBookDetails(bookId) {
+        const book = books.find(b => b.id === bookId);
         if (!book) return;
-
-        // If called directly, update modal list and index from the current category view
-        if (!skipModalListUpdate || currentModalBookIndex === -1 || String(modalBookList[currentModalBookIndex].id) !== String(bookId)) {
-            // Find which list the book belongs to (current category books or exercise copies)
-            const currentContainer = (selectedType === 'exercise' || isExercise) ? exerciseCopies : books.filter(b => {
-                 // Re-run category filter logic to populate modalBookList accurately
-                const typeMatch = selectedType === 'all' || (b.condition && (b.condition.toLowerCase() === selectedType || b.condition.toLowerCase() === 'both'));
-                if (!typeMatch) return false;
-                
-                const bookLangLower = (b.language || '').toLowerCase();
-                const bookPubLower = (b.publication || '').toLowerCase();
-                const isBookBengali = bookLangLower.includes('bengali') || bookLangLower.includes('বাংলা') ||
-                                      bookPubLower.includes('ananda') || bookPubLower.includes('dey') || bookPubLower.includes('বাংলা') ||
-                                      (b.category && (b.category === "উপন্যাস" || b.category === "কবিতা" || b.category === "গল্প" ));
-
-                 let languageMatch = true;
-                 if (selectedLanguage !== 'all') {
-                    if (selectedLanguage === 'Bengali') {
-                        languageMatch = isBookBengali;
-                    } else if (selectedLanguage === 'English') {
-                        languageMatch = !isBookBengali || bookLangLower.includes('english');
-                     } else {
-                         languageMatch = bookLangLower.includes(selectedLanguage.toLowerCase());
-                     }
-                 }
-                 if (!languageMatch) return false;
-
-                let categoryMatch = true;
-                if (selectedCategory !== 'all') {
-                    if (!b.category) return false;
-                    const bookCategoryValue = b.category;
-                    if (bookCategoryValue.trim().toLowerCase() === selectedCategory.trim().toLowerCase()) {
-                        categoryMatch = true;
-                    }
-                    else if (selectedLanguage === 'Bengali' || (selectedLanguage === 'all' && isBookBengali)) {
-                        const expectedBengaliCategory = subcategoryTranslations[selectedCategory]?.Bengali;
-                        categoryMatch = expectedBengaliCategory && bookCategoryValue.trim() === expectedBengaliCategory.trim();
-                    }
-                     else if (selectedLanguage === 'English' || (selectedLanguage === 'all' && !isBookBengali)) {
-                          categoryMatch = false;
-                     }
-                     else {
-                         categoryMatch = false;
-                     }
-                }
-                 if (!categoryMatch) return false;
-                return true;
-            });
-            
-            modalBookList = currentContainer.map(item => ({ id: item.id, isExercise: isExercise }));
-            currentModalBookIndex = modalBookList.findIndex(item => String(item.id) === String(bookId));
-        }
 
         const discount = book.originalPrice > 0 ? Math.round(((book.originalPrice - book.price) / book.originalPrice) * 100) : 0;
         
@@ -3138,7 +2746,7 @@
                 </div>`;
         }
 
-        const imageUrl = book.frontImg ? book.frontImg : book.img || 'https://dummyimage.com/250x375/5c5c5c/ffffff&text=No+Image';
+        const imageUrl = book.frontImg ? book.frontImg : 'https://dummyimage.com/250x375/5c5c5c/ffffff&text=No+Image';
 
         bookDetailsContent.innerHTML = `
             <div class="book-details-img">
@@ -3166,7 +2774,6 @@
         const closeModal = () => {
             bookDetailsModal.style.display = 'none';
             document.body.style.overflow = '';
-            currentModalBookIndex = -1; // Reset index on close
         };
         
         const closeBtn = bookDetailsModal.querySelector('.close-modal');
@@ -3175,7 +2782,6 @@
         }
         
         updateAddToCartButtonsUI();
-        updateModalNavButtons(); // Ensure navigation buttons are visible/hidden correctly
     }
 
     // --- CART FUNCTIONS ---
